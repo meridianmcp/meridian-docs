@@ -18,4 +18,6 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-material
+      - name: Regenerate MCP tool reference
+        run: curl -sf https://usemeridian.us/mcp/tools-doc > docs/mcp-tools.md
       - run: mkdocs gh-deploy --force
