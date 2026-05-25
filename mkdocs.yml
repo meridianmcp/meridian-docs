@@ -1,0 +1,42 @@
+site_name: Meridian
+site_description: Persistent memory and coordination for AI coding sessions
+site_url: https://docs.usemeridian.us
+repo_url: https://github.com/meridianmcp/Meridian
+repo_name: meridianmcp/Meridian
+copyright: Copyright &copy; 2025 Meridian
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/meridianmcp/Meridian
+
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - MCP Tools: mcp-tools.md
+  - Hosted: hosted.md
+  - Self-Hosting: self-hosting.md
+  - Configuration: configuration.md
