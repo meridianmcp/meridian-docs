@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block scripts %}
 {{ super() }}
-{% if config.extra.docs_password_protected %}
 <script>
 (function() {
   var PASS = "meridian2026";
@@ -9,7 +8,7 @@
   if (sessionStorage.getItem(KEY) === PASS) return;
   document.documentElement.style.visibility = 'hidden';
   document.addEventListener('DOMContentLoaded', function() {
-    var pwd = prompt("Meridian docs — enter access password:");
+    var pwd = prompt("Meridian docs -- enter access password:");
     if (pwd === PASS) {
       sessionStorage.setItem(KEY, PASS);
       document.documentElement.style.visibility = 'visible';
@@ -20,5 +19,4 @@
   });
 })();
 </script>
-{% endif %}
 {% endblock %}

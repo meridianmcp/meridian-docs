@@ -32,7 +32,6 @@ theme:
     - content.code.copy
 
 extra:
-  docs_password_protected: true
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/meridianmcp/Meridian
