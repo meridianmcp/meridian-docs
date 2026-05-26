@@ -147,3 +147,39 @@ curl http://localhost:7878/health
 curl http://localhost:7878/projects
 # [{"id": "...", "name": "my-app", ...}]
 ```
+
+---
+
+## Python SDK
+
+Meridian includes a thin synchronous Python SDK — no extra install needed, it ships with the package.
+
+```python
+from meridian.sdk import Meridian
+
+m = Meridian(
+    api_key="sk_meridian_...",   # from Settings → MCP setup → Generate API key
+    project_id="<uuid>",          # your project ID from the dashboard
+    base_url="https://usemeridian.us",  # or your self-hosted URL
+)
+
+# Register a session and load shared state
+session = m.start_session("my-feature-branch", human_id="alice")
+
+# Log work
+m.log_task("Refactored auth module", status="done")
+
+# Get a context block to paste into a new Claude session
+print(m.get_context())
+
+# Pin an architectural decision
+m.pin_decision("Use psycopg3", "asyncpg has DLL issues on Windows", category="TECHNICAL")
+
+# Request human review
+m.request_hitl("Should we add rate limiting here?", urgency="normal")
+
+# Generate a session handoff
+m.generate_handoff()
+```
+
+The SDK wraps all major MCP tools as Python method calls. For async code, use the MCP stdio/HTTP interface directly.

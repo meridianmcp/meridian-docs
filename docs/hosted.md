@@ -8,16 +8,40 @@
 
 | | Standard | Pro |
 |---|---|---|
-| **Price** | $20/mo | $49/mo (waitlist) |
+| **Price** | $20/mo | $49/mo |
 | **Storage** | 1 GB included | 10 GB included |
-| **Compute** | 2 CU · 100 hrs/mo | 4 CU · 300 hrs/mo |
+| **Compute** | 50 CU-hours/mo included | 200 CU-hours/mo included |
+| **Team members** | Up to 25 | Up to 50 |
 | **Environments** | 1 | prod / staging / dev |
 | **Bring your own Postgres** | ✓ | ✓ |
 | **OAuth + email magic link** | ✓ | ✓ |
-| **Extra storage** | $0.50 / GB-month | $0.50 / GB-month |
+| **Compute overage** | $0.16/CU-hr | $0.16/CU-hr |
+| **Storage overage** | $0.50/GB-month | $0.50/GB-month |
 | **Support** | Email | Priority |
 
-7-day free trial on Standard. Card required, no charge until day 8.
+7-day free trial on both plans. Card required, no charge until day 8.
+
+---
+
+## Resource limits
+
+### Compute
+
+| Plan | Included | Overage rate |
+|------|----------|--------------|
+| Standard | 50 CU-hours/mo | $0.16/CU-hour |
+| Pro | 200 CU-hours/mo | $0.16/CU-hour |
+
+At the limit: compute is throttled to 0.25 CU until the next billing cycle or you set an overage budget in Settings.
+
+### Storage
+
+| Plan | Included | Overage rate |
+|------|----------|--------------|
+| Standard | 1 GB | $0.50/GB-month |
+| Pro | 10 GB | $0.50/GB-month |
+
+At the limit with no overage budget: the database becomes read-only until the next billing cycle.
 
 ---
 
