@@ -3,10 +3,13 @@ site_description: Persistent memory and coordination for AI coding sessions
 site_url: https://docs.usemeridian.us
 repo_url: https://github.com/meridianmcp/Meridian
 repo_name: meridianmcp/Meridian
-copyright: Copyright &copy; 2025 Meridian
+copyright: Copyright &copy; 2026 Meridian
 
 theme:
   name: material
+  custom_dir: docs/overrides
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
   palette:
     - scheme: slate
       primary: indigo
@@ -29,6 +32,7 @@ theme:
     - content.code.copy
 
 extra:
+  docs_password_protected: true
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/meridianmcp/Meridian

@@ -23,25 +23,60 @@
 
 ---
 
-## Resource limits
+## Resource Limits & Overage
 
-### Compute
+### Compute (CU-hours)
 
-| Plan | Included | Overage rate |
-|------|----------|--------------|
-| Standard | 50 CU-hours/mo | $0.16/CU-hour |
-| Pro | 200 CU-hours/mo | $0.16/CU-hour |
+| Plan | Included | Grace Period | Overage Rate |
+|------|----------|--------------|--------------|
+| Standard | 50 CU-hours/month | +20 CU-hours | $0.16/CU-hour |
+| Pro | 200 CU-hours/month | +20 CU-hours | $0.16/CU-hour |
 
-At the limit: compute is throttled to 0.25 CU until the next billing cycle or you set an overage budget in Settings.
+**What is a CU-hour?**
+1 CU = 1 vCPU + 4 GB RAM. Neon autoscales your database between 0.25 CU (minimum)
+and 2 CU (maximum) based on load. You're charged per CU-hour of actual usage,
+not provisioned capacity. When your database is idle (sleeping), you're charged $0.
+
+**The flow when you hit your limit:**
+
+1. At 50 CU-hours (Standard): database throttled to 0.25 CU maximum. Warning email sent.
+2. At 70 CU-hours (after 20-hour grace period): overage billing starts at $0.16/CU-hour
+3. Overage charged on your next monthly invoice via Stripe
+
+**At 0.25 CU, how long until overage kicks in?**
+
+- 0.25 CU × 80 hours = 20 CU-hours of grace
+- Running 24/7 at 0.25 CU: ~11.7 days before overage billing starts
+- Typical developer (4 active hours/day at 0.25 CU): months before hitting overage
+
+**Optional overage cap:**
+
+Set a monthly overage budget in Settings → Usage. We never charge more than your cap.
+Default: no cap (pay what you use). Set to $0 to prevent any overage charges
+(database stays throttled at 0.25 CU instead).
+
+**Note:** $0.25/month minimum compute charge applies even for idle databases on the
+Standard plan (0.25 CU × ~2 hours/month average wake time). This is Neon's
+minimum billing, not a Meridian fee.
 
 ### Storage
 
-| Plan | Included | Overage rate |
+| Plan | Included | Overage Rate |
 |------|----------|--------------|
-| Standard | 1 GB | $0.50/GB-month |
-| Pro | 10 GB | $0.50/GB-month |
+| Standard | 1 GB/month | $0.50/GB-month |
+| Pro | 10 GB/month | $0.50/GB-month |
 
-At the limit with no overage budget: the database becomes read-only until the next billing cycle.
+At the storage limit with no cap set: database becomes read-only (writes return 507).
+With a cap set: billed up to cap, then read-only.
+
+### Monitoring your usage
+
+Dashboard → Settings → Usage tab shows:
+
+- Current month compute usage vs limit (progress bar)
+- Current month storage usage vs limit (progress bar)
+- Your overage caps (editable)
+- Estimated overage charge for current month
 
 ---
 

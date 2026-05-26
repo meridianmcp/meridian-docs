@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block scripts %}
+{{ super() }}
+{% if config.extra.docs_password_protected %}
+<script>
+(function() {
+  var PASS = "meridian2026";
+  var KEY = "meridian_docs_access";
+  if (sessionStorage.getItem(KEY) === PASS) return;
+  var pwd = prompt("Meridian docs — enter access password:");
+  if (pwd === PASS) {
+    sessionStorage.setItem(KEY, PASS);
+  } else {
+    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;font-size:1.2rem;">Access denied. <a href="" style="margin-left:8px">Try again</a></div>';
+  }
+})();
+</script>
+{% endif %}
+{% endblock %}

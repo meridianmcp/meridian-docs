@@ -2,40 +2,100 @@
 
 Get Meridian running in 60 seconds.
 
-## Local install (self-hosted)
+## Installation
 
-### Prerequisites
+### Option A — Hosted (recommended)
 
-- Python 3.12+
-- [pixi](https://pixi.sh) (recommended) **or** pip
+Skip installation entirely. Sign up at [usemeridian.us](https://usemeridian.us) for a
+7-day free trial. Managed Postgres, hosted dashboard, nothing to install.
 
-### Install with pixi
+### Option B — Self-hosted
+
+#### Prerequisites
+
+**Using pixi (recommended):** No Python version requirement — pixi installs
+and manages its own isolated Python environment. Just needs pixi itself.
+
+**Using pip:** Python 3.10+ required (3.12 recommended).
+
+That's it. No other system dependencies needed on macOS or Windows.
+Linux users may need `libpq-dev` for Postgres support (see Linux notes below).
+
+#### 1. Install Pixi (package manager)
+
+**macOS / Linux:**
 
 ```bash
-git clone https://github.com/meridianmcp/Meridian
-cd Meridian
-pixi run start
+curl -fsSL https://pixi.sh/install.sh | bash
+# Restart your terminal after install
 ```
 
-Dashboard opens at **http://localhost:7878**. Data persists in `./data/meridian.db`.
-
-### Install with pip
-
-```bash
-git clone https://github.com/meridianmcp/Meridian
-cd Meridian
-pip install -e .
-python -m meridian
-```
-
-### Windows (PowerShell)
+**Windows (PowerShell):**
 
 ```powershell
-git clone https://github.com/meridianmcp/Meridian
-cd Meridian
-.\install.ps1
-pixi run start
+iwr -useb https://pixi.sh/install.ps1 | iex
+# Restart PowerShell after install
 ```
+
+Verify:
+
+```bash
+pixi --version  # should print pixi 0.x.x
+```
+
+#### 2. Clone and start Meridian
+
+```bash
+git clone https://github.com/meridianmcp/Meridian.git
+cd Meridian
+pixi install        # installs all dependencies (Python, psycopg, etc.)
+pixi run start      # starts server on localhost:7878
+```
+
+Dashboard: **http://localhost:7878/dashboard**  
+Data persists in `./data/meridian.db`.
+
+#### 3. Alternative — pip install (no Pixi)
+
+```bash
+pip install meridian-mcp
+meridian start
+```
+
+### Linux notes
+
+On Ubuntu/Debian, you may need:
+
+```bash
+sudo apt-get install libpq-dev python3-dev
+```
+
+On headless servers (no browser), set:
+
+```bash
+export MERIDIAN_HEADLESS=true
+pixi run start
+# Dashboard available at http://YOUR_SERVER_IP:7878/dashboard
+```
+
+### Windows notes
+
+If port 7878 is already in use, Meridian will auto-kill the existing process and restart.
+If that fails: `netstat -ano | findstr :7878` then `taskkill /PID <pid> /F`
+
+### Option C — Linux one-liner install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/meridianmcp/Meridian/main/scripts/install.sh | bash
+```
+
+Then run:
+
+```bash
+meridian
+```
+
+Dashboard: **http://localhost:7878/dashboard**
 
 ---
 
@@ -108,7 +168,7 @@ Get your bearer token from [usemeridian.us/dashboard](https://usemeridian.us/das
 
 Once Meridian is running and wired into your client:
 
-1. **Create a project** in the dashboard at `http://localhost:7878`, or via MCP:
+1. **Create a project** in the dashboard at `http://localhost:7878/dashboard`, or via MCP:
 
 ```
 create_project(name="my-app")
@@ -147,6 +207,8 @@ curl http://localhost:7878/health
 curl http://localhost:7878/projects
 # [{"id": "...", "name": "my-app", ...}]
 ```
+
+Dashboard: **http://localhost:7878/dashboard**
 
 ---
 
