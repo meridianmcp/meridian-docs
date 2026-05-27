@@ -20,4 +20,6 @@ jobs:
       - run: pip install mkdocs-material
       - name: Regenerate MCP tool reference
         run: curl -sf https://usemeridian.us/mcp/tools-doc > docs/mcp-tools.md
+      - name: Fetch CHANGELOG from main repo
+        run: curl -sf https://raw.githubusercontent.com/meridianmcp/Meridian/main/CHANGELOG.md > docs/changelog.md
       - run: mkdocs gh-deploy --force
