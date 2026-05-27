@@ -119,6 +119,47 @@ Create `.mcp.json` in your project root:
 
 Replace `/absolute/path/to/Meridian` with the actual path where you cloned the repo.
 
+### Codex CLI
+
+Add to `~/.codex/config.toml`:
+
+**Option A — STDIO (local, no server needed)**
+
+```toml
+[[mcp_servers]]
+name = "meridian"
+command = "pixi"
+args = ["run", "python", "-m", "meridian", "--mcp"]
+cwd = "/absolute/path/to/Meridian"
+```
+
+**Option B — HTTP (when Meridian server is running)**
+
+```toml
+[[mcp_servers]]
+name = "meridian"
+url = "http://localhost:7878/mcp"
+type = "http"
+```
+
+Or add via CLI:
+
+```bash
+codex mcp add meridian http://localhost:7878/mcp
+```
+
+Paste this `/goal` template at the start of your Codex session to orient it:
+
+```
+/goal Complete pending sprint items in order. Done when all items
+marked complete via complete_sprint_item(), tests pass, generate_handoff()
+called. Stop after 40 turns or HITL.
+
+project_id = "<your-project-id>"
+```
+
+Your project ID is shown in the dashboard Settings tab.
+
 ### Claude Desktop
 
 Add to your Claude Desktop config:

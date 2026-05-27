@@ -16,7 +16,7 @@ pixi run start
 
 Dashboard at **http://localhost:7878**. Data in `./data/meridian.db`.
 
-To run the MCP stdio server (for Claude Code / Claude Desktop):
+To run the MCP stdio server (for Claude Code / Claude Desktop / Codex CLI):
 
 ```bash
 pixi run python -m meridian --mcp
