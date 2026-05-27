@@ -17,9 +17,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - run: pip install mkdocs-material
+      - run: pip install "mkdocs-material==9.5.18"
       - name: Regenerate MCP tool reference
-        run: curl -sf https://usemeridian.us/mcp/tools-doc > docs/mcp-tools.md
+        run: curl -sf https://usemeridian.us/mcp/tools-doc > docs/mcp-tools.md || true
       - name: Fetch CHANGELOG from main repo
         run: curl -sf https://raw.githubusercontent.com/meridianmcp/Meridian/main/CHANGELOG.md > docs/changelog.md
       - run: mkdocs gh-deploy --force
