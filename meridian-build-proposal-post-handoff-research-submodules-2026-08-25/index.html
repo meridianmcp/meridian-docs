@@ -1,0 +1,1455 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-build-proposal-post-handoff-research-submodules-2026-08-25/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Post-handoff research submodule and evidence-pipeline proposal - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#post-handoff-research-submodule-and-evidence-pipeline-proposal" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Post-handoff research submodule and evidence-pipeline proposal
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive finding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-was-actually-added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What was actually added
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What was actually added">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-research-evaluation-hardening-in-current_project_code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Research-evaluation hardening in CURRENT_PROJECT_CODE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-local-documentrelease-fallback-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Local document/release fallback package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-meridian-repository-changes-now-present-in-the-working-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Meridian repository changes now present in the working tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-should-not-be-merged-as-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should not be merged as-is
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-productization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed productization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed productization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-1-research-evidence-model-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R-1 — Research evidence model (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-2-typed-correspondence-and-failure-attribution-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R-2 — Typed correspondence and failure attribution (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-3-shared-aggregation-and-paired-comparison-contract-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R-3 — Shared aggregation and paired-comparison contract (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-4-research-artifact-registry-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R-4 — Research artifact registry (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-5-docx-release-transaction-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R-5 — DOCX release transaction (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-6-fast-batch-execution-with-explicit-render-barriers-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R-6 — Fast batch execution with explicit render barriers (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-7-capability-and-fallback-synchronization-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R-7 — Capability and fallback synchronization (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance criteria
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-implementation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended implementation order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#canonical-evidence-pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical evidence pointers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="post-handoff-research-submodule-and-evidence-pipeline-proposal">Post-handoff research submodule and evidence-pipeline proposal<a class="headerlink" href="#post-handoff-research-submodule-and-evidence-pipeline-proposal" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2026-08-25<br />
+<strong>Purpose:</strong> capture the reusable capabilities added or improvised after the
+Wave 27 handoff, distinguish local research code from Meridian product work,
+and define the promotion path.<br />
+<strong>Safety boundary:</strong> this is a proposal and inventory. It does not authorize
+editing the canonical dissertation or promoting any research artifact.</p>
+<h2 id="executive-finding">Executive finding<a class="headerlink" href="#executive-finding" title="Permanent link">&para;</a></h2>
+<p>After the last substantive handoff, the workflow acquired a working but
+uncoordinated research-document stack:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>research computation and evaluation
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    -&gt; typed diagnostics and aggregation
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    -&gt; source-bound figures/tables
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    -&gt; staged DOCX repair and QA
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    -&gt; provenance/release evidence
+</code></pre></div>
+<p>The additions solved real incidents, but most are still thesis-local scripts
+or fallback modules. They should not be described as Meridian features until
+they have product-level contracts, tests, package boundaries, and promotion
+gates.</p>
+<h2 id="what-was-actually-added">What was actually added<a class="headerlink" href="#what-was-actually-added" title="Permanent link">&para;</a></h2>
+<h3 id="1-research-evaluation-hardening-in-current_project_code">1. Research-evaluation hardening in <code>CURRENT_PROJECT_CODE</code><a class="headerlink" href="#1-research-evaluation-hardening-in-current_project_code" title="Permanent link">&para;</a></h3>
+<p>These changes address scientific ambiguity and reproducibility problems rather
+than Word formatting:</p>
+<ul>
+<li><code>helpers/metrics.py:50</code> adds per-run width-baseline-root resolution instead
+  of assuming one fixed directory depth.</li>
+<li><code>helpers/metrics.py:2323-2565</code> now exposes support counts, candidate counts,
+  assignment reasons, post-domain counts, and per-row gate outcomes for
+  support projection. This distinguishes support absence, no candidate,
+  LAPJV rejection, and a valid assignment.</li>
+<li><code>helpers/metrics.py:6408-8718</code> adds independent MAT Raw versus MAT DSE
+  projection modes, input hashes, raw/DSE failure attribution, and optional
+  projection diagnostics. It also preserves separate DT and MAT attribution
+  streams rather than treating exporter truncation as a matching failure.</li>
+<li><code>helpers/metrics.py:14343-14418</code> writes MAT and DT failure-attribution CSVs.</li>
+<li><code>metrics_engine.py:4370-4473</code> carries and exports the new DT attribution
+  stream.</li>
+<li><code>helpers/metrics.py:486-499</code> adds standard deviation to orthogonal-deviation
+  summaries.</li>
+<li><code>width_baseline_generator/dsepruning/dsepruning.py:73-126</code> makes DSE
+  fail closed if reconstruction creates pixels outside the Raw input
+  skeleton; it no longer interpolates graph edges into new support pixels.</li>
+<li><code>helpers/summarize_metrics.py:56-121</code> adds shared technical-token-safe
+  title-case label normalization.</li>
+<li><code>helpers/summarize_metrics.py:147-219</code> and the width aggregation section
+  centralize numeric aggregation, including length-weighted outputs.</li>
+<li><code>helpers/summarize_metrics.py:5906-6450</code> consolidates paired-difference,
+  confidence-interval, and comparison-figure rendering so figures do not
+  independently invent sign conventions, colors, or labels.</li>
+<li><code>helpers/summarize_metrics.py:3695-4710</code> corrects GT-supervision timing
+  attribution so the complete atomic-plus-combined compute stage is not
+  confused with an incomplete legacy subtotal.</li>
+<li><code>helpers/supervision.py:7182-7210</code> persists actual end-to-end wall-clock
+  timing separately from inclusive component sums.</li>
+<li><code>pixi.toml</code> now exposes a discoverable serial test command and an explicit
+  opt-in parallel command, with known unrelated collection failures excluded
+  rather than hidden.</li>
+</ul>
+<p>These are the most important research-facing additions. They should become a
+small reusable <code>research_evidence</code> package, not remain a collection of
+environment-variable branches inside one 15,000-line metrics module.</p>
+<h3 id="2-local-documentrelease-fallback-package">2. Local document/release fallback package<a class="headerlink" href="#2-local-documentrelease-fallback-package" title="Permanent link">&para;</a></h3>
+<p><code>CURRENT_PROJECT_CODE/tools/meridian_fallbacks/</code> became the practical local
+reference implementation for capabilities that were missing or unsafe in the
+live Meridian surface. Important reusable boundaries include:</p>
+<ul>
+<li><code>artifact_reference_registry.py</code>: one lifecycle-aware registry for figure,
+  table, equation, and caption artifacts, including source/script/output hashes
+  and supersession links.</li>
+<li><code>reference_binding_gate.py</code>: freezes and rechecks document-anchor, CSV-schema,
+  generator-script, and base-DOCX bindings.</li>
+<li><code>prestage_registry.py</code>, <code>prestage_artifact_registry.py</code>, and
+  <code>final_prestage_release_gate.py</code>: materialized staging-package and
+  review-readiness checks.</li>
+<li><code>staging_lint_cli.py</code>: repeatable heading, cross-reference, caption-style,
+  and residue audit that emits JSON and Markdown reports.</li>
+<li><code>document_release_manifest.py</code> and <code>transactional_merge.py</code>: typed staged
+  operations, base-hash checks, rollback, and promotion records.</li>
+<li><code>output_provenance_gate.py</code>: SHA-256 and convergence-aware output checks.</li>
+<li><code>docx_package_hardening.py</code> and <code>docx_completion_gate.py</code>: package, XML,
+  relationship, paragraph-ID, media, equation, caption, and completion checks.</li>
+<li><code>omml_builders.py</code>, <code>omml_validation.py</code>, and <code>docx_style_contract.py</code>:
+  native equation construction/validation and controlled temporary-document
+  styling.</li>
+<li><code>table_caption_contract.py</code>: caption/table ownership and adjacency checks,
+  including protection against formatting equation-layout tables as data
+  tables.</li>
+<li><code>render_word_com.ps1</code>: isolated, disposable-copy Word render receipts with
+  timeout and cleanup behavior.</li>
+</ul>
+<p>The package's own integration note explicitly says these are local fallbacks,
+not shipped Meridian backend capabilities, and that several gates remain
+advisory unless a caller wires them into promotion.</p>
+<h3 id="3-meridian-repository-changes-now-present-in-the-working-tree">3. Meridian repository changes now present in the working tree<a class="headerlink" href="#3-meridian-repository-changes-now-present-in-the-working-tree" title="Permanent link">&para;</a></h3>
+<p>The current Meridian changes address product-level incidents discovered while
+using the thesis workflow:</p>
+<ul>
+<li><code>extensions/meridian-docs/meridian_docs/ooxml_integrity.py:86-152</code> adds a
+  Heading-3 capitalization audit, while
+  <code>:231-316</code> incorporates package validation and
+  <code>:316-401</code> provides namespace-preserving serialization, media pruning, and
+  comment-attribute normalization.</li>
+<li><code>extensions/meridian-docs/meridian_docs/docs_intel.py</code> now uses the
+  namespace-safe serializer and normalizes legacy Word comment attributes
+  before atomic writes.</li>
+<li><code>meridian/capability_contract.py:872-939</code> exposes <code>unverified</code> capability
+  state and fails closed when a required capability cannot be verified.</li>
+<li><code>meridian/handoff.py:1699-1800</code> treats executable goal payloads as atomic
+  when a byte budget would otherwise truncate a token-bound body.</li>
+</ul>
+<p>These are real working-tree changes with tests, but they should remain marked
+as <strong>candidate product changes</strong> until the focused tests and full repository
+gate pass and the changes are committed/reviewed.</p>
+<h2 id="what-should-not-be-merged-as-is">What should not be merged as-is<a class="headerlink" href="#what-should-not-be-merged-as-is" title="Permanent link">&para;</a></h2>
+<p>The following are useful incident-specific scripts but are not good permanent
+Meridian APIs:</p>
+<ul>
+<li>wave-numbered table/figure patch scripts under <code>tools/</code>;</li>
+<li>one-off <code>repair_*</code> scripts under <code>scripts/</code> that encode a single dissertation
+  paragraph, caption, or page location;</li>
+<li>environment-variable combinations that silently alter the scientific
+  comparison regime;</li>
+<li>generated QA JSON/CSV, scratch XML, SQLite sidecars, caches, and rendered
+  candidates;</li>
+<li>assumptions that a filename such as <code>final</code>, <code>current</code>, or <code>title_free</code>
+  establishes artifact authority.</li>
+</ul>
+<p>Those artifacts should remain fixtures, regression cases, or migration tools.
+The durable API must consume explicit schemas and manifests.</p>
+<h2 id="proposed-productization">Proposed productization<a class="headerlink" href="#proposed-productization" title="Permanent link">&para;</a></h2>
+<h3 id="r-1-research-evidence-model-p0">R-1 — Research evidence model (P0)<a class="headerlink" href="#r-1-research-evidence-model-p0" title="Permanent link">&para;</a></h3>
+<p>Create a typed <code>ResearchEvidenceRun</code> containing source roots and hashes,
+generator/script hashes, configuration/environment values, dataset and image
+counts, geometry/domain/emission modes, aggregation, statistical procedure,
+and output artifact IDs. A run must be reproducible or explicitly marked
+<code>diagnostic</code>, <code>archival</code>, <code>held</code>, or <code>unverified</code>.</p>
+<h3 id="r-2-typed-correspondence-and-failure-attribution-p0">R-2 — Typed correspondence and failure attribution (P0)<a class="headerlink" href="#r-2-typed-correspondence-and-failure-attribution-p0" title="Permanent link">&para;</a></h3>
+<p>Promote the projection diagnostics into a reusable schema with one row per
+query point and explicit states such as <code>assigned</code>, <code>support_empty</code>,
+<code>no_candidate_within_gate</code>, <code>lapjv_unassigned</code>, <code>lapjv_rejected_by_row_gate</code>,
+and <code>invalid_query</code>. The schema must preserve method-specific support domains
+and never silently replace independent Raw/DSE evaluation with shared-validity
+rows.</p>
+<h3 id="r-3-shared-aggregation-and-paired-comparison-contract-p0">R-3 — Shared aggregation and paired-comparison contract (P0)<a class="headerlink" href="#r-3-shared-aggregation-and-paired-comparison-contract-p0" title="Permanent link">&para;</a></h3>
+<p>Define typed aggregation objects for per-image mean, length-weighted mean,
+pooled pointwise, paired difference, confidence interval, and wins/denominator.
+Figures, tables, captions, and manuscript claims must consume the same object.
+The sign convention and reference method must be explicit.</p>
+<h3 id="r-4-research-artifact-registry-p0">R-4 — Research artifact registry (P0)<a class="headerlink" href="#r-4-research-artifact-registry-p0" title="Permanent link">&para;</a></h3>
+<p>Unify source CSV, generated figure/table, script, configuration, document
+anchor, caption/number slot, render receipt, and supersession status under one
+artifact ID. Current-artifact lookup must reject duplicate live slots and
+missing or drifted provenance.</p>
+<h3 id="r-5-docx-release-transaction-p0">R-5 — DOCX release transaction (P0)<a class="headerlink" href="#r-5-docx-release-transaction-p0" title="Permanent link">&para;</a></h3>
+<p>Use one staged <code>DocumentChangeSet</code>/<code>ReleaseManifest</code> to bind source evidence,
+anchors, operations, package integrity, equation/figure/table audits,
+provenance, rendering, human approval, and compare-and-swap promotion. The
+existing DOCX proposal in
+<code>docs/meridian-build-proposal-track-b-2026-08-24.md</code> is the detailed product
+plan for this lane.</p>
+<h3 id="r-6-fast-batch-execution-with-explicit-render-barriers-p1">R-6 — Fast batch execution with explicit render barriers (P1)<a class="headerlink" href="#r-6-fast-batch-execution-with-explicit-render-barriers-p1" title="Permanent link">&para;</a></h3>
+<p>Run package-level transformations in one isolated batch, then render once under
+an explicit backend policy. Word/COM is a bounded verification backend, not
+the inner-loop document database. Every timeout needs a cleanup receipt.</p>
+<h3 id="r-7-capability-and-fallback-synchronization-p1">R-7 — Capability and fallback synchronization (P1)<a class="headerlink" href="#r-7-capability-and-fallback-synchronization-p1" title="Permanent link">&para;</a></h3>
+<p>Every local fallback must declare its upstream replacement, limitation,
+tests, and migration status. Generate capability docs from the live manifest or
+fail a synchronization test when docs, exports, versions, and registrations
+drift.</p>
+<h2 id="acceptance-criteria">Acceptance criteria<a class="headerlink" href="#acceptance-criteria" title="Permanent link">&para;</a></h2>
+<ol>
+<li>A synthetic Raw/DSE correspondence fixture produces identical, stable
+   attribution rows across repeated runs and distinct independent/shared modes.</li>
+<li>Changing a source CSV schema, generator script, configuration, or base DOCX
+   blocks promotion and identifies the changed binding.</li>
+<li>A figure and table with the same comparison object agree on sign, method
+   order, aggregation, confidence interval, and wins denominator.</li>
+<li>A staged DOCX with duplicate paragraph IDs, malformed OMML, external
+   relationships, or an orphaned artifact cannot be promoted.</li>
+<li>Word/COM unavailable, timed out, or only historically verified is reported
+   as <code>unavailable</code>, <code>degraded</code>, or <code>historical</code>, never <code>verified</code>.</li>
+<li>Re-running a transform is idempotent or reports only declared volatile
+   metadata changes.</li>
+<li>The canonical dissertation remains byte-identical during all automated
+   staging tests.</li>
+</ol>
+<h2 id="recommended-implementation-order">Recommended implementation order<a class="headerlink" href="#recommended-implementation-order" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Freeze the local schemas and golden fixtures for R-1 through R-3.</li>
+<li>Extract the research-evidence and aggregation code from the thesis helpers
+   without changing current result semantics.</li>
+<li>Connect R-4 to the existing artifact/reference and provenance fallback
+   modules.</li>
+<li>Implement the release manifest and mandatory gates from R-5.</li>
+<li>Add the Meridian Docs namespace/package hardening and capability-contract
+   changes behind focused tests.</li>
+<li>Add bounded batch transforms, render receipts, and fallback/documentation
+   synchronization.</li>
+</ol>
+<h2 id="canonical-evidence-pointers">Canonical evidence pointers<a class="headerlink" href="#canonical-evidence-pointers" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Thesis research source: <code>&lt;external-research-workspace&gt;/CURRENT_PROJECT_CODE</code> (outside this repo)</li>
+<li>Research reconciliation: <code>&lt;external-research-workspace&gt;/CURRENT_PROJECT_CODE/wave50_results_reconciliation_report.md</code> (outside this repo)</li>
+<li>Local fallback contract: <code>&lt;external-research-workspace&gt;/CURRENT_PROJECT_CODE/tools/meridian_fallbacks/MERIDIAN_INTEGRATION_NOTE.md</code> (outside this repo)</li>
+<li>Reliability findings: <code>&lt;external-research-workspace&gt;/CURRENT_PROJECT_CODE/provenance/meridian_reliability_audit_20260821.md</code> (outside this repo)</li>
+<li>Table/OMML contract: <code>&lt;external-research-workspace&gt;/CURRENT_PROJECT_CODE/proposals/meridian_docs_table_contract_wave53_20260818.md</code> (outside this repo)</li>
+<li>Existing document-release proposal: <code>docs/meridian-build-proposal-track-b-2026-08-24.md</code></li>
+<li>Current Meridian OOXML integrity implementation: <code>extensions/meridian-docs/meridian_docs/ooxml_integrity.py</code></li>
+</ul>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>This proposal records the post-handoff delta and the proposed reusable
+boundaries. It does not claim that R-1 through R-7 are implemented in
+Meridian. The thesis-local code and fallback package are evidence and fixtures;
+the Meridian build must still provide the product contracts, tests, and
+promotion wiring.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

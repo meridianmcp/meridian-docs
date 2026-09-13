@@ -1,0 +1,6846 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/api-reference/">
+      
+      
+        <link rel="prev" href="../data-handling/">
+      
+      
+        <link rel="next" href="../faq/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>API Reference - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#http-api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Health">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /health
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idrename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/rename
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-projectsproject_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE /projects/{project_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Goals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idgoal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idgoal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idgoalnorth-star" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/goal/north-star
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idgoalsprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/goal/sprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idgoal-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/goal-history
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sessions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idsessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-sessionsregister" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /sessions/register
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-sessionssession_idheartbeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /sessions/{session_id}/heartbeat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-sessionssession_idclose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /sessions/{session_id}/close
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idtasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-taskstask_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /tasks/{task_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idtasksclaimable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/tasks/claimable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idtasksrelease" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/tasks/release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sprint-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint Items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sprint Items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sprint-item-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint item fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idsprint-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/sprint-items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-projectsproject_idsprint-itemsitem_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /projects/{project_id}/sprint-items/{item_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-itemsitem_idcomplete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items/{item_id}/complete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-itemsitem_idfail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items/{item_id}/fail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-itemsitem_idskip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items/{item_id}/skip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-itemsitem_idpush" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items/{item_id}/push
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-projectsproject_idsprint-itemsitem_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE /projects/{project_id}/sprint-items/{item_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-in-the-loop-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Human-in-the-Loop (HITL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Human-in-the-Loop (HITL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idhitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idhitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-hitlrequest_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /hitl/{request_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-hitlrequest_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /hitl/{request_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workspace-proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspace Proposals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handoff
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idhandoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auth-hosted-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auth (Hosted Tier)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Auth (Hosted Tier)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-authlogin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authgooglelogin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/google/login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authcallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/callback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authgithublogin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/github/login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authgithubcallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/github/callback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authlogout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/logout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-mcp-hosted-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote MCP (Hosted Tier)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remote MCP (Hosted Tier)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /mcp
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Admin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-admingit-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /admin/git-status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /demo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Route Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#well-known" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /.well-known
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__gate__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /__gate__
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /a2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /activate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /api
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-reference-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /api-reference-doc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /auth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#billing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /billing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /blog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /changelog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /checkout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /dc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /debug
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /demo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demo-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /demo-auth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-peeks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /document-peeks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /extract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failover-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /failover-status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /feedback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /fs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /github
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /hooks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /mcp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#me" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /me
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /oauth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pkg-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /pkg-guard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ppt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pricing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /pricing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /profile-layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projects_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sessions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /team
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /terms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tunnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /tunnel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waitlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /waitlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waitlist-pending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /waitlist-pending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /webhooks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#word" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /word
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /workspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zotero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /zotero
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Health">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /health
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idrename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/rename
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-projectsproject_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE /projects/{project_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Goals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idgoal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idgoal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idgoalnorth-star" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/goal/north-star
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idgoalsprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/goal/sprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idgoal-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/goal-history
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sessions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idsessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-sessionsregister" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /sessions/register
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-sessionssession_idheartbeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /sessions/{session_id}/heartbeat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-sessionssession_idclose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /sessions/{session_id}/close
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idtasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-taskstask_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /tasks/{task_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idtasksclaimable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/tasks/claimable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idtasksrelease" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/tasks/release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sprint-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint Items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sprint Items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sprint-item-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint item fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idsprint-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/sprint-items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-projectsproject_idsprint-itemsitem_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /projects/{project_id}/sprint-items/{item_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-itemsitem_idcomplete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items/{item_id}/complete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-itemsitem_idfail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items/{item_id}/fail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-itemsitem_idskip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items/{item_id}/skip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idsprint-itemsitem_idpush" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/sprint-items/{item_id}/push
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-projectsproject_idsprint-itemsitem_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE /projects/{project_id}/sprint-items/{item_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-in-the-loop-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Human-in-the-Loop (HITL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Human-in-the-Loop (HITL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-projectsproject_idhitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /projects/{project_id}/hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idhitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-hitlrequest_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /hitl/{request_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-hitlrequest_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /hitl/{request_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workspace-proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspace Proposals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handoff
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-projectsproject_idhandoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /projects/{project_id}/handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auth-hosted-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auth (Hosted Tier)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Auth (Hosted Tier)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-authlogin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authgooglelogin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/google/login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authcallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/callback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authgithublogin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/github/login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authgithubcallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/github/callback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-authlogout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /auth/logout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-mcp-hosted-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote MCP (Hosted Tier)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remote MCP (Hosted Tier)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /mcp
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Admin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-admingit-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /admin/git-status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /demo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Route Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#well-known" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /.well-known
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__gate__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /__gate__
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /a2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /activate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /api
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-reference-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /api-reference-doc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /auth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#billing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /billing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /blog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /changelog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /checkout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /dc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /debug
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /demo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#demo-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /demo-auth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-peeks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /document-peeks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /extract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failover-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /failover-status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /feedback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /fs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /github
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /hooks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /mcp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#me" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /me
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /oauth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pkg-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /pkg-guard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ppt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ppt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pricing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /pricing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /profile-layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projects_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sessions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /team
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /terms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tunnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /tunnel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waitlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /waitlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waitlist-pending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /waitlist-pending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /webhooks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#word" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /word
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /workspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zotero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /zotero
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="http-api-reference">HTTP API Reference<a class="headerlink" href="#http-api-reference" title="Permanent link">&para;</a></h1>
+<p>Meridian exposes a REST API at <code>http://localhost:7878</code> (local) or <code>https://usemeridian.us</code> (hosted).</p>
+<p>Most endpoints are for internal use by the dashboard and MCP layer. The MCP tools are the recommended interface for AI sessions. This reference is for developers building integrations.</p>
+<hr />
+<h2 id="health">Health<a class="headerlink" href="#health" title="Permanent link">&para;</a></h2>
+<h3 id="get-health"><code>GET /health</code><a class="headerlink" href="#get-health" title="Permanent link">&para;</a></h3>
+<p>Check server health.</p>
+<p><strong>Auth:</strong> None required</p>
+<p><strong>Response:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"meridian"</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.9"</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">"git_sha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a555660ef312"</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+</code></pre></div></p>
+<blockquote>
+<p><code>version</code> is read from <code>pyproject.toml</code> at startup (or the <code>MERIDIAN_VERSION</code> env var). <code>git_sha</code> is the 12-char HEAD SHA of the running build -- useful for deploy-drift checks.</p>
+</blockquote>
+<hr />
+<h2 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
+<h3 id="get-projects"><code>GET /projects</code><a class="headerlink" href="#get-projects" title="Permanent link">&para;</a></h3>
+<p>List all projects.</p>
+<p><strong>Auth:</strong> None (local) / Session cookie or Bearer token (hosted)</p>
+<p><strong>Response:</strong> <code>[{id, name, created_at, ...}]</code></p>
+<hr />
+<h3 id="post-projects"><code>POST /projects</code><a class="headerlink" href="#post-projects" title="Permanent link">&para;</a></h3>
+<p>Create a project.</p>
+<p><strong>Body:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backend-api"</span><span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Response (201):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backend-api"</span><span class="p">,</span><span class="w"> </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-05-23T00:00:00Z"</span><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="get-projectsproject_id"><code>GET /projects/{project_id}</code><a class="headerlink" href="#get-projectsproject_id" title="Permanent link">&para;</a></h3>
+<p>Get a single project.</p>
+<p><strong>Response (404):</strong> <code>{"detail": "Project not found"}</code></p>
+<hr />
+<h3 id="post-projectsproject_idrename"><code>POST /projects/{project_id}/rename</code><a class="headerlink" href="#post-projectsproject_idrename" title="Permanent link">&para;</a></h3>
+<p>Rename a project.</p>
+<p><strong>Body:</strong> <code>{"name": "new-name"}</code></p>
+<hr />
+<h3 id="delete-projectsproject_id"><code>DELETE /projects/{project_id}</code><a class="headerlink" href="#delete-projectsproject_id" title="Permanent link">&para;</a></h3>
+<p>Delete a project and all its data.</p>
+<p><strong>Response:</strong> 204 No Content</p>
+<hr />
+<h2 id="goals">Goals<a class="headerlink" href="#goals" title="Permanent link">&para;</a></h2>
+<h3 id="get-projectsproject_idgoal"><code>GET /projects/{project_id}/goal</code><a class="headerlink" href="#get-projectsproject_idgoal" title="Permanent link">&para;</a></h3>
+<p>Get the current goal state.</p>
+<p><strong>Response:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED:\n..."</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">"north_star"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Long-term vision..."</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">"sprint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v2.3 — this week"</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="post-projectsproject_idgoal"><code>POST /projects/{project_id}/goal</code><a class="headerlink" href="#post-projectsproject_idgoal" title="Permanent link">&para;</a></h3>
+<p>Set the goal content.</p>
+<p><strong>Body:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED:\n...\nCURRENT FOCUS:\n..."</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">"north_star"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optional — update north star"</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">"sprint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optional — update sprint"</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">"minor"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</code></pre></div></p>
+<p><code>minor: true</code> updates in place without bumping the version number (used for AUTO BLOCKS).</p>
+<hr />
+<h3 id="post-projectsproject_idgoalnorth-star"><code>POST /projects/{project_id}/goal/north-star</code><a class="headerlink" href="#post-projectsproject_idgoalnorth-star" title="Permanent link">&para;</a></h3>
+<p>Update only the north star.</p>
+<p><strong>Body:</strong> <code>{"north_star": "...", "human_id": "alice"}</code></p>
+<hr />
+<h3 id="post-projectsproject_idgoalsprint"><code>POST /projects/{project_id}/goal/sprint</code><a class="headerlink" href="#post-projectsproject_idgoalsprint" title="Permanent link">&para;</a></h3>
+<p>Update only the sprint.</p>
+<p><strong>Body:</strong> <code>{"sprint": "v2.3 — rate limiting + tests"}</code></p>
+<hr />
+<h3 id="get-projectsproject_idgoal-history"><code>GET /projects/{project_id}/goal-history</code><a class="headerlink" href="#get-projectsproject_idgoal-history" title="Permanent link">&para;</a></h3>
+<p>Get all goal versions for a project. Newest first. Strips AUTO BLOCKS for clean diffs.</p>
+<p><strong>Response:</strong> <code>[{version, content, north_star, sprint, created_at}]</code></p>
+<hr />
+<h2 id="sessions">Sessions<a class="headerlink" href="#sessions" title="Permanent link">&para;</a></h2>
+<h3 id="get-projectsproject_idsessions"><code>GET /projects/{project_id}/sessions</code><a class="headerlink" href="#get-projectsproject_idsessions" title="Permanent link">&para;</a></h3>
+<p>List active sessions for a project.</p>
+<p><strong>Response:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">[{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feature-auth-fix"</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">"last_seen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-05-23T10:00:00Z"</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="post-sessionsregister"><code>POST /sessions/register</code><a class="headerlink" href="#post-sessionsregister" title="Permanent link">&para;</a></h3>
+<p>Register a new session.</p>
+<p><strong>Body:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-session"</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="post-sessionssession_idheartbeat"><code>POST /sessions/{session_id}/heartbeat</code><a class="headerlink" href="#post-sessionssession_idheartbeat" title="Permanent link">&para;</a></h3>
+<p>Update a session's <code>last_seen</code> timestamp.</p>
+<p><strong>Response:</strong> <code>{"ok": true}</code></p>
+<hr />
+<h3 id="post-sessionssession_idclose"><code>POST /sessions/{session_id}/close</code><a class="headerlink" href="#post-sessionssession_idclose" title="Permanent link">&para;</a></h3>
+<p>Close a session.</p>
+<hr />
+<h2 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h2>
+<h3 id="get-projectsproject_idtasks"><code>GET /projects/{project_id}/tasks</code><a class="headerlink" href="#get-projectsproject_idtasks" title="Permanent link">&para;</a></h3>
+<p>Get recent tasks. Newest first.</p>
+<p><strong>Query params:</strong> <code>limit</code> (default: 50)</p>
+<p><strong>Response:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">[{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fixed auth bug"</span><span class="p">,</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"done"</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">}]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="post-tasks"><code>POST /tasks</code><a class="headerlink" href="#post-tasks" title="Permanent link">&para;</a></h3>
+<p>Log a task.</p>
+<p><strong>Body:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Implemented rate limiting"</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"done"</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="patch-taskstask_id"><code>PATCH /tasks/{task_id}</code><a class="headerlink" href="#patch-taskstask_id" title="Permanent link">&para;</a></h3>
+<p>Update a task (status, description).</p>
+<p><strong>Body:</strong> <code>{"status": "done", "description": "updated description"}</code></p>
+<hr />
+<h3 id="get-projectsproject_idtasksclaimable"><code>GET /projects/{project_id}/tasks/claimable</code><a class="headerlink" href="#get-projectsproject_idtasksclaimable" title="Permanent link">&para;</a></h3>
+<p>List unclaimed pending tasks.</p>
+<hr />
+<h3 id="post-projectsproject_idtasksrelease"><code>POST /projects/{project_id}/tasks/release</code><a class="headerlink" href="#post-projectsproject_idtasksrelease" title="Permanent link">&para;</a></h3>
+<p>Release a claimed task.</p>
+<p><strong>Body:</strong> <code>{"task_id": "uuid", "session_id": "uuid"}</code></p>
+<hr />
+<h2 id="sprint-items">Sprint Items<a class="headerlink" href="#sprint-items" title="Permanent link">&para;</a></h2>
+<p>Sprint items are the machine-trackable checklist alongside the free-text sprint field. Each item has a lifecycle: <code>todo</code> → <code>in_progress</code> → <code>done</code> (or <code>failed</code> / <code>skipped</code> / <code>pushed</code>).</p>
+<h3 id="sprint-item-fields">Sprint item fields<a class="headerlink" href="#sprint-item-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>project_id</code></td>
+<td>UUID</td>
+<td>Parent project</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>TEXT</td>
+<td>Sprint bucket identifier (e.g. <code>"v2.3"</code>)</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>TEXT</td>
+<td>Item description</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>TEXT</td>
+<td><code>todo</code>, <code>pending</code>, <code>in_progress</code>, <code>done</code>, <code>failed</code>, <code>skipped</code>, <code>pushed</code>, <code>indeterminate</code>, <code>provisional_complete</code></td>
+</tr>
+<tr>
+<td><code>item_group</code></td>
+<td>TEXT</td>
+<td>Optional named group / swimlane for dashboard rendering</td>
+</tr>
+<tr>
+<td><code>human_id</code></td>
+<td>TEXT</td>
+<td>Person who added the item</td>
+</tr>
+<tr>
+<td><code>notes</code></td>
+<td>TEXT</td>
+<td>Free-text notes; updated via PATCH or on completion</td>
+</tr>
+<tr>
+<td><code>depends_on</code></td>
+<td>UUID</td>
+<td>ID of a parent sprint item that must be <code>done</code> before this item is claimable</td>
+</tr>
+<tr>
+<td><code>failure_mode</code></td>
+<td>TEXT</td>
+<td>What to do when the <code>depends_on</code> parent fails: <code>"continue"</code> (default) or <code>"stop"</code></td>
+</tr>
+<tr>
+<td><code>milestone_type</code></td>
+<td>TEXT</td>
+<td><code>"task"</code> (default), <code>"milestone"</code> (timeline marker), or <code>"human"</code> (human-executed)</td>
+</tr>
+<tr>
+<td><code>track</code></td>
+<td>TEXT</td>
+<td>Named lane (e.g. <code>"paper"</code>) — a whole track can be deferred or skipped by executors</td>
+</tr>
+<tr>
+<td><code>wave</code></td>
+<td>TEXT</td>
+<td>Stored parallel-execution wave label (e.g. <code>"wave-1"</code>), auto-filled by <code>assign_sprint_waves</code></td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>TEXT</td>
+<td><code>urgent</code>, <code>high</code>, <code>normal</code> (default), or <code>low</code> — higher-priority pending items are surfaced first</td>
+</tr>
+<tr>
+<td><code>blocker_kind</code></td>
+<td>TEXT</td>
+<td><code>null</code> (ordinary), <code>"manual"</code> (blocked on a real-world action outside Meridian), or <code>"superseded"</code> (hard-blocked, not re-claimable)</td>
+</tr>
+<tr>
+<td><code>deferred_until</code></td>
+<td>TEXT (ISO timestamp)</td>
+<td>Enforced deferral — <code>claim_sprint_item</code> refuses the item while this is in the future</td>
+</tr>
+<tr>
+<td><code>touches_resources</code></td>
+<td>JSON TEXT</td>
+<td>Typed resource identifiers for conflict detection (e.g. <code>["file:meridian/server.py", "db:migrations"]</code>)</td>
+</tr>
+<tr>
+<td><code>parent_id</code></td>
+<td>UUID</td>
+<td>ID of the parent sprint item when this item is a subtask (created via <code>add_subtask</code>)</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>TEXT</td>
+<td><code>"human"</code> or <code>"ai"</code> — for mixed-ownership task chains (set by <code>add_subtask</code>)</td>
+</tr>
+<tr>
+<td><code>required_notes</code></td>
+<td>INTEGER (0/1)</td>
+<td>When 1, <code>complete_sprint_item</code> refuses without evidence in <code>notes</code> or a linked <code>task_id</code></td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td>TEXT</td>
+<td>Human-readable per-project identifier derived from the title</td>
+</tr>
+<tr>
+<td><code>nickname</code></td>
+<td>TEXT</td>
+<td>Short (1-2 word) memorable per-project handle</td>
+</tr>
+<tr>
+<td><code>sprint_name</code></td>
+<td>TEXT</td>
+<td>Human-readable sprint bucket label (e.g. <code>"docs-cloudflare"</code>), separate from <code>version</code></td>
+</tr>
+<tr>
+<td><code>prospect_bypass</code></td>
+<td>INTEGER (0/1)</td>
+<td>When 1, <code>claim_sprint_item</code> skips the prospect gate</td>
+</tr>
+<tr>
+<td><code>stall_count</code></td>
+<td>INTEGER</td>
+<td>Times this item was re-queued after a worker closed without completing it</td>
+</tr>
+<tr>
+<td><code>pushed_to</code></td>
+<td>TEXT</td>
+<td>Target version when status is <code>"pushed"</code></td>
+</tr>
+<tr>
+<td><code>task_id</code></td>
+<td>UUID</td>
+<td>Linked task log entry</td>
+</tr>
+<tr>
+<td><code>claimed_at</code></td>
+<td>TEXT</td>
+<td>When the item entered <code>in_progress</code></td>
+</tr>
+<tr>
+<td><code>completed_at</code></td>
+<td>TEXT</td>
+<td>When the item reached a terminal status</td>
+</tr>
+<tr>
+<td><code>added_at</code></td>
+<td>TEXT</td>
+<td>Creation timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="get-projectsproject_idsprint-items"><code>GET /projects/{project_id}/sprint-items</code><a class="headerlink" href="#get-projectsproject_idsprint-items" title="Permanent link">&para;</a></h3>
+<p>List sprint items.</p>
+<p><strong>Query params:</strong> <code>status</code> (optional filter)</p>
+<hr />
+<h3 id="post-projectsproject_idsprint-items"><code>POST /projects/{project_id}/sprint-items</code><a class="headerlink" href="#post-projectsproject_idsprint-items" title="Permanent link">&para;</a></h3>
+<p>Add a sprint item. The REST endpoint accepts a subset of fields; use the MCP <code>add_sprint_item</code> tool for the full parameter set (track, wave, priority, blocker_kind, deferred_until, etc.).</p>
+<p><strong>Body:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Add rate limiting"</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v2.3"</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Performance"</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="nt">"depends_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid-of-parent-item"</span><span class="p">,</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="nt">"failure_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"continue"</span><span class="p">,</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="nt">"touches_resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"file:meridian/server.py"</span><span class="p">],</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="nt">"force"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Response (409 Conflict):</strong> returned when a near-duplicate title already exists as a pending/in-progress item. Pass <code>"force": true</code> to override.</p>
+<hr />
+<h3 id="patch-projectsproject_idsprint-itemsitem_id"><code>PATCH /projects/{project_id}/sprint-items/{item_id}</code><a class="headerlink" href="#patch-projectsproject_idsprint-itemsitem_id" title="Permanent link">&para;</a></h3>
+<p>Update editable fields of a sprint item.</p>
+<p><strong>Body:</strong> <code>{"title": "...", "notes": "...", "group": "...", "human_id": "...", "touches_resources": [...], "status": "pending"}</code> (all optional)</p>
+<blockquote>
+<p><code>status</code> via PATCH is restricted to non-terminal resets: <code>pending</code>, <code>todo</code>, <code>indeterminate</code>. Use the dedicated transition endpoints (complete / fail / skip / push) for terminal statuses.</p>
+</blockquote>
+<hr />
+<h3 id="post-projectsproject_idsprint-itemsitem_idcomplete"><code>POST /projects/{project_id}/sprint-items/{item_id}/complete</code><a class="headerlink" href="#post-projectsproject_idsprint-itemsitem_idcomplete" title="Permanent link">&para;</a></h3>
+<p>Mark a sprint item done.</p>
+<p><strong>Body:</strong> <code>{"task_id": "uuid", "notes": "evidence of completion"}</code> (both optional; <code>notes</code> is required when the item has <code>required_notes=1</code>)</p>
+<h3 id="post-projectsproject_idsprint-itemsitem_idfail"><code>POST /projects/{project_id}/sprint-items/{item_id}/fail</code><a class="headerlink" href="#post-projectsproject_idsprint-itemsitem_idfail" title="Permanent link">&para;</a></h3>
+<p>Mark failed. Body: <code>{"reason": "..."}</code> (optional)</p>
+<h3 id="post-projectsproject_idsprint-itemsitem_idskip"><code>POST /projects/{project_id}/sprint-items/{item_id}/skip</code><a class="headerlink" href="#post-projectsproject_idsprint-itemsitem_idskip" title="Permanent link">&para;</a></h3>
+<p>Mark skipped. Body: <code>{"reason": "..."}</code> (optional)</p>
+<h3 id="post-projectsproject_idsprint-itemsitem_idpush"><code>POST /projects/{project_id}/sprint-items/{item_id}/push</code><a class="headerlink" href="#post-projectsproject_idsprint-itemsitem_idpush" title="Permanent link">&para;</a></h3>
+<p>Push to future version. Body: <code>{"to_version": "v2.4"}</code></p>
+<h3 id="delete-projectsproject_idsprint-itemsitem_id"><code>DELETE /projects/{project_id}/sprint-items/{item_id}</code><a class="headerlink" href="#delete-projectsproject_idsprint-itemsitem_id" title="Permanent link">&para;</a></h3>
+<p>Delete a sprint item.</p>
+<hr />
+<h2 id="human-in-the-loop-hitl">Human-in-the-Loop (HITL)<a class="headerlink" href="#human-in-the-loop-hitl" title="Permanent link">&para;</a></h2>
+<p>HITL requests let an AI session pause and ask a human a question. The session POSTs a request, then polls <code>GET /hitl/{id}</code> until <code>status</code> becomes <code>"answered"</code>.</p>
+<h3 id="get-hitl"><code>GET /hitl</code><a class="headerlink" href="#get-hitl" title="Permanent link">&para;</a></h3>
+<p>List all pending HITL requests across all projects.</p>
+<p><strong>Query params:</strong> <code>status</code> (<code>pending</code> | <code>answered</code> | <code>dismissed</code> | <code>all</code>, default <code>pending</code>), <code>limit</code> (default 50)</p>
+<hr />
+<h3 id="get-projectsproject_idhitl"><code>GET /projects/{project_id}/hitl</code><a class="headerlink" href="#get-projectsproject_idhitl" title="Permanent link">&para;</a></h3>
+<p>List HITL requests scoped to a single project.</p>
+<p><strong>Query params:</strong> <code>status</code>, <code>limit</code> (same as above)</p>
+<hr />
+<h3 id="post-projectsproject_idhitl"><code>POST /projects/{project_id}/hitl</code><a class="headerlink" href="#post-projectsproject_idhitl" title="Permanent link">&para;</a></h3>
+<p>Create a HITL request.</p>
+<p><strong>Auth:</strong> None (local) / Session cookie or Bearer token (hosted)</p>
+<p><strong>Body:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Should I merge the auth branch now or wait for the review?"</span><span class="p">,</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">"context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Optional background context for the human"</span><span class="p">,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="nt">"urgency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span><span class="nt">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="nt">"assigned_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">}</span>
+</code></pre></div></p>
+<p><code>urgency</code> values: <code>"normal"</code> (default), <code>"high"</code>, <code>"blocking"</code></p>
+<p><strong>Response (201):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="nt">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="nt">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Should I merge the auth branch now or wait for the review?"</span><span class="p">,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="nt">"context"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="nt">"urgency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">  </span><span class="nt">"answered_by"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">  </span><span class="nt">"assigned_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">,</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">  </span><span class="nt">"answered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="p">}</span>
+</code></pre></div></p>
+<blockquote>
+<p>When the project has <code>hitl_auto_answer</code> enabled, the response comes back immediately with <code>answered_by: "auto"</code> and no notification is sent.</p>
+</blockquote>
+<hr />
+<h3 id="get-hitlrequest_id"><code>GET /hitl/{request_id}</code><a class="headerlink" href="#get-hitlrequest_id" title="Permanent link">&para;</a></h3>
+<p>Get a single HITL request. Sessions poll this endpoint to read the human's answer.</p>
+<p><strong>Response (404):</strong> <code>{"detail": "hitl request not found"}</code></p>
+<hr />
+<h3 id="patch-hitlrequest_id"><code>PATCH /hitl/{request_id}</code><a class="headerlink" href="#patch-hitlrequest_id" title="Permanent link">&para;</a></h3>
+<p>Answer or dismiss a HITL request.</p>
+<p><strong>Body (answer):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">{</span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"answer"</span><span class="p">,</span><span class="w"> </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wait for the review."</span><span class="p">,</span><span class="w"> </span><span class="nt">"answered_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Body (dismiss):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dismiss"</span><span class="p">}</span>
+</code></pre></div></p>
+<p><code>action</code> defaults to <code>"answer"</code> when omitted.</p>
+<hr />
+<h2 id="workspace-proposals">Workspace Proposals<a class="headerlink" href="#workspace-proposals" title="Permanent link">&para;</a></h2>
+<p>Workspace proposals are a human-only "drawer of inspiration" for cross-project ideas. They are <strong>not</strong> executor-claimable — a human must review and promote them.</p>
+<blockquote>
+<p>Proposals are managed via MCP tools only (<code>add_workspace_proposal</code>, <code>get_workspace_proposals</code>, <code>advance_proposal_status</code>, <code>promote_proposal</code>). There is no REST endpoint for proposals.</p>
+</blockquote>
+<p><strong>Status lifecycle:</strong> <code>raw</code> → <code>investigating</code> → <code>promoted</code> | <code>rejected</code></p>
+<ul>
+<li>Use <code>advance_proposal_status</code> to move through <code>raw → investigating → rejected</code> (or back).</li>
+<li>Use <code>promote_proposal</code> to convert a proposal into a real sprint item (sets status to <code>"promoted"</code> and creates a linked sprint item).</li>
+</ul>
+<hr />
+<h2 id="handoff">Handoff<a class="headerlink" href="#handoff" title="Permanent link">&para;</a></h2>
+<h3 id="post-projectsproject_idhandoff"><code>POST /projects/{project_id}/handoff</code><a class="headerlink" href="#post-projectsproject_idhandoff" title="Permanent link">&para;</a></h3>
+<p>Generate a context handoff file.</p>
+<p><strong>Response:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="nt">"file_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data/my-project_handoff.md"</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"---\nMERIDIAN_CONTEXT\n..."</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h2 id="auth-hosted-tier">Auth (Hosted Tier)<a class="headerlink" href="#auth-hosted-tier" title="Permanent link">&para;</a></h2>
+<h3 id="get-authlogin"><code>GET /auth/login</code><a class="headerlink" href="#get-authlogin" title="Permanent link">&para;</a></h3>
+<p>Serves the sign-in page with Google and GitHub OAuth buttons.</p>
+<h3 id="get-authgooglelogin"><code>GET /auth/google/login</code><a class="headerlink" href="#get-authgooglelogin" title="Permanent link">&para;</a></h3>
+<p>Redirect to Google OAuth consent page.</p>
+<h3 id="get-authcallback"><code>GET /auth/callback</code><a class="headerlink" href="#get-authcallback" title="Permanent link">&para;</a></h3>
+<p>Google OAuth callback — creates/updates tenant, sets session cookie.</p>
+<p><strong>Query params:</strong> <code>code</code> (from Google)</p>
+<h3 id="get-authgithublogin"><code>GET /auth/github/login</code><a class="headerlink" href="#get-authgithublogin" title="Permanent link">&para;</a></h3>
+<p>Redirect to GitHub OAuth consent page.</p>
+<h3 id="get-authgithubcallback"><code>GET /auth/github/callback</code><a class="headerlink" href="#get-authgithubcallback" title="Permanent link">&para;</a></h3>
+<p>GitHub OAuth callback — creates/updates tenant, sets session cookie.</p>
+<p><strong>Query params:</strong> <code>code</code> (from GitHub)</p>
+<h3 id="get-authlogout"><code>GET /auth/logout</code><a class="headerlink" href="#get-authlogout" title="Permanent link">&para;</a></h3>
+<p>Clear session cookie, redirect to <code>/</code>.</p>
+<hr />
+<h2 id="remote-mcp-hosted-tier">Remote MCP (Hosted Tier)<a class="headerlink" href="#remote-mcp-hosted-tier" title="Permanent link">&para;</a></h2>
+<h3 id="post-mcp"><code>POST /mcp</code><a class="headerlink" href="#post-mcp" title="Permanent link">&para;</a></h3>
+<p>Remote MCP endpoint — HTTP transport.</p>
+<p><strong>Auth:</strong> <code>Authorization: Bearer sk_meridian_...</code></p>
+<p><strong>Rate limit:</strong> 100 requests/minute per token</p>
+<p><strong>Body:</strong> Standard MCP JSON-RPC request</p>
+<p><strong>Response:</strong> Standard MCP JSON-RPC response</p>
+<hr />
+<h2 id="admin">Admin<a class="headerlink" href="#admin" title="Permanent link">&para;</a></h2>
+<h3 id="get-admin"><code>GET /admin</code><a class="headerlink" href="#get-admin" title="Permanent link">&para;</a></h3>
+<p>Admin dashboard. Shows active customers, churned, signups/day, Neon project count, recent signups, payment failures.</p>
+<p><strong>Auth:</strong> ADMIN_EMAIL Google OAuth only</p>
+<h3 id="get-admingit-status"><code>GET /admin/git-status</code><a class="headerlink" href="#get-admingit-status" title="Permanent link">&para;</a></h3>
+<p>Check if the local repo is behind the remote.</p>
+<p><strong>Response:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">{</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">"behind"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="nt">"ahead"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="nt">"branch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main"</span><span class="p">,</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
+<h3 id="get-demo"><code>GET /demo</code><a class="headerlink" href="#get-demo" title="Permanent link">&para;</a></h3>
+<p>Public read-only demo dashboard. Sets a demo context cookie. Exempt from SITE_PASSWORD gate.</p>
+<p>No auth required.</p>
+<hr />
+<h2 id="static-pages">Static Pages<a class="headerlink" href="#static-pages" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /</code></td>
+<td>Landing page with pricing</td>
+</tr>
+<tr>
+<td><code>GET /terms</code></td>
+<td>Terms of Service</td>
+</tr>
+<tr>
+<td><code>GET /privacy</code></td>
+<td>Privacy Policy</td>
+</tr>
+<tr>
+<td><code>GET /health</code></td>
+<td>Health check</td>
+</tr>
+<tr>
+<td><code>GET /dashboard</code></td>
+<td>Dashboard (auth required on hosted)</td>
+</tr>
+<tr>
+<td><code>GET /config</code></td>
+<td>Server config (version, db type, etc.)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="route-inventory">Route Inventory<a class="headerlink" href="#route-inventory" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Auto-generated</strong> from the live FastAPI route table by <code>scripts/gen_docs.py</code>. Edit <code>meridian/server.py</code> (not this file) to add or remove routes. CI fails when committed docs drift from generator output.</p>
+</blockquote>
+<h3 id="_1"><code>/</code><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/</code></td>
+<td>Landing page — headline, CTAs, waitlist form</td>
+</tr>
+</tbody>
+</table>
+<h3 id="well-known"><code>/.well-known</code><a class="headerlink" href="#well-known" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/.well-known/agent.json</code></td>
+<td>Return the A2A agent card so other agents can discover this server</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/.well-known/agent.json</code></td>
+<td>Support POST discovery per A2A spec</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/.well-known/oauth-authorization-server</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/.well-known/oauth-protected-resource</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/.well-known/openid-configuration</code></td>
+<td>OIDC discovery alias for clients that probe this path before OAuth AS metadata</td>
+</tr>
+</tbody>
+</table>
+<h3 id="__gate__"><code>/__gate__</code><a class="headerlink" href="#__gate__" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/__gate__</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="a2a"><code>/a2a</code><a class="headerlink" href="#a2a" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/a2a/{agent_id}/tasks/send</code></td>
+<td>Receive an A2A task, store it as 'submitted', and return the task envelope</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/a2a/{agent_id}/tasks/{task_id}</code></td>
+<td>Return the current status of an A2A task</td>
+</tr>
+</tbody>
+</table>
+<h3 id="account"><code>/account</code><a class="headerlink" href="#account" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/account/delete</code></td>
+<td _DELETE_="&quot;DELETE&quot;" _confirmation_:="&quot;confirmation&quot;:">Self-service account deletion. Requires JSON body:</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/account/sessions</code></td>
+<td>3c28450d — list the account's active web sessions (device + recency)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/account/sessions/{session_id}/revoke</code></td>
+<td>3c28450d — revoke (sign out) one of the account's web sessions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="activate"><code>/activate</code><a class="headerlink" href="#activate" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/activate</code></td>
+<td>Device activation page — shows approval UI for a pending device_code</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/activate</code></td>
+<td>Handle device approval or denial</td>
+</tr>
+</tbody>
+</table>
+<h3 id="admin_1"><code>/admin</code><a class="headerlink" href="#admin_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin</code></td>
+<td>Admin dashboard — restricted to MERIDIAN_ADMIN_EMAILS + optional password</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/__error_test</code></td>
+<td>Force an error response to exercise the 5xx counter + admin alerting</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/admin/blog/generate-draft</code></td>
+<td>Build a draft from recent shipped activity (no AI call). Returns</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/blog/posts</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/admin/blog/posts</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/admin/blog/posts/{post_id}</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/blog/posts/{post_id}</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/admin/blog/posts/{post_id}/publish</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/admin/blog/posts/{post_id}/unpublish</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/git-status</code></td>
+<td>Check if local repo is behind/ahead of remote</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/health</code></td>
+<td>JSON health check for ops/curl — restricted to admin users</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/login</code></td>
+<td>Admin password gate for the /admin panel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/admin/login</code></td>
+<td>Validate admin password and set signed cookie</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/admin/restart</code></td>
+<td>Restart the server by spawning a new process then shutting down</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/admin/shutdown</code></td>
+<td>Gracefully stop the server process</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/snapshot</code></td>
+<td>Download the current DB as a SQLite snapshot file</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/stats</code></td>
+<td>d1cb1100 — launch/user stats for the admin Users widget: free-tier count</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/admin/waitlist</code></td>
+<td>Admin waitlist management page — shows signups, tenant stats, approve/delete buttons</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/admin/waitlist/{entry_id}</code></td>
+<td>Delete a waitlist entry by id. Admin only</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api"><code>/api</code><a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/admin/changelog-entries</code></td>
+<td>Admin-only: create a new changelog entry</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/api/admin/changelog-entries/{entry_id}</code></td>
+<td>Admin-only: delete a changelog entry</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/api/admin/changelog-entries/{entry_id}</code></td>
+<td>Admin-only: update a changelog entry</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/changelog-entries</code></td>
+<td>Return changelog entries as JSON</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/api/keys/orphaned</code></td>
+<td>Purge this tenant's orphaned OAuth API keys (<code>label='oauth'</code>, &gt;24h old)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api-reference-doc"><code>/api-reference-doc</code><a class="headerlink" href="#api-reference-doc" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api-reference-doc</code></td>
+<td>Generate docs/api-reference.md from the live FastAPI route table</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auth"><code>/auth</code><a class="headerlink" href="#auth" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/callback</code></td>
+<td>Handle Google OAuth callback — create/update tenant, set session cookie</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/email-required</code></td>
+<td>Shown when OAuth provider returned no usable email (e.g. GitHub with private email)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/github/callback</code></td>
+<td>Handle GitHub OAuth callback — create/update tenant, set session cookie</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/github/login</code></td>
+<td>Redirect browser to GitHub OAuth consent page</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/github/repo-callback</code></td>
+<td>Handle GitHub repo-connect callback and store repo access</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/github/repo-connect</code></td>
+<td>Redirect browser to GitHub OAuth for repo connection</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/google/login</code></td>
+<td>Redirect browser directly to Google OAuth consent page</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/hooks-connect</code></td>
+<td>Browser endpoint: register THIS machine to the logged-in tenant and show</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/hooks-status</code></td>
+<td>Return {registered, token} for the logged-in tenant's hostname. The token</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/install</code></td>
+<td>One-time install token page — requires browser session, returns a short-lived token</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/login</code></td>
+<td>Serve sign-in page with Google and GitHub OAuth buttons</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/logout</code></td>
+<td>Clear session cookie and delete DB session</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/auth/magic</code></td>
+<td>v0.9 — request a magic-link email. Rate-limited</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/magic/verify</code></td>
+<td>v0.9 — consume a magic-link token, create a session, redirect</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/me</code></td>
+<td>Return the authenticated tenant's profile (session cookie or bearer), including projects</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/microsoft/callback</code></td>
+<td>Handle Microsoft OAuth callback — create/update tenant, set session cookie</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/microsoft/login</code></td>
+<td>Redirect browser to Microsoft OAuth consent page</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/tokens</code></td>
+<td>List API bearer tokens for the authenticated tenant</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/auth/tokens</code></td>
+<td>Generate a new API bearer token for the authenticated tenant</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/auth/tokens/{token_id}</code></td>
+<td>Revoke an API bearer token for the authenticated tenant</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/tunnel-connect</code></td>
+<td>Device-code page for <code>meridian --tunnel</code> browser auth</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/auth/tunnel-connect</code></td>
+<td>Complete the device-code flow — create a tunnel token and register it for polling</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/auth/tunnel-poll</code></td>
+<td>Poll endpoint for the tunnel device-code flow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="billing"><code>/billing</code><a class="headerlink" href="#billing" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/billing/portal</code></td>
+<td>G2.11 — open a Stripe Customer Portal session for the signed-in tenant</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/billing/portal</code></td>
+<td>Return Stripe billing portal URL as JSON for dashboard AJAX calls (e7d4400b)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="blog"><code>/blog</code><a class="headerlink" href="#blog" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/blog</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/blog/{slug}</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="changelog"><code>/changelog</code><a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/changelog</code></td>
+<td>Public changelog rendered from DB — newest entries first</td>
+</tr>
+</tbody>
+</table>
+<h3 id="checkout"><code>/checkout</code><a class="headerlink" href="#checkout" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/checkout</code></td>
+<td>Create a Stripe Checkout Session and redirect to it</td>
+</tr>
+</tbody>
+</table>
+<h3 id="code"><code>/code</code><a class="headerlink" href="#code" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/code/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's codebase-memory-mcp over the code tunnel</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/code/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's codebase-memory-mcp over the code tunnel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/code/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's codebase-memory-mcp over the code tunnel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/code/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as code_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/code/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as code_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/code/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as code_mcp_proxy but for sub-paths</td>
+</tr>
+</tbody>
+</table>
+<h3 id="config"><code>/config</code><a class="headerlink" href="#config" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/config</code></td>
+<td>v0.6.5 — expose runtime configuration to the dashboard</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/config/api-key</code></td>
+<td>Tell the dashboard which auth method is active</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/config/connections</code></td>
+<td>v1.9.x — save a new connection profile to meridian.toml</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/config/connections/{name}</code></td>
+<td>v1.9.x — remove a named connection profile from meridian.toml</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dashboard"><code>/dashboard</code><a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/dashboard</code></td>
+<td>Serve the Meridian dashboard from a Jinja2 template</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dc"><code>/dc</code><a class="headerlink" href="#dc" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/dc/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's desktop-commander over the dc tunnel</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/dc/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's desktop-commander over the dc tunnel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/dc/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's desktop-commander over the dc tunnel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/dc/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as dc_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/dc/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as dc_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/dc/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as dc_mcp_proxy but for sub-paths</td>
+</tr>
+</tbody>
+</table>
+<h3 id="debug"><code>/debug</code><a class="headerlink" href="#debug" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/debug/mcp/{tenant_id}</code></td>
+<td>121e6a27 — Proxy requests to the tenant's mcp-debugger server over the debug tunnel</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/debug/mcp/{tenant_id}</code></td>
+<td>121e6a27 — Proxy requests to the tenant's mcp-debugger server over the debug tunnel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/debug/mcp/{tenant_id}</code></td>
+<td>121e6a27 — Proxy requests to the tenant's mcp-debugger server over the debug tunnel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/debug/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as debug_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/debug/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as debug_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/debug/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as debug_mcp_proxy but for sub-paths</td>
+</tr>
+</tbody>
+</table>
+<h3 id="demo_1"><code>/demo</code><a class="headerlink" href="#demo_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/demo</code></td>
+<td>Public read-only demo dashboard backed by MERIDIAN_DEMO_DB_URL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="demo-auth"><code>/demo-auth</code><a class="headerlink" href="#demo-auth" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/demo-auth</code></td>
+<td>Validate demo password and set a signed access cookie</td>
+</tr>
+</tbody>
+</table>
+<h3 id="docs"><code>/docs</code><a class="headerlink" href="#docs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/docs/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's meridian-docs server over the docs tunnel</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/docs/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's meridian-docs server over the docs tunnel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/docs/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's meridian-docs server over the docs tunnel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/docs/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as docs_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/docs/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as docs_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/docs/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as docs_mcp_proxy but for sub-paths</td>
+</tr>
+</tbody>
+</table>
+<h3 id="document-peeks"><code>/document-peeks</code><a class="headerlink" href="#document-peeks" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/document-peeks</code></td>
+<td>79ee73e8 — recent 'viewed but not saved' get_document_structure peeks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="export"><code>/export</code><a class="headerlink" href="#export" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/export/my-data</code></td>
+<td>GDPR data portability — returns a JSON file of all account data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="extract"><code>/extract</code><a class="headerlink" href="#extract" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/extract/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's mcp-server-code-extractor over the extract tunnel</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/extract/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's mcp-server-code-extractor over the extract tunnel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/extract/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's mcp-server-code-extractor over the extract tunnel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/extract/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as extract_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/extract/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as extract_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/extract/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as extract_mcp_proxy but for sub-paths</td>
+</tr>
+</tbody>
+</table>
+<h3 id="failover-status"><code>/failover-status</code><a class="headerlink" href="#failover-status" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/failover-status</code></td>
+<td>ITEM 7 — report whether this instance is serving in failover mode</td>
+</tr>
+</tbody>
+</table>
+<h3 id="feedback"><code>/feedback</code><a class="headerlink" href="#feedback" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/feedback</code></td>
+<td _..._="&quot;...&quot;" _email_:="&quot;email&quot;:" _message_:="&quot;message&quot;:" _type_:="&quot;type&quot;:">Submit user feedback. Requires JSON body:</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fs"><code>/fs</code><a class="headerlink" href="#fs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/fs/mcp/{tenant_id}</code></td>
+<td>Proxy a GET/POST/OPTIONS request through the tenant's active tunnel socket</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/fs/mcp/{tenant_id}</code></td>
+<td>Proxy a GET/POST/OPTIONS request through the tenant's active tunnel socket</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/fs/mcp/{tenant_id}</code></td>
+<td>Proxy a GET/POST/OPTIONS request through the tenant's active tunnel socket</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/fs/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as fs_mcp_proxy but for sub-paths under the MCP root</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/fs/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as fs_mcp_proxy but for sub-paths under the MCP root</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/fs/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as fs_mcp_proxy but for sub-paths under the MCP root</td>
+</tr>
+</tbody>
+</table>
+<h3 id="github"><code>/github</code><a class="headerlink" href="#github" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/github/connections</code></td>
+<td>List all connected GitHub accounts for the current tenant</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/github/connections/{account_login}</code></td>
+<td>Remove a connected GitHub account</td>
+</tr>
+</tbody>
+</table>
+<h3 id="health_1"><code>/health</code><a class="headerlink" href="#health_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/health</code></td>
+<td>Liveness probe. 056b712f — also report the running build's git SHA + version so an</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/health/deep</code></td>
+<td>4c559d4e — deep health probe for post-deploy checks + external monitoring</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hitl"><code>/hitl</code><a class="headerlink" href="#hitl" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/hitl</code></td>
+<td>Pending HITL requests across all projects (top-level dashboard panel)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/hitl/{request_id}</code></td>
+<td>Single HITL request lookup — sessions poll this to get the answer</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/hitl/{request_id}</code></td>
+<td>Answer or dismiss a HITL request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hooks"><code>/hooks</code><a class="headerlink" href="#hooks" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/hooks/diagnostics</code></td>
+<td>34f76536 — live hook-configuration diagnostics for the active repo</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/hooks/session-start</code></td>
+<td>Claude Code / Codex SessionStart hook</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/hooks/stop</code></td>
+<td>Claude Code / Codex Stop hook</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mcp"><code>/mcp</code><a class="headerlink" href="#mcp" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/mcp</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/mcp</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/mcp/openai</code></td>
+<td>Curated MCP endpoint for the OpenAI plugin directory submission</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/mcp/quickstart</code></td>
+<td>One-page MCP quick reference — the 5 tools you use 90% of the time</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/mcp/sse</code></td>
+<td>MCP SSE transport GET — opens event stream for dnakov/claude-mcp</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/mcp/sse</code></td>
+<td>CORS preflight for chrome-extension:// origin</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/mcp/sse</code></td>
+<td>MCP SSE transport POST — JSON-RPC handler for dnakov/claude-mcp</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/mcp/tools-doc</code></td>
+<td>Generate organized markdown MCP tool reference</td>
+</tr>
+</tbody>
+</table>
+<h3 id="me"><code>/me</code><a class="headerlink" href="#me" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/me</code></td>
+<td>Return the current user's plan info. Returns {} for anonymous/self-hosted</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/me/workspaces</code></td>
+<td>Return all workspaces the current user belongs to</td>
+</tr>
+</tbody>
+</table>
+<h3 id="oauth"><code>/oauth</code><a class="headerlink" href="#oauth" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/oauth/authorize</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/oauth/device</code></td>
+<td>RFC 8628 device authorization endpoint</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/oauth/device-callback</code></td>
+<td>Show auth code; JS auto-redirects to the local callback so MCP SDK completes the flow</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/oauth/register</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/oauth/token</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="onboarding"><code>/onboarding</code><a class="headerlink" href="#onboarding" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/onboarding</code></td>
+<td>Plan selection page for new users after first login</td>
+</tr>
+</tbody>
+</table>
+<h3 id="outputs"><code>/outputs</code><a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/outputs/mcp/{tenant_id}</code></td>
+<td>469d89b4 — Proxy requests to the tenant's meridian-outputs server over the outputs tunnel</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/outputs/mcp/{tenant_id}</code></td>
+<td>469d89b4 — Proxy requests to the tenant's meridian-outputs server over the outputs tunnel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/outputs/mcp/{tenant_id}</code></td>
+<td>469d89b4 — Proxy requests to the tenant's meridian-outputs server over the outputs tunnel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/outputs/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as outputs_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/outputs/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as outputs_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/outputs/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as outputs_mcp_proxy but for sub-paths</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pkg-guard"><code>/pkg-guard</code><a class="headerlink" href="#pkg-guard" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/pkg-guard/check</code></td>
+<td>23f21820 -- package-install verification gate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ppt"><code>/ppt</code><a class="headerlink" href="#ppt" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/ppt/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's powerpoint-mcp over the ppt tunnel</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/ppt/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's powerpoint-mcp over the ppt tunnel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/ppt/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's powerpoint-mcp over the ppt tunnel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/ppt/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as ppt_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/ppt/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as ppt_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/ppt/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as ppt_mcp_proxy but for sub-paths</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pricing"><code>/pricing</code><a class="headerlink" href="#pricing" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/pricing</code></td>
+<td>Pricing page — Free / Solo / Team tiers with waitlist forms when hosted launch is pending</td>
+</tr>
+</tbody>
+</table>
+<h3 id="privacy"><code>/privacy</code><a class="headerlink" href="#privacy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/privacy</code></td>
+<td>Static Privacy Policy page</td>
+</tr>
+</tbody>
+</table>
+<h3 id="profile-layers"><code>/profile-layers</code><a class="headerlink" href="#profile-layers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/profile-layers</code></td>
+<td>List every persisted profile_layers row, optionally filtered by</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/profile-layers/{scope_id}/activate</code></td>
+<td>Advance a hosted_default layer's lifecycle to 'active'. hosted_default</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/profile-layers/{scope_id}/revisions</code></td>
+<td>Return the hosted_default revision/audit history for one scope_id,</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/profile-layers/{scope_type}/{scope_id}</code></td>
+<td>Delete a scope's entire profile-layer row. Returns 200 with the</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/profile-layers/{scope_type}/{scope_id}</code></td>
+<td>Return the raw, single-layer profile for one (scope_type, scope_id)</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/profile-layers/{scope_type}/{scope_id}</code></td>
+<td>Validate and persist one layer's profile — wholesale-replaces this</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/profile-layers/{scope_type}/{scope_id}/clone</code></td>
+<td>Copy one layer's fields/reset_fields/provenance onto another scope</td>
+</tr>
+</tbody>
+</table>
+<h3 id="projects_1"><code>/projects</code><a class="headerlink" href="#projects_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/projects</code></td>
+<td>0e4980d4 — batch delete: accepts multiple project ids in one call</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects</code></td>
+<td>List projects visible to the caller</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects</code></td>
+<td>Create a new project. 409 if the name is already in use</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/by-name/{name}</code></td>
+<td>Look up a project by name (case-insensitive substring match)</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/projects/{project_id}</code></td>
+<td>v1.9.x — delete a project and all data</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}</code></td>
+<td>Look up a project by id</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/agent-instructions</code></td>
+<td>Return the current agent_instructions for a project</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/agent-instructions</code></td>
+<td>Set or clear agent_instructions. Pass null to reset to server defaults</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/agent-instructions/default</code></td>
+<td>Return the server DEFAULT_AGENT_INSTRUCTIONS (for the Reset button)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/codebase-map</code></td>
+<td>5813affe — render a package-level codebase map (graphviz) from the graph</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/context</code></td>
+<td>Return a onboarding context payload for new chat sessions (v1.9.x)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/context-block</code></td>
+<td>v2.3 — plain-text context block suitable for direct clipboard paste</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/decisions</code></td>
+<td>v1.1.4 — append a decision entry to the project's append-only</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/decisions-pinned</code></td>
+<td>Active pinned decisions (newest first). <code>?include_superseded=true</code> returns full history</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/decisions-pinned</code></td>
+<td>Create a new pinned decision</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/decisions-pinned/archive-oldest</code></td>
+<td>Archive the oldest active pinned decisions without creating replacements</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/decisions-pinned/replace-all</code></td>
+<td>Atomically replace all active pinned decisions with a new set (AI consolidation)</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/projects/{project_id}/decisions-pinned/{decision_id}</code></td>
+<td>Hard-delete a pinned decision. Use update (status=superseded) to archive instead</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/decisions-pinned/{decision_id}</code></td>
+<td>Patch fields, or supersede (pass new_title + new_body to atomically retire+create)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/decisions/consolidate</code></td>
+<td>Call an external LLM to deduplicate and consolidate pinned decisions</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/devlog</code></td>
+<td>Append a user-written line to DEVLOG.md via the devlog anchor</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/document-review</code></td>
+<td>b67ec6b5 — non-mutating DOCX review for the dashboard review panel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/document-structure</code></td>
+<td>3f596f81 — heading-tree structure of an ingested .docx for the Documents</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/documents/upload</code></td>
+<td>f1c7e7d1 — tunnel-free document upload (plain .txt/.md only, v1)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/effective-profile</code></td>
+<td>Resolve and return the merged profile for a project across every</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/events</code></td>
+<td>Normalize a framework event into Meridian's task_log</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/experiments</code></td>
+<td>List a project's experiments, newest first. Optional <code>?status=</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/experiments/{experiment_id}/events</code></td>
+<td>List one experiment's events (dead_end/pivot/breakthrough/note/</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/experiments/{experiment_id}/runs</code></td>
+<td>List one experiment's runs, newest-started first. Optional</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/export/pdf</code></td>
+<td>Generate a tamper-evident IP attribution PDF for the project</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/files</code></td>
+<td>Return the list of editable markdown files for a project</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/files/{filename}</code></td>
+<td>Read one editable markdown file and return its content</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/projects/{project_id}/files/{filename}</code></td>
+<td>Write content to one editable markdown file</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/github/account</code></td>
+<td>Pin a specific GitHub account to a project (or clear the pin)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/github/branches</code></td>
+<td>v2.8 — list the branches of a repo so the Branch field can be a dropdown</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/github/connect</code></td>
+<td>Connect or update the tenant's GitHub repo settings</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/projects/{project_id}/github/disconnect</code></td>
+<td>Clear the project's stored GitHub repo (keeps tenant PAT for other projects)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/github/push-mcp-template</code></td>
+<td>Push template.mcp.json to the connected GitHub repo</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/github/repos</code></td>
+<td>Return the tenant's accessible GitHub repos for the connect dropdown</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/github/status</code></td>
+<td>Return the project's current GitHub connection status</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/goal</code></td>
+<td>Read the latest goal state plus ambient task context</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/goal</code></td>
+<td>Upsert the goal state, incrementing version</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/goal-history</code></td>
+<td>Return meaningful goal versions for a project, newest first</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/goal-mode</code></td>
+<td>Return the current goal mode for a project</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/goal-mode</code></td>
+<td>Switch a project between 'manual' and 'auto' goal modes</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/goal/north-star</code></td>
+<td>v0.5.2 — update only the north star field</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/goal/sprint</code></td>
+<td>v0.5.2 — update only the sprint field</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/handoff</code></td>
+<td>Render and write the handoff file for a project</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/handoff/accept</code></td>
+<td>1bd5e810 — REST mirror of the MCP <code>accept_handoff</code> tool — see</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/handoff/corrections</code></td>
+<td>3af86d28 — record a corrective handoff for a blocked executor session</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/handoff/corrections/latest</code></td>
+<td>3af86d28 — load a corrective handoff directly (never reconstruct from notes)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/handoff/planner</code></td>
+<td>GET the planner-optimised handoff for a project</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/hitl</code></td>
+<td>HITL requests scoped to a single project</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/hitl</code></td>
+<td>Create a HITL request. Sessions paused on blocking should POST then poll</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/icon</code></td>
+<td>G4.17 — set or clear the single-emoji icon for a project</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/insights</code></td>
+<td>Project insights, newest first. <code>?horizon=permanent\|year\|quarter</code> filters</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/insights</code></td>
+<td>Create a strategic insight (title required; horizon defaults to 'quarter')</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/notes</code></td>
+<td>Project notes (newest first). <code>?tag=X</code> filters by tag; <code>?query=X</code> searches title+body</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/notes</code></td>
+<td body_="body," tags_="tags?" title_="title,">Create a new note. Body:</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/projects/{project_id}/notes/{note_id}</code></td>
+<td>Hard-delete a note. Returns 204 or 404</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/notes/{note_id}</code></td>
+<td>Patch title/body/tags</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/notify/test</code></td>
+<td>Send a test notification to verify the configured notify URL and/or email</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/ntfy</code></td>
+<td>Return the current notification settings for this project</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/ntfy</code></td>
+<td>Save (or clear) the notify URL and/or notify_email for this project</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/organization</code></td>
+<td>8db00fcb — set a project's status (active|parked|archived) and/or</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/orphan_reaper</code></td>
+<td>f7084ed0 — dashboard-facing status for the orphan-process-reaper Stop</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/orphan_reaper/toggle</code></td>
+<td>f7084ed0 — dashboard opt-in/opt-out for the orphan-process-reaper Stop</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/parent</code></td>
+<td>0fed6a42 — set / change / clear a project's parent (subproject hierarchy)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/queue-session</code></td>
+<td>Queue the next /goal string; it's appended to the next handoff and then</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/queued-session</code></td>
+<td>Return the currently queued next-session goal, or null</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/reconcile</code></td>
+<td>Cross-reference pending sprint items against recent git commits</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/registered-machines</code></td>
+<td>List the tenant's registered hook machines (token omitted) for the</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/projects/{project_id}/registered-machines/{machine_id}</code></td>
+<td>Revoke one of the tenant's registered machines</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/rename</code></td>
+<td>v1.9.x — rename a project.  Broadcasts project_renamed WS event</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/repo-image</code></td>
+<td>G7.32 — proxy a repo-relative image through the project's GitHub PAT</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/resources/sprint-items</code></td>
+<td>f5f2a89d — reverse lookup: sprint items whose touches_resources includes resource</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/rewind</code></td>
+<td>v1.3.0 — "Last X days" project rewind summary</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/rewind-token</code></td>
+<td>v1.3.0 — mint (or return) the project's shareable rewind token</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/runs</code></td>
+<td>List executor_runs for a project, newest first</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/runs/{run_id}</code></td>
+<td>Return a single executor_run with full transcript</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/runtime_diagnostics</code></td>
+<td>60a96ece — dashboard-visible, opt-in diagnostic snapshot of</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/search</code></td>
+<td>Universal search across tasks, notes, decisions, and sprint items</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/session-timeline</code></td>
+<td>1e1bd6b0 — per-executor-session timeline: each session's start/end + the</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/sessions</code></td>
+<td>List sessions attached to the project</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/sessions/{session_id}/tasks/live</code></td>
+<td>Return the last N task_log rows for a session — live Queue feed</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/settings</code></td>
+<td>Return persisted per-project dashboard settings</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/settings</code></td>
+<td>Update persisted per-project dashboard settings</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/slot-readiness</code></td>
+<td>Probe whether the code/Serena tunnel slot is ready for this project</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/sprint-batch</code></td>
+<td>Run a homogeneous batch of sprint-management writes</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/sprint-items</code></td>
+<td>List sprint items, optionally filtered by status</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/sprint-items</code></td>
+<td>Append a todo sprint item. Body: <code>{version, title, group?, human_id?}</code></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/projects/{project_id}/sprint-items/{item_id}</code></td>
+<td>Delete a sprint item permanently</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/sprint-items/{item_id}</code></td>
+<td>4ef6ce5e — fetch ONE sprint item's live row, scoped to <code>project_id</code></td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/projects/{project_id}/sprint-items/{item_id}</code></td>
+<td>Update editable fields (title, version) of a sprint item</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/sprint-items/{item_id}/complete</code></td>
+<td>Mark a sprint item <code>done</code>. Optional body: <code>{task_id}</code></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/sprint-items/{item_id}/fail</code></td>
+<td>Mark a sprint item <code>failed</code>. Optional body: <code>{reason}</code></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/sprint-items/{item_id}/push</code></td>
+<td>Push a sprint item to a future version. Body: <code>{to_version}</code></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/sprint-items/{item_id}/skip</code></td>
+<td>Mark a sprint item <code>skipped</code>. Optional body: <code>{reason}</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/sprint/pending_count</code></td>
+<td>c0d2356d — count of not-yet-done sprint items for a project. Powers the</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/sprint/test_coverage_expected</code></td>
+<td>43539c70 - does the project's current in-progress sprint item call for</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/start-session</code></td>
+<td>v0.4.4 — one call to start a coordinated session</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/start-worker-session</code></td>
+<td>v1.2.0 — REST mirror of the MCP <code>start_worker_session</code> tool</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/stats</code></td>
+<td>Return activity stats for the Charts subtab</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/tasks</code></td>
+<td>List recent tasks for a project, newest first. Supports pagination via limit/offset</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/tasks/claim</code></td>
+<td>Atomically claim a pending task. Returns <code>claimed=False</code> when</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/tasks/claimable</code></td>
+<td>List unclaimed pending tasks for a project</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/tasks/release</code></td>
+<td>Release a previously-claimed task</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/tasks/search</code></td>
+<td>Text search over task descriptions</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/timeline</code></td>
+<td>v1.1.1 — return the data needed to render the Activity Timeline</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/wave-summary/{wave_id}</code></td>
+<td>bbb447ec — the authoritative, immutable completion record for one wave</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/webhook-token</code></td>
+<td>Mint-and-return the project webhook token. Shown ONCE in the UI</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/worktrees</code></td>
+<td>List active git worktrees registered for a project</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/worktrees</code></td>
+<td>Register a git worktree for a session. Call after <code>git worktree add</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/projects/{project_id}/worktrees/pending_cleanup</code></td>
+<td>e401221d — read-only: worktree rows still marked active in the DB whose</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/projects/{project_id}/worktrees/sweep</code></td>
+<td>a03c0eeb — on-demand real disk cleanup for this project's worktrees</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/projects/{project_id}/worktrees/{worktree_id}</code></td>
+<td>Mark a registered worktree as removed — and, self-hosted only, actually</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sessions_1"><code>/sessions</code><a class="headerlink" href="#sessions_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/sessions/register</code></td>
+<td>Create a session row tied to a project</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/sessions/{session_id}</code></td>
+<td>Update lightweight session state used by the dashboard</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/sessions/{session_id}/close</code></td>
+<td>Mark a session closed</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/sessions/{session_id}/heartbeat</code></td>
+<td>Touch <code>last_seen</code> to keep this session alive</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/sessions/{session_id}/notes</code></td>
+<td>Return sprint scratch-pad notes for a session (newest first)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="settings"><code>/settings</code><a class="headerlink" href="#settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/settings/mcp-config</code></td>
+<td>Return project list + base URL for building the MCP client config snippet</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/settings/notifications</code></td>
+<td>v2.5 — return current notification preferences for the authenticated tenant</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/settings/notifications</code></td>
+<td>v2.5 — save email notification preferences for the authenticated tenant</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/settings/usage</code></td>
+<td>Return current compute + storage usage and overage caps for the tenant</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/settings/usage</code></td>
+<td>Update compute and storage overage spending caps for the tenant</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setup"><code>/setup</code><a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/setup</code></td>
+<td>b6c9f20d — First-run setup alias for binary users</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/setup/health</code></td>
+<td>13583103 — self-hosted diagnostics: which auth providers are configured</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/setup/needed</code></td>
+<td>Returns {needed: true} if no projects exist yet (first-run wizard trigger)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status"><code>/status</code><a class="headerlink" href="#status" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/status/server</code></td>
+<td>shields.io badge: server liveness</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/status/sessions</code></td>
+<td>shields.io badge: count of currently-live sessions</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/status/tools</code></td>
+<td>shields.io badge: MCP tool count (cached at startup)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tasks_1"><code>/tasks</code><a class="headerlink" href="#tasks_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/tasks</code></td>
+<td>Append a task-log entry</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/tasks/enqueue</code></td>
+<td>Paid-tier: queue a Claude subprocess and return the pending task row</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/tasks/{task_id}</code></td>
+<td>Hard-delete a task-log entry</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/tasks/{task_id}</code></td>
+<td>Update a task's status and/or description in place</td>
+</tr>
+</tbody>
+</table>
+<h3 id="team"><code>/team</code><a class="headerlink" href="#team" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/team/summary</code></td>
+<td>Aggregate task_log + sessions by human_id over the last N days</td>
+</tr>
+</tbody>
+</table>
+<h3 id="terms"><code>/terms</code><a class="headerlink" href="#terms" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/terms</code></td>
+<td>Static Terms of Service page</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tools"><code>/tools</code><a class="headerlink" href="#tools" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/tools</code></td>
+<td>Return MCP tool definitions for the dashboard Docs vtab</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tunnel"><code>/tunnel</code><a class="headerlink" href="#tunnel" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/tunnel/active-repo</code></td>
+<td>Send a set_active_repo control message to the tenant's extract WebSocket</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/tunnel/diagnostics/{tenant_id}</code></td>
+<td>Layered, read-only tunnel/connector diagnostics for one tenant (f1e0df55)</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/tunnel/filesystem-roots</code></td>
+<td>live-fs-roots — remove a served filesystem root and apply it live</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/tunnel/filesystem-roots</code></td>
+<td>Return the directories the tunnel's filesystem connector may read</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/tunnel/filesystem-roots</code></td>
+<td>live-fs-roots — add a served filesystem root and push it live</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/tunnel/launch-matrix/{tenant_id}</code></td>
+<td>Read-only, repeatable launch matrix across every in-scope project (ba31dedf)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/tunnel/manifest</code></td>
+<td>Read-only tools/list manifest snapshot for this tenant (49d8244d)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/tunnel/openai/diagnostics/{tenant_id}</code></td>
+<td>Compose OpenAI Secure MCP Tunnel adapter diagnostics for <em>tenant_id</em>,</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/tunnel/plugins</code></td>
+<td>Return the current tenant's resolved tunnel plugins + raw override config</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/tunnel/plugins</code></td>
+<td>Persist the tenant's tunnel plugin overrides (Settings → Tunnel Plugins)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/tunnel/plugins/check</code></td>
+<td>Check whether a plugin binary is available on the server's PATH</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/tunnel/plugins/custom</code></td>
+<td>9811d04c — remove a persisted custom plugin by name</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/tunnel/plugins/custom</code></td>
+<td>9811d04c — persist a chosen custom plugin into the tenant's tunnel config</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/tunnel/plugins/install</code></td>
+<td>Run a plugin install command on the server machine (self-hosted deployments)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/tunnel/refresh</code></td>
+<td>Force a synchronous tunnel-tool re-aggregation and return the manifest</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/tunnel/registry</code></td>
+<td>Proxy the official MCP Registry API to avoid browser CORS restrictions</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/tunnel/status/{tenant_id}</code></td>
+<td>Return whether the tenant currently has an active tunnel socket</td>
+</tr>
+</tbody>
+</table>
+<h3 id="waitlist"><code>/waitlist</code><a class="headerlink" href="#waitlist" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/waitlist</code></td>
+<td>GET all waitlist entries, newest first. Admin use only</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/waitlist</code></td>
+<td>POST {"email": "...", "note": "..."} — add to hosted-tier waitlist</td>
+</tr>
+</tbody>
+</table>
+<h3 id="waitlist-pending"><code>/waitlist-pending</code><a class="headerlink" href="#waitlist-pending" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/waitlist-pending</code></td>
+<td>Landing page for non-admin users who sign in during pre-launch</td>
+</tr>
+</tbody>
+</table>
+<h3 id="webhooks"><code>/webhooks</code><a class="headerlink" href="#webhooks" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/webhooks/github-marketplace</code></td>
+<td>Handle a GitHub Marketplace <code>marketplace_purchase</code> event</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/webhooks/stripe</code></td>
+<td>Handle Stripe webhook events</td>
+</tr>
+</tbody>
+</table>
+<h3 id="word"><code>/word</code><a class="headerlink" href="#word" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/word/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's docx-mcp server over the word tunnel</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/word/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's docx-mcp server over the word tunnel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/word/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's docx-mcp server over the word tunnel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/word/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as word_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/word/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as word_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/word/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as word_mcp_proxy but for sub-paths</td>
+</tr>
+</tbody>
+</table>
+<h3 id="workspace"><code>/workspace</code><a class="headerlink" href="#workspace" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/workspace/accept</code></td>
+<td>Accept a workspace invite. Marks joined_at and redirects to dashboard</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/workspace/blog</code></td>
+<td>Workspace-scoped blog posts (newest first). <code>?status=</code> filters to</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/workspace/blog</code></td>
+<td>Create or update a workspace blog post. Body: {title, body?, status?,</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/workspace/connect-db</code></td>
+<td>Store a custom Postgres connection string as the user's project DB</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/workspace/decisions</code></td>
+<td>Active workspace decisions (newest first). <code>?include_superseded=true</code></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/workspace/decisions</code></td>
+<td body_="body," category_="category?" title_="title,">Pin a workspace decision. Body:</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/workspace/decisions/{decision_id}</code></td>
+<td>Hard-delete a workspace decision. Returns 204 or 404</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/workspace/invite</code></td>
+<td>Invite a new workspace member. Sends invite email via Resend</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/workspace/invite/{member_id}/resend</code></td>
+<td>Resend invite email for a pending workspace member</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/workspace/members</code></td>
+<td>List all workspace members (pending and accepted) for the current tenant</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/workspace/members/{member_id}</code></td>
+<td>Remove a workspace member or revoke a pending invite</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/workspace/members/{member_id}</code></td>
+<td>v2.8 — change a workspace member's role (and github_access cap)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/workspace/notes</code></td>
+<td>Workspace notes (newest first). <code>?tag=X</code> filters by substring match</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/workspace/notes</code></td>
+<td body_="body," tags_="tags?" title_="title,">Create a workspace note. Body:</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/workspace/notes/{note_id}</code></td>
+<td>Hard-delete a workspace note. Returns 204 or 404</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/workspace/notes/{note_id}</code></td>
+<td>Patch title/body/tags on a workspace note</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/workspace/notes/{note_id}/move</code></td>
+<td>Move a workspace note to a project (converts it to a project note and</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/workspace/settings</code></td>
+<td>Read the workspace-global default settings (singleton)</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/workspace/settings</code></td>
+<td>Patch workspace-global defaults. Only the fields passed are changed</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/workspace/sprint-items</code></td>
+<td>Workspace sprint items, grouped by item_group. <code>?status=</code> and</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/workspace/sprint-items</code></td>
+<td group_="group?," human_id_="human_id?" title_="title,">Add a workspace sprint item. Body:</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/workspace/sprint-items/{item_id}</code></td>
+<td>Patch title/status/group/human_id on a workspace sprint item</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/workspace/sprint-items/{item_id}/complete</code></td>
+<td>Mark a workspace sprint item done (stamps completed_at)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="zotero"><code>/zotero</code><a class="headerlink" href="#zotero" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/zotero/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's zotero-mcp server over the zotero tunnel</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/zotero/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's zotero-mcp server over the zotero tunnel</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/zotero/mcp/{tenant_id}</code></td>
+<td>Proxy requests to the tenant's zotero-mcp server over the zotero tunnel</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/zotero/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as zotero_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>OPTIONS</code></td>
+<td><code>/zotero/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as zotero_mcp_proxy but for sub-paths</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/zotero/mcp/{tenant_id}/{rest:path}</code></td>
+<td>Same as zotero_mcp_proxy but for sub-paths</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1503 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-handoff-mode-contract-2026-08-26/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>The Per-Mode Handoff Envelope Contract - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-per-mode-handoff-envelope-contract" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Per-Mode Handoff Envelope Contract
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#two-envelopes-not-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two envelopes, not one
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-envelope-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The envelope fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-and-retrievability-the-machine-readable-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persistence and retrievability — the machine-readable contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selected_scope-omitted-ids-visibility-on-partial-exclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        selected_scope — omitted-ids visibility on partial exclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-classes-allowed-per-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context classes allowed per mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-mode-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default mode selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#receiver-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Receiver behavior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-caller-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy-caller compatibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="the-per-mode-handoff-envelope-contract">The Per-Mode Handoff Envelope Contract<a class="headerlink" href="#the-per-mode-handoff-envelope-contract" title="Permanent link">&para;</a></h1>
+<p>Sprint item <strong>b6502b35</strong> (item_group <code>handoff-profile-parity</code>). This document
+defines the envelope every <code>generate_handoff</code> mode should carry, which
+context classes each mode is allowed to include, default mode selection, and
+receiver behavior for the failure/degradation cases a handoff can arrive in.</p>
+<p><strong>Scope note:</strong> this is a <em>contract</em> document — it states what the shipped
+code in <code>meridian/handoff.py</code>, <code>meridian/mcp/handler.py</code>,
+<code>meridian/routes/handoff.py</code>, and <code>meridian/mcp/stdio_handler.py</code> actually
+does today, grounded in specific field names and call sites, not aspirational
+design. Where a field doesn't exist yet, that is stated explicitly rather
+than implied. <a href="../meridian-handoff-contract/"><code>docs/meridian-handoff-contract.md</code></a>
+is the companion reference for the token/body-integrity mechanism, bounded
+payloads, and the receiving-executor checklist — this document does not
+repeat that material, only cites it.</p>
+<h2 id="two-envelopes-not-one">Two envelopes, not one<a class="headerlink" href="#two-envelopes-not-one" title="Permanent link">&para;</a></h2>
+<p>A <code>generate_handoff</code> call produces two distinct envelopes that are easy to
+conflate:</p>
+<ol>
+<li><strong>The response envelope</strong> — the JSON object the MCP/HTTP/stdio transport
+   returns. Read programmatically; never parsed as text.</li>
+<li><strong>The content envelope</strong> — the XML/Markdown tags embedded <em>inside</em> the
+   response's own <code>content</code> field (the rendered <code>/goal</code> block or full
+   handoff). Bound into the goal-token's <code>body_hash</code> (see the companion doc's
+   <a href="../meridian-handoff-contract/#token-and-body-integrity">Token and body integrity</a>
+   section) — this is what a receiving <em>executor</em> actually reads and acts on.</li>
+</ol>
+<p>Some facts exist in both (<code>mode</code>), some only in one. The table below states
+which, honestly, per field — this is the single biggest source of "the
+contract implies X exists everywhere" confusion this document exists to
+close.</p>
+<h2 id="the-envelope-fields">The envelope fields<a class="headerlink" href="#the-envelope-fields" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field (contract intent)</th>
+<th>Response envelope</th>
+<th>Content envelope</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td><em>(not present — caller already supplied it as an argument)</em></td>
+<td><code>&lt;project_start_config project_id="..."&gt;</code> (f471c4b8)</td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td><code>scope.requested_version</code> / <code>scope.effective_version</code> (b8f89491)</td>
+<td><code>&lt;project_start_config version="..."&gt;</code></td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td>source session/run</td>
+<td><code>scope.session_id</code> (b8f89491); full session/run history via <code>run_timeline</code> (79491e26)</td>
+<td><em>(not separately embedded — the executor reads <code>&lt;first_step&gt;</code>'s literal <code>start_session(...)</code> call instead)</em></td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td>board revision</td>
+<td><em>(not present at the response level)</em></td>
+<td><code>&lt;handoff_manifest board_revision="..."&gt;</code> — <strong>opt-in</strong>, <code>emit_manifest=True</code> only (see <code>compute_board_revision</code>)</td>
+<td>Pre-existing, opt-in</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td><code>mode</code> (always present)</td>
+<td>Implicit in the block's own shape (goal vs. full narrative etc.)</td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td>executable / degraded status</td>
+<td><code>degraded</code> (timeout-only signal, 65c8b426); <code>capability_contract.executable</code> (98aaccf4); <code>blocker_policy</code> (b108f2e0); <code>docx_integrity.executable</code></td>
+<td><code>&lt;proposal_scope executable="..." degraded="..."&gt;</code> — <strong>opt-in</strong>, proposal-promotion flow only</td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td><strong>persistence/retrievability status</strong></td>
+<td><strong><code>retrievable_via_load_handoff</code></strong></td>
+<td>—</td>
+<td><strong>NEW (d2fc7465)</strong></td>
+</tr>
+<tr>
+<td>next action</td>
+<td><em>(not present at the response level)</em></td>
+<td><code>&lt;first_step&gt;</code></td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td>item counts</td>
+<td><em>(not present at the response level for the general case)</em></td>
+<td><code>&lt;executor_item_ids count="N"&gt;</code>; <code>handoff_manifest.items_total</code>/<code>items_truncated</code> — opt-in</td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td>omitted IDs + reason</td>
+<td><code>force_include_rejected</code> (3cab355a, for <code>force_include_ids</code>); <strong><code>selected_scope.excluded_requested</code></strong> (for <code>selected_item_ids</code>)</td>
+<td><code>&lt;excluded_wave_gate_pending&gt;</code>; manifest <code>omitted_items</code> — opt-in</td>
+<td>Pre-existing (<code>force_include_rejected</code>) + <strong>NEW (d2fc7465, <code>selected_scope</code>)</strong></td>
+</tr>
+<tr>
+<td><strong>selected-scope ids + closure</strong></td>
+<td><strong><code>selected_scope.selected_item_ids</code> / <code>.closure_item_ids</code> / <code>.closure_hash</code></strong></td>
+<td><code>&lt;selected_item_scope requested="..." closure="..." closure_hash="..."&gt;</code> (cffb9323)</td>
+<td>Content: pre-existing. <strong>Response field: NEW (d2fc7465)</strong></td>
+</tr>
+<tr>
+<td>pointer policy/budget</td>
+<td><code>handoff_evidence_status</code> (8a883f60)</td>
+<td><code>&lt;tool_requirements_truncated total="N" included="M"&gt;</code> etc. (248c0bb9)</td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td>capability snapshot</td>
+<td><code>capability_contract</code> (98aaccf4, delegates to <code>meridian.capability_contract.build_capability_contract</code>)</td>
+<td>—</td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td>lineage</td>
+<td><code>run_timeline</code> (79491e26); <code>amended</code> (edd9c54b)</td>
+<td><code>&lt;continuation_manifest&gt;</code> — delta mode only (836ca1d5)</td>
+<td>Pre-existing</td>
+</tr>
+<tr>
+<td>content hash</td>
+<td><em>(no unconditional field)</em> — the nearest universal equivalent is the goal-token's <code>body_hash</code>, checked via <code>verify_handoff_token</code>, never returned in plaintext</td>
+<td><code>&lt;proposal_scope content_hash="..."&gt;</code> — <strong>opt-in</strong>, proposal-promotion flow only</td>
+<td>Pre-existing, narrower than the addendum's ask (see below)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>On "content hash":</strong> the addendum that prompted this document asked for a
+content hash on every handoff so generation and retrieval can be proven to
+agree. The mechanism that actually exists and is unconditional for every
+<code>/goal</code>-producing path is the goal-token's <code>body_hash</code> (efaa918a) —
+<code>verify_handoff_token(db, token, project_id, body=presented_body)</code> proves
+byte-identity against what was hashed at mint time. There is no <em>separate</em>,
+always-present <code>content_hash</code> <strong>response field</strong> distinct from the token
+mechanism; <code>build_proposal_run_scope</code>'s own <code>content_hash</code> (a hash of
+project/version/items/omitted, independent of body text) is real but scoped
+to the proposal-promotion flow only, not general-purpose. Treat "verify via
+<code>verify_handoff_token</code>" as the answer to "can I prove this content is
+what was generated" today, rather than expecting a bare <code>content_hash</code> key
+on every response.</p>
+<h2 id="persistence-and-retrievability-the-machine-readable-contract">Persistence and retrievability — the machine-readable contract<a class="headerlink" href="#persistence-and-retrievability-the-machine-readable-contract" title="Permanent link">&para;</a></h2>
+<p>This is the concrete fix for the addendum's "PERSISTENCE READINESS" /
+"FINAL READINESS GATE" bug report (a fresh <code>generate_handoff(mode='goal')</code>
+disagreeing with an immediate <code>load_handoff()</code>).</p>
+<p><strong>What was already fixed, before this sprint item ran (aec043cb):</strong>
+<code>mode='goal'</code> is wired into the exact same
+<code>_persist_handoff_history_and_pending_goal</code> call full/delta have always used
+— it writes to the <code>handoffs</code> history table (<code>db.record_handoff</code>/
+<code>db.amend_handoff</code>) <strong>and</strong> the trusted <code>pending_goal</code> channel
+(<code>db.set_pending_goal</code>) that <code>start_session</code>'s <code>pending_goal</code> field and
+<code>load_handoff()</code> both read from. A regression test proving this
+(<code>tests/test_aec043cb_handoff_mode_scoping.py::
+test_load_handoff_returns_the_stored_omitted_mode_body</code>) already existed on
+dev tip before this sprint item started.</p>
+<p><strong>What this pass makes explicit (d2fc7465):</strong> which modes are retrievable
+was previously something a caller had to infer from source, or discover the
+hard way via a stale-looking <code>load_handoff()</code> read. Every <code>generate_handoff</code>
+response (all three transports) now carries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>"retrievable_via_load_handoff": true | false
+</code></pre></div>
+<p>backed by one pure function, <code>handoff.handoff_mode_is_retrievable(mode)</code>, so
+the three transports (<code>meridian/mcp/handler.py</code>,
+<code>meridian/routes/handoff.py</code>, <code>meridian/mcp/stdio_handler.py</code>) cannot drift
+out of agreement with each other:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Persists to <code>handoffs</code> + <code>pending_goal</code>?</th>
+<th><code>retrievable_via_load_handoff</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>full</code></td>
+<td>Yes</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>delta</code></td>
+<td>Yes</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>goal</code></td>
+<td>Yes (aec043cb)</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>starter</code> / <code>compact</code></td>
+<td><strong>No</strong> — a call-and-forget render meant to be pasted directly, by design</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>planner</code></td>
+<td><strong>No</strong> — a directive prompt for a <em>human</em> planning session, by design</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>l0_fallback</code> (emergency timeout degrade)</td>
+<td>No — never reaches the persistence step</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>This is the explicit, machine-readable version of "if goal-mode is
+intentionally ephemeral/non-persistent by design, make that an explicit,
+documented, machine-readable contract" the addendum asked for — generalized
+to every mode, not just <code>goal</code>. <code>tests/test_782636cd_handoff_regression_matrix.py</code>
+carries the dedicated regression: generating <code>goal</code> then <code>starter</code> in
+sequence and confirming <code>load_handoff()</code> still returns the <code>goal</code> content,
+never the ephemeral <code>starter</code> preview and never a stale/broken record.</p>
+<h2 id="selected_scope-omitted-ids-visibility-on-partial-exclusion"><code>selected_scope</code> — omitted-ids visibility on partial exclusion<a class="headerlink" href="#selected_scope-omitted-ids-visibility-on-partial-exclusion" title="Permanent link">&para;</a></h2>
+<p>The other addendum item ("expose <code>selected_item_ids</code> safely... return
+explicit <code>selected_scope_ids</code> plus omitted IDs") was <strong>already implemented</strong>
+on dev tip before this sprint item ran:</p>
+<ul>
+<li>The public MCP schema already accepts <code>selected_item_ids</code> (cffb9323).</li>
+<li><code>generate_handoff</code> already validates every id, dependency-closes the
+  selection, and fails closed (<code>HandoffSelectionError</code>) on any invalid id
+  (94f48e4d) — before this sprint item started.</li>
+<li>The closure ids and a stable hash were already rendered into the body's
+  <code>&lt;selected_item_scope&gt;</code> tag, bound into the same token <code>body_hash</code> as the
+  rest of the content.</li>
+</ul>
+<p><strong>The genuine remaining gap, closed by this pass:</strong> a caller that requested a
+<em>partial</em> exclusion — some, not all, of the requested ids dropped by a
+downstream claimability gate (unprospected/backburner/manual/
+wave_gate_pending) — had no structured way to learn <em>which</em> ids were dropped
+and <em>why</em>. That signal (<code>excluded_requested</code>, with a machine-readable reason
+per id) already existed internally (fb82e51f), but was only ever surfaced on
+<strong>total</strong> exclusion, as the <code>HANDOFF_SCOPE_NON_EXECUTABLE</code> error's
+<code>excluded_requested</code> field. A caller whose call <em>succeeded</em> with a partial
+exclusion got nothing.</p>
+<p>Every <code>generate_handoff</code> response now carries a <code>selected_scope</code> field,
+<code>null</code> when <code>selected_item_ids</code> was never passed, otherwise:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"selected_item_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"&lt;id requested by the caller&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"..."</span><span class="p">],</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"closure_item_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"&lt;selected ids plus any pending depends_on ancestor&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"..."</span><span class="p">],</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"closure_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;sha256 of the sorted closure — matches &lt;selected_item_scope closure_hash=...&gt;&gt;"</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">"requested_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"&lt;same as selected_item_ids, post claimability filtering&gt;"</span><span class="p">],</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">"executable_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"&lt;requested ids that survived every downstream filter&gt;"</span><span class="p">],</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">"excluded_requested"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w"> </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unprospected|backburner|manual|wave_gate_pending|not_in_pending_batch"</span><span class="p">}],</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">"all_excluded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>all_excluded: true</code> is exactly the condition that instead raises
+<code>HandoffScopeNonExecutable</code> before anything renders — so a caller only ever
+sees <code>selected_scope</code> with <code>all_excluded: false</code> on a successful response;
+the total-failure case is the existing structured error, unchanged.</p>
+<h2 id="context-classes-allowed-per-mode">Context classes allowed per mode<a class="headerlink" href="#context-classes-allowed-per-mode" title="Permanent link">&para;</a></h2>
+<p>Unchanged by this sprint item — stated here for completeness, since it is
+part of the envelope contract:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th style="text-align: center;">Workspace decisions/notes (cross-project)</th>
+<th style="text-align: center;">L0/L1/L2 narrative</th>
+<th style="text-align: center;">Self-start bootstrap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>full</code></td>
+<td style="text-align: center;"><strong>Yes</strong> (only mode that includes them)</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td><code>delta</code></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Compact (what changed)</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td><code>planner</code></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes (project-scoped)</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td><code>starter</code> / <code>compact</code></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No (light preview only)</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td><code>goal</code></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No (zero framing)</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>The invariant (aec043cb): <strong>an omitted <code>mode</code> argument never silently
+resolves to <code>full</code>.</strong> <code>full</code> — the only mode that unconditionally prepends
+every workspace decision/note across every project — is returned <em>only</em> for
+an explicit <code>mode='full'</code> request. See
+<a href="../meridian/handoff.py"><code>resolve_handoff_mode</code></a>'s own docstring for the
+full intent-based resolution order (resumed session → <code>delta</code>; role=executor
+→ <code>goal</code>; role=planner → <code>planner</code>; unknown intent → <code>goal</code>, never <code>full</code>).
+<code>tests/test_aec043cb_handoff_mode_scoping.py</code> is the existing regression
+suite for this table's workspace-context-exclusion column.</p>
+<h2 id="default-mode-selection">Default mode selection<a class="headerlink" href="#default-mode-selection" title="Permanent link">&para;</a></h2>
+<p>Already governed by <code>resolve_handoff_mode</code> (aec043cb) — restated here as
+part of the envelope contract rather than re-derived:</p>
+<ol>
+<li>An explicit, recognized <code>requested_mode</code> always wins.</li>
+<li>A session that already produced a handoff this process resolves to
+   <code>delta</code> (continuation).</li>
+<li>A session registered <code>role="executor"</code> resolves to <code>goal</code>.</li>
+<li>A session registered <code>role="planner"</code> resolves to <code>planner</code>.</li>
+<li>Anything else (no session, or an unregistered role) resolves to <code>goal</code> —
+   the narrowest, leak-free option — <strong>never</strong> <code>full</code>.</li>
+</ol>
+<h2 id="receiver-behavior">Receiver behavior<a class="headerlink" href="#receiver-behavior" title="Permanent link">&para;</a></h2>
+<p><strong>Missing/degraded capability:</strong> <code>capability_contract.executable</code> reflects
+whether a <code>required</code> capability (per the project's capability manifest — see
+<code>AGENTS.md</code>'s Capability Manifests section) is genuinely available; a
+receiver should check this before treating a handoff as ready to execute
+rather than discovering non-executability mid-run. <code>blocker_policy</code>
+(b108f2e0) carries the typed per-item triage when specific items are
+quarantined.</p>
+<p><strong>Stale board:</strong> <code>board_stale</code> (passed into <code>build_effective_capability_contract</code>)
+is <code>true</code> whenever the handoff's own board/profile snapshot is known
+incomplete — currently set on the <code>l0_fallback</code> emergency-timeout path.
+<code>retrievable_via_load_handoff</code> is <code>false</code> on that same path (see above),
+compounding the signal: a receiver seeing <code>degraded: true</code> should not expect
+<code>load_handoff()</code> to later hand back this exact render either.</p>
+<p><strong>Expired/consumed token:</strong> unchanged — see the companion contract doc's
+<a href="../meridian-handoff-contract/#verifying">Verifying</a> section for the full
+<code>reason</code> → <code>recovery</code> table (<code>ok</code>/<code>not_found</code>/<code>wrong_project</code>/
+<code>body_mismatch</code>/<code>already_consumed</code>/<code>expired</code>/no-token-at-all) and which
+reasons are genuine spoofing signals vs. "a sibling likely got there first."</p>
+<p><strong>Degraded/offline:</strong> the <code>l0_fallback</code> mode (65c8b426) is the concrete
+instance — an emergency 4-field render (north star + pinned decisions) used
+when the full generation path times out. <code>mode: "l0_fallback"</code>,
+<code>degraded: true</code>, and (as of this pass) <code>retrievable_via_load_handoff: false</code>
+together make this unambiguous rather than requiring a receiver to notice an
+unexpectedly-short <code>full</code> handoff.</p>
+<h2 id="legacy-caller-compatibility">Legacy-caller compatibility<a class="headerlink" href="#legacy-caller-compatibility" title="Permanent link">&para;</a></h2>
+<p>Both fields this pass adds (<code>selected_scope</code>, <code>retrievable_via_load_handoff</code>)
+are pure additions to the response dict on all three transports:</p>
+<ul>
+<li>A caller that never passes <code>selected_item_ids</code> sees <code>selected_scope: null</code>
+  — no change to <code>content</code>, <code>mode</code>, or any other field.</li>
+<li><code>retrievable_via_load_handoff</code> is a new key with no prior meaning to
+  collide with; every existing caller that ignores unknown response keys
+  (the overwhelming common case for a JSON-RPC-style tool result) is
+  unaffected.</li>
+<li>No existing parameter's default behavior, error type, or <code>content</code> byte
+  shape changed. <code>tests/test_782636cd_handoff_regression_matrix.py</code> and the
+  full pre-existing handoff test suite (30 files) both pass unmodified
+  against this change.</li>
+</ul>
+<h2 id="see-also">See also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../meridian-handoff-contract/"><code>meridian-handoff-contract.md</code></a> — token/body
+  integrity, bounded payloads, board-revision drift detection, evidence
+  sections, and the receiving-executor checklist (extended by this sprint
+  item's own DOCS task — see its "Receiver runbook" section).</li>
+<li><code>AGENTS.md</code> — the executor-facing quick-reference trust rules and the
+  capability-manifest/fallback contract.</li>
+<li><code>meridian/handoff.py</code> — <code>handoff_mode_is_retrievable</code>,
+  <code>_resolve_selected_item_scope</code>, <code>_build_quick_start_goal</code>'s
+  <code>selected_scope_outcome</code> docstring — the actual source this document
+  describes.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

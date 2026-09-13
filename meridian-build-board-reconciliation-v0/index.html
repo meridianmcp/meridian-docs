@@ -1,0 +1,1935 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-build-board-reconciliation-v0/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>v0.2.6 Board Reconciliation — Sprint Item 6935a3ff - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#v026-board-reconciliation-sprint-item-6935a3ff" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              v0.2.6 Board Reconciliation — Sprint Item 6935a3ff
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Executive summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-scope-and-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Scope and method
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-task-cited-facts-independently-re-verified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Task-cited facts — independently re-verified
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Task-cited facts — independently re-verified">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ci-blocking-stale-test-fix-commit-1533cb1e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 CI-blocking stale-test fix — commit 1533cb1e
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-stale-claim-reset-fix-commit-2b9eca9a-item-f007e59e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Stale-claim reset fix — commit 2b9eca9a (item f007e59e)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-anthropic-mcp-directory-items-f007e59e-68b7bd9a-f1c6dd63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Anthropic MCP Directory items — f007e59e / 68b7bd9a / f1c6dd63
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-normalize_repo_root-citation-discrepancy-found-and-resolved-with-real-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 normalize_repo_root — citation discrepancy found and resolved with real evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-newly-corroborated-findings-beyond-the-tasks-own-citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Newly corroborated findings (beyond the task's own citations)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Newly corroborated findings (beyond the task&#39;s own citations)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-tier-1-merged-into-dev-code-present-tests-passing-strong-done-unrecorded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Tier 1 — merged into dev, code present, tests passing (strong "done, unrecorded")
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-tier-2-real-commits-exist-never-merged-worktree-since-archived-as-an-orphan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Tier 2 — real commits exist, never merged, worktree since archived as an orphan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-stale-claim-candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Stale-claim candidates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Stale-claim candidates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-synthetic-actor-string-no-session-record-no-commits-strongest-signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Synthetic actor string, no session record, no commits — strongest signal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-real-session-real-claim-no-evidence-of-resulting-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Real session, real claim, no evidence of resulting work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-correctly-tagged-block-not-a-bug-confirmed-working-as-intended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Correctly-tagged block — not a bug, confirmed working as intended
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-superseded-duplicate-candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Superseded / duplicate candidates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Superseded / duplicate candidates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-objectively-tagged-confirmed-as-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Objectively tagged, confirmed as-is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-the-batch-exposure-family-sits-behind-a-real-unresolved-high-urgency-hitl-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 The Batch-exposure family sits behind a real, unresolved, high-urgency HITL gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-naming-collisions-checked-not-confirmed-duplicates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Naming collisions checked, not confirmed duplicates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-not-independently-verified-in-this-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Not independently verified in this pass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-minimal-keepprunereclassify-plan-recommendation-only-nothing-executed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Minimal keep/prune/reclassify plan (recommendation only — nothing executed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-what-this-pass-did-and-did-not-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. What this pass did and did not do
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="v026-board-reconciliation-sprint-item-6935a3ff">v0.2.6 Board Reconciliation — Sprint Item 6935a3ff<a class="headerlink" href="#v026-board-reconciliation-sprint-item-6935a3ff" title="Permanent link">&para;</a></h1>
+<p><strong>Type:</strong> Planning/reconciliation only. No code edits, version bump, push, deploy, or
+contaminated-checkout cleanup were performed. No sprint item was claimed, completed, or
+modified by this pass other than 6935a3ff itself (already <code>in_progress</code>, claimed by this
+session, <code>a0c162f5-214d-4e8d-ad61-d78109c17ff2</code>, at 2026-08-30 04:10:57).</p>
+<p><strong>Repo state at time of audit:</strong> worktree <code>.claude/worktrees/a0c162f5</code>, branch
+<code>worktree/6935a3ff</code>, based on <code>dev</code> tip <code>c8a84f2e9c05a8cf3961f1f056ea78c99422e4bf</code>. Working
+tree clean throughout — verified with <code>git status</code> before and after this pass.</p>
+<p><strong>Project:</strong> Meridian, <code>project_id = 5787cc92-ba7d-4788-b17c-28ab7938b839</code>.</p>
+<hr />
+<h2 id="1-executive-summary">1. Executive summary<a class="headerlink" href="#1-executive-summary" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The live board has <strong>327 items in the <code>v0.2.6</code> bucket</strong> (<code>get_sprint_progress</code> and a
+  direct <code>get_sprint_items</code> pull agree exactly): 275 done, 4 skipped, <strong>36 pending</strong>, <strong>12
+  in_progress</strong>, 0 failed. <strong>The pending+in_progress slice this report reconciles is 48
+  items.</strong></li>
+<li>All four commits/facts named in this item's own citation were independently re-verified
+  against real git history and real GitHub Actions runs (Section 3). <strong>One of the four
+  citations does not check out as given</strong>: the SHA <code>c11d20ab9ad6242a149301441905113f84b7742</code>
+  cited for the <code>normalize_repo_root</code> fix does not exist in this repository, locally or on
+  GitHub (<code>gh api</code> returns 404/422 for it). The real, verified commit for that fix is
+  <strong><code>7278a44fa455bb4d5c51217350536095b9f07e2d</code></strong>, confirmed both by <code>git log</code> on <code>dev</code> and by
+  a real <code>gh run view</code> matching that exact <code>headSha</code> to a successful CI run. I record the
+  real evidence, not the cited SHA — see Section 3.4 for the full trail.</li>
+<li>Beyond the four task-cited facts, real git evidence in this pass <strong>independently surfaced
+  two more <code>in_progress</code> v0.2.6 items whose described work is already merged into <code>dev</code> and
+  passing its tests but never marked complete on the board</strong> (<code>9154aa9a</code>, <code>f69b5f18</code> —
+  Section 4.1), and <strong>four more <code>in_progress</code> items with real, committed work that was never
+  merged and is now sitting on an archived/orphaned worktree ref</strong> (<code>ef8875a9</code>, <code>8d2ef784</code>,
+  <code>2cf57fde</code>, <code>b71e0960</code> — Section 4.2).</li>
+<li><strong>Six items (four pending, two in_progress) carry a claim from an <code>actor</code> string
+  (<code>rescue-sweep-recovery-frontier(2)-&lt;id&gt;</code>) that has no matching row anywhere in
+  <code>list_sessions</code> and no matching commit anywhere in <code>git log --all</code>.</strong> All six were
+  "claimed" in the same ~10-second window on 2026-08-09 01:16:22–01:16:31 (plus one at
+  2026-08-08 23:39:19 from an apparent earlier wave), 20+ days ago, with zero evidence of any
+  work since. This is the strongest stale-claim signal found (Section 5.1).</li>
+<li>Two pending items already carry an objective <code>blocker_kind = "superseded"</code> field
+  (<code>96437ed7</code>, <code>0925b521</code>) — no re-classification needed, just confirmed and reported
+  (Section 6).</li>
+<li>The <code>96437ed7</code> / <code>9fcb2cc9</code> / <code>f56bd1b8</code> "Batch exposure B/D/C" family (children of parent
+  <code>7ac7f633</code>) is entangled with a <strong>still-<code>pending</code>, high-urgency HITL gate opened
+  2026-08-08</strong> documenting a real, previously-caught prompt-injection attempt against this
+  exact item family. That HITL gate is unanswered as of this pass. I recommend it stay
+  blocking (Section 6.2).</li>
+<li><strong>30 of the 36 pending v0.2.6 items were never claimed at all</strong> (<code>actor</code> and <code>claimed_at</code>
+  both null) — there is no claim to reconcile for them; they are listed in Section 7 for
+  completeness only, with no action recommended.</li>
+<li>Section 8 gives a minimal keep/prune/reclassify plan. Nothing in this plan was executed —
+  all of it is a recommendation for a human or a future executor session to act on.</li>
+</ul>
+<hr />
+<h2 id="2-scope-and-method">2. Scope and method<a class="headerlink" href="#2-scope-and-method" title="Permanent link">&para;</a></h2>
+<p>Per the task's own scope note, auditing "every pending and in_progress item" board-wide
+(2,280+ items total) is not tractable in one pass and would produce unverifiable guesses for
+the vast majority of unrelated backlog. This pass is scoped to:</p>
+<blockquote>
+<p>items where <code>version = 'v0.2.6'</code> AND (<code>status = 'pending'</code> OR <code>status = 'in_progress'</code>)</p>
+</blockquote>
+<p>Method, in order:</p>
+<ol>
+<li><code>get_sprint_progress(project_id, version="v0.2.6")</code> for the authoritative bucket counts.</li>
+<li><code>get_sprint_items(status="pending", expand=true)</code> and <code>get_sprint_items(status="in_progress", expand=true)</code> — both came back too large for direct tool output (382,562 and 84,794 characters) and were saved to disk by the tool runtime; I filtered them with a small local Node.js script (<code>v0.2.6</code> only) rather than reading either raw dump by hand. The filtered counts (36 pending, 12 in_progress) match <code>get_sprint_progress</code>'s counts exactly, which is a real cross-check that the version filter is sound.</li>
+<li><code>list_sessions(project_id, status="all")</code> — 851 sessions returned, also saved to disk; looked up by exact session-id match for every <code>actor</code> UUID found on a v0.2.6 claim, rather than reading the full dump.</li>
+<li><code>git log --all --oneline</code> (4,408 commits across all local refs, including archived refs — see 4.2) grepped for the first-8-hex-character short form of every one of the 48 item ids, since this repo's own commit convention embeds that short id in messages (<code>fix(&lt;shortid&gt;): ...</code>).</li>
+<li>For every candidate hit, checked <code>git merge-base --is-ancestor &lt;sha&gt; dev</code> to tell "merged into dev" from "exists only on some branch/ref."</li>
+<li>For the two strongest "done but unrecorded" candidates, went one step further than commit messages, per this item's own instruction not to trust commit messages alone: confirmed the described code actually exists in the current tree (<code>grep</code> for the named functions/files) and ran the two most directly relevant test files with <code>pixi run python -m pytest &lt;file&gt; -q --timeout=60</code>. Both passed (25/25 and 42/42 — Section 4.1).</li>
+<li><code>gh run list --branch dev</code> / <code>gh run view</code> / <code>gh api repos/.../commits/&lt;sha&gt;</code> — real calls, real output, reproduced verbatim in Section 3.</li>
+<li><code>get_hitl_request</code> for the one open HITL gate touching this item slice.</li>
+</ol>
+<p>I did <strong>not</strong> run the full test suite, did not touch any file outside this new report, and
+did not claim/complete/modify any sprint item.</p>
+<hr />
+<h2 id="3-task-cited-facts-independently-re-verified">3. Task-cited facts — independently re-verified<a class="headerlink" href="#3-task-cited-facts-independently-re-verified" title="Permanent link">&para;</a></h2>
+<h3 id="31-ci-blocking-stale-test-fix-commit-1533cb1e">3.1 CI-blocking stale-test fix — commit <code>1533cb1e</code><a class="headerlink" href="#31-ci-blocking-stale-test-fix-commit-1533cb1e" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ git log --format='%H | %ci | %s' -1 1533cb1e
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>1533cb1e0e371af6db4d9a838d020a950dac2d7c | 2026-08-29 13:17:32 -0500 | fix(tests): retire ea49362c's stale zero-diff-vs-b0deb335 baseline tests
+</code></pre></div>
+<p>Real CI evidence (<code>gh run list --branch dev --limit 30</code>, exact rows):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>completed  success  fix(tests): retire ea49362c's stale zero-diff-vs-b0deb335 baseline tests   Test (dev branch)   dev  push  33267948202  9m48s   2026-08-29T18:19:31Z
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>completed  success  fix(tests): retire ea49362c's stale zero-diff-vs-b0deb335 baseline tests   Deploy to Fly.io    dev  push  33267948197  11m29s  2026-08-29T18:19:31Z
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>completed  failure  fix(handoff): canonical role-correct serialization, stable content co…     Deploy to Fly.io    dev  push  33264699998  8m8s    2026-08-29T17:05:16Z
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>completed  failure  fix(handoff): canonical role-correct serialization, stable content co…     Test (dev branch)   dev  push  33264699895  9m50s   2026-08-29T17:05:16Z
+</code></pre></div>
+<p><code>gh run list --branch dev --limit 5 --json ...</code> confirms the failing <code>headSha</code> was
+<code>181746baa723efb61a9fb3dca5d904cb7c230590</code> (= <code>181746ba</code>, the commit immediately before
+1533cb1e on dev) and the fixing <code>headSha</code> was <code>1533cb1e0e371af6db4d9a838d020a950dac2d7c</code>.
+<strong>Confirmed: dev CI was red on 181746ba and went green on 1533cb1e, both via real GitHub
+Actions runs, not a commit-message claim.</strong></p>
+<h3 id="32-stale-claim-reset-fix-commit-2b9eca9a-item-f007e59e">3.2 Stale-claim reset fix — commit <code>2b9eca9a</code> (item <code>f007e59e</code>)<a class="headerlink" href="#32-stale-claim-reset-fix-commit-2b9eca9a-item-f007e59e" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ git log --format='%H | %ci | %s' -1 2b9eca9a
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>2b9eca9a5d8520d81df95630ec57eca6739dfc3d | 2026-08-29 22:08:21 -0500 | fix(sprint): stale claim reset must clear owner metadata and restore wave eligibility (f007e59e)
+</code></pre></div>
+<p><code>f007e59e</code> does not appear anywhere in the current v0.2.6 pending/in_progress slice (48
+items, checked by grep against the filtered JSON) — consistent with it having already moved
+to <code>done</code>.</p>
+<h3 id="33-anthropic-mcp-directory-items-f007e59e-68b7bd9a-f1c6dd63">3.3 Anthropic MCP Directory items — <code>f007e59e</code> / <code>68b7bd9a</code> / <code>f1c6dd63</code><a class="headerlink" href="#33-anthropic-mcp-directory-items-f007e59e-68b7bd9a-f1c6dd63" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ git log --format='%H | %ci | %s' -1 c8a84f2e
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>c8a84f2e9c05a8cf3961f1f056ea78c99422e4bf | 2026-08-29 23:08:36 -0500 | fix(disclosure): explicitly name connected GitHub repo in 5 tool descriptions (Anthropic Fix #3, f1c6dd63)
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>$ git log --format='%H | %ci | %s' -1 f7d8184e
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>f7d8184e2d35fc6aa60d113473bc3af405e5149f | 2026-08-29 22:45:01 -0500 | fix(disclosure): strengthen persistence notice for Anthropic MCP Directory Fix #2 (68b7bd9a)
+</code></pre></div>
+<p>All three of <code>f1c6dd63</code>, <code>68b7bd9a</code>, <code>f007e59e</code> are absent from the current pending/in_progress
+v0.2.6 slice — consistent with "done." <strong>Caveat, stated plainly rather than glossed over:</strong>
+<code>git branch -vv</code> shows local <code>dev</code> is <strong>9 commits ahead of <code>origin/dev</code></strong> — these three
+commits (plus 1533cb1e and the two "docs: meridian auto-update" commits) exist only in this
+local checkout and have not been pushed. There is therefore <strong>no CI run yet</strong> covering
+<code>c8a84f2e</code>, <code>f7d8184e</code>, or <code>2b9eca9a</code> specifically — the corroboration for these three is the
+commits themselves plus their absence from the live pending/in_progress board (which this
+session produced directly), not a green CI run. I am not claiming CI evidence I don't have.</p>
+<h3 id="34-normalize_repo_root-citation-discrepancy-found-and-resolved-with-real-evidence">3.4 <code>normalize_repo_root</code> — citation discrepancy found and resolved with real evidence<a class="headerlink" href="#34-normalize_repo_root-citation-discrepancy-found-and-resolved-with-real-evidence" title="Permanent link">&para;</a></h3>
+<p>The item's own citation names SHA <code>c11d20ab9ad6242a149301441905113f84b7742</code>. Real, direct
+verification:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ git show -s --format='%H %ci %s' c11d20ab9ad6242a149301441905113f84b7742
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>fatal: ambiguous argument 'c11d20ab9ad6242a149301441905113f84b7742': unknown revision or path not in the working tree.
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>$ gh api repos/meridianmcp/Meridian/commits/c11d20ab9ad6242a149301441905113f84b7742
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>{"message":"No commit found for SHA: c11d20ab9ad6242a149301441905113f84b7742","status":"422"}
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>$ gh api repos/meridianmcp/Meridian/commits/c11d20ab9ad6242a149301441905113f84b7742/status
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>{"message":"Ref not found","status":"404"}
+</code></pre></div>
+<p><strong>This SHA does not exist in this repository, locally or on GitHub.</strong> Per this item's own
+instruction ("record the ... release evidence ... without inventing a sprint completion"), I
+am not treating the cited SHA as valid just because it was handed to me — I checked it, and
+it fails. What I found instead, from real <code>git log</code> and a real <code>gh</code> call:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ git log --format='%H %ci %s' dev | grep "normalize_repo_root strips trailing backslash"
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>7278a44fa455bb4d5c51217350536095b9f07e2d 2026-08-26 16:54:43 -0500 fix(ci): normalize_repo_root strips trailing backslash before resolving
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>$ gh run view 33017497610 --json headSha,conclusion,displayTitle,status
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>{"conclusion":"success","displayTitle":"fix(ci): normalize_repo_root strips trailing backslash before resolving","headSha":"7278a44fa455bb4d5c51217350536095b9f07e2d","status":"completed"}
+</code></pre></div>
+<p>Both <code>Test (dev branch)</code> and <code>Deploy to Fly.io</code> completed with <code>conclusion: success</code> for this
+exact <code>headSha</code>, per <code>gh run list --branch dev --limit 30</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>completed  success  fix(ci): normalize_repo_root strips trailing backslash before resolving   Test (dev branch)   dev  push  33017497610  9m17s   2026-08-26T21:55:08Z
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>completed  success  fix(ci): normalize_repo_root strips trailing backslash before resolving   Deploy to Fly.io    dev  push  33017497681  12m34s  2026-08-26T21:55:08Z
+</code></pre></div>
+<p><strong>Conclusion: the <code>normalize_repo_root</code> fix is real, merged to <code>dev</code>, and CI-green — but
+under commit <code>7278a44fa455bb4d5c51217350536095b9f07e2d</code>, not the SHA originally cited.</strong>
+Whoever/whatever produced the <code>c11d20ab...</code> citation should be corrected; I am not treating
+the mismatch as proof of anything sinister on its own (it's equally consistent with a
+transcription slip or a rebase that changed the SHA), but it is exactly the kind of claim
+this item told me to verify rather than accept, and it did not check out as given.</p>
+<hr />
+<h2 id="4-newly-corroborated-findings-beyond-the-tasks-own-citations">4. Newly corroborated findings (beyond the task's own citations)<a class="headerlink" href="#4-newly-corroborated-findings-beyond-the-tasks-own-citations" title="Permanent link">&para;</a></h2>
+<p>Grepping <code>git log --all</code> for the short-id form of all 48 v0.2.6 pending/in_progress items
+surfaced real commits for <strong>six</strong> of the twelve <code>in_progress</code> items that the live board still
+shows as unfinished. None of these six were claimed done by this pass — completing a sprint
+item is out of scope for this document-only item — but they are reported here with full
+evidence because that is exactly what 6935a3ff asks for.</p>
+<h3 id="41-tier-1-merged-into-dev-code-present-tests-passing-strong-done-unrecorded">4.1 Tier 1 — merged into <code>dev</code>, code present, tests passing (strong "done, unrecorded")<a class="headerlink" href="#41-tier-1-merged-into-dev-code-present-tests-passing-strong-done-unrecorded" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Title</th>
+<th>Actor / session</th>
+<th>Session status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>9154aa9a</code></td>
+<td>FEAT: add durable executor-report and corrective-handoff lifecycle for planner review and deterministic continuation</td>
+<td><code>c0cc71a3-b90e-45ae-b84d-aa62203f6cd6</code> ("v0.2.6-process-lifecycle-followup")</td>
+<td><strong>archived</strong>, last_seen 2026-08-08 17:31</td>
+</tr>
+<tr>
+<td><code>f69b5f18</code></td>
+<td>TEST: prove dispatcher capacity release, terminal reconciliation, and restart recovery end to end</td>
+<td><code>81894c30-2daf-455a-856a-3d6507ac23f2</code> ("dispatcher-lifecycle-wave2-f69b5f18")</td>
+<td><strong>archived</strong>, last_seen 2026-08-10 01:07</td>
+</tr>
+</tbody>
+</table>
+<p>Evidence, not commit messages alone:</p>
+<ul>
+<li><code>9154aa9a</code>: commits <code>1f5f178e7acf9b08ca3e87b3e409b2529bd05638</code> and
+  <code>a4887bc6e7e4fc53536aa89b0a807f33239182de</code> are real ancestors of <code>dev</code>
+  (<code>git merge-base --is-ancestor ... dev</code> → exit 0). <code>meridian/executor_contract.py</code> exists
+  in the current tree with <code>def build_executor_contract</code>. Ran
+  <code>pixi run python -m pytest tests/test_handoff_executor_planner_lifecycle.py -q --timeout=60</code>
+  → <strong>42 passed in 7.71s</strong>.</li>
+<li><code>f69b5f18</code>: commits <code>cfd9342af746c3a222916f151e5458901d185289</code> and
+  <code>0c1b696d7fadc831b4cf42017aab7f0010968738</code> are real ancestors of <code>dev</code>. Ran
+  <code>pixi run python -m pytest tests/test_769e24a7_dispatcher_completion.py -q --timeout=60</code>
+  → <strong>25 passed in 7.25s</strong>.</li>
+</ul>
+<p>Both claiming sessions are archived and neither called <code>complete_sprint_item</code>. This looks
+like genuine "done but unrecorded" work — recommend a human/executor confirm scope match
+against the acceptance criteria in each item's notes, then complete them.</p>
+<h3 id="42-tier-2-real-commits-exist-never-merged-worktree-since-archived-as-an-orphan">4.2 Tier 2 — real commits exist, never merged, worktree since archived as an orphan<a class="headerlink" href="#42-tier-2-real-commits-exist-never-merged-worktree-since-archived-as-an-orphan" title="Permanent link">&para;</a></h3>
+<p>On 2026-08-29 this repo ran a worktree-hygiene cleanup (commits <code>448e949b</code>, <code>3f23e57f</code>,
+<code>e8456723</code> — visible at the top of <code>git log</code> on <code>dev</code>) that moved orphaned worktree branches
+out of <code>refs/heads/*</code> into <code>refs/archive/worktree-cleanup-20260829/*</code> rather than deleting
+them outright. Four v0.2.6 <code>in_progress</code> items have real work sitting in that archive that
+never reached <code>dev</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Title</th>
+<th>Actor / session</th>
+<th>Archived ref</th>
+<th>Merged to dev?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ef8875a9</code></td>
+<td>IMPLEMENT DOCS-R2-D: OMML equation-to-numbered-two-column-row conversion</td>
+<td><code>b9e9aadb-...</code> ("profile-reconciliation")</td>
+<td><code>refs/archive/worktree-cleanup-20260829/worktree/8d2ef784</code></td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td><code>8d2ef784</code></td>
+<td>IMPLEMENT DOCS-R2-A: port tested fallback contracts / bounded Word-COM failure semantics</td>
+<td>same session, same ref</td>
+<td>same ref</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td><code>2cf57fde</code></td>
+<td>FEAT: expose Redis runtime health, cache effectiveness, and Neon-avoidance diagnostics</td>
+<td><code>e6a00510-...</code> ("ctrlwave-2cf57fde-b71e0960")</td>
+<td><code>refs/archive/worktree-cleanup-20260829/worktree-agent-a7f5104cb61ac71af</code></td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td><code>b71e0960</code></td>
+<td>TEST: bounded cross-MCP batch fanout, discovery refresh, and tunnel cold-start stress contract</td>
+<td>same session, same ref</td>
+<td>same ref</td>
+<td><strong>No</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Verified negative (i.e., I checked that the described feature is genuinely absent from <code>dev</code>,
+not just that a merge check failed):</p>
+<ul>
+<li><code>ef8875a9</code>: <code>find . -iname "test_equation_numbering*"</code> → no results anywhere in the tree.</li>
+<li><code>8d2ef784</code>: <code>find . -iname "test_fallback_contracts*"</code> → no results anywhere in the tree.</li>
+<li><code>2cf57fde</code>: <code>meridian/redis_bridge.py</code> and <code>get_redis_client</code> do exist in <code>dev</code> (from
+  unrelated earlier work), but there is no diagnostics-exposure function matching this item's
+  description in <code>meridian/routes/tunnel.py</code> — the specific feature this item describes is
+  not present.</li>
+<li><code>b71e0960</code>: no <code>tests/test_batch_read.py</code> (the file this item's own <code>touches_resources</code>
+  names) exists anywhere; the only similarly-named file is
+  <code>tests/test_batch_read_mutate_133bfff6.py</code>, which belongs to a different, already-merged
+  item (<code>133bfff6</code>), not this one.</li>
+</ul>
+<p>Both sessions behind this work are <code>archived</code> in <code>list_sessions</code>, and their session names
+literally reference the item ids they worked (<code>ctrlwave-2cf57fde-b71e0960</code>,
+<code>dispatcher-lifecycle-wave2-f69b5f18</code> above) — a real, human-legible link between claim and
+worktree, not an inference. <strong>Classification: genuinely attempted, real partial work exists,
+but not done and not currently active — the claim is stale and the work is orphaned.</strong>
+Recommend: recover the archived ref's diff for review (<code>git diff dev refs/archive/worktree-cleanup-20260829/worktree/8d2ef784</code> etc.), decide if it's salvageable, then release the stale claim either way.</p>
+<hr />
+<h2 id="5-stale-claim-candidates">5. Stale-claim candidates<a class="headerlink" href="#5-stale-claim-candidates" title="Permanent link">&para;</a></h2>
+<h3 id="51-synthetic-actor-string-no-session-record-no-commits-strongest-signal">5.1 Synthetic <code>actor</code> string, no session record, no commits — strongest signal<a class="headerlink" href="#51-synthetic-actor-string-no-session-record-no-commits-strongest-signal" title="Permanent link">&para;</a></h3>
+<p>Six v0.2.6 items carry an <code>actor</code> of the form <code>rescue-sweep-recovery-frontier(2)-&lt;item-id&gt;</code>.
+This string is <strong>not a session id</strong> — I looked up every one of them in the 851-row
+<code>list_sessions(status="all")</code> result and none exist as a session name or id. I also grepped
+all 4,408 commits across every ref for each of these six item ids and found zero matches.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Title</th>
+<th><code>actor</code></th>
+<th><code>claimed_at</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>84f77597</code></td>
+<td>FEAT: expose tenant-safe move_workspace_note_to_project ...</td>
+<td><code>rescue-sweep-recovery-frontier2-84f77597</code></td>
+<td>2026-08-09 01:16:31</td>
+</tr>
+<tr>
+<td><code>4544bbe5</code></td>
+<td>FEAT: add declarative document profiles for equations, captions, sections ...</td>
+<td><code>rescue-sweep-recovery-frontier2-4544bbe5</code></td>
+<td>2026-08-09 01:16:26</td>
+</tr>
+<tr>
+<td><code>d17a437a</code></td>
+<td>FEAT: add bounded cross-MCP batch research fanout for code, docs, outputs, diagnostics</td>
+<td><code>rescue-sweep-recovery-frontier2-d17a437a</code></td>
+<td>2026-08-09 01:16:24</td>
+</tr>
+<tr>
+<td><code>0f18eb77</code></td>
+<td>ROUND1-TESTS: build the contract and failure matrix for AI logs, exporters, timeouts</td>
+<td><code>rescue-sweep-recovery-frontier-0f18eb77</code></td>
+<td>2026-08-08 23:39:19</td>
+</tr>
+<tr>
+<td><code>efea329f</code></td>
+<td>CRITICAL: enforce hard project and tenant isolation across handoffs ...</td>
+<td><code>rescue-sweep-recovery-frontier2-efea329f</code></td>
+<td>2026-08-09 01:16:22</td>
+</tr>
+<tr>
+<td><code>f56bd1b8</code></td>
+<td>Batch exposure C — refresh hosted tools/list and run authenticated batch_read/batch_mutate smoke verification</td>
+<td><code>rescue-sweep-recovery-frontier2-f56bd1b8</code></td>
+<td>2026-08-09 01:16:26</td>
+</tr>
+</tbody>
+</table>
+<p>Five of the six were claimed within the same 9-second window (01:16:22–01:16:31), which is
+itself evidence this was one batch/automated claiming event rather than five separate human
+or executor decisions. It is now 20+ days later with no session record and no code trace for
+any of the five. <strong>Recommend: release these claims and return the items to unclaimed
+<code>pending</code> (or <code>todo</code>) for a fresh claim</strong> — do not treat any of them as "in progress" for
+planning purposes.</p>
+<h3 id="52-real-session-real-claim-no-evidence-of-resulting-work">5.2 Real session, real claim, no evidence of resulting work<a class="headerlink" href="#52-real-session-real-claim-no-evidence-of-resulting-work" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Title</th>
+<th>Actor / session</th>
+<th>Session status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>b47a7456</code></td>
+<td>HARDEN: make code-intel cold-spawn tools/list readiness truthful, bounded, and recoverable</td>
+<td><code>31e79d59-...</code> ("meridian-docs-local")</td>
+<td>archived, last_seen 2026-08-21 06:02 (35 min after claim)</td>
+</tr>
+<tr>
+<td><code>b1fee417</code></td>
+<td>W31-A: implement exact DOCX media-to-output-to-generator provenance binding and resolver receipts</td>
+<td><code>f398d1c9-...</code> ("exact-output-provenance-hotfix")</td>
+<td>archived, last_seen 2026-08-11 22:46 (~50 min after claim)</td>
+</tr>
+</tbody>
+</table>
+<p>Both sessions are real (present in <code>list_sessions</code>) and both went <code>archived</code> shortly after
+claiming, with no commit found under either item id anywhere in <code>git log --all</code>. Unlike
+Section 4.2, there is no evidence any code was even committed for these two — the session
+may have explored and abandoned, or worked in an uncommitted state that was lost.
+<strong>Recommend: release both claims as stale; no salvage action indicated (nothing to
+recover).</strong></p>
+<h3 id="53-correctly-tagged-block-not-a-bug-confirmed-working-as-intended">5.3 Correctly-tagged block — not a bug, confirmed working as intended<a class="headerlink" href="#53-correctly-tagged-block-not-a-bug-confirmed-working-as-intended" title="Permanent link">&para;</a></h3>
+<p><code>0d74c8c8</code> (in_progress, "INVESTIGATE: reproduce and surface codebase-memory index worker
+crashes...") already carries <code>blocker_kind = "manual"</code> and its session
+(<code>997f376e-...</code>, "bounded-readiness-inspection") is archived, last_seen 2026-08-24 04:17,
+~10 minutes after claim. The manual-block tag is consistent with the session's short life —
+this looks like an investigation that correctly escalated to a human rather than silently
+stalling. <strong>No reclassification needed; this one is not stale, it's parked as designed.</strong></p>
+<hr />
+<h2 id="6-superseded-duplicate-candidates">6. Superseded / duplicate candidates<a class="headerlink" href="#6-superseded-duplicate-candidates" title="Permanent link">&para;</a></h2>
+<h3 id="61-objectively-tagged-confirmed-as-is">6.1 Objectively tagged, confirmed as-is<a class="headerlink" href="#61-objectively-tagged-confirmed-as-is" title="Permanent link">&para;</a></h3>
+<p>Two pending items already carry <code>blocker_kind = "superseded"</code> in the live board data — I am
+reporting this field, not re-deriving it:</p>
+<ul>
+<li><code>96437ed7</code> — "Batch exposure B — promote the verified batch_read/batch_mutate lineage
+  through dev to main and production" (<code>parent_id = 7ac7f633</code>).</li>
+<li><code>0925b521</code> — "TEST: contract-test complete handoff delivery across modes, transports,
+  tokens, truncation, and corrective continuation."</li>
+</ul>
+<p>Both are consistent with a genuinely-superseded status (see 6.2 for <code>96437ed7</code>'s context);
+I did not find a specific successor item id recorded for <code>0925b521</code> and am not inventing one.</p>
+<h3 id="62-the-batch-exposure-family-sits-behind-a-real-unresolved-high-urgency-hitl-gate">6.2 The Batch-exposure family sits behind a real, unresolved, high-urgency HITL gate<a class="headerlink" href="#62-the-batch-exposure-family-sits-behind-a-real-unresolved-high-urgency-hitl-gate" title="Permanent link">&para;</a></h3>
+<p><code>96437ed7</code> (superseded, above), <code>9fcb2cc9</code> ("Batch exposure D", unclaimed pending), and
+<code>f56bd1b8</code> ("Batch exposure C", stale rescue-sweep claim per 5.1) are all children of parent
+<code>7ac7f633</code>. Pulling the actual HITL request behind this (<code>get_hitl_request</code>,
+id <code>04be5832-06e9-4a96-b2e5-b88c9d2e0436</code>, opened 2026-08-08 18:39:59, <strong>still <code>status:
+pending</code>, <code>urgency: high</code>, unanswered</strong>):</p>
+<blockquote>
+<p>"Before anyone promotes item 7ac7f633 (batch_read/batch_mutate -&gt; production) or otherwise
+merges dev to main right now: dev-branch CI ... has failed on its last 3 consecutive runs
+today ... Separately, tonight at 15:46 a sibling session (loop-goal-executor) caught and
+correctly refused a tampered /goal block (genuine token, edited body) that tried to push
+these exact same "Batch exposure A-D" / batch_read/batch_mutate-to-production items under a
+no_confirmation=true banner discouraging HITL escalation (task ae90c657)."</p>
+</blockquote>
+<p>This is real, on-record evidence of a prior prompt-injection attempt against this exact item
+family, and the resulting HITL gate has sat unanswered for three weeks. The underlying
+<code>batch_read</code>/<code>batch_mutate</code> feature itself is confirmed merged and present in <code>dev</code>
+(<code>meridian/batch_read.py</code>, <code>meridian/batch_mutate.py</code> exist; <code>git log</code> shows they landed via
+unrelated items <code>133bfff6</code> and <code>77369699</code>) — what's blocked is specifically <em>promoting/exposing
+it to production</em> under <code>7ac7f633</code>. <strong>Recommend: leave <code>96437ed7</code>/<code>9fcb2cc9</code>/<code>f56bd1b8</code>
+blocked, do not let any executor session claim or advance them, and surface HITL
+<code>04be5832</code> to the human for an explicit answer</strong> — it should not still be silently pending
+three weeks later.</p>
+<h3 id="63-naming-collisions-checked-not-confirmed-duplicates">6.3 Naming collisions checked, not confirmed duplicates<a class="headerlink" href="#63-naming-collisions-checked-not-confirmed-duplicates" title="Permanent link">&para;</a></h3>
+<p>Several items share a short label across <em>different</em> <code>item_group</code>s (e.g. two items each
+labeled "R2-B": <code>ba0af0a4</code> under <code>meridian-docs-round2</code> vs. <code>d26b9943</code> under
+<code>round2-ai-log-implementation</code>; two "R2-D": <code>ef8875a9</code> under <code>meridian-docs-round2</code> vs.
+<code>2fa2fcad</code> under <code>round2-executor-reliability</code>; two "W2": <code>0d62f067</code> and <code>e03b41ef</code> both
+under <code>be4ed581-prose-editing-path</code>). I checked titles and <code>touches_resources</code> for each pair
+and they describe genuinely different work in different files — <strong>these are coincidental
+short-label reuse across separate tracks, not duplicates</strong>, and I am not recommending any
+merge/prune action on them.</p>
+<hr />
+<h2 id="7-not-independently-verified-in-this-pass">7. Not independently verified in this pass<a class="headerlink" href="#7-not-independently-verified-in-this-pass" title="Permanent link">&para;</a></h2>
+<p><strong>30 of the 36 pending v0.2.6 items have never been claimed</strong> (<code>actor</code> and <code>claimed_at</code> both
+<code>null</code>). There is no claim to reconcile for these — they are ordinary queued backlog, listed
+here only for completeness, not because their status is in doubt:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>title</th>
+<th>item_group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>862f6522</td>
+<td>FIX: unify continuation resume with the canonical manifest and reject stale cross-version goals</td>
+<td>handoff-lifecycle</td>
+</tr>
+<tr>
+<td>6587d613</td>
+<td>HARDEN: make canonical-root, worktree, ignored-path, and artifact-subtree identity explicit for every indexer and external tool</td>
+<td>scoped-discovery-and-fallback</td>
+</tr>
+<tr>
+<td>6507e83a</td>
+<td>C84-W3: harden DOCX leases, atomic package replacement, provenance identity, collision prevention, and crash recovery</td>
+<td>c84-docx-transaction-hardening</td>
+</tr>
+<tr>
+<td>cdd0ef6c</td>
+<td>FEAT: cross-client session recovery registry with environment-bound resume and crash-safe sprint continuation</td>
+<td>session-recovery-and-transport</td>
+</tr>
+<tr>
+<td>34f76536</td>
+<td>FIX: restore missing Claude Code stop hooks and make hook-path generation deterministic across Windows and POSIX</td>
+<td>rescue-sweep-recovery</td>
+</tr>
+<tr>
+<td>ba0af0a4</td>
+<td>IMPLEMENT DOCS-R2-B: make DOCX promotion and local-index evidence fail closed when receipts are missing or contradictory</td>
+<td>meridian-docs-round2</td>
+</tr>
+<tr>
+<td>07229675</td>
+<td>IMPLEMENT DOCS-R2-C: completion-integrity reconciliation for unresolved HITL, stale postconditions, missing receipts, and superseded work</td>
+<td>meridian-docs-round2</td>
+</tr>
+<tr>
+<td>5cc3d745</td>
+<td>W31-C: enforce complete promoted/held/skipped/ambiguous slot manifests before asset promotion</td>
+<td>meridian-docs-outputs-w31</td>
+</tr>
+<tr>
+<td>dcf78192</td>
+<td>FOLLOW-UP: finish completion reliability after event-loop unblock with bounded critical-path recovery</td>
+<td>completion-reliability</td>
+</tr>
+<tr>
+<td>d004d5f3</td>
+<td>FINAL: triple-resolution integration gate for lineage, completion reliability, and frontier safety</td>
+<td>triple-resolution-control-plane</td>
+</tr>
+<tr>
+<td>362ad382</td>
+<td>75D-G FOLLOW-UP: add atomic resolve + fingerprint + provenance binding operation</td>
+<td>proposal-75d-output-provenance-handoff</td>
+</tr>
+<tr>
+<td>3e36c301</td>
+<td>75D-H TEST: integration matrix for Windows paths, planned outputs, fallbacks, mismatches, document-only work, and DOCX promotion</td>
+<td>proposal-75d-output-provenance-handoff</td>
+</tr>
+<tr>
+<td>c39a1bd3</td>
+<td>CONTROL-PLANE FIX: reconcile per-project execution posture and expose a durable autonomous-project setting</td>
+<td>executor-critical-path-remediation</td>
+</tr>
+<tr>
+<td>9fcb2cc9</td>
+<td>Batch exposure D — independent release verifier, evidence receipt, and parent completion decision</td>
+<td>(see 6.2)</td>
+</tr>
+<tr>
+<td>d26b9943</td>
+<td>IMPLEMENT R2-B: ship exact-first scoped AI-log search and deterministic bounded indexing APIs</td>
+<td>round2-ai-log-implementation</td>
+</tr>
+<tr>
+<td>2fa2fcad</td>
+<td>IMPLEMENT R2-D: correlate run-owned sessions, agents, subprocesses, tunnels, worktrees, claims, and leases</td>
+<td>round2-executor-reliability</td>
+</tr>
+<tr>
+<td>8c047a44</td>
+<td>IMPLEMENT DOCS-R2-E: make convergence, reindex, local-pointer, and manifest evidence explicit and generated</td>
+<td>meridian-docs-round2</td>
+</tr>
+<tr>
+<td>4d13cdd8</td>
+<td>GATE: reconcile scheduler, reservation, and lightweight-worker contracts then run the consolidated verification gate</td>
+<td>executor-critical-path-remediation</td>
+</tr>
+<tr>
+<td>89d940d0</td>
+<td>W31-D: make partial Outputs indexing and unavailable code-intel fallback state explicit in promotion receipts</td>
+<td>meridian-docs-outputs-w31</td>
+</tr>
+<tr>
+<td>db63385b</td>
+<td>W31-B: add typography-only numeric invariants and fail-closed figure-slot comparison</td>
+<td>meridian-docs-outputs-w31</td>
+</tr>
+<tr>
+<td>ff1843dc</td>
+<td>API: expose proposal successor creation, typed relations, lineage queries, and handoff rendering</td>
+<td>proposal-lineage</td>
+</tr>
+<tr>
+<td>39389897</td>
+<td>GATE: verify proposal lineage isolation, promotion, duplicate retries, and dynamic handoff delivery</td>
+<td>proposal-lineage</td>
+</tr>
+<tr>
+<td>c027922d</td>
+<td>BUG: completing a sprint item cross-attributes a session's OTHER concurrently-claimed items' resources into the completing item's touches_resources</td>
+<td>handoff-manifest-artifact-contract</td>
+</tr>
+<tr>
+<td>69e17837</td>
+<td>75D-C FOLLOW-UP: keep planned_new pointers valid for planning but ineligible as completed provenance</td>
+<td>proposal-75d-output-provenance-handoff</td>
+</tr>
+<tr>
+<td>949f64d4</td>
+<td>75D-B FOLLOW-UP: expose one explicit meridian-outputs resolution state machine</td>
+<td>proposal-75d-output-provenance-handoff</td>
+</tr>
+<tr>
+<td>4c992e91</td>
+<td>BE4ED581-W1: define reviewable prose-edit packets with anchor re-resolution and drift rejection</td>
+<td>be4ed581-prose-editing-path</td>
+</tr>
+<tr>
+<td>0d62f067</td>
+<td>BE4ED581-W2: batch reviewable section moves and caption edits into one fail-closed writer transaction</td>
+<td>be4ed581-prose-editing-path</td>
+</tr>
+<tr>
+<td>e03b41ef</td>
+<td>BE4ED581-W2: enforce a hard boundary between prose packets and typed OMML packets</td>
+<td>be4ed581-prose-editing-path</td>
+</tr>
+<tr>
+<td>95589230</td>
+<td>IMPLEMENT R2-G: add optional OTel and self-hosted Langfuse interoperability without making external telemetry authoritative</td>
+<td>round2-telemetry-optional</td>
+</tr>
+<tr>
+<td>4eedeef8</td>
+<td>RECONCILE: migrate and audit legacy proposal predecessor references without silent inference</td>
+<td>proposal-lineage</td>
+</tr>
+</tbody>
+</table>
+<p>I did not attempt to guess a done/stale/duplicate classification for any of these 30 — none
+of them have a claim, a matching commit, or any other objective signal to check against, so
+"not independently verified" is the honest answer, not a placeholder for "probably fine."</p>
+<hr />
+<h2 id="8-minimal-keepprunereclassify-plan-recommendation-only-nothing-executed">8. Minimal keep/prune/reclassify plan (recommendation only — nothing executed)<a class="headerlink" href="#8-minimal-keepprunereclassify-plan-recommendation-only-nothing-executed" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Item(s)</th>
+<th>Current state</th>
+<th>Recommended action</th>
+<th>Evidence basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>9154aa9a</code>, <code>f69b5f18</code></td>
+<td><code>in_progress</code>, archived sessions</td>
+<td><strong>Complete</strong> — verify acceptance criteria against the merged code, then <code>complete_sprint_item</code></td>
+<td>§4.1: real merged commits + passing targeted tests</td>
+</tr>
+<tr>
+<td><code>ef8875a9</code>, <code>8d2ef784</code>, <code>2cf57fde</code>, <code>b71e0960</code></td>
+<td><code>in_progress</code>, archived sessions, work orphaned</td>
+<td><strong>Release claim; triage the archived ref before re-queuing</strong> — <code>git diff dev refs/archive/worktree-cleanup-20260829/worktree/8d2ef784</code> and <code>.../worktree-agent-a7f5104cb61ac71af</code> to see if the work is salvageable; re-open as fresh <code>pending</code> either way</td>
+<td>§4.2: real unmerged commits, features confirmed absent from <code>dev</code></td>
+</tr>
+<tr>
+<td><code>84f77597</code>, <code>4544bbe5</code>, <code>d17a437a</code>, <code>0f18eb77</code>, <code>efea329f</code>, <code>f56bd1b8</code></td>
+<td>4 pending + 2 in_progress, synthetic <code>rescue-sweep-recovery-frontier(2)</code> actor</td>
+<td><strong>Release claim, return to unclaimed <code>pending</code>/<code>todo</code></strong></td>
+<td>§5.1: no session record, no commits, batch-claimed in a 9-second window 20+ days ago</td>
+</tr>
+<tr>
+<td><code>b47a7456</code>, <code>b1fee417</code></td>
+<td><code>in_progress</code>, real archived sessions, no resulting code</td>
+<td><strong>Release claim, return to unclaimed <code>pending</code>/<code>todo</code></strong></td>
+<td>§5.2: real session existed and died quickly; no salvage target</td>
+</tr>
+<tr>
+<td><code>0d74c8c8</code></td>
+<td><code>in_progress</code>, <code>blocker_kind=manual</code></td>
+<td><strong>Keep as-is</strong></td>
+<td>§5.3: correctly parked, not stale</td>
+</tr>
+<tr>
+<td><code>96437ed7</code>, <code>0925b521</code></td>
+<td><code>pending</code>, <code>blocker_kind=superseded</code></td>
+<td><strong>Keep as-is</strong></td>
+<td>§6.1: already objectively tagged</td>
+</tr>
+<tr>
+<td><code>9fcb2cc9</code></td>
+<td><code>pending</code>, unclaimed, child of <code>7ac7f633</code></td>
+<td><strong>Keep blocked; do not let any session claim it until HITL <code>04be5832</code> is answered</strong></td>
+<td>§6.2</td>
+</tr>
+<tr>
+<td>HITL <code>04be5832</code></td>
+<td><code>pending</code>, <code>urgency: high</code>, unanswered since 2026-08-08</td>
+<td><strong>Escalate to Adam for an explicit answer</strong> — it documents a real prior injection attempt and has been open for three weeks</td>
+<td>§6.2</td>
+</tr>
+<tr>
+<td>Remaining 30 pending items (§7)</td>
+<td><code>pending</code>, never claimed</td>
+<td><strong>No action</strong> — ordinary backlog</td>
+<td>§7</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-what-this-pass-did-and-did-not-do">9. What this pass did and did not do<a class="headerlink" href="#9-what-this-pass-did-and-did-not-do" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Did: read-only Meridian MCP calls (<code>start_session</code> as planner role, <code>get_sprint_progress</code>,
+  <code>get_sprint_items</code> ×2, <code>list_sessions</code>, <code>get_hitl_request</code>); read-only <code>git</code>
+  (<code>log</code>, <code>show</code>, <code>branch</code>, <code>for-each-ref</code>, <code>merge-base</code>, <code>status</code>) inside the assigned
+  worktree only; read-only <code>gh</code> (<code>run list</code>, <code>run view</code>, <code>api commits/.../status</code>,
+  <code>api commits/...</code>); two scoped, read-only <code>pixi run pytest</code> invocations against existing
+  test files (no test or source file was modified); wrote exactly one new file, this report.</li>
+<li>Did not: claim, complete, or otherwise modify any sprint item; edit any source, test, or
+  config file; run the full test suite; commit, push, merge, tag, or deploy anything; touch
+  <code>.env</code> or <code>meridian.toml</code>; run <code>hooks.ps1</code>/<code>hooks.sh</code>; run any destructive git command.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

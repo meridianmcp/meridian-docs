@@ -1,0 +1,4684 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/mcp-tools/">
+      
+      
+        <link rel="prev" href="../browser-connector/">
+      
+      
+        <link rel="next" href="../meridian-handoff-contract/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>MCP Tools - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mcp-tool-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MCP Tools
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-5-tools-you-use-90-of-the-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference - 5 tools you use 90% of the time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starting-a-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting a session
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Starting a session">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start_session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        start_session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_session_brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_session_brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log_task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        log_task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search_tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal-sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal &amp; sprint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Goal &amp; sprint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        set_goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sprint_progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sprint_progress
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executor-config-file-coordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executor config &amp; file coordination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executor config &amp; file coordination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_executor_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        set_executor_config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        claim_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        release_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idle_until_session_done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idle_until_session_done
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallel-coordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallel coordination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parallel coordination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#store_finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        store_finding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_findings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send_message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        send_message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive_messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        receive_messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idle_until_all_done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idle_until_all_done
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pin_decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pin_decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_pinned_decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_pinned_decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-in-the-loop-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Human-in-the-loop (HITL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Human-in-the-loop (HITL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request_hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_hitl_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_hitl_request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        answer_hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dismiss_hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dismiss_hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handoff-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handoff &amp; context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handoff &amp; context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate_handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        generate_handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_context_block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_context_block
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planning tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fan_out_sprint_items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fan_out_sprint_items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute_batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        execute_batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_planning_brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_planning_brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyze_sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analyze_sprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconcile_sprint_drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        reconcile_sprint_drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rate-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_proposal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_workspace_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_workspace_proposal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_workspace_proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_workspace_proposals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advance_proposal_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        advance_proposal_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promote_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        promote_proposal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_note
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        read_note
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_note
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create_project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge_project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        merge_project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register_session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        register_session
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-5-tools-you-use-90-of-the-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference - 5 tools you use 90% of the time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starting-a-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting a session
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Starting a session">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start_session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        start_session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_session_brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_session_brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log_task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        log_task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search_tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal-sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal &amp; sprint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Goal &amp; sprint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        set_goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sprint_progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sprint_progress
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executor-config-file-coordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executor config &amp; file coordination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executor config &amp; file coordination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_executor_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        set_executor_config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        claim_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        release_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idle_until_session_done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idle_until_session_done
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallel-coordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallel coordination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parallel coordination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#store_finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        store_finding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_findings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send_message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        send_message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive_messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        receive_messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idle_until_all_done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idle_until_all_done
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pin_decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pin_decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update_decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_pinned_decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_pinned_decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-in-the-loop-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Human-in-the-loop (HITL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Human-in-the-loop (HITL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request_hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_hitl_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_hitl_request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        answer_hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dismiss_hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dismiss_hitl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handoff-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handoff &amp; context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handoff &amp; context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate_handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        generate_handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_context_block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_context_block
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planning tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fan_out_sprint_items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fan_out_sprint_items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute_batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        execute_batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_planning_brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_planning_brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyze_sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analyze_sprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconcile_sprint_drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        reconcile_sprint_drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rate-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_proposal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_workspace_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_workspace_proposal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_workspace_proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_workspace_proposals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advance_proposal_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        advance_proposal_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promote_proposal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        promote_proposal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add_note
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        read_note
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete_note
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create_project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge_project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        merge_project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register_session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        register_session
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="mcp-tool-reference">MCP Tool Reference<a class="headerlink" href="#mcp-tool-reference" title="Permanent link">&para;</a></h1>
+<p>Meridian exposes <strong>229 tools</strong> over MCP.</p>
+<p>They fall into two usage patterns:</p>
+<ul>
+<li><strong>Planner sessions</strong> (claude.ai, planning work) - <code>start_session</code> · <code>pin_decision</code> · <code>update_decision</code> · <code>add_note</code> · <code>get_context_block</code> · <code>generate_handoff</code></li>
+<li><strong>Executor sessions</strong> (Claude Code, Cursor, automated workers) - <code>start_session</code> · <code>log_task</code> · <code>request_hitl</code> · <code>get_session_brief</code> · <code>generate_handoff</code></li>
+</ul>
+<hr />
+<h2 id="quick-reference-5-tools-you-use-90-of-the-time">Quick Reference - 5 tools you use 90% of the time<a class="headerlink" href="#quick-reference-5-tools-you-use-90-of-the-time" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>One-liner</th>
+<th>Example call</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start_session</code></td>
+<td>Register session, get full project context</td>
+<td><code>start_session(project_name="my-project", session_name="feature-x", human_id="alice")</code></td>
+</tr>
+<tr>
+<td><code>log_task</code></td>
+<td>Record completed work to the shared task log</td>
+<td><code>log_task(session_id="sid", project_id="abc-123", description="Wired OAuth redirect")</code></td>
+</tr>
+<tr>
+<td><code>checkpoint</code></td>
+<td>Snapshot progress: auto-capture + delta handoff + next /goal</td>
+<td><code>checkpoint(session_id="sid", project_id="abc-123")</code></td>
+</tr>
+<tr>
+<td><code>pin_decision</code></td>
+<td>Add an architectural decision to the live constitution</td>
+<td><code>pin_decision(project_id="abc-123", title="Use psycopg3", body="asyncpg has DLL issues on Windows", category="TECHNICAL")</code></td>
+</tr>
+<tr>
+<td><code>request_hitl</code></td>
+<td>Surface a blocking question to the human queue</td>
+<td><code>request_hitl(project_id="abc-123", question="Should we rate-limit per IP or per token?", urgency="blocking")</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Tip:</strong> Use <code>checkpoint()</code> instead of <code>generate_handoff()</code> when ending a session — it also runs <code>auto_capture</code> and returns the next <code>/goal</code> string.</p>
+</blockquote>
+<hr />
+<h2 id="starting-a-session">Starting a session<a class="headerlink" href="#starting-a-session" title="Permanent link">&para;</a></h2>
+<h3 id="start_session"><code>start_session</code><a class="headerlink" href="#start_session" title="Permanent link">&para;</a></h3>
+<p>Register a session and get the full project context (goal, sprint, recent tasks, decisions) in one call. <strong>Use this instead of <code>register_session</code>.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>session_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional (599d0097): omit or leave blank to auto-generate a meaningful name from the first pending sprint item title + a timestamp, instead of inventing a string.</td>
+</tr>
+<tr>
+<td><code>human_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>client</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td>string</td>
+<td>optional</td>
+<td>325276f8 — 'executor' injects executor_config and credentials guidance and narrows active_tool_set to executor-oriented tools; 'planner' narrows active_tool_set to planner-oriented tools (no executor_config injection). Previously this enum only allowed 'executor', which made every connector/client-generated schema reject role='planner' with an enum validation error before the call ever reached the server, even though the server itself (_select_active_tool_set) has always supported both roles.</td>
+</tr>
+<tr>
+<td><code>cwd</code></td>
+<td>string</td>
+<td>optional</td>
+<td>W1-G (G1/G2) — optional: this session's local working directory. When this project has never seen a cwd before, the FIRST one reported becomes its canonical repo identity (a derived fingerprint, never the raw path — see meridian.repo_scope.compute_repo_identity). On every later call, a cwd that does not match the project's registered identity surfaces a cwd_mismatch_warning field in the response instead of silently proceeding — the exact class of bug behind the DNABERT workspace-identity incident (a project ID reused across two different local checkouts with no mismatch signal). Omit to skip this check entirely (zero behavior change).</td>
+</tr>
+<tr>
+<td><code>compact</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>Default true — slim orientation. Set false for the full goal/instructions payload.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional sprint-version bucket (e.g. 'v0.1.x') to scope this session to. Sprint progress/items in the orientation and /goal filter to it. Omit to auto-infer the bucket with the most pending items.</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Pass 'continue' to resume an already-active same-name session WITHOUT re-reading the full L0/L1/L2 orientation: returns just session_id + live pending items + the ready-to-paste /goal string. Auto-detected anyway within a 5-min heartbeat window; 'continue' widens that so a known-yours session resumes cleanly even after a longer gap.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>start_session(project_name="my-project", session_name="feature-x", human_id="alice", role="executor")
+</code></pre></div></p>
+<hr />
+<h3 id="get_session_brief"><code>get_session_brief</code><a class="headerlink" href="#get_session_brief" title="Permanent link">&para;</a></h3>
+<p>Read-only: Call this FIRST for project summaries or to see what a session did — returns session, tasks, decisions, and recent commits in one call. Compact session orientation (&lt;500 tokens): sprint focus, pending items, recent tasks, blocking failures, and open HITL requests. Ideal for worker/automation sessions that don't need the full context.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Tailors the brief. 'worker'=sprint+tasks only; 'executor'=adds version-scoped pending items, this session's file claims, and decisions code-anchored to them (pass session_id); 'planner'=adds full decisions/notes/sessions, last-session summary, and decisions needing revisit.</td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Caller session id — enables session-scratchpad notes, board-change detection, and (role='executor') file-claim + version scoping.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>get_session_brief(project_id="abc-123")
+</code></pre></div></p>
+<hr />
+<h2 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h2>
+<h3 id="log_task"><code>log_task</code><a class="headerlink" href="#log_task" title="Permanent link">&para;</a></h3>
+<p>Log what this session did, is doing, or failed at. Call frequently — this is the primary signal in the timeline and handoffs.</p>
+<p>Valid statuses: <code>pending</code> · <code>in_progress</code> · <code>done</code> · <code>failed</code> · <code>backlog</code> · <code>future</code> · <code>backburner</code></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Entry taxonomy. shipped=work done, found=discovery, decided=arch choice, blocked=blocker.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>log_task(session_id="session-uuid", project_id="abc-123", description="Fixed auth bug", status="done")
+</code></pre></div></p>
+<hr />
+<h3 id="get_tasks"><code>get_tasks</code><a class="headerlink" href="#get_tasks" title="Permanent link">&para;</a></h3>
+<p>[SUPPORT] Read-only: Get recent tasks across all sessions.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>optional</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>get_tasks(project_id="abc-123")
+</code></pre></div></p>
+<hr />
+<h3 id="search_tasks"><code>search_tasks</code><a class="headerlink" href="#search_tasks" title="Permanent link">&para;</a></h3>
+<p>[SUPPORT] Read-only: Search tasks by keyword or natural-language query. Uses trigram similarity on Postgres, LIKE on SQLite. Returns top matches with similarity score.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>optional</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>search_tasks(project_id="abc-123", query="rate limiting bug")
+</code></pre></div></p>
+<hr />
+<h2 id="goal-sprint">Goal &amp; sprint<a class="headerlink" href="#goal-sprint" title="Permanent link">&para;</a></h2>
+<h3 id="get_goal"><code>get_goal</code><a class="headerlink" href="#get_goal" title="Permanent link">&para;</a></h3>
+<p>[SUPPORT] Read-only: Fine-grained — return just the goal fields (north_star, sprint, version_goal) in isolation. Use start_session or get_session_brief for full context including tasks and decisions. Use get_goal when you only need the raw goal fields.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>get_goal(project_id="abc-123")
+</code></pre></div></p>
+<hr />
+<h3 id="set_goal"><code>set_goal</code><a class="headerlink" href="#set_goal" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] Set or update the goal state. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>set_goal(project_id="abc-123", content="Build a great product")
+</code></pre></div></p>
+<hr />
+<h3 id="get_sprint_progress"><code>get_sprint_progress</code><a class="headerlink" href="#get_sprint_progress" title="Permanent link">&para;</a></h3>
+<p>Read-only: Sprint progress summary — counts by status, <code>percent_complete</code>, and the item list.</p>
+<p><strong>Poll this between tasks.</strong> After each <code>complete_sprint_item</code>, call <code>get_sprint_progress(project_id, session_id)</code> (pass <code>session_id</code>) before claiming the next item. The <code>board_change</code> field reports items a planner injected since this session started, so an executor picks them up at the item boundary without restarting — never idle-poll, only poll at task boundaries. The result is cached server-side for <strong>10 seconds</strong>, so parallel sessions polling together share a single DB query.</p>
+<p>Statuses include <code>provisional_complete</code> — work finished but not yet verified/deployed, a non-terminal state between <code>in_progress</code> and <code>done</code> that does not count toward <code>percent_complete</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional: include board_change (items added since this session started).</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Filter to a specific sprint version bucket.</td>
+</tr>
+<tr>
+<td><code>item_group</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Filter to a specific item group.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>get_sprint_progress(project_id="abc-123")
+</code></pre></div></p>
+<hr />
+<h2 id="executor-config-file-coordination">Executor config &amp; file coordination<a class="headerlink" href="#executor-config-file-coordination" title="Permanent link">&para;</a></h2>
+<h3 id="set_executor_config"><code>set_executor_config</code><a class="headerlink" href="#set_executor_config" title="Permanent link">&para;</a></h3>
+<p>Store project-level executor defaults so worker sessions start with repo path, env file, test command, deploy command, shell, branch, and the injected credentials rule.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>repo_path</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>repo_paths</code></td>
+<td>array</td>
+<td>optional</td>
+<td>Known locations [{cwd, hostname}] — merged into existing repo_paths, not overwritten.</td>
+</tr>
+<tr>
+<td><code>env_file</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>test_cmd</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>test_min</code></td>
+<td>integer</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>deploy_cmd</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>shell_type</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>branch</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>filesystem_roots</code></td>
+<td>array</td>
+<td>optional</td>
+<td>Directories the tunnel's filesystem connector may serve (unioned across the tenant's projects). Overwrites the existing list.</td>
+</tr>
+<tr>
+<td><code>serena_repo_path</code></td>
+<td>string</td>
+<td>optional</td>
+<td>b970fe07 — default repo path for Serena (the tunnel's code-extractor slot). Auto-fetched at tunnel start; used only when --repo is not passed on the CLI.</td>
+</tr>
+<tr>
+<td><code>codebase_code_dirs</code></td>
+<td>array</td>
+<td>optional</td>
+<td>b970fe07 — directories codebase-memory-mcp (the tunnel's code-intel slot) auto-indexes. Deduped-union across the tenant's projects; used only when --code-dir is not passed on the CLI. Overwrites the existing list.</td>
+</tr>
+<tr>
+<td><code>context_threshold</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>Turns before a context-budget warning is surfaced to the session.</td>
+</tr>
+<tr>
+<td><code>max_turns</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>Turn ceiling injected into the /goal string ('Stop after N turns'). Default 200.</td>
+</tr>
+<tr>
+<td><code>max_planning_turns</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>75ac1c8e — override for the execution_policy planning-turn ceiling (turns allowed before the required first action). Default 1 in immediate/autonomous mode, 10 in relaxed/interactive mode; clamped 1-50. Invalid/non-positive values fall back to the mode default rather than erroring.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>set_executor_config(project_id="abc-123", repo_path="/repo", env_file="/repo/.env", test_cmd="pixi run test", test_min=619, deploy_cmd="git push", shell_type="powershell", branch="dev")
+</code></pre></div></p>
+<hr />
+<h3 id="claim_file"><code>claim_file</code><a class="headerlink" href="#claim_file" title="Permanent link">&para;</a></h3>
+<p>Claim exclusive edit rights on a file path for this session. Locks auto-expire after 2 hours.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>file_path</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Claim grain (ffa03655). 'write' (default) = EXCLUSIVE: blocks other writers and is blocked by any other session's read claim. 'read' = SHARED: many sessions can read-claim the same file at once (no false contention for parallel reader agents), blocked only by another session's write lock.</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional symbol to claim (class/function/method name, e.g. 'AuthRouter' or 'AuthRouter.login'). Requires <code>content</code>.</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Full source of the file, required when <code>symbol</code> is given so the server can resolve the symbol's line range.</td>
+</tr>
+<tr>
+<td><code>item_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional sprint item id this claim is being made for (c027922d). When your session holds 2+ sprint items in_progress concurrently, pass this so the touches_resources amendment side-effect is attributed to the right item instead of guessed.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>claim_file(session_id="session-uuid", file_path="meridian/server.py")
+</code></pre></div></p>
+<hr />
+<h3 id="release_file"><code>release_file</code><a class="headerlink" href="#release_file" title="Permanent link">&para;</a></h3>
+<p>Release a file lock held by this session when you're done editing.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>file_path</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>release_file(session_id="session-uuid", file_path="meridian/server.py")
+</code></pre></div></p>
+<hr />
+<h3 id="idle_until_session_done"><code>idle_until_session_done</code><a class="headerlink" href="#idle_until_session_done" title="Permanent link">&para;</a></h3>
+<p>Read-only: Wait on another session before touching a shared file. The tool polls every 30 seconds until the watched session is done.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>watching_session_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>timeout_seconds</code></td>
+<td>number</td>
+<td>optional</td>
+<td>Max seconds to wait before returning done=false, timed_out=true (default 1800). A stuck/never-closing session can't hang the caller past this.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>idle_until_session_done(watching_session_id="session-uuid")
+</code></pre></div></p>
+<hr />
+<h2 id="parallel-coordination">Parallel coordination<a class="headerlink" href="#parallel-coordination" title="Permanent link">&para;</a></h2>
+<h3 id="store_finding"><code>store_finding</code><a class="headerlink" href="#store_finding" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] PARALLEL COORDINATION (c35370cc): persist a per-task intermediate result to the session_findings table so it survives session boundaries. Parallel reader agents write findings; an orchestrator or writer agent reads them via get_findings. Unlike save_finding (which creates a research note), this is a lightweight key→content store for agent-to-agent handoff of intermediate work. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id.</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>string</td>
+<td>required</td>
+<td>The finding body.</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional bucket/topic for scoped retrieval (e.g. a subsystem name).</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional short title.</td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional writing session.</td>
+</tr>
+<tr>
+<td><code>task_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional task this finding belongs to.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="get_findings"><code>get_findings</code><a class="headerlink" href="#get_findings" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] Read-only (c35370cc): read stored session_findings for a project (newest first), optionally scoped by key and/or session_id. The read side of store_finding. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id.</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Only findings in this bucket.</td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Only findings from this session.</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>Max rows (default 50).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="send_message"><code>send_message</code><a class="headerlink" href="#send_message" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] PARALLEL COORDINATION (d3a3a01d): enqueue an actor-model message to another session (session_messages table). 'Done with X, you do Y' between parallel agents. The recipient reads with receive_messages. A2A-compatible. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id.</td>
+</tr>
+<tr>
+<td><code>to_session_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>Recipient session id.</td>
+</tr>
+<tr>
+<td><code>payload</code></td>
+<td>string</td>
+<td>required</td>
+<td>Message body (text or JSON).</td>
+</tr>
+<tr>
+<td><code>from_session_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Sender session id (defaults to session_id).</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional message kind/tag.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="receive_messages"><code>receive_messages</code><a class="headerlink" href="#receive_messages" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] PARALLEL COORDINATION (d3a3a01d): fetch unread messages addressed to a session (oldest first) and mark them read by default. The receive side of send_message. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>The recipient session.</td>
+</tr>
+<tr>
+<td><code>mark_read</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>Mark fetched messages read (default true).</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>Max messages (default 50).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="idle_until_all_done"><code>idle_until_all_done</code><a class="headerlink" href="#idle_until_all_done" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] PARALLEL COORDINATION (d3a3a01d): non-blocking barrier check across sibling sessions. Returns {all_done, pending, statuses}; a session is done when closed/archived/missing. The server can't block, so poll until all_done is true — the A2A 'wait for X, Y, Z to finish' primitive. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>session_ids</code></td>
+<td>array</td>
+<td>required</td>
+<td>Sessions to wait on.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="decisions">Decisions<a class="headerlink" href="#decisions" title="Permanent link">&para;</a></h2>
+<h3 id="pin_decision"><code>pin_decision</code><a class="headerlink" href="#pin_decision" title="Permanent link">&para;</a></h3>
+<p>Record an authoritative decision that supersedes earlier statements. Pinned decisions appear in every session's context block.</p>
+<p>Categories: <code>STRATEGIC</code> · <code>COMPETITIVE</code> · <code>TECHNICAL</code> · <code>TACTICAL</code> · <code>BUSINESS</code> · <code>PRODUCT</code> · <code>ARCHITECTURAL</code></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>string</td>
+<td>optional</td>
+<td>urgent decisions sort first and are weighted higher in start_session / generate_handoff context. Default normal.</td>
+</tr>
+<tr>
+<td><code>assumption</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional unverified assumption this decision rests on. Recorded with status 'unvalidated' and surfaced in get_planning_brief until validate_assumption confirms or invalidates it.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>pin_decision(project_id="abc-123", title="Use psycopg3", body="asyncpg has DLL issues on Windows", category="TECHNICAL")
+</code></pre></div></p>
+<hr />
+<h3 id="update_decision"><code>update_decision</code><a class="headerlink" href="#update_decision" title="Permanent link">&para;</a></h3>
+<p>Patch a pinned decision. Pass <code>new_title</code> + <code>new_body</code> to atomically supersede (creates a new row, marks old as superseded). Otherwise patches in place.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>decision_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>new_title</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>new_body</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Change ordering/weight (urgent | normal | low).</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>assumption</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Set/replace the decision's underlying assumption text.</td>
+</tr>
+<tr>
+<td><code>assumption_status</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Stamp the assumption's validation state. Usually set via the validate_assumption tool, which also fires HITL on invalidation.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="get_pinned_decisions"><code>get_pinned_decisions</code><a class="headerlink" href="#get_pinned_decisions" title="Permanent link">&para;</a></h3>
+<p>[SUPPORT] Read-only: List pinned decisions, highest priority first (urgent → normal → low, then newest-first). Active only by default. Each row includes its priority and a parsed edit_log array of prior bodies ({body, ts}) recorded on every in-place body edit. Pass query to filter to decisions whose title or body matches (every whitespace-separated term must appear in the title or the body, same multiword-AND convention as search_tasks/search_all) — omit or pass a blank string for no filter (W1-A).</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>include_superseded</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional free-text filter over title + body. Every whitespace-separated term must appear in the title or the body (AND across terms, OR across columns). Blank/omitted means no filter.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>get_pinned_decisions(project_id="abc-123")
+</code></pre></div></p>
+<hr />
+<h2 id="human-in-the-loop-hitl">Human-in-the-loop (HITL)<a class="headerlink" href="#human-in-the-loop-hitl" title="Permanent link">&para;</a></h2>
+<h3 id="request_hitl"><code>request_hitl</code><a class="headerlink" href="#request_hitl" title="Permanent link">&para;</a></h3>
+<p>Surface a question to the human queue. Response includes <code>chat_prompt</code> (question + options formatted for inline display) and, when <code>urgency='blocking'</code>, a <code>poll_instruction</code>. Dual-channel: filed in the dashboard AND shown in Claude Code chat — first answer wins. For blocking: display <code>chat_prompt</code> to the user, then poll <code>get_hitl_request(request_id)</code> every 30 s. If the user answers in chat, call <code>answer_hitl(request_id, answer)</code>. <code>normal</code>/<code>high</code> land in the dashboard without blocking the session.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>question</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>urgency</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td>string</td>
+<td>optional</td>
+<td>question (default, auto-answerable) or correction (non-blocking mid-run human correction).</td>
+</tr>
+<tr>
+<td><code>assigned_to</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>array</td>
+<td>optional</td>
+<td>Answer choices rendered as selectable buttons in the dashboard.</td>
+</tr>
+<tr>
+<td><code>recommended</code></td>
+<td>string</td>
+<td>optional</td>
+<td>The safe-default option — an option string or a 0-based index into options. Highlighted in the dashboard; Enter submits it; auto-answer prefers it.</td>
+</tr>
+<tr>
+<td><code>require_human</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>When true, the HITL can never be auto-answered — only an explicit human response unblocks it. Reserve for irreversible/destructive actions.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>request_hitl(project_id="abc-123", question="Should we add rate limiting here?", urgency="normal")
+</code></pre></div></p>
+<hr />
+<h3 id="get_hitl_request"><code>get_hitl_request</code><a class="headerlink" href="#get_hitl_request" title="Permanent link">&para;</a></h3>
+<p>Read-only: Poll a HITL request for the human's answer. Returns the row including <code>status</code> (<code>pending</code>/<code>answered</code>/<code>dismissed</code>) and <code>answer</code> text.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>get_hitl_request(request_id="hitl-uuid")
+</code></pre></div></p>
+<hr />
+<h3 id="answer_hitl"><code>answer_hitl</code><a class="headerlink" href="#answer_hitl" title="Permanent link">&para;</a></h3>
+<p>Answer a pending HITL request programmatically. Marks it answered so the waiting session can resume. Use when the human answers in Claude Code chat rather than the dashboard.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>answer</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>answered_by</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional human_id of the answerer.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dismiss_hitl"><code>dismiss_hitl</code><a class="headerlink" href="#dismiss_hitl" title="Permanent link">&para;</a></h3>
+<p>Dismiss a HITL request (won't-answer / no longer relevant).</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="handoff-context">Handoff &amp; context<a class="headerlink" href="#handoff-context" title="Permanent link">&para;</a></h2>
+<h3 id="generate_handoff"><code>generate_handoff</code><a class="headerlink" href="#generate_handoff" title="Permanent link">&para;</a></h3>
+<p>Read-only: Generate a context handoff document. <code>mode='full'</code> writes the complete L0/L1/L2 handoff. <code>mode='delta'</code> returns a compact session summary with completed items, pending items, and the next <code>/goal</code> string.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>string</td>
+<td>optional</td>
+<td>(aec043cb) Optional — omitting mode is now INTENT-BASED, never a silent 'full'. Omission resolves to: 'delta' if session_id already produced a handoff this session (resumed/continuation); else 'goal' if session_id was started with role='executor'; else 'planner' if role='planner'; else 'goal' (the safe, bounded default — no workspace decisions/notes, no other project's state) when intent can't otherwise be determined. 'full' — the unbounded, whole-workspace archival/diagnostic dump, including cross-project workspace decisions/notes — is now returned ONLY for an explicit mode='full' request, never for an omitted one. (d2fc7465) Persistence differs by mode too, and is now explicit on the response: only 'full'/'delta'/'goal' write to the <code>handoffs</code> history table and the trusted pending_goal channel load_handoff() reads back — 'planner'/'starter'/'compact' are call-and-forget renders meant to be pasted directly, never the canonical stored handoff. The response's <code>retrievable_via_load_handoff</code> field states this per-call rather than requiring a caller to infer it from mode name.</td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional session id for auto-delta on repeated calls in the same session.</td>
+</tr>
+<tr>
+<td><code>root_dir</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional request-local absolute source-tree root used by live pointer resolution's local semantic fallback when no code tunnel is available. Never persisted.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>optional</td>
+<td>(b8f89491) Optional explicit sprint-version bucket (e.g. 'v0.2.6') to scope this handoff to — applies to every mode (full/delta/starter/compact/goal), not just starter. Wins over the calling session's own stored sprint_version. Omit to fall back to session_id's scope, or to the whole project's cross-version backlog when neither is set.</td>
+</tr>
+<tr>
+<td><code>force_include_ids</code></td>
+<td>array</td>
+<td>optional</td>
+<td>(45f519a0, validated by 3cab355a) Optional list of sprint-item ids to force-include in the pending list even when their deferred_until is in the future. This is a one-off visibility override for this handoff call only — deferred_until is NOT cleared, so claim_sprint_item's own deferral gate is unaffected. Use when a human wants a backburnered item back in scope for one planning run without permanently re-enabling claiming. Every id is validated: it must belong to this project, match the effective version scope (when one applies), and be genuinely todo/pending — an unknown/cross-project/cross-version/not-pending id is rejected (reported in the response's force_include_rejected list, never silently dropped) rather than honoured. Accepted ids are also exempt from the code-pointer enrichment cap, so a requested item always gets prospected regardless of how large the pending board is.</td>
+</tr>
+<tr>
+<td><code>selected_item_ids</code></td>
+<td>array</td>
+<td>optional</td>
+<td>(cffb9323) Optional explicit INCLUDE-ONLY item scope for a safe, isolated parallel-follow-up handoff — the opposite direction from force_include_ids (which WIDENS the pending list). When given, the pending batch on EVERY mode (full/delta/starter/compact/goal) is narrowed to exactly these ids plus their dependency closure (any depends_on ancestor still todo/pending in this project/version) — nothing else from the eligible backlog is included. Every requested id is validated (must exist, belong to this project, match the effective version scope when one applies, and be genuinely todo/pending — not already in_progress under another session, not done/failed/skipped): if ANY id fails validation, generate_handoff raises rather than silently falling back to the unfiltered backlog. The dependency-closure ids and a stable hash of that closure are rendered in a <selected_item_scope> tag inside the /goal block, bound into the same token body-hash as the rest of the content. (d2fc7465) The SAME closure ids/hash, plus which of the requested ids survived every downstream claimability filter (unprospected/backburner/manual/wave_gate_pending, each with a reason) and why, are ALSO returned as a structured <code>selected_scope</code> field on the response — the parse-free counterpart to the embedded tag, and the only place to learn about a PARTIAL exclusion (some, not all, requested ids dropped); a TOTAL exclusion instead raises HANDOFF_SCOPE_NON_EXECUTABLE. <code>selected_scope</code> is null when selected_item_ids was never passed.</td>
+</tr>
+<tr>
+<td><code>skip_ai_summary</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>65c8b426 — skip the optional AI (Haiku) narrative calls (session summaries, ai_summary blurb, sprint retrospective). Default true on the MCP path for fast, reliable handoffs. Pass false to include AI-generated narrative sugar when you have budget and time.</td>
+</tr>
+<tr>
+<td><code>strict_evidence</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>(8a883f60) Opt-in, off by default — mirrors complete_sprint_item's strict_evidence shape exactly. When true, a failed/degraded pointer-enrichment/freshness/wave-gate/graph-search capability makes this call refuse to render or persist a handoff at all, returning {error: HANDOFF_EVIDENCE_BLOCKED, evidence_status, evidence_errors, message} instead. Leave false/omitted for today's graceful-degrade behavior (handoff_evidence_status is still returned either way).</td>
+</tr>
+<tr>
+<td><code>strict_pointer_evidence</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>(eb8b6894) Opt-in, off by default, separate from strict_evidence above. When true, the claimable/goal batch's UNPROSPECTED exclusion requires a pending item's durable pointer(s) to have actually RESOLVED (resolve_pointer succeeded), not merely be PRESENT as a row — a structurally-valid-but-unresolved pointer no longer silently satisfies the gate. Never raises/blocks the whole handoff (unlike strict_evidence): an affected item is simply excluded from the claimable batch, the same way today's presence-only UNPROSPECTED gate already excludes items. Every pending item's pointer_resolution_status (structural_valid/target_resolved/provenance_verified/resolution_source/strict_satisfied) is always returned regardless of this flag — it only changes which items make the claimable cut.</td>
+</tr>
+<tr>
+<td><code>checkpoint</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>(ecc8b280) Mark THIS call as a mid-run progress report rather than a final, session-ending handoff. Applies to full/delta modes only. A checkpoint=true call is never refused by strict_continuation below, regardless of how much actionable work remains — it changes nothing about what gets rendered, only whether the continuation gate can engage.</td>
+</tr>
+<tr>
+<td><code>strict_continuation</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>(ecc8b280) Opt-in, off by default — mirrors strict_evidence's shape. When true and checkpoint is not set, refuses to render/persist this handoff (full/delta modes only) if actionable pending/in_progress items remain on the live board with no recorded blocker_kind while execution_mode=autonomous, returning {error: HANDOFF_CONTINUATION_BLOCKED, continuation_status, message} instead. Leave false/omitted for today's behavior (continuation_status is still always returned either way).</td>
+</tr>
+<tr>
+<td><code>emit_manifest</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>(acf6f51a) Opt-in, off by default. mode='goal' only (for now): when true, embeds a canonical <handoff_manifest> XML block — schema_version, board_revision (a deterministic digest of every item's id/status/depends_on), project/tenant origin identity, generated_at, the selected/closure item ids, the full item id/status/depends_on/resources list, and the wave plan — into the rendered /goal text BEFORE the goal token is minted, so verify_handoff_token's existing body_hash check also covers the manifest; no separate verification path. A receiver re-fetches the live board and compares against board_revision (see handoff.verify_board_revision) to detect drift before acting. Other modes are unaffected by this flag for now.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>generate_handoff(project_id="abc-123", mode="delta", session_id="session-uuid")
+</code></pre></div></p>
+<hr />
+<h3 id="get_context_block"><code>get_context_block</code><a class="headerlink" href="#get_context_block" title="Permanent link">&para;</a></h3>
+<p>Read-only: Return a compact project context block (north star, sprint, pending sprint items, recent tasks, recent decisions, active sessions) wrapped in a <meridian_context> XML envelope for structured parsing by AI clients (v2.5+). Use <code>mode='full'</code> to paste into a fresh Claude Code session; <code>mode='chat'</code> for a shorter paste into claude.ai. The HTTP route <code>/projects/{id}/context-block</code> returns the same content as unwrapped plain text.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>get_context_block(project_id="abc-123", mode="chat")
+</code></pre></div></p>
+<hr />
+<h2 id="planning-tools">Planning tools<a class="headerlink" href="#planning-tools" title="Permanent link">&para;</a></h2>
+<h3 id="fan_out_sprint_items"><code>fan_out_sprint_items</code><a class="headerlink" href="#fan_out_sprint_items" title="Permanent link">&para;</a></h3>
+<p>Bulk-insert sprint items in one call — lets an orchestrator LLM decompose a goal into parallel work items without N sequential <code>add_sprint_item</code> calls. Pass a list of <code>{title, description?, group?, version?}</code> dicts; returns the list of new item IDs.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td>array</td>
+<td>required</td>
+<td>List of sprint item specs. Each must have at least a 'title'.</td>
+</tr>
+<tr>
+<td><code>strict</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>468ab67d — default false (legacy: no duplicate guard, bare item_ids/count response). Pass true to opt into the shared batch_management engine's duplicate guard + idempotency-key replay + mode semantics — see the tool description.</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>string</td>
+<td>optional</td>
+<td>strict mode only — default 'all_or_nothing'. Ignored unless strict=true.</td>
+</tr>
+<tr>
+<td><code>idempotency_key</code></td>
+<td>string</td>
+<td>optional</td>
+<td>strict mode only — a retried call with the same (project_id, idempotency_key) replays the first call's stored result instead of re-inserting. Ignored unless strict=true.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>fan_out_sprint_items(project_id="abc-123", items=[{"title": "Design DB schema", "group": "backend"}, {"title": "Build API endpoints", "group": "backend"}, {"title": "Wire up frontend", "group": "frontend"}])
+</code></pre></div></p>
+<hr />
+<h3 id="execute_batch"><code>execute_batch</code><a class="headerlink" href="#execute_batch" title="Permanent link">&para;</a></h3>
+<p>Run a homogeneous batch of sprint-management writes (sprint item creates/updates, pointer creates, note creates) with real atomic-or-independent semantics: <code>mode='all_or_nothing'</code> validates every entry before mutating anything and rolls back everything already written if a later entry fails; <code>mode='best_effort'</code> processes each entry independently. Both <code>mode</code> and <code>idempotency_key</code> are REQUIRED on every call — a retried call with the same <code>(project_id, operation, idempotency_key)</code> replays the first call's result instead of re-executing. Every entry's outcome (<code>ok</code> | <code>error</code> | <code>rolled_back</code> | <code>not_attempted</code>) comes back in input order so a caller never has to guess whether a partial write happened. Also available over HTTP as <code>POST /projects/{project_id}/sprint-batch</code> with the identical request/response shape.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>operation</code></td>
+<td>string</td>
+<td>required</td>
+<td>Stable operation name selecting the entry shape and forced per-entry action (sprint_items=create, item_updates=update). See the tool description for each shape.</td>
+</tr>
+<tr>
+<td><code>entries</code></td>
+<td>array</td>
+<td>required</td>
+<td>Non-empty list of entry objects, ALL matching the chosen operation's shape. Each entry may carry an optional 'correlation_key' string echoed back on its result.</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>string</td>
+<td>required</td>
+<td>REQUIRED — no default. 'all_or_nothing': validate-then-mutate with compensating rollback on any mutation failure. 'best_effort': every entry processed independently.</td>
+</tr>
+<tr>
+<td><code>idempotency_key</code></td>
+<td>string</td>
+<td>required</td>
+<td>REQUIRED key (value may be null or "" to explicitly opt out). A retried call with the same (project_id, operation, idempotency_key) replays the first call's stored result instead of re-executing.</td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Batch-level default session_id used by 'notes' entries that omit their own session_id.</td>
+</tr>
+<tr>
+<td><code>max_entries</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>Optional cap on len(entries) for this call (default 100). Exceeding it rejects the whole call before anything is attempted.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>execute_batch(project_id="abc-123", operation="sprint_items", entries=[{"title": "Add rate limiting", "correlation_key": "a"}, {"title": "Add retry backoff", "correlation_key": "b"}], mode="all_or_nothing", idempotency_key="my-2026-08-05-batch-1")
+</code></pre></div></p>
+<hr />
+<h3 id="get_planning_brief"><code>get_planning_brief</code><a class="headerlink" href="#get_planning_brief" title="Permanent link">&para;</a></h3>
+<p>Read-only: Return a compact planning context (sprint, north star, pending items, in-progress items, recent tasks, active sessions, recent decisions, pending HITLs). No session registration needed — designed for planning chat sessions that need to see project state without side effects.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>since</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional ISO timestamp (a prior brief's generated_at). When given, new_handoff_available flags only handoffs filed after it.</td>
+</tr>
+<tr>
+<td><code>expand</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>Default false: collapse parent_id/item_group clusters in pending_items/in_progress into one summary row each. Pass true for the full ungrouped list.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>get_planning_brief(project_id="abc-123")
+</code></pre></div></p>
+<hr />
+<h3 id="analyze_sprint"><code>analyze_sprint</code><a class="headerlink" href="#analyze_sprint" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] PLANNING: Read-only synthesis of the current sprint into one structured brief — parallelizability (conflict-free groups + max fan-out), dependency chains (depends_on walked to the root), resource/file conflicts (items sharing touches_resources), and stalls (stall_count&gt;0). Returns {summary, recommended_strategy, parallelism, dependency_chains, longest_chain, file_conflicts, stalls, blocked, running}. Call in planning sessions instead of stitching together get_parallelizable_groups + manual dependency/conflict analysis. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional: only analyze items in this sprint-version bucket.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="reconcile_sprint_drift"><code>reconcile_sprint_drift</code><a class="headerlink" href="#reconcile_sprint_drift" title="Permanent link">&para;</a></h3>
+<p>Read-only: Cross-reference pending sprint items against recent git commits and return items that may already be done. confidence='high' means 3+ keywords overlap (safe to mark done via <code>complete_sprint_item</code>); confidence='medium' means 1–2 (verify first). Call during planning sessions to identify board drift.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>reconcile_sprint_drift(project_id="abc-123")
+</code></pre></div></p>
+<hr />
+<h2 id="rate-limits">Rate limits<a class="headerlink" href="#rate-limits" title="Permanent link">&para;</a></h2>
+<p>The hosted MCP surface (Bearer-token requests) is metered per tenant per minute by plan:</p>
+<table>
+<thead>
+<tr>
+<th>Plan</th>
+<th>Requests / minute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>free</code></td>
+<td>500</td>
+</tr>
+<tr>
+<td><code>standard</code></td>
+<td>2000</td>
+</tr>
+<tr>
+<td><code>pro</code></td>
+<td>unlimited</td>
+</tr>
+</tbody>
+</table>
+<p>Over-limit requests receive <code>429 Too Many Requests</code> with a <code>Retry-After</code> header. Dashboard (cookie) traffic, <code>/health</code>, and <code>/static</code> are never metered, and self-hosted instances are unmetered. Polling <code>get_sprint_progress</code> between tasks stays well within these limits — the 10 s server-side cache keeps parallel polling cheap.</p>
+<hr />
+<h2 id="proposals">Proposals<a class="headerlink" href="#proposals" title="Permanent link">&para;</a></h2>
+<h3 id="add_proposal"><code>add_proposal</code><a class="headerlink" href="#add_proposal" title="Permanent link">&para;</a></h3>
+<p>Capture an idea into a proposal — PROJECT-SCOPED BY DEFAULT (a8afd8f9). The preferred entry point going forward. Pass <code>project_id</code>/<code>project_name</code> to scope it to a project, XOR <code>scope='workspace'</code> to explicitly opt into a workspace-global proposal instead — an ambiguous call (neither, or both) is rejected rather than guessed. NOT executor-claimable. status: raw → investigating → promoted|rejected. Use <code>advance_proposal_status</code> to move through the lifecycle; <code>promote_proposal</code> to convert one into a real sprint item.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>required</td>
+<td>Short idea title.</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>string</td>
+<td>required</td>
+<td>Full description of the insight or idea.</td>
+</tr>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project to scope this proposal to. Required unless scope='workspace' is passed instead.</td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — alternative to project_id; resolved to the id internally.</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Pass 'workspace' to explicitly opt into a workspace-global proposal instead of project-scoping it. Defaults to project-scoped when project_id/project_name is given; omitting both project_id/project_name AND scope is an error (never inferred).</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional comma-separated tags.</td>
+</tr>
+<tr>
+<td><code>family_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional family/grouping id shared by related proposals.</td>
+</tr>
+<tr>
+<td><code>idempotency_key</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional caller-supplied key; a retried call with the same key returns the original proposal instead of creating a duplicate.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>add_proposal(project_id="proj-uuid", title="Cache the parser output", body="Re-parsing on every call is slow; memoize by content hash", tags="perf")
+</code></pre></div></p>
+<hr />
+<h3 id="add_workspace_proposal"><code>add_workspace_proposal</code><a class="headerlink" href="#add_workspace_proposal" title="Permanent link">&para;</a></h3>
+<p>Capture a workspace-level flash of insight into the 'drawer of inspiration' — cross-project ideas that don't belong to any one project yet. The explicit workspace-global opt-in (see <code>add_proposal</code> for the project-scoped default). NOT executor-claimable. status: raw → investigating → promoted|rejected. Use <code>advance_proposal_status</code> to move through the lifecycle; <code>promote_proposal</code> to convert one into a real sprint item.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>required</td>
+<td>Short idea title.</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>string</td>
+<td>required</td>
+<td>Full description of the insight or idea.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional comma-separated tags.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>add_workspace_proposal(title="IDEA: expose auth as plugin", body="Could ship auth as a separate optional plugin so self-hosters can swap it out", tags="arch")
+</code></pre></div></p>
+<hr />
+<h3 id="get_workspace_proposals"><code>get_workspace_proposals</code><a class="headerlink" href="#get_workspace_proposals" title="Permanent link">&para;</a></h3>
+<p>Read-only: List workspace proposals (human-authored flashes of insight), newest first. When status is omitted, defaults to 'live' proposals only (raw + investigating) — terminal proposals (promoted/rejected) are excluded. Pass status='all' for every status, or an explicit status (including promoted/rejected) to filter to just that one. Optional tag substring filter. Pass <code>project_id</code>/<code>project_name</code> to restrict the listing to that project's proposals only (a8afd8f9) — omitted, proposals of any scope are returned.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Filter to proposals in this status. Defaults to raw+investigating ('live') when omitted; use 'all' for every status.</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Substring filter on tags.</td>
+</tr>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Restrict to proposals scoped to this project only. Omitted returns proposals of any scope.</td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — alternative to project_id; resolved to the id internally.</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>Maximum proposals to return (default 20, clamped to 1..100).</td>
+</tr>
+<tr>
+<td><code>offset</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>Zero-based pagination offset (default 0).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>get_workspace_proposals(status="investigating")
+</code></pre></div></p>
+<hr />
+<h3 id="advance_proposal_status"><code>advance_proposal_status</code><a class="headerlink" href="#advance_proposal_status" title="Permanent link">&para;</a></h3>
+<p>Transition a workspace proposal through its lifecycle (raw → investigating|rejected; investigating → promoted|rejected|raw; rejected → raw). 'promoted' is a terminal status reachable only via <code>promote_proposal</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>proposal_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>required</td>
+<td>Target status. 'promoted' is not allowed here — use promote_proposal instead.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>advance_proposal_status(proposal_id="prop-uuid", status="investigating")
+</code></pre></div></p>
+<hr />
+<h3 id="promote_proposal"><code>promote_proposal</code><a class="headerlink" href="#promote_proposal" title="Permanent link">&para;</a></h3>
+<p>Promote a workspace proposal into a real sprint item, creating the link between them. The proposal must be in 'raw' or 'investigating' state. When the proposal is project-scoped and this call's project differs, promotion is rejected unless <code>allow_project_transfer=True</code> is passed with a <code>transfer_reason</code> (a8afd8f9). Returns {proposal, sprint_item_id, sprint_item_title, project_id}.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>proposal_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project to create the sprint item under.</td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — alternative to project_id; resolved to the id internally.</td>
+</tr>
+<tr>
+<td><code>sprint_item_title</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Override title for the sprint item; defaults to the proposal title.</td>
+</tr>
+<tr>
+<td><code>sprint_item_version</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Sprint version for the new item; defaults to 'current'.</td>
+</tr>
+<tr>
+<td><code>allow_project_transfer</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>Acknowledge promoting a project-scoped proposal into a DIFFERENT project than the one it was created under. Requires transfer_reason. Default false.</td>
+</tr>
+<tr>
+<td><code>transfer_reason</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Non-empty reason for a cross-project transfer; required when allow_project_transfer=true. Recorded on the promoted event.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>promote_proposal(proposal_id="prop-uuid", project_id="proj-uuid", sprint_item_title="Expose auth as plugin")
+</code></pre></div></p>
+<hr />
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<h3 id="add_note"><code>add_note</code><a class="headerlink" href="#add_note" title="Permanent link">&para;</a></h3>
+<p>Add a per-project wiki note. Use for setup instructions, gotchas, environment details, how-tos.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>string</td>
+<td>optional</td>
+<td>high-priority notes surface first in generate_handoff and planner context.</td>
+</tr>
+<tr>
+<td><code>file_path</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Code anchor (kind='code'): repo-relative or absolute path this note warns about. Surfaced at claim_file/get_file_claims for the same path.</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional symbol (class/function/method) to scope the code anchor to. File-level anchors (no symbol) surface for any symbol in the file.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Provenance: a URL or file path this note was ingested from. Stored on the note (used by kind='document').</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>add_note(project_id="abc-123", title="Deploy note", body="Reminder: update env vars before deploy", tags="ops,deploy")
+</code></pre></div></p>
+<hr />
+<h3 id="get_notes"><code>get_notes</code><a class="headerlink" href="#get_notes" title="Permanent link">&para;</a></h3>
+<p>Read-only: List project notes (newest first), LIGHTWEIGHT by default — id/slug/title/tags/kind/priority/timestamps with NO body, so the list can't overflow context. Pull model: scan the list, then <code>read_note(project_id, slug)</code> for one note's full body. Filter by tag substring or <code>query</code> full-text search. Pass <code>bodies=true</code> only when you truly need every body inline. Pass <code>limit</code> (default 100, max 500) and/or <code>cursor</code> for a <code>{notes, has_more, next_cursor}</code> page, then re-call with <code>cursor=next_cursor</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Text search across note title and body (case-insensitive).</td>
+</tr>
+<tr>
+<td><code>bodies</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>Default false. true returns full note bodies inline (legacy behavior) — usually unnecessary; prefer read_note(slug).</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>Page size (default 100, clamped 1..500). Passing limit or cursor switches the result to the {notes, has_more, next_cursor} pagination envelope.</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td>integer</td>
+<td>optional</td>
+<td>Offset cursor from a prior page's next_cursor. Passing it switches the result to the {notes, has_more, next_cursor} envelope.</td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td>string</td>
+<td>optional</td>
+<td>98890df1 — 'relevance' ranks notes by reference_count/recency/decision-link (heavily cross-referenced notes surface, stale ones sink) and returns a bare list with a per-note 'relevance' score; default 'recency'.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>get_notes(project_id="abc-123")
+</code></pre></div></p>
+<hr />
+<h3 id="read_note"><code>read_note</code><a class="headerlink" href="#read_note" title="Permanent link">&para;</a></h3>
+<p>Read-only: Fetch one project note's full body by its per-project <code>slug</code> (the <code>slug</code> field from <code>get_notes</code>). The pull half of the list→read model.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td>string</td>
+<td>required</td>
+<td>The note's slug (kebab-cased, unique per project) as returned by get_notes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>read_note(project_id="abc-123", slug="deploy-note")
+</code></pre></div></p>
+<hr />
+<h3 id="delete_note"><code>delete_note</code><a class="headerlink" href="#delete_note" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] Hard-delete a project note by id. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>note_id</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
+<h3 id="create_project"><code>create_project</code><a class="headerlink" href="#create_project" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] Create a new Meridian project. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>execution_mode</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Executor posture for sessions on this project. 'autonomous' (default) claims and runs sprint items immediately without asking; 'interactive' asks for direction first. Editable later in dashboard Settings.</td>
+</tr>
+<tr>
+<td><code>parent_project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Optional parent project id — makes this a subproject that inherits the parent's north_star when it has none of its own. Subprojects are one level deep: the parent must exist and must not itself be a subproject.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>create_project(name="my-app")
+</code></pre></div></p>
+<hr />
+<h3 id="merge_project"><code>merge_project</code><a class="headerlink" href="#merge_project" title="Permanent link">&para;</a></h3>
+<p>[MAINTENANCE] d6bd60e0 — merge a phantom-duplicate project INTO another. Re-parents EVERY child row of the source project (sprint items, tasks, decisions, insights, notes, HITL requests, sessions, handoffs, pointers, …) to the target project via pure UPDATEs — NO row is ever deleted. By default the now-empty source project is soft-archived (status='archived', name prefixed with '[merged] '), never hard-deleted; pass archive_source=false to leave it untouched. Returns {source_project_id, target_project_id, moved: {table: count}, source_archived}. Returns {error} if source==target or either project does not exist. Persistent-state disclosure: on hosted Meridian, supplied text and project/session metadata -- including task log entries, pinned decisions, sprint items, notes, handoff/goal state, and HITL queue items -- are sent to and stored in Meridian's service, in an isolated per-tenant Postgres database (Neon); self-hosted deployments keep the same categories in the configured local SQLite/Postgres database. This data is visible in the dashboard and API, and may resurface in later project context or handoffs. Notes and pinned decisions can be deleted individually; task log entries and sprint items can be deleted via the dashboard/API (not exposed as an agent-facing tool); HITL queue items and handoff state have no per-record delete. Full removal of any of this data is available via project or account deletion, using the documented controls. Do not include secrets.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source_project_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>The id of the project to merge FROM (its rows are re-parented; it is archived unless archive_source=false).</td>
+</tr>
+<tr>
+<td><code>target_project_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>The id of the project to merge INTO (receives all of the source's rows).</td>
+</tr>
+<tr>
+<td><code>archive_source</code></td>
+<td>boolean</td>
+<td>optional</td>
+<td>Default true — soft-archive the emptied source project (status='archived', name prefixed '[merged] '). Set false to leave the source project row untouched. The source is NEVER hard-deleted either way.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>merge_project(source_project_id="dup-uuid", target_project_id="keep-uuid")
+</code></pre></div></p>
+<hr />
+<h2 id="legacy">Legacy<a class="headerlink" href="#legacy" title="Permanent link">&para;</a></h2>
+<h3 id="register_session"><code>register_session</code><a class="headerlink" href="#register_session" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Deprecated</p>
+<p>Use <code>start_session</code> instead — it registers the session <strong>and</strong> returns goal + context in one call.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>project_name</code></td>
+<td>string</td>
+<td>optional</td>
+<td>Project name — an alternative to project_id; resolved to the id internally. project_id wins if both are given.</td>
+</tr>
+<tr>
+<td><code>session_name</code></td>
+<td>string</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td><code>human_id</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td><code>client</code></td>
+<td>string</td>
+<td>optional</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>register_session(project_id="abc-123", session_name="feature-x", human_id="alice")
+</code></pre></div></p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
