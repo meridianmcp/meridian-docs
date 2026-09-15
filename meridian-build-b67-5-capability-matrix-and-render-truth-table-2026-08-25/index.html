@@ -1,0 +1,1607 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-build-b67-5-capability-matrix-and-render-truth-table-2026-08-25/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>B67-5 — DOCX Capability Matrix and Render Truth Table - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#b67-5-docx-capability-matrix-and-render-truth-table" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              B67-5 — DOCX Capability Matrix and Render Truth Table
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-live-environment-probe-run-just-now-not-assumed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Live environment probe (run just now, not assumed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-capability-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Capability matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-equation-writer-render-gating-asymmetry-confirmed-by-line-number-not-just-cited" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The equation-writer render-gating asymmetry (confirmed by line number, not just cited)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-render-truth-table-the-three-state-contract-and-why-a-passing-receipt-is-not-forever" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Render truth table — the three-state contract, and why a passing receipt is not forever
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Render truth table — the three-state contract, and why a passing receipt is not forever">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#receipt-schema-mde-7-branch-mde-rework-44fc1ffe-536-2-tip-b7e9b172-absent-from-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Receipt schema (MDE-7, branch mde-rework-44fc1ffe-536-2, tip b7e9b172 — absent from dev)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-never-silently-verified-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The never-silently-verified rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-summary-for-whoever-picks-up-the-next-equation-writerrender-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Summary for whoever picks up the next equation-writer/render item
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="b67-5-docx-capability-matrix-and-render-truth-table">B67-5 — DOCX Capability Matrix and Render Truth Table<a class="headerlink" href="#b67-5-docx-capability-matrix-and-render-truth-table" title="Permanent link">&para;</a></h1>
+<p>Sprint item <code>e0667e43-45a6-47b4-b929-73dc21792879</code> (planning/investigation only — no
+code changed, no software installed, no OneDrive file rendered). Grounds itself in
+B67-2's independently-verified gap matrix
+(<code>docs/meridian-build-b67-2-equation-writer-gap-matrix-2026-08-25.md</code>) and adds a live
+environment probe run in this session on 2026-08-25.</p>
+<h2 id="1-live-environment-probe-run-just-now-not-assumed">1. Live environment probe (run just now, not assumed)<a class="headerlink" href="#1-live-environment-probe-run-just-now-not-assumed" title="Permanent link">&para;</a></h2>
+<p>Probe script: throwaway <code>.docx</code> built in the session scratchpad (never a canonical or
+fixture file), calling the exact shipped functions in
+<code>extensions/meridian-docs/meridian_docs/render_gate.py</code> — <code>_soffice_unavailable_reason</code>,
+<code>_word_com_unavailable_reason</code>, <code>detect_backend</code>, <code>check_render_capability</code>,
+<code>check_word_com_render_receipt</code>. Full JSON output captured below; nothing in this
+section is inferred from code reading alone.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>soffice.exe</code> on disk</td>
+<td><strong>Found</strong>: <code>C:\Program Files\LibreOffice\program\soffice.exe</code></td>
+</tr>
+<tr>
+<td><code>shutil.which("soffice")</code> / <code>("libreoffice")</code> (what the shipped code actually calls)</td>
+<td><strong><code>None</code> / <code>None</code></strong> — not on <code>PATH</code></td>
+</tr>
+<tr>
+<td>Direct <code>soffice --headless --convert-to pdf</code> probe (bypassing the shipped PATH-only lookup)</td>
+<td><strong>Works</strong>: exit 0, produced a real PDF in ~6–24s</td>
+</tr>
+<tr>
+<td><code>render_gate._soffice_unavailable_reason()</code> (the shipped capability check)</td>
+<td><code>"LibreOffice ('soffice'/'libreoffice') not found on PATH"</code></td>
+</tr>
+<tr>
+<td><code>render_gate._word_com_unavailable_reason()</code></td>
+<td><code>None</code> (pywin32/<code>win32com.client</code> imports cleanly)</td>
+</tr>
+<tr>
+<td>Word install on disk</td>
+<td><strong>Found</strong>: <code>C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE</code></td>
+</tr>
+<tr>
+<td><code>detect_backend()</code> winner</td>
+<td><code>word-com</code> (soffice loses the PATH-lookup, word-com wins)</td>
+</tr>
+<tr>
+<td><code>render_gate.check_render_capability(scratch.docx)</code></td>
+<td><strong><code>status: "rendered"</code></strong>, <code>backend: "word-com"</code> — a real Word COM automation pass produced a PDF, ~8.7s</td>
+</tr>
+<tr>
+<td><code>render_gate.check_word_com_render_receipt(scratch.docx)</code></td>
+<td><strong><code>status: "rendered"</code></strong>, same backend, ~5.9s (isolated child-process COM path)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Honest bottom line for this machine, right now:</strong>
+- <strong>LibreOffice is physically installed and functionally usable</strong>, but the shipped
+  detection code (<code>shutil.which</code>, <code>PATH</code>-only) cannot see it — so every caller of
+  <code>check_render_capability</code>/<code>detect_backend</code> in this environment gets <code>soffice</code> reported
+  as <em>unavailable</em>, not because the binary is missing but because <code>PATH</code> was never
+  configured to include <code>C:\Program Files\LibreOffice\program</code>. This is a real,
+  fixable environment gap (add the directory to <code>PATH</code>, or a future enhancement could
+  probe well-known install locations), not a statement about LibreOffice itself.
+- <strong>Word-COM visual verification is NOT degraded here</strong> — it was just confirmed live and
+  working (<code>"rendered"</code>, real PDF produced via actual Word COM automation). This is the
+  opposite of "assume it's degraded because Word-COM is fragile in general" — this
+  session's own probe is current, positive evidence for <em>this</em> machine at <em>this</em>
+  moment. That positive result itself expires the instant the environment changes
+  (pywin32 uninstalled, Word uninstalled/deauthorized, a future headless/service-account
+  context with no interactive window station) — see §4 for why a receipt, even a
+  passing one, is never evidence beyond the moment it was taken.
+- Because <code>detect_backend()</code> always returns the <em>first</em> available backend in
+  <code>KNOWN_BACKENDS = (soffice, word-com)</code> order and soffice loses on <code>PATH</code> here, every
+  general <code>check_render_capability</code> call in this environment silently uses word-com even
+  when a caller only wanted a cheap/general capability signal — worth flagging as a
+  possible follow-up (either fix <code>PATH</code>, or teach the soffice probe to also check
+  well-known Program Files locations), not something this planning item changes.</p>
+<h2 id="2-capability-matrix">2. Capability matrix<a class="headerlink" href="#2-capability-matrix" title="Permanent link">&para;</a></h2>
+<p>Legend — <strong>Status</strong>: <code>required</code> (blocks the write/promotion if unmet and no accepted
+fallback), <code>preferred</code> (tried first, degrading is allowed and audited), <code>fallback</code>
+(only reached after a preferred check is unavailable). <strong>Class</strong>: <code>local</code> (needs
+nothing but this process/filesystem), <code>local-mutation</code> (local, but mutates a DOCX and
+so carries the write-time guarantees below), <code>tunnel</code> (needs the hosted Meridian
+service / a network connector), <code>manual</code> (a human decision or provisioning step, not
+something an executor can satisfy by calling a tool).</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Capability</th>
+<th>Status</th>
+<th>Class</th>
+<th>Backing code</th>
+<th>Current honest availability (this env, this session)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ZIP package integrity (<code>[Content_Types].xml</code>, <code>_rels</code>, required parts, dangling relationships)</td>
+<td>required</td>
+<td>local</td>
+<td><code>extensions/meridian-docs/meridian_docs/ooxml_integrity.py::validate_docx_package</code></td>
+<td><strong>Available.</strong> Pure stdlib <code>zipfile</code>/<code>xml.etree</code>; no external process.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>XML well-formedness of every part</td>
+<td>required</td>
+<td>local</td>
+<td>same module, <code>_xml_parts</code> walk inside <code>validate_docx_package</code></td>
+<td><strong>Available.</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Relationship / content-type bijection (<code>dangling_relationship</code>, <code>dangling_relationship_reference</code>, <code>dangling_content_type</code>)</td>
+<td>required</td>
+<td>local</td>
+<td>same module</td>
+<td><strong>Available.</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Comment-attribute qualification (<code>w:id</code> vs bare <code>id</code>)</td>
+<td>required</td>
+<td>local</td>
+<td><code>ooxml_integrity.validate_docx_package</code></td>
+<td><strong>Available.</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Namespace-prefix-preserving serialization on write-back</td>
+<td>required</td>
+<td>local-mutation</td>
+<td><code>docs_intel.py::serialize_document_xml_preserving_namespaces</code> / <code>_assert_namespace_prefixes_preserved</code></td>
+<td><strong>Available</strong> (needs <code>lxml</code>, already a hard dependency of the extension).</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Structural manifest / write-transaction hash (<code>_docx_manifest_hash</code>, <code>promoted_sha256</code>)</td>
+<td>required</td>
+<td>local-mutation</td>
+<td><code>docs_intel.py::_atomic_write_docx_bytes</code>, <code>_docx_structural_manifest</code></td>
+<td><strong>Available.</strong> Pure hashlib/stdlib, no subprocess.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Atomic promotion (stage → verify → <code>os.replace</code>) with CAS-guarded restore-on-failure</td>
+<td>required</td>
+<td>local-mutation</td>
+<td><code>docs_intel.py::_atomic_write_docx_bytes</code>, <code>_safe_restore_after_verification_failure</code></td>
+<td><strong>Available</strong>, but process-local only (see B67-2 finding #1 — <code>_docx_promotion_lock</code> is an in-process <code>threading.RLock</code>, not a cross-process lease).</td>
+</tr>
+<tr>
+<td>8</td>
+<td>OMML equation structural validation on write</td>
+<td>required</td>
+<td>local-mutation</td>
+<td><code>docs_intel.py::_validate_omml_structure</code>, <code>_equation_semantic_manifest</code></td>
+<td><strong>Available.</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Equation-style audit (findings, never free text)</td>
+<td>preferred</td>
+<td>local</td>
+<td><code>docs_intel.py::audit_equation_style</code></td>
+<td><strong>Available.</strong></td>
+</tr>
+<tr>
+<td>10</td>
+<td>LibreOffice headless render (<code>soffice --convert-to pdf</code>)</td>
+<td>fallback (general capability signal only, never the Word-COM-only receipt)</td>
+<td>local, <strong>binary-dependent</strong></td>
+<td><code>render_gate.py::_soffice_render</code>, <code>_SOFFICE_BACKEND</code></td>
+<td><strong>Installed but UNDETECTED</strong> by the shipped code in this environment — <code>PATH</code> gap (see §1). Direct-path probe confirms the binary itself works.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Word COM automation render (<code>Word.Application</code> via pywin32)</td>
+<td>preferred (and the ONLY backend <code>check_word_com_render_receipt</code> / <code>word_com_render_check_required</code> accept)</td>
+<td>local, <strong>Windows + Office-license-dependent</strong></td>
+<td><code>render_gate.py::_word_com_render</code>/<code>_word_com_render_isolated</code>, <code>_WORD_COM_BACKEND</code></td>
+<td><strong>Available and confirmed working</strong> right now (see §1) — <code>status: "rendered"</code>.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>check_render_capability</code> three-state gate (general, either backend)</td>
+<td>required (at write-time, for the callers listed in §3)</td>
+<td>local, backend-dependent</td>
+<td><code>render_gate.py::check_render_capability</code></td>
+<td><strong>Functions correctly</strong>; resolves to word-com in this environment per §1.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Durable render-receipt ledger (<code>RenderReceipt</code>, <code>render_with_receipt</code>, <code>list_render_receipts</code>, <code>check_release_render_gate</code>)</td>
+<td>n/a — not yet load-bearing anywhere</td>
+<td>local</td>
+<td><code>render_gate.py</code> <strong>on branch <code>mde-rework-44fc1ffe-536-2</code> (tip <code>b7e9b172</code>) only</strong></td>
+<td><strong>Not present on <code>dev</code>.</strong> Real, tested code exists on the branch but nothing in production (<code>docx_integrity_gate.py</code>, <code>docs_intel.py</code> on dev) calls it — see §4.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Hosted <code>DocStructureStore</code> / connector-backed document retrieval</td>
+<td>required (when a document is only reachable via the hosted tier)</td>
+<td>tunnel</td>
+<td>(hosted Meridian service, outside this repo's local code)</td>
+<td><strong>Not probed</strong> — out of scope for a local-repo planning session; treat as tunnel-dependent by construction, never assume local availability.</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>meridian-outputs</code> provenance registry (<code>record_provenance</code>/<code>get_provenance_status</code>) cross-check for a DOCX artifact</td>
+<td>preferred</td>
+<td>tunnel (MCP server call)</td>
+<td><code>docx_integrity_gate.py::RECIPE_CHECK_REGISTRY["outputs_provenance_check_required"]</code></td>
+<td><strong>Not independently probed this session</strong> — registry entry documents the reference but nothing in <code>docx_integrity_gate.py</code> dispatches to it yet (see B67-2 finding: <code>RECIPE_CHECK_REGISTRY</code> names checks it never actually calls).</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>docx_integrity_gate.build_docx_integrity_gate</code> composite verdict (render + equation-style + provenance-manifest) for <code>generate_handoff</code></td>
+<td>required-if-item-declares-<code>strict</code> policy, else advisory</td>
+<td>local, orchestrates #9/#10-12</td>
+<td><code>meridian/docx_integrity_gate.py</code></td>
+<td><strong>Available</strong>, best-effort-imports the extension (<code>_import_optional_meridian_docs_submodule</code>); degrades to <code>available=False</code> (never a block) if the extension isn't installed in a given deployment.</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Render-backend worker provisioning (installing/licensing LibreOffice or Office on a fresh host, fixing the <code>PATH</code> gap found in §1)</td>
+<td>manual</td>
+<td>manual</td>
+<td>n/a</td>
+<td><strong>Human decision</strong> — not something this session may act on (explicit instruction: do not install software).</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Renderer-selection policy (which backend is authoritative for a given release gate; whether <code>PATH</code> gets fixed vs. code learns well-known install paths)</td>
+<td>manual</td>
+<td>manual</td>
+<td>n/a</td>
+<td><strong>Human/architectural decision</strong>, not yet made anywhere in the codebase.</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Paper/2030-scope decisions referenced in the B67 proposal thread</td>
+<td>manual</td>
+<td>manual</td>
+<td>n/a</td>
+<td><strong>Human decision</strong>, outside this item's scope.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-the-equation-writer-render-gating-asymmetry-confirmed-by-line-number-not-just-cited">3. The equation-writer render-gating asymmetry (confirmed by line number, not just cited)<a class="headerlink" href="#3-the-equation-writer-render-gating-asymmetry-confirmed-by-line-number-not-just-cited" title="Permanent link">&para;</a></h2>
+<p>B67-2's finding — "only <code>insert_equation_local</code> gets the full post-write structural
+re-verify + render-capability gate + CAS-safe restore-on-failure; edit/remove/append
+siblings skip all three" — was independently re-confirmed this session by grepping every
+call site of <code>_enforce_render_verification</code> in <code>extensions/meridian-docs/meridian_docs/docs_intel.py</code>
+(dev) and mapping each line number back to its enclosing function:</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Enclosing function</th>
+<th>Family</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4651</td>
+<td><code>insert_figure_block</code></td>
+<td>figure writer</td>
+</tr>
+<tr>
+<td>5270</td>
+<td><code>remove_docx_package_part</code></td>
+<td>package-part writer</td>
+</tr>
+<tr>
+<td>5754</td>
+<td><code>insert_docx_media_part</code></td>
+<td>media writer</td>
+</tr>
+<tr>
+<td>6201</td>
+<td><code>insert_caption</code></td>
+<td>caption writer</td>
+</tr>
+<tr>
+<td><strong>8778</strong></td>
+<td><strong><code>insert_equation_local</code></strong></td>
+<td><strong>equation writer</strong></td>
+</tr>
+<tr>
+<td>11645</td>
+<td><code>insert_highlighted_note</code></td>
+<td>note/comment writer</td>
+</tr>
+<tr>
+<td>12389</td>
+<td><code>merge_draft_into_canonical</code></td>
+<td>draft-merge writer</td>
+</tr>
+<tr>
+<td>14490</td>
+<td><code>_write_table_mutation</code> (shared tail for <code>insert_column</code>/<code>split_cell</code>/<code>transpose_table</code>)</td>
+<td>table writer</td>
+</tr>
+<tr>
+<td>15477</td>
+<td><code>_set_page_header_or_footer</code> (shared tail for <code>set_page_header</code>/<code>set_page_footer</code>)</td>
+<td>header/footer writer</td>
+</tr>
+<tr>
+<td>16053</td>
+<td><code>highlight_document_matches</code></td>
+<td>highlight writer</td>
+</tr>
+<tr>
+<td>16245</td>
+<td><code>insert_word_comment</code></td>
+<td>comment writer</td>
+</tr>
+</tbody>
+</table>
+<p><code>edit_equation_local</code> (8822), <code>append_text_run_after_math</code> (8952), and
+<code>remove_equation_local</code> (9081) — the other three members of the five-op equation-writer
+family — have <strong>no</strong> call to <code>_enforce_render_verification</code> anywhere in their bodies.
+<code>copy_section</code> (12806–13354) likewise has none (the nearest calls, 12389 and 14490,
+belong to <code>merge_draft_into_canonical</code> and <code>_write_table_mutation</code> respectively, both
+outside <code>copy_section</code>'s line range). This is the asymmetric gap exactly as B67-2
+described it, now pinned to exact line numbers on the current <code>dev</code> HEAD.</p>
+<p><code>artifact_provenance</code> forwarding shows the same pattern: the parameter is accepted by
+<code>insert_caption</code> (param at 5993) and <code>relocate_figure</code> (param at 13363), but <strong>none</strong> of
+the five equation-writer ops or <code>copy_section</code> accept or forward it — so
+<code>_check_artifact_provenance_binding</code> (2885), while real and callable, is structurally
+unreachable from that family, exactly as B67-2 reported.</p>
+<h2 id="4-render-truth-table-the-three-state-contract-and-why-a-passing-receipt-is-not-forever">4. Render truth table — the three-state contract, and why a passing receipt is not forever<a class="headerlink" href="#4-render-truth-table-the-three-state-contract-and-why-a-passing-receipt-is-not-forever" title="Permanent link">&para;</a></h2>
+<p><code>render_gate.check_render_capability</code> (dev, unconditionally used by every
+<code>_enforce_render_verification</code> call site above) returns <strong>exactly one</strong> of three states
+— never a fourth, never a blend:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Who can produce it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rendered</code></td>
+<td>A real backend actually opened the file and produced visual output. <strong>The only status that means "verified."</strong></td>
+<td>Either backend, on success.</td>
+</tr>
+<tr>
+<td><code>unavailable-with-reason</code></td>
+<td>No backend exists in this environment. Says nothing about the document — an environment gap, not a document defect.</td>
+<td><code>detect_backend</code> finds nothing (e.g., this environment's <code>PATH</code>-blind soffice check plus a hypothetical machine with no Office/pywin32 either).</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>A backend WAS available but this specific render attempt errored (timeout, transport, corruption, or unknown — <code>c44d245d</code>'s <code>error_class</code> classification). Never silently reported as <code>rendered</code>, never folded into <code>unavailable-with-reason</code>.</td>
+<td>Either backend, on a real failure.</td>
+</tr>
+</tbody>
+</table>
+<p><code>docs_intel.py::_enforce_render_verification</code> (2751) is the write-time enforcement of
+this contract for the callers listed in §3:</p>
+<ul>
+<li><code>rendered</code> → write stands, <code>render_verified: True</code>.</li>
+<li><code>failed</code> → <strong>fail closed</strong>: <code>_safe_restore_after_verification_failure</code> restores from
+  the pre-write backup (or, if a concurrent writer's own promotion has since landed,
+  leaves the file untouched rather than destroy that work) and returns an error —
+  <code>render_verified</code> is never set <code>True</code>.</li>
+<li><code>unavailable-with-reason</code> → <strong>also fails closed by default</strong>, exactly like <code>failed</code>,
+  for canonical/production promotion. The <em>only</em> escape is an explicit, audited pair:
+  <code>allow_degraded_render=True</code> <strong>and</strong> a non-empty <code>degraded_render_reason</code> — and even
+  then <code>render_verified</code> stays <code>False</code>; the payload is stamped <code>render_degraded: True</code>
+  plus the reason, so no downstream caller can mistake a degraded acceptance for a real
+  verification.</li>
+</ul>
+<p><code>meridian/docx_integrity_gate.py</code> composes the same three-state result (never
+re-derives it) into a handoff-level verdict: <code>unresolved</code> is set <strong>only</strong> when
+<code>render_status == "failed"</code> (a confirmed problem) — an <code>unavailable-with-reason</code> or a
+missing checker never manufactures a finding, matching the module's stated philosophy
+("can't confirm must never manufacture a finding").</p>
+<h3 id="receipt-schema-mde-7-branch-mde-rework-44fc1ffe-536-2-tip-b7e9b172-absent-from-dev">Receipt schema (MDE-7, branch <code>mde-rework-44fc1ffe-536-2</code>, tip <code>b7e9b172</code> — absent from <code>dev</code>)<a class="headerlink" href="#receipt-schema-mde-7-branch-mde-rework-44fc1ffe-536-2-tip-b7e9b172-absent-from-dev" title="Permanent link">&para;</a></h3>
+<p>A durable, append-only, atomic-JSON-write ledger (<code>_persist_receipt</code> → <code>os.replace</code>),
+one <code>RenderReceipt</code> row per attempt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>receipt_id            str (uuid4)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docx_path             str
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>source_docx_sha256    str | None   — content hash of the file AT RENDER TIME
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>status                "rendered" | "unavailable-with-reason" | "failed"
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>backend                str | None
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>backend_version        str | None  — best-effort (soffice only)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>backend_order          list[str]   — full priority order that was consulted
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>process_identity        dict | None — {"pid", "owned"} for word-com; None for soffice
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>pdf_sha256 / pdf_size_bytes / page_count   — None unless status == "rendered"
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>duration_seconds        float
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>attempts                int
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>timed_out                bool
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>error_class              str | None  — timeout / transport / corruption / unknown
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>field_refresh_status     str
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>visual_qa                dict        — {"status": "not_reviewed"|"not_applicable"|"verified", ...}
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>reason                    str | None
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>created_at / created_at_epoch
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>kind                      "render" | "degraded_override"
+</code></pre></div>
+<p><code>check_release_render_gate(docx_path, receipts_path, max_age_seconds=86400, ...)</code> is the
+consumer contract this ledger was built for: it only sets <code>release_ready=True</code> from a
+receipt that is <strong>simultaneously</strong> (a) <code>status == "rendered"</code>, (b) <code>source_docx_sha256</code>
+equal to the file's <strong>current</strong> on-disk content, and (c) newer than <code>max_age_seconds</code>.
+Any one of those three failing means "no fresh matching receipt" — release refuses,
+unless a human explicitly passes <code>allow_degraded_override=True</code> with a non-empty
+<code>override_reason</code>, which itself writes a second, durably audited <code>kind:
+"degraded_override"</code> receipt into the same ledger (never a silent bypass). It also
+exposes a deliberately <strong>separate, stricter</strong> <code>visually_verified</code> flag — true only when
+the matched receipt's own <code>visual_qa.status == "verified"</code> — so "a backend converted
+this to a PDF" is never confused with "a human/automated visual QA pass actually
+happened."</p>
+<p><strong>This ledger is real, tested, and exactly matches the never-silently-verified rule
+below — but as B67-2 already found, nothing on <code>dev</code> calls <code>render_with_receipt</code> or
+<code>check_release_render_gate</code> today.</strong> <code>docx_integrity_gate.py</code>'s <code>_enforce_render_verification</code>
+equivalent on <code>dev</code> calls the older, stateless <code>check_render_capability</code> directly, with
+no memory of prior attempts and no persisted evidence trail. Wiring MDE-7's ledger into
+the production write/promotion paths is real, scoped follow-up work — explicitly <strong>not</strong>
+implemented by this planning item.</p>
+<h2 id="5-the-never-silently-verified-rule">5. The never-silently-verified rule<a class="headerlink" href="#5-the-never-silently-verified-rule" title="Permanent link">&para;</a></h2>
+<p>Stated once, for both today's stateless gate and MDE-7's not-yet-wired durable ledger,
+because they are the same contract at two different points in the pipeline:</p>
+<blockquote>
+<p><strong><code>unavailable</code> and <code>degraded</code> are never silently promoted to <code>verified</code>.</strong>
+A render/visual-QA verdict is <code>verified</code> (or <code>render_verified: True</code>, or
+<code>visually_verified: True</code>) <strong>only</strong> when a real backend, in THIS environment, on the
+CURRENT content of THIS document, just produced real visual output. Every other
+outcome — no backend present, a backend that errored, a receipt that is stale, a
+receipt whose content hash no longer matches the file, or a receipt that only proves
+"a backend converted this" without a human/automated visual pass — must surface as
+<code>unavailable-with-reason</code>, <code>failed</code>, <code>render_degraded</code>, or <code>visually_verified: False</code>,
+<strong>never</strong> as an unqualified pass. The only way to <em>proceed</em> despite a non-<code>rendered</code>
+result is an explicit, non-empty, durably audited override
+(<code>allow_degraded_render</code> + <code>degraded_render_reason</code> today; <code>allow_degraded_override</code> +
+<code>override_reason</code> on MDE-7's ledger) — and even that override is recorded as
+<code>degraded</code>, never rewritten to look like a real verification after the fact.</p>
+</blockquote>
+<p>Grounding, concretely:</p>
+<ul>
+<li><code>docx_integrity_gate.py</code> already implements the read side of this rule today:
+  <code>unresolved</code> is set only on a confirmed <code>render_status == "failed"</code>; a missing
+  checker or an <code>unavailable-with-reason</code> result is a caveat, never a fabricated
+  finding, and never a fabricated pass either — it is surfaced as <code>render_status</code> on
+  the artifact entry, not silently dropped.</li>
+<li><code>docs_intel.py::_enforce_render_verification</code> implements the write side: <code>unavailable</code>
+  fails closed by default and only proceeds via an explicit, audited,
+  reason-carrying override — never a default/implicit degrade.</li>
+<li>MDE-7's <code>RenderReceipt</code>/<code>check_release_render_gate</code> (branch-only, unconsumed today)
+  extends the SAME rule across time: a receipt that was once <code>rendered</code> stops counting
+  as fresh evidence the moment the document's content hash changes, or the moment it
+  ages past <code>max_age_seconds</code> — an old exact-hash receipt is <strong>historical evidence
+  only</strong>, never re-read as "currently verified" without a fresh check. This session's
+  own §1 probe is a direct illustration: the Word-COM <code>rendered</code> result captured today
+  is valid evidence for <em>today's</em> environment and <em>that exact scratch file's</em> content —
+  it says nothing about tomorrow's environment, and nothing at all about any other
+  document.</li>
+<li>The one place this rule is not yet enforced end-to-end is exactly the gap B67-2 named
+  and §3 re-confirmed by line number: <code>edit_equation_local</code>, <code>append_text_run_after_math</code>,
+  <code>remove_equation_local</code>, and <code>copy_section</code> never call <code>_enforce_render_verification</code>
+  at all, so a write through any of those four paths carries <strong>no</strong> render-status field
+  of any kind on its result — not <code>unavailable-with-reason</code>, not <code>failed</code>, not a degraded
+  flag. That is a stronger gap than "degraded is mislabeled verified" (which does not
+  happen for these four ops): it is "no render verdict is produced or recorded here at
+  all," which is itself a violation of the spirit of the rule (a caller downstream has no
+  way to know a check never ran) even though it does not violate the letter of the
+  three-state contract for the checks that DO run elsewhere. Closing it means adding the
+  same <code>_enforce_render_verification</code> call these four ops already have direct siblings
+  for (<code>insert_equation_local</code>, <code>insert_caption</code>, etc.) — implementation work, out of
+  scope for this planning item.</li>
+</ul>
+<h2 id="6-summary-for-whoever-picks-up-the-next-equation-writerrender-item">6. Summary for whoever picks up the next equation-writer/render item<a class="headerlink" href="#6-summary-for-whoever-picks-up-the-next-equation-writerrender-item" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix candidates, in the order this matrix surfaces them: (1) extend
+  <code>_enforce_render_verification</code> to the three equation-writer siblings and
+  <code>copy_section</code> (closes the §3/§5 gap); (2) thread <code>artifact_provenance</code> through the
+  same four ops so <code>_check_artifact_provenance_binding</code> becomes reachable; (3) wire
+  MDE-7's <code>render_with_receipt</code>/<code>check_release_render_gate</code> into <code>dev</code>'s write/promotion
+  paths so a durable, fresh, hash-matched receipt — not a one-shot stateless check —
+  becomes the release evidence; (4) either add <code>C:\Program Files\LibreOffice\program</code>
+  to <code>PATH</code> on hosts like this one, or extend <code>_soffice_unavailable_reason</code> to also
+  probe well-known install locations, so a genuinely-installed LibreOffice stops being
+  invisible to <code>detect_backend</code>.</li>
+<li>None of the above is implemented here — this item is the honest map, not the fix.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

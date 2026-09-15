@@ -1,0 +1,1905 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-project-family-template-revisions-design/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Project Family / Template Revisions — Design (Sprint Item 5060eea1) - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#project-family-template-revisions-design-sprint-item-5060eea1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Project Family / Template Revisions — Design (Sprint Item 5060eea1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and vocabulary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-stable-revision-id-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (a) Stable revision ID scheme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-content-hash-canonical-serialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (b) Content hash / canonical serialization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-effective-configuration-resolution-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (c) Effective configuration resolution algorithm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-diff-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (d) Diff format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e-compatibility-versioning-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (e) Compatibility / versioning rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f-supersession-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (f) Supersession semantics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (g) Rollback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(g) Rollback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#child-rollback-childtemplaterollbackrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Child rollback (ChildTemplateRollbackRequest)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template-rollback-templaterevisionrollbackrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template rollback (TemplateRevisionRollbackRequest)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h-conflict-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (h) Conflict handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i-determinism-and-auditability-for-largestructured-payloads-without-secrets-or-machine-local-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (i) Determinism and auditability for large/structured payloads, without secrets or machine-local paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#j-schema-sketch-future-work-not-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (j) Schema sketch — future work, NOT implemented
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-api-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (k) API shapes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#composition-with-the-legacy-parent_project_id-north_star-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composition with the legacy parent_project_id / north_star mechanism
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="project-family-template-revisions-design-sprint-item-5060eea1">Project Family / Template Revisions — Design (Sprint Item 5060eea1)<a class="headerlink" href="#project-family-template-revisions-design-sprint-item-5060eea1" title="Permanent link">&para;</a></h1>
+<p><strong>Status:</strong> Design only. Nothing in this document is implemented. No migration,
+route, handler, or DB function exists yet for any concept named here. This
+doc, plus the additive Pydantic data contracts in <code>meridian/models.py</code> and the
+design-validation tests in
+<code>tests/test_project_family_template_design_5060eea1.py</code>, are the entire
+deliverable for this sprint item.</p>
+<p><strong>Parent item:</strong> ddcf6984 ("project-family-templates"). <strong>This item (5060eea1)</strong>
+scopes down to one slice of that parent: immutable template revision and
+child snapshot semantics — stable revision IDs, content hashing, effective
+configuration resolution, diffing, compatibility/versioning, supersession,
+rollback, and conflict handling.</p>
+<p><strong>Grounding:</strong> written against dev tip <code>8bdd6c18</code> in worktree
+<code>.claude/worktrees/a0c162f5</code>. A prior read-only investigation confirmed there
+is nothing to reconcile against: no code, tests, docs, or branches anywhere in
+this repo currently reference <code>ProjectFamily</code>, <code>ProjectTemplate</code>,
+<code>TemplateRevision</code>, <code>ChildSnapshot</code>, <code>TemplateOverride</code>, or
+<code>template_revision</code>/<code>child_snapshot</code> in this sense. This design starts on a
+clean slate and deliberately follows two existing house patterns rather than
+inventing new ones:</p>
+<ul>
+<li><strong><code>meridian/db/profile_layers.py</code></strong> (PROFILE-1/2 contract) for revision
+  numbering, content-hash canonicalization, <code>reset_fields</code>-style retraction,
+  and effective-configuration resolution across layers.</li>
+<li><strong><code>meridian/db/board_snapshot.py</code></strong>'s <code>board_snapshot_revisions</code> idiom for
+  the append-only audit ledger (one row per revision <em>actually written</em>;
+  idempotent no-op resaves never grow the ledger).</li>
+</ul>
+<hr />
+<h2 id="concepts-and-vocabulary">Concepts and vocabulary<a class="headerlink" href="#concepts-and-vocabulary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Project template</strong> (<code>ProjectTemplate</code>)</td>
+<td>A named, long-lived lineage of configuration. Has an identity that never changes and a mutable "latest revision" pointer.</td>
+</tr>
+<tr>
+<td><strong>Template revision</strong> (<code>TemplateRevisionSnapshot</code>)</td>
+<td>One <strong>immutable</strong> snapshot of a template's full configuration payload, numbered and content-hashed. Revisions are never edited or deleted; a template evolves by appending new revisions.</td>
+</tr>
+<tr>
+<td><strong>Child project</strong></td>
+<td>Any <code>Project</code> (see <code>meridian/models.py::Project</code>) that has adopted a template revision. A child is a completely ordinary project row — this design adds no new column to <code>projects</code>.</td>
+</tr>
+<tr>
+<td><strong>Child override</strong> (<code>ChildTemplateOverride</code>)</td>
+<td>A child-local layer of field values that shadow the adopted template revision's payload for that one child, plus an explicit <code>reset_fields</code> retraction list. Mirrors <code>profile_layers</code>'s per-scope override layer exactly.</td>
+</tr>
+<tr>
+<td><strong>Child snapshot</strong> (<code>ChildTemplateSnapshot</code>)</td>
+<td>The durable, per-child record of <em>which</em> revision a child has adopted, when, and the content hash of the effective configuration that was in force at adoption time. This is the audit/rollback anchor — see "Rollback" below.</td>
+</tr>
+<tr>
+<td><strong>Project family</strong> (<code>ProjectFamilyView</code>)</td>
+<td>Not a new stored entity. A family is simply "one template plus every project that has ever adopted one of its revisions" — a read-time join, described fully under "Composition with the legacy <code>parent_project_id</code> mechanism" below.</td>
+</tr>
+<tr>
+<td><strong>Effective configuration</strong></td>
+<td>The fully-resolved configuration for one child: template revision payload with the child's override layered on top, per the resolution algorithm in section (c).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="a-stable-revision-id-scheme">(a) Stable revision ID scheme<a class="headerlink" href="#a-stable-revision-id-scheme" title="Permanent link">&para;</a></h2>
+<p>Two identifiers exist per revision, matching the distinction <code>profile_layers</code>
+already draws between a row's opaque primary key and its human-meaningful
+revision number:</p>
+<ul>
+<li><strong><code>id</code></strong> — an opaque <code>uuid4</code> string (<code>meridian.db._new_id()</code>), the row's
+  literal primary key. Never displayed as "the" identity of a revision;
+  exists only because every table in this codebase has one.</li>
+<li><strong><code>revision_id</code></strong> — the <strong>stable, addressable identity</strong> referenced
+  everywhere else in this design (adopt requests, rollback targets, diffs,
+  audit logs). Format:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{template_id}:r{revision_number}
+</code></pre></div>
+<p>e.g. <code>3fa1...c9:r1</code>, <code>3fa1...c9:r2</code>, <code>3fa1...c9:r7</code>. <code>revision_number</code> is a
+  <strong>monotonically increasing integer scoped to one <code>template_id</code></strong>, starting
+  at 1, assigned exactly once, and never reused — the same counter discipline
+  <code>profile_layers.revision</code> already uses per <code>(scope_type, scope_id)</code>.</p>
+<p><strong>Why a composite string rather than a bare uuid:</strong> a bare opaque id would
+  be just as unique, but <code>revision_id</code> needs to be <em>stable and
+  human-legible</em> across the surfaces that reference it — a <code>/goal</code> block, a
+  dashboard URL, a diff report, a HITL prompt ("child X is 3 revisions
+  behind template Y, currently pinned to <code>{template_id}:r4</code>, latest is
+  <code>{template_id}:r7</code>"). The composite form makes "how far behind" visually
+  obvious without a lookup, and makes a copy-pasted id trivially traceable
+  back to its template even out of context.</p>
+<p><strong>Immutability guarantee:</strong> once minted, a <code>revision_id</code> is permanently
+  bound to one exact <code>(fields, schema_version, content_hash)</code> tuple. No
+  operation in this design — including template rollback (section g) —
+  ever rewrites an existing revision's payload or reassigns its
+  <code>revision_id</code>. "Rolling back a template" always <strong>mints a new
+  <code>revision_id</code></strong> whose payload happens to match an old one; it never
+  resurrects or mutates the old <code>revision_id</code> in place.</p>
+<p>A template's own <code>id</code> is a plain <code>uuid4</code>, matching every other top-level
+entity (<code>Project.id</code>, <code>Session.id</code>, etc.).</p>
+<hr />
+<h2 id="b-content-hash-canonical-serialization">(b) Content hash / canonical serialization<a class="headerlink" href="#b-content-hash-canonical-serialization" title="Permanent link">&para;</a></h2>
+<p>Reuses <code>meridian.db.profile_layers._content_hash</code> verbatim — not a new
+algorithm:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">canonical</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="p">{</span><span class="s2">"fields"</span><span class="p">:</span> <span class="n">fields</span><span class="p">,</span> <span class="s2">"reset_fields"</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">reset_fields</span><span class="p">)},</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">":"</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">content_hash</span> <span class="o">=</span> <span class="s2">"sha256:"</span> <span class="o">+</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">canonical</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</code></pre></div>
+<p>Applied at two points, with two different input shapes:</p>
+<ol>
+<li><strong>Per template revision:</strong> <code>reset_fields</code> is always <code>[]</code> for a template
+   revision (a template has nothing to "reset" — it <em>is</em> the base layer), so
+   in practice this reduces to a canonical hash of <code>{"fields": fields,
+   "reset_fields": []}</code>. Kept in the same two-key shape as the override hash
+   below (rather than hashing <code>fields</code> alone) so both hash families are
+   produced by one shared helper with no branching.</li>
+<li><strong>Per child override:</strong> <code>fields</code> is the override's declared field values
+   and <code>reset_fields</code> is its retraction list — identical shape to a
+   <code>profile_layers</code> row.</li>
+</ol>
+<p>A third, derived hash — <strong><code>effective_content_hash</code></strong> — covers the <em>merged
+result</em> (template payload + override applied, per section c), computed the
+same way over the merged <code>fields</code> dict with <code>reset_fields: []</code> (resets have
+already been applied by the time a dict reaches this hash; nothing is left
+to record at this layer). This is the value stored on <code>ChildTemplateSnapshot</code>
+at adopt time — see section (g), Rollback.</p>
+<p><strong>Determinism properties this buys, matching <code>capability_manifest.manifest_hash</code>
+and <code>profile_layers._content_hash</code>'s existing guarantees:</strong></p>
+<ul>
+<li>Identical field sets hash identically regardless of caller's dict key
+  order (<code>sort_keys=True</code>).</li>
+<li><code>ensure_ascii=True</code> + <code>default=str</code> means the hash never raises on
+  non-ASCII text or non-JSON-native values (dates, etc. get stringified
+  deterministically) and never varies by platform locale.</li>
+<li>A no-op resave (new payload hashes identically to the current one) is
+  detected by simple string comparison before any revision-number bump or
+  ledger row — see <code>set_profile_layer</code>'s existing idempotent-no-op path,
+  which this design's <code>create_template_revision</code> (future work, section j)
+  would replicate exactly.</li>
+</ul>
+<p>See section (i) for the large/structured-payload and no-secrets angle on
+this same hash.</p>
+<hr />
+<h2 id="c-effective-configuration-resolution-algorithm">(c) Effective configuration resolution algorithm<a class="headerlink" href="#c-effective-configuration-resolution-algorithm" title="Permanent link">&para;</a></h2>
+<p>Two layers only, precedence low → high:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>effective_fields = deepcopy(template_revision.fields)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>for key in child_override.reset_fields:
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    effective_fields.pop(key, None)          # explicit retraction, applied first
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>effective_fields.update(child_override.fields)  # override always wins for a declared key
+</code></pre></div>
+<p>Rules, stated explicitly because they are easy to get backwards:</p>
+<ol>
+<li><strong>Any key the override declares wins</strong>, full stop, regardless of what the
+   template revision says about that key (including if the template does not
+   have that key at all — an override may introduce a child-only field the
+   template never mentioned).</li>
+<li><strong><code>reset_fields</code> only matters for keys the override does <em>not</em> also
+   declare.</strong> If a key appears in both <code>child_override.reset_fields</code> and
+   <code>child_override.fields</code>, the declared value in <code>fields</code> wins (<code>fields</code>
+   is applied <em>after</em> resets in the algorithm above) — this mirrors
+   <code>profile_contract</code>'s existing "declaring a field always beats resetting
+   it" precedence for the identical ambiguity in the PROFILE-1 layer stack,
+   so a caller migrating between the two concepts sees the same rule.</li>
+<li><strong>Resolution is always exactly two layers</strong> — template base, child
+   override — never more. This is a deliberate simplification relative to
+   <code>profile_layers</code>'s 5-layer hosted_default→workspace→user→project→session
+   chain: a template/child relationship is a <em>provisioning</em> relationship,
+   not a scope-inheritance chain, so there is no "workspace template" or
+   "user template" layer to thread through here. If a future item wants
+   template inheritance (a template itself based on another template), that
+   is new scope for a later item, not implied by this one.</li>
+<li><strong>A child with no override row at all</strong> (never called <code>override</code>) has
+   <code>effective_fields == template_revision.fields</code> exactly — the empty
+   override is the identity element, matching <code>_empty_layer_dict</code>'s "a
+   scope with no persisted row gets an empty profile back, never an error"
+   contract.</li>
+<li><strong>A child with no adopted revision at all</strong> (never called <code>adopt</code>) has no
+   effective configuration to resolve — this is a precondition failure for
+   any resolution/preview call, not a "resolve against nothing" case; see
+   <code>ChildTemplateSnapshot.adopted_revision_id: str | None</code> in section (k).</li>
+</ol>
+<p>This composes with, and never touches, the existing 5-layer
+<code>profile_layers</code>/<code>ProjectSettings</code> resolution in <code>get_effective_profile</code> —
+see "Composition with the legacy mechanism" below for why these are
+deliberately kept as two independent resolvers rather than merged into one
+wider chain.</p>
+<hr />
+<h2 id="d-diff-format">(d) Diff format<a class="headerlink" href="#d-diff-format" title="Permanent link">&para;</a></h2>
+<p>One shared diff shape (<code>ConfigDiffEntry</code>, see section k) serves both
+documented use cases:</p>
+<ul>
+<li><strong>Revision-to-revision:</strong> <code>diff(template_revision_A.fields,
+  template_revision_B.fields)</code> — "what changed in the template between two
+  revisions."</li>
+<li><strong>Child-effective-vs-template-base:</strong> <code>diff(template_revision.fields,
+  child_effective_fields)</code> — "how does this child's actual effective
+  configuration differ from the template it's nominally based on." This is
+  the shape <code>preview</code> (section k) returns.</li>
+</ul>
+<p>Both cases are the same structural operation: a flat diff over two
+already-merged <code>dict[str, Any]</code> field sets, one entry per top-level key that
+differs (nested dicts are compared as whole values, not recursively
+diffed — see "Non-goals" below for why).</p>
+<p>Each <code>ConfigDiffEntry</code> carries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>path: str            # top-level field name, e.g. "build.timeout_seconds"
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>op: "added" | "removed" | "changed"
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>base_value: Any | None    # value on the "from" side (None + op=="added" =&gt; key didn't exist)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>new_value: Any | None     # value on the "to" side   (None + op=="removed" =&gt; key no longer exists)
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>source: "template" | "override"
+</code></pre></div>
+<p><code>source</code> is what makes this diff format useful for the child-vs-template
+case specifically (it is meaningless/always <code>"template"</code> for the
+revision-to-revision case, and implementations should simply omit it or
+leave every entry <code>"template"</code> there): for a child's effective-vs-base diff,
+each differing key is attributed to <em>why</em> it differs — because the child's
+override layer declares it (<code>"override"</code>), or because the diff is being run
+against a stale base and the template revision itself changed under the
+child's feet (<code>"template"</code>, only possible when comparing the child's
+currently-<em>adopted</em> revision against a newer candidate — see <code>preview</code> in
+section k, which surfaces exactly this partition so a human can tell "this
+delta is my own override" apart from "this delta is new template behavior I
+haven't reviewed yet").</p>
+<p><strong>Non-goals (explicitly out of scope for this item):</strong> a recursive/nested
+JSON-patch-style diff (RFC 6902) for deeply nested structures; a
+line-oriented text diff for string-valued fields; diff <em>rendering</em> (HTML/CLI
+formatting) — the <code>ConfigDiffEntry</code> list is the wire contract, presentation
+is a separate later concern once this ships for real.</p>
+<hr />
+<h2 id="e-compatibility-versioning-rules">(e) Compatibility / versioning rules<a class="headerlink" href="#e-compatibility-versioning-rules" title="Permanent link">&para;</a></h2>
+<p>Two independent counters, deliberately not conflated:</p>
+<ul>
+<li><strong><code>revision_number</code></strong> (section a) — bumped on <strong>every</strong> content change to a
+  template's payload, compatible or not. This is "how many times has this
+  template been edited," full stop.</li>
+<li><strong><code>schema_version</code></strong> — bumped <strong>only</strong> when a revision's payload changes
+  in a way that is not safely mergeable against an <em>arbitrary</em> existing
+  child override — i.e., a structural/contract change to the payload shape
+  itself (a field is renamed, a field's expected type changes, a field is
+  removed that overrides may depend on). An ordinary content update (new
+  default value, new <em>additional</em> optional field) does <strong>not</strong> bump
+  <code>schema_version</code>.</li>
+</ul>
+<p>This mirrors <code>profile_contract.SCHEMA_VERSION</code>'s role exactly: revisions
+  within the same <code>schema_version</code> are always safe to preview/adopt without
+  extra scrutiny; a <code>schema_version</code> bump is the signal that gates the
+  conflict-detection path in section (h) — <code>preview</code> (section k) sets
+  <code>schema_version_change: true</code> whenever the candidate revision's
+  <code>schema_version</code> differs from the revision the child currently has
+  adopted, independent of whether any actual field-level conflict is
+  detected.</p>
+<ul>
+<li><strong>Template-level <code>schema_version</code></strong> (on <code>ProjectTemplate</code>) tracks the
+  <em>current</em> value; each <code>TemplateRevisionSnapshot.schema_version</code> is frozen
+  at whatever the template's schema_version was when that revision was
+  created — so a revision's own <code>schema_version</code> never changes after the
+  fact, same immutability guarantee as its <code>content_hash</code>.</li>
+<li><strong><code>changelog</code></strong> (free-text, optional, on <code>TemplateRevisionCreate</code> /
+  <code>TemplateRevisionSnapshot</code>) is the human-authored "what changed and why"
+  note attached to a revision — not machine-parsed, purely for the audit
+  trail and for surfacing in a <code>preview</code> response alongside the structural
+  diff.</li>
+</ul>
+<p>No semver-style <code>MAJOR.MINOR.PATCH</code> string is introduced — <code>revision_number</code>
+already gives total order, and <code>schema_version</code> already gives the
+compatibility-gate signal; a third versioning scheme layered on top would be
+redundant surface area.</p>
+<hr />
+<h2 id="f-supersession-semantics">(f) Supersession semantics<a class="headerlink" href="#f-supersession-semantics" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>ProjectTemplate.latest_revision_id</code> is the only mutable pointer in this
+  entire design — it advances to point at the newest revision every time
+  <code>TemplateRevisionCreate</code> succeeds.</li>
+<li>Every <code>TemplateRevisionSnapshot</code> carries <code>superseded_by_revision_id: str |
+  None</code>. Creating revision N+1 sets revision N's <code>superseded_by_revision_id
+  = N+1</code>'s <code>revision_id</code>; revision N's own <code>fields</code>/<code>content_hash</code>/
+  everything else is untouched. <code>superseded_by_revision_id is None</code> is the
+  definition of "this is currently the latest revision."</li>
+<li><strong>A template update never silently rewrites, re-resolves, or reassigns any
+  existing child.</strong> <code>ChildTemplateSnapshot.adopted_revision_id</code> is set only
+  by an explicit <code>adopt</code> call (section k) and stays exactly what it was
+  through any number of subsequent <code>TemplateRevisionCreate</code> calls on that
+  template. A child that adopted <code>{template}:r3</code> five revisions ago is still
+  resolved against <code>{template}:r3</code>'s frozen payload today, forever, until
+  something calls <code>adopt</code> again on that same <code>child_project_id</code>.</li>
+<li>"Is this child behind?" is a <strong>derived, read-time</strong> fact, never stored:
+  <code>child_snapshot.adopted_revision_id != template.latest_revision_id</code>. No
+  background job, trigger, or push notification is implied by this design —
+  a caller (dashboard, executor session start, <code>preview</code>) checks this
+  lazily, on demand.</li>
+</ul>
+<hr />
+<h2 id="g-rollback">(g) Rollback<a class="headerlink" href="#g-rollback" title="Permanent link">&para;</a></h2>
+<p>Two distinct operations, kept as two distinct request shapes (section k)
+because they target different resources and have different immutability
+consequences — collapsing them into one polymorphic "rollback" body would
+hide that difference behind a discriminator field, which this codebase's
+existing convention avoids (compare <code>ClaimTaskRequest</code>/<code>ClaimTaskResponse</code>
+as separate typed shapes rather than one overloaded body).</p>
+<h3 id="child-rollback-childtemplaterollbackrequest">Child rollback (<code>ChildTemplateRollbackRequest</code>)<a class="headerlink" href="#child-rollback-childtemplaterollbackrequest" title="Permanent link">&para;</a></h3>
+<p>"Point this child back at a revision it previously adopted." This is a
+<strong>pure re-pointing</strong> of <code>ChildTemplateSnapshot.adopted_revision_id</code> — no
+template data is touched, no new <code>TemplateRevisionSnapshot</code> is created.
+Constraints:</p>
+<ul>
+<li><code>target_revision_id</code> must belong to the same <code>template_id</code> the child is
+  already associated with (a child cannot "roll back" onto an unrelated
+  template's revision — that is a <code>reject</code>-then-<code>adopt</code>-elsewhere operation
+  on a different template, not a rollback).</li>
+<li><code>target_revision_id</code> is not required to be the <em>immediately preceding</em>
+  revision — a child may roll back arbitrarily far, to any revision number
+  less than its current one, or even forward again to a revision it had
+  previously rolled back away from (rollback is a re-pointing, not a
+  destructive truncation of history).</li>
+<li>The child's override layer (<code>ChildTemplateOverride</code>) is <strong>never</strong> touched
+  by a child rollback — overrides are an independent layer (section c);
+  rolling back the template-base half of the effective configuration does
+  not implicitly discard child-local customizations layered on top of it.
+  (Whether the override still makes semantic sense against the older base is
+  exactly the conflict question in section h — a rollback that reintroduces
+  a conflict is surfaced the same way an adopt would be, not silently
+  allowed.)</li>
+<li>Bumps <code>ChildTemplateSnapshot.snapshot_revision</code> (its own optimistic-
+  concurrency counter — see <code>expected_snapshot_revision</code> in section k) and
+  recomputes <code>effective_content_hash</code> against the (older) target revision's
+  payload plus the still-current override.</li>
+</ul>
+<h3 id="template-rollback-templaterevisionrollbackrequest">Template rollback (<code>TemplateRevisionRollbackRequest</code>)<a class="headerlink" href="#template-rollback-templaterevisionrollbackrequest" title="Permanent link">&para;</a></h3>
+<p>"Make the template's <em>latest</em> revision have the same payload as some older
+revision again." Given the hard immutability guarantee in section (a),
+this <strong>cannot</strong> mean resurrecting or mutating the old <code>revision_id</code> — that
+would retroactively change what <code>{template_id}:r{N}</code> has always meant, which
+this design forbids outright. Instead:</p>
+<ul>
+<li>A template rollback <strong>creates a brand-new revision</strong> (next
+  <code>revision_number</code>, brand-new <code>revision_id</code>) whose <code>fields</code> are a byte-for-
+  byte copy of <code>target_revision_id</code>'s <code>fields</code>.
+  <code>TemplateRevisionSnapshot.rollback_of_revision_id</code> is set to
+  <code>target_revision_id</code> so the ledger records <em>why</em> this revision's content
+  happens to match an older one, distinguishing "coincidentally identical
+  edit" from "intentional revert" in the audit trail.
+  <code>content_hash</code> will therefore equal the target revision's <code>content_hash</code>
+  exactly (same canonical <code>fields</code>) even though <code>revision_id</code> and
+  <code>revision_number</code> are new — this is expected and is how a caller can
+  detect "this looks like a revert" purely from hash equality even without
+  reading <code>rollback_of_revision_id</code>.</li>
+<li><code>schema_version</code> for the new revision defaults to the <strong>target</strong>
+  revision's <code>schema_version</code> (reverting content plausibly also means
+  reverting away from whatever schema change happened since), but this is a
+  default, not forced — an explicit <code>schema_version</code> may still be passed if
+  the caller knows better.</li>
+<li>Every currently-adopted child is completely unaffected by a template
+  rollback, per the supersession guarantee in section (f) — a template
+  rollback is just "create a new revision," and creating a revision never
+  touches any child.</li>
+</ul>
+<p>This "revert-by-appending" pattern is the same one git and this codebase's
+own <code>profile_layers</code> module both use for exactly this reason: an
+append-only ledger that can be reasoned about by replaying it in order, with
+no operation that requires trusting that history was never quietly edited.</p>
+<hr />
+<h2 id="h-conflict-handling">(h) Conflict handling<a class="headerlink" href="#h-conflict-handling" title="Permanent link">&para;</a></h2>
+<p>"Conflict" in this design means specifically: <strong>a child's local override
+declares a field that a newly-available template revision has changed in a
+way that crosses a <code>schema_version</code> boundary for that field's shape.</strong>
+Ordinary content changes within the same <code>schema_version</code> are never
+conflicts — the override simply continues to shadow the template's value
+for that key, exactly per the resolution algorithm in section (c); this is
+normal, expected, silent, and requires no acknowledgment.</p>
+<p>A conflict is only <em>computed</em>, never silently resolved:</p>
+<ol>
+<li><code>preview</code> (section k) is the one place conflicts surface. Given a
+   child's current override and a <code>candidate_revision_id</code>:</li>
+<li>Diff the child's <strong>currently-adopted</strong> revision's <code>fields</code> against the
+     <strong>candidate</strong> revision's <code>fields</code> (section d's revision-to-revision
+     diff).</li>
+<li>For every top-level key that both (i) appears in that diff, and (ii)
+     is also a key the child's override declares in <code>fields</code> — that key
+     is a <strong>candidate conflict</strong>.</li>
+<li>A candidate conflict is only escalated to <code>conflicts: list[str]</code>
+     (the field paths) in the <code>TemplateOverridePreview</code> response when the
+     candidate revision's <code>schema_version</code> differs from the currently-
+     adopted revision's <code>schema_version</code>. A same-<code>schema_version</code> content
+     change to an overridden key is reported in the plain <code>diff</code> list
+     (with <code>source: "template"</code>, informational) but is <strong>not</strong> added to
+     <code>conflicts</code> — same-schema_version changes are, by the definition in
+     section (e), always safe to layer under an existing override.</li>
+<li><code>adopt</code> (section k) <strong>refuses</strong> (returns/raises rather than silently
+   proceeding) when <code>preview</code>-equivalent logic finds a non-empty
+   <code>conflicts</code> list for the requested <code>revision_id</code>, <strong>unless</strong> the caller
+   passes <code>force_accept_conflicts=True</code> <strong>and</strong> a non-empty
+   <code>override_reason</code> — the same acknowledged-override pattern this codebase
+   already uses for <code>override_merge_approval</code>, <code>override_code_intel_receipt</code>,
+   and <code>override_strict_evidence</code>. The reason is persisted (future work,
+   section j: an <code>adopt_conflicts_acknowledged</code> column or an
+   <code>action_audit_log</code> entry) so an audit trail exists for every forced
+   adoption over a live conflict.</li>
+<li>There is no automatic "merge" or "resolve" step — a conflict is a human
+   decision point. The two ways out are: (a) force-adopt with an
+   acknowledged reason (above), or (b) update the override first (drop or
+   change the conflicting key via <code>override</code>, section k) so the next
+   <code>preview</code> comes back clean, then adopt normally.</li>
+<li><strong>Concurrent-write conflicts</strong> (two callers racing to <code>adopt</code>/<code>reject</code>/
+   <code>rollback</code>/<code>override</code> the same child, or two callers racing to
+   <code>create</code>/<code>fork</code> the same template) are a <em>different</em> kind of conflict,
+   handled the ordinary optimistic-concurrency way already established by
+   <code>profile_layers.ProfileStaleRevisionError</code>: every mutating request in
+   section (k) accepts an <code>expected_*_revision</code> field, and a stale value
+   raises rather than silently overwriting a concurrent write. This is
+   orthogonal to the schema-level conflict detection in points 1–3 above.</li>
+</ol>
+<hr />
+<h2 id="i-determinism-and-auditability-for-largestructured-payloads-without-secrets-or-machine-local-paths">(i) Determinism and auditability for large/structured payloads, without secrets or machine-local paths<a class="headerlink" href="#i-determinism-and-auditability-for-largestructured-payloads-without-secrets-or-machine-local-paths" title="Permanent link">&para;</a></h2>
+<p>Two separate concerns, both already solved elsewhere in this codebase and
+reused verbatim rather than reinvented:</p>
+<p><strong>Determinism regardless of payload size or nesting.</strong> The canonical-JSON
+content hash in section (b) (<code>sort_keys=True, separators=(",", ":"),
+ensure_ascii=True, default=str</code>) is insensitive to payload size — a template
+<code>fields</code> dict with 3 keys or 300 hashes exactly as deterministically,
+because the guarantee comes from canonical <em>serialization</em>, not from any
+size-dependent property. The one practical implication for large payloads
+that this design flags as a genuine open question for the real
+implementation (section j), rather than silently ignoring: this design does
+not itself impose a payload size cap. A future implementation should decide
+one (mirroring whatever cap, if any, <code>goal_states.content</code> or <code>notes</code> bodies
+already use) rather than accepting unbounded <code>fields</code> dicts into shared,
+multi-project state.</p>
+<p><strong>No secrets or machine-local paths in shared state.</strong> <code>template_revision</code>
+and <code>child_override</code> payloads are exactly the kind of project-shared,
+multi-machine state that <code>meridian/capability_manifest.py</code>'s existing
+provenance validation was written to protect
+(<code>_check_no_secrets_or_local_paths</code>, <code>_ABSOLUTE_PATH_RE</code>,
+<code>_SECRET_LIKE_RE</code>): a value that's fine in a developer's local <code>.env</code> is not
+fine once it is written into a template that every project adopting it will
+receive, or into a child override that syncs across every machine that
+project's sessions run on. The real implementation (section j) should call
+this exact validator — recursively, over both <code>TemplateRevisionCreate.fields</code>
+and <code>TemplateOverrideSet.fields</code>, at write time, the same way
+<code>capability_manifest.normalize_capability</code> already does — rather than
+re-implementing path/secret detection a third time. This is a reuse
+decision, not a new rule: this design adds no new regex or detection logic
+of its own.</p>
+<p><code>provenance</code> fields on <code>TemplateRevisionCreate</code>/<code>ProjectTemplateCreate</code>
+follow the identical typing convention as
+<code>capability_manifest</code>'s <code>provenance</code> (<code>str | dict | None</code>, validated by the
+same helper) for the same reason: provenance is metadata <em>about</em> where a
+template or revision came from (a URL, a doc section, an admin's note) and
+must never itself become a vector for smuggling a secret or local path into
+shared state.</p>
+<hr />
+<h2 id="j-schema-sketch-future-work-not-implemented">(j) Schema sketch — future work, NOT implemented<a class="headerlink" href="#j-schema-sketch-future-work-not-implemented" title="Permanent link">&para;</a></h2>
+<p>Nothing below exists. No migration has been written in this worktree for
+any of it, and per this item's own scope, none should be until a follow-up
+implementation item picks this up. Sketched here only so the eventual
+migration has a concrete starting point that already accounts for the rules
+above (immutability, append-only ledger, guarded index creation).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">-- One row per template lineage. `latest_revision_id` is the ONLY mutable</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">-- pointer anywhere in this schema.</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">project_templates</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">id</span><span class="w">                       </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">      </span><span class="c1">-- uuid4</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">name</span><span class="w">                     </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">description</span><span class="w">              </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="n">schema_version</span><span class="w">           </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="n">latest_revision_id</span><span class="w">       </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">                  </span><span class="c1">-- FK -&gt; project_template_revisions.revision_id</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="n">forked_from_template_id</span><span class="w">  </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="n">forked_from_revision_id</span><span class="w">  </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="n">created_by_human_id</span><span class="w">      </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="n">created_at</span><span class="w">               </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="s1">'now'</span><span class="p">))</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">);</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1">-- Append-only. A row here is NEVER UPDATEd except to set</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c1">-- superseded_by_revision_id when a newer revision is created — every other</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1">-- column is written once, at INSERT, and never touched again.</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">project_template_revisions</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="n">id</span><span class="w">                        </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">      </span><span class="c1">-- uuid4, opaque</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="n">revision_id</span><span class="w">               </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span><span class="w">  </span><span class="c1">-- "{template_id}:r{revision_number}"</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">    </span><span class="n">template_id</span><span class="w">               </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span><span class="n">revision_number</span><span class="w">           </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">    </span><span class="n">schema_version</span><span class="w">            </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">    </span><span class="n">fields</span><span class="w">                    </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">          </span><span class="c1">-- JSON</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="n">content_hash</span><span class="w">              </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">    </span><span class="n">changelog</span><span class="w">                 </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">    </span><span class="n">provenance</span><span class="w">                </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">                   </span><span class="c1">-- JSON, no secrets/paths (section i)</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">    </span><span class="n">superseded_by_revision_id</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">    </span><span class="n">rollback_of_revision_id</span><span class="w">   </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">    </span><span class="n">created_by_human_id</span><span class="w">       </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">    </span><span class="n">created_at</span><span class="w">                </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="s1">'now'</span><span class="p">)),</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">template_id</span><span class="p">,</span><span class="w"> </span><span class="n">revision_number</span><span class="p">)</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="p">);</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="c1">-- Guarded index, added INSIDE the migration function per this repo's</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="c1">-- 2026-07-04-outage lesson — never inline in an unguarded CREATE_TABLES</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="c1">-- literal:</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="c1">-- CREATE INDEX IF NOT EXISTS idx_template_revisions_template</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="c1">--     ON project_template_revisions (template_id, revision_number);</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="c1">-- One row per (child_project_id, template_id) — a child's local override</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="c1">-- layer. Mirrors profile_layers' shape exactly.</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">child_template_overrides</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="w">    </span><span class="n">child_project_id</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w">    </span><span class="n">template_id</span><span class="w">       </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="w">    </span><span class="n">fields</span><span class="w">            </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">'{}'</span><span class="p">,</span><span class="w">      </span><span class="c1">-- JSON</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="w">    </span><span class="n">reset_fields</span><span class="w">      </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">'[]'</span><span class="p">,</span><span class="w">      </span><span class="c1">-- JSON list</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="w">    </span><span class="n">override_revision</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="w">    </span><span class="n">content_hash</span><span class="w">      </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="w">    </span><span class="n">updated_at</span><span class="w">        </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">child_project_id</span><span class="p">,</span><span class="w"> </span><span class="n">template_id</span><span class="p">)</span>
+<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="p">);</span>
+<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>
+<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="c1">-- One row per (child_project_id, template_id) — the durable "what did this</span>
+<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a><span class="c1">-- child adopt" record. This is the rollback/audit anchor (section g).</span>
+<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">child_template_snapshots</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="w">    </span><span class="n">child_project_id</span><span class="w">       </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a><span class="w">    </span><span class="n">template_id</span><span class="w">            </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a><span class="w">    </span><span class="n">adopted_revision_id</span><span class="w">    </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a><span class="w">    </span><span class="n">adopted_at</span><span class="w">             </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a><span class="w">    </span><span class="n">snapshot_revision</span><span class="w">      </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="w">    </span><span class="n">effective_content_hash</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a><span class="w">    </span><span class="n">declined_revision_ids</span><span class="w">  </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">'[]'</span><span class="p">,</span><span class="w"> </span><span class="c1">-- JSON list</span>
+<a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a><span class="w">    </span><span class="n">last_action</span><span class="w">            </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">                        </span><span class="c1">-- adopted|rejected|rolled_back</span>
+<a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a><span class="w">    </span><span class="n">updated_at</span><span class="w">             </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">child_project_id</span><span class="p">,</span><span class="w"> </span><span class="n">template_id</span><span class="p">)</span>
+<a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a><span class="p">);</span>
+<a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a>
+<a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a><span class="c1">-- Append-only audit ledger, mirroring board_snapshot_revisions /</span>
+<a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a><span class="c1">-- profile_layer_revisions: one row per adopt/reject/rollback actually</span>
+<a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a><span class="c1">-- performed (never for a no-op).</span>
+<a id="__codelineno-4-71" name="__codelineno-4-71" href="#__codelineno-4-71"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">child_template_snapshot_events</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-72" name="__codelineno-4-72" href="#__codelineno-4-72"></a><span class="w">    </span><span class="n">id</span><span class="w">                </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">   </span><span class="c1">-- uuid4</span>
+<a id="__codelineno-4-73" name="__codelineno-4-73" href="#__codelineno-4-73"></a><span class="w">    </span><span class="n">child_project_id</span><span class="w">  </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-74" name="__codelineno-4-74" href="#__codelineno-4-74"></a><span class="w">    </span><span class="n">template_id</span><span class="w">       </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-4-75" name="__codelineno-4-75" href="#__codelineno-4-75"></a><span class="w">    </span><span class="n">action</span><span class="w">            </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">      </span><span class="c1">-- adopted|rejected|rolled_back</span>
+<a id="__codelineno-4-76" name="__codelineno-4-76" href="#__codelineno-4-76"></a><span class="w">    </span><span class="n">revision_id</span><span class="w">       </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-77" name="__codelineno-4-77" href="#__codelineno-4-77"></a><span class="w">    </span><span class="n">conflicts</span><span class="w">         </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">               </span><span class="c1">-- JSON list, only for a forced adopt</span>
+<a id="__codelineno-4-78" name="__codelineno-4-78" href="#__codelineno-4-78"></a><span class="w">    </span><span class="n">override_reason</span><span class="w">   </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-79" name="__codelineno-4-79" href="#__codelineno-4-79"></a><span class="w">    </span><span class="n">actor</span><span class="w">             </span><span class="nb">TEXT</span><span class="p">,</span>
+<a id="__codelineno-4-80" name="__codelineno-4-80" href="#__codelineno-4-80"></a><span class="w">    </span><span class="n">created_at</span><span class="w">        </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="s1">'now'</span><span class="p">))</span>
+<a id="__codelineno-4-81" name="__codelineno-4-81" href="#__codelineno-4-81"></a><span class="p">);</span>
+</code></pre></div>
+<p>Integration points identified (also not touched, description only):</p>
+<ul>
+<li><code>meridian/db/migrations.py</code> — a new <code>_migrate_project_templates</code> function,
+  appended to the flat ordered <code>await _migrate_*(db)</code> sequence in <code>init_db</code>
+  after <code>_migrate_profile_layers</code>, with any index creation <strong>guarded</strong>
+  inside the function per this repo's own migration convention.</li>
+<li><code>meridian/pg_adapter.py</code> — a mirrored <code>_migrate_pg_project_templates</code>
+  registered in the parallel PG migration list, same convention as
+  <code>_migrate_pg_profile_layers</code>.</li>
+<li><code>meridian/handoff.py</code> — <code>generate_handoff</code>'s existing <code>emit_manifest</code>
+  splice point (currently wired only for <code>mode="goal"</code>) is the natural place
+  to surface "this project is a child of template X, currently at revision Y
+  (latest is Z)" into a handoff's <code>&lt;handoff_manifest&gt;</code> block, analogous to
+  how <code>build_effective_capability_contract</code> / <code>build_effective_profile_binding</code>
+  already surface other "effective X for this project" state there.</li>
+<li><code>tests/test_core.py</code> migration-count assertion — any real migration lands
+  with the usual <code>test_core</code> count bump, per this repo's own convention
+  (not touched by this design-only item).</li>
+</ul>
+<hr />
+<h2 id="k-api-shapes">(k) API shapes<a class="headerlink" href="#k-api-shapes" title="Permanent link">&para;</a></h2>
+<p>All of the following are pure Pydantic <code>BaseModel</code> data contracts, added to
+<code>meridian/models.py</code> in this same change, wired to <strong>nothing</strong> — no route, no
+MCP tool, no handler. They express the request/response shape each future
+operation would use; the operations themselves are future work (section j).</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Request model</th>
+<th>Response model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create (new template)</td>
+<td><code>ProjectTemplateCreate</code></td>
+<td><code>ProjectTemplate</code></td>
+</tr>
+<tr>
+<td>create (new revision on an existing template)</td>
+<td><code>TemplateRevisionCreate</code></td>
+<td><code>TemplateRevisionSnapshot</code></td>
+</tr>
+<tr>
+<td>fork (branch a revision into a new template lineage)</td>
+<td><code>TemplateForkRequest</code></td>
+<td><code>ProjectTemplate</code></td>
+</tr>
+<tr>
+<td>override (a child's local override)</td>
+<td><code>TemplateOverrideSet</code></td>
+<td><code>ChildTemplateOverride</code></td>
+</tr>
+<tr>
+<td>preview (dry-run effective-config diff before adopting)</td>
+<td><code>TemplateAdoptionPreviewRequest</code></td>
+<td><code>TemplateOverridePreview</code></td>
+</tr>
+<tr>
+<td>adopt (a child adopts a specific revision)</td>
+<td><code>TemplateAdoptRequest</code></td>
+<td><code>ChildTemplateSnapshot</code></td>
+</tr>
+<tr>
+<td>reject (a child declines a proposed revision)</td>
+<td><code>TemplateRejectRequest</code></td>
+<td><code>ChildTemplateSnapshot</code></td>
+</tr>
+<tr>
+<td>rollback — child</td>
+<td><code>ChildTemplateRollbackRequest</code></td>
+<td><code>ChildTemplateSnapshot</code></td>
+</tr>
+<tr>
+<td>rollback — template</td>
+<td><code>TemplateRevisionRollbackRequest</code></td>
+<td><code>TemplateRevisionSnapshot</code></td>
+</tr>
+<tr>
+<td>(read) one config diff entry</td>
+<td>—</td>
+<td><code>ConfigDiffEntry</code></td>
+</tr>
+<tr>
+<td>(read) family aggregate, see composition note below</td>
+<td>—</td>
+<td><code>ProjectFamilyView</code></td>
+</tr>
+</tbody>
+</table>
+<p>Field-level detail for each is in <code>meridian/models.py</code> itself (with
+docstrings cross-referencing the relevant section letter above); the table
+above is the index. Every request model that mutates shared per-child or
+per-template state carries an optional <code>expected_*_revision</code> optimistic-
+concurrency field and an optional <code>actor</code>, matching <code>profile_layers</code>'s
+<code>set_profile_layer(expected_revision=..., actor=...)</code> convention.</p>
+<hr />
+<h2 id="composition-with-the-legacy-parent_project_id-north_star-mechanism">Composition with the legacy <code>parent_project_id</code> / north_star mechanism<a class="headerlink" href="#composition-with-the-legacy-parent_project_id-north_star-mechanism" title="Permanent link">&para;</a></h2>
+<p>This is the compatibility constraint called out explicitly in this item's
+acceptance notes, so it is stated here in one place rather than scattered:</p>
+<p><strong>The existing mechanism, unchanged by this design:</strong>
+<code>ProjectCreate.parent_project_id</code> / <code>set_parent_project</code> enforce a hard
+one-level-deep subproject invariant (<code>meridian/db/__init__.py:create_project</code>
+line ~1151, <code>set_parent_project</code> line ~1377): a project may become a
+subproject only of a top-level project, and a project with children cannot
+itself become a child. <code>get_goal</code> (line ~2623) falls back to a subproject's
+parent's <code>goal_north_star</code> when the subproject has none of its own, stamping
+<code>north_star_inherited: bool</code> / <code>north_star_source_project_id: str</code> on the
+result (<code>GoalState</code> in <code>meridian/models.py</code>, fixed to actually surface over
+HTTP in sibling item 106519eb). <code>set_goal</code> never writes an inherited value
+back into a child's own row.</p>
+<p><strong>Why this design does not touch, extend, or overload any of that:</strong></p>
+<ol>
+<li><strong>Different relationship shape.</strong> <code>parent_project_id</code> is a <em>hierarchy</em>
+   relationship between two projects (one is literally the parent of the
+   other, one level deep, mutually exclusive with having its own children).
+   A template/child relationship is a <em>provisioning</em> relationship: a
+   template is not a project at all, has no <code>parent_project_id</code>, is not
+   subject to the one-level-deep constraint, and a single project could in
+   principle be a child of a template while <em>also</em> being a
+   <code>parent_project_id</code> subproject of some unrelated top-level project — the
+   two relationships are orthogonal axes, not alternatives to each other.</li>
+<li><strong>Different inheritance semantics.</strong> <code>north_star_inherited</code> describes a
+   <em>live, always-current</em> fallback (the child's <code>get_goal</code> re-reads the
+   parent's <code>goal_north_star</code> fresh every call — there is no "adopt" step,
+   no revision, no snapshot; if the parent's north_star changes, every
+   child sees the new value on its very next <code>get_goal</code>). The
+   template/child relationship in this design is the deliberate opposite: a
+   child is pinned to whatever revision it explicitly adopted until it
+   explicitly adopts again (section f) — the entire point of "immutable
+   template revision and child snapshot semantics" per this item's own
+   acceptance text is that a child's configuration must <strong>not</strong> silently
+   track the template's latest state the way <code>north_star_inherited</code> tracks
+   a parent's latest north_star.</li>
+<li><strong>No field reuse.</strong> <code>Project</code> gains zero new columns/fields in this
+   design. <code>child_template_snapshots</code>/<code>child_template_overrides</code> (section j)
+   are new, separate tables keyed by <code>child_project_id</code> — a foreign
+   reference <em>to</em> a <code>Project.id</code>, never a mutation <em>of</em> the <code>Project</code> or
+   <code>GoalState</code> rows/models themselves. <code>north_star_inherited</code> /
+   <code>north_star_source_project_id</code> on <code>GoalState</code> are completely unaffected;
+   nothing here changes what <code>get_goal</code>/<code>set_goal</code> compute or return.</li>
+<li><strong>A project family is a strict superset concept, not a replacement.</strong>
+   <code>ProjectFamilyView</code> (section k) is read-only and additive: it answers "if
+   I also happen to have <code>parent_project_id</code> subprojects, do those show up
+   here?" — no. A <code>ProjectFamilyView</code> lists a template's children (by
+   <code>child_template_snapshots</code> membership) exactly, with no reference to
+   <code>parent_project_id</code> at all. A project can appear in a <code>ProjectFamilyView</code>
+   without ever having a <code>parent_project_id</code>, and can have a
+   <code>parent_project_id</code> without ever appearing in any <code>ProjectFamilyView</code>.
+   The two groupings can coincide in practice (a team might provision a
+   top-level project and its subprojects all from the same template) but
+   nothing in this design assumes or requires that they do.</li>
+</ol>
+<p><strong>Net statement for the acceptance criterion:</strong> current one-level
+<code>parent_project_id</code> projects remain fully legacy-compatible because this
+design adds no new field to <code>Project</code>/<code>GoalState</code>, changes no existing
+function's behavior, and defines the family/template relationship as an
+orthogonal, opt-in join over new tables — a project that never calls
+<code>create</code>/<code>fork</code>/<code>override</code>/<code>adopt</code> is completely unaffected and indeed
+cannot even be observed to differ from a project in a codebase where this
+design was never written.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

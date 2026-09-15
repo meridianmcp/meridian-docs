@@ -1,0 +1,1883 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-build-b67-2-equation-writer-gap-matrix-2026-08-25/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>B67-2: Equation writer / OMML gap matrix - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#b67-2-equation-writer-omml-gap-matrix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              B67-2: Equation writer / OMML gap matrix
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-provenance-where-each-symbol-was-actually-read-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Provenance — where each symbol was actually read from
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-symbol-by-symbol-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Symbol-by-symbol findings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Symbol-by-symbol findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_validate_omml_structure-two-independent-implementations-not-shared" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _validate_omml_structure — TWO independent implementations, not shared
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_build_omath_paragraph-docs_intelpy8539" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _build_omath_paragraph — docs_intel.py:8539
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_verify_equation_write-docs_intelpy8583" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _verify_equation_write — docs_intel.py:8583
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_new_para_id-docs_intelpy10543-_mint_para_id-doc_storepy2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _new_para_id (docs_intel.py:10543) / _mint_para_id (doc_store.py:2022)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_atomic_write_docx_bytes-docs_intelpy2335-vs-_write_docx_transaction-doc_storepy1643" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _atomic_write_docx_bytes (docs_intel.py:2335) vs. _write_docx_transaction (doc_store.py:1643)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_check_artifact_provenance_binding-docs_intelpy3015-wired-to-exactly-one-real-call-path-for-the-symbols-in-this-items-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _check_artifact_provenance_binding (docs_intel.py:3015) — wired to exactly one real call path for the symbols in this item's scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_enforce_render_verification-docs_intelpy2860" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _enforce_render_verification (docs_intel.py:2860)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy_section-docs_intelpy12951-thin-dispatch-wrapper-at-serverpy2223" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        copy_section (docs_intel.py:12951, thin dispatch wrapper at server.py:2223)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert_equation_local-edit_equation_local-remove_equation_local-append_text_run_after_math-side-by-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        insert_equation_local / edit_equation_local / remove_equation_local / append_text_run_after_math — side-by-side
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_write_docx_transaction-_verify_paragraph_write-_mint_para_id-core-docstructurestore-insertion-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _write_docx_transaction / _verify_paragraph_write / _mint_para_id — core DocStructureStore insertion path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#render_gate-promotion-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        render_gate promotion checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docx_integrity_gate-composition-meridiandocx_integrity_gatepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docx_integrity_gate composition (meridian/docx_integrity_gate.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cross-cutting-gap-matrix-by-acceptance-dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-cutting gap matrix, by acceptance dimension
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-side-by-side-operation-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Side-by-side operation matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-summary-ranked-by-how-surprisingrisky-the-gap-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Summary — ranked by how surprising/risky the gap is
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="b67-2-equation-writer-omml-gap-matrix">B67-2: Equation writer / OMML gap matrix<a class="headerlink" href="#b67-2-equation-writer-omml-gap-matrix" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2026-08-25
+<strong>Author:</strong> session <code>4dfd2a59-bfd5-43e4-9e05-3ba60a78e140</code>
+<strong>Scope:</strong> planning/investigation only. No sprint-item code claim, no
+implementation, no mutation of any DOCX (real or fixture). This report reads
+code only.</p>
+<h2 id="0-provenance-where-each-symbol-was-actually-read-from">0. Provenance — where each symbol was actually read from<a class="headerlink" href="#0-provenance-where-each-symbol-was-actually-read-from" title="Permanent link">&para;</a></h2>
+<p>Per this item's own instructions (depends on B67-1, <code>c85f08ab</code>), the
+equation/OMML work (MDE-B1/B2/8) is real but unlanded: it lives only on
+branch <code>mde-rework-44fc1ffe-536-2</code> (tip <code>b7e9b172</code>), checked out at worktree
+<code>.claude/worktrees/wf_bf94f275-830-1</code>. <code>dev</code> (this repo's current checkout,
+tip <code>12368304</code>) does <strong>not</strong> have that work. This was independently
+re-confirmed, not assumed:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>dev HEAD vs. worktree</th>
+<th>What differs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>extensions/meridian-docs/meridian_docs/docs_intel.py</code></td>
+<td><strong>20095 vs 18065 lines</strong> — worktree is ~2030 lines longer</td>
+<td>Worktree adds <code>audit_equation_integrity</code> / <code>compare_equation_structures</code> / <code>repair_equation_batch</code> (MDE-B1/B2, lines 19127+) plus supporting code. Every symbol this item asks about that lives in <code>docs_intel.py</code> (<code>_build_omath_paragraph</code>, <code>_validate_omml_structure</code>, <code>_verify_equation_write</code>, <code>_atomic_write_docx_bytes</code>, <code>_check_artifact_provenance_binding</code>, <code>_enforce_render_verification</code>, <code>copy_section</code>, <code>insert_equation_local</code>, <code>edit_equation_local</code>, <code>remove_equation_local</code>, <code>_new_para_id</code>) <strong>already exists on dev too</strong> (dev already has prior equation-contract commits <code>4bcb7d7c</code>/<code>0c2820e3</code>) — the worktree version is the same functions, further along, not new-in-worktree-only. This report cites worktree line numbers and, where relevant, calls out worktree-only additions explicitly.</td>
+</tr>
+<tr>
+<td><code>extensions/meridian-docs/meridian_docs/render_gate.py</code></td>
+<td><strong>1734 vs 1179 lines</strong></td>
+<td>Worktree adds the entire MDE-7 (<code>1e6150ef</code>) durable-receipt subsystem: <code>RenderReceipt</code>, <code>render_with_receipt</code>, <code>list_render_receipts</code>, <code>check_release_render_gate</code>, <code>RENDER_TEMPDIR_PREFIX</code>. <strong>None of this exists on <code>dev</code>.</strong> <code>dev</code>'s <code>render_gate.py</code> (and the worktree's) both already have <code>check_render_capability</code> and <code>check_word_com_render_receipt</code> (a same-call, non-durable, Word-COM-only variant despite the "_receipt" in its name — it persists nothing).</td>
+</tr>
+<tr>
+<td><code>meridian/doc_store.py</code></td>
+<td><strong>byte-identical</strong> (<code>diff</code> returns 0 lines)</td>
+<td><code>_validate_omml_structure</code>, <code>_write_docx_transaction</code>, <code>_verify_paragraph_write</code>, <code>_mint_para_id</code> are exactly what's on <code>dev</code> today — the MDE branch did not touch this file.</td>
+</tr>
+<tr>
+<td><code>meridian/docx_integrity_gate.py</code></td>
+<td><strong>byte-identical</strong> (<code>diff</code> returns 0 lines)</td>
+<td>Not touched by the MDE branch. Still only wires <code>check_render_capability</code> (live, single-call) — has <strong>no</strong> integration with MDE-7's receipt ledger, which is unsurprising since that ledger doesn't exist on <code>dev</code>.</td>
+</tr>
+<tr>
+<td><code>extensions/meridian-docs/meridian_docs/ooxml_integrity.py</code></td>
+<td><strong>untracked in the main checkout, absent from every branch</strong> (<code>git log --all</code> returns zero commits)</td>
+<td>Confirms B67-1's own finding. It is mentioned only in a prose comment in the worktree's <code>docs_intel.py</code> (line 18882); the real <code>from . import ooxml_integrity, render_gate</code> wiring exists <strong>only</strong> as an uncommitted diff in the main checkout's working tree (<code>_save_docx_xml_stdlib</code> namespace-preserving serialization, <code>_atomic_write_docx_bytes</code> pre-write comment-attribute normalization) — not on the MDE branch, not on <code>dev</code>. Treated here as a third, separate provenance bucket, not conflated with either.</td>
+</tr>
+</tbody>
+</table>
+<p>Everything below is read from the worktree (<code>wf_bf94f275-830-1</code>) for the
+equation-family symbols, and from the main checkout for <code>doc_store.py</code> /
+<code>docx_integrity_gate.py</code> (identical to <code>dev</code> for both) and <code>ooxml_integrity.py</code>.</p>
+<hr />
+<h2 id="1-symbol-by-symbol-findings">1. Symbol-by-symbol findings<a class="headerlink" href="#1-symbol-by-symbol-findings" title="Permanent link">&para;</a></h2>
+<h3 id="_validate_omml_structure-two-independent-implementations-not-shared"><code>_validate_omml_structure</code> — TWO independent implementations, not shared<a class="headerlink" href="#_validate_omml_structure-two-independent-implementations-not-shared" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>docs_intel.py:7750</code></strong> (stdlib <code>xml.etree.ElementTree</code>). <strong><code>doc_store.py:1131</code></strong> (lxml, <code>_LET</code>).</li>
+<li>Both: parse the raw OMML string; reject a root that isn't exactly
+  <code>m:oMath</code> (explicitly rejects <code>m:oMathPara</code> as an insertion root — "the
+  ambiguous wrapper used by a different insertion contract"); walk every
+  descendant and check <code>_OMML_REQUIRED_CHILDREN</code> per-tag (e.g. <code>num</code>/<code>den</code>
+  must contain <code>m:e</code>); flatten the OMML to text and check it against
+  <code>_OMML_FALLBACK_MARKERS</code> — a flattened LaTeX-ish marker (<code>\hat</code>, <code>argmax</code>,
+  etc.) present in the flattened text <strong>without</strong> a corresponding OMML
+  structural element is rejected as "flattened fallback text… without its
+  structural element."</li>
+<li><strong>Enforced:</strong> root-tag identity, required-child presence for known
+  container types, and the flattened-fallback-text heuristic.</li>
+<li><strong>Optional/absent:</strong> no schema (XSD) validation against the OOXML <code>CT_OMath</code>
+  content model — this is a hand-written subset check ("deliberately covers
+  the structural subset emitted by our converter"), not a full schema
+  validator. No check that the OMML actually round-trips through Word — that
+  is <code>_enforce_render_verification</code>'s job, a separate later stage.</li>
+<li><strong>Gap:</strong> the two implementations are independently maintained (confirmed
+  by the module comment on <code>_mint_para_id</code>, which explicitly states the
+  no-cross-import boundary is deliberate). A future fix to one validator's
+  <code>_OMML_REQUIRED_CHILDREN</code>/<code>_OMML_FALLBACK_MARKERS</code> table will <strong>not</strong>
+  propagate to the other unless a human remembers to mirror it by hand.</li>
+</ul>
+<h3 id="_build_omath_paragraph-docs_intelpy8539"><code>_build_omath_paragraph</code> — <code>docs_intel.py:8539</code><a class="headerlink" href="#_build_omath_paragraph-docs_intelpy8539" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Wraps a raw OMML string in a new <code>&lt;w:p&gt;</code>. IDs: <code>w14:paraId</code>/<code>w14:textId</code>
+  are <strong>UUID-derived</strong> when the caller doesn't supply them
+  (<code>uuid.uuid4().hex[:8].upper()</code>), not deterministic/sequential. Its own
+  docstring says as much: "direct unit callers may omit them and receive
+  UUID-derived values" — the <em>production</em> caller (<code>insert_equation_local</code>)
+  always supplies explicit values it minted itself via <code>_new_para_id</code>
+  (below), so in practice every id ends up UUID-derived either way, just
+  minted one call frame higher.</li>
+<li>Alignment/indent (<code>pPr</code>) are omitted entirely when neither is set —
+  matches pre-4efc63fd output exactly (a deliberate compatibility
+  constraint, not an oversight).</li>
+<li><strong>Enforced:</strong> paragraph structure, alignment/indent from a resolved style
+  policy. <strong>Absent:</strong> no validation of the <code>omml_raw</code> it's given — it calls
+  <code>ET.fromstring(omml_raw)</code> directly with no try/except and no call to
+  <code>_validate_omml_structure</code>. Validation is the <strong>caller's</strong> responsibility
+  (and <code>insert_equation_local</code> does call <code>_resolve_omml</code>/OMML validation
+  before this, but <code>_build_omath_paragraph</code> itself has no defense if called
+  directly with malformed OMML).</li>
+</ul>
+<h3 id="_verify_equation_write-docs_intelpy8583"><code>_verify_equation_write</code> — <code>docs_intel.py:8583</code><a class="headerlink" href="#_verify_equation_write-docs_intelpy8583" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Post-write, re-reads the docx <strong>fresh from disk</strong> (never the in-memory
+  tree) and confirms: (a) for <code>position="append"</code>, the anchor paragraph
+  still exists and contains an <code>&lt;m:oMath&gt;</code>; (b) for <code>before</code>/<code>after</code>, the
+  paragraph at the recorded body index is present and is a <code>&lt;w:p&gt;</code>; (c) the
+  flattened <code>&lt;m:t&gt;</code> text of the <strong>last</strong> <code>&lt;m:oMath&gt;</code> in that paragraph
+  matches <code>expected_flat_text</code>; (d) for <code>before</code>/<code>after</code> only, the new
+  paragraph's <code>w14:paraId</code>/<code>w14:textId</code> match what was minted.</li>
+<li><strong>Enforced:</strong> presence + flattened-text identity + paraId/textId identity
+  (display-mode only). <strong>Absent:</strong> no re-validation of the <em>OMML structure</em>
+  of what actually landed on disk (no second <code>_validate_omml_structure</code>
+  call here) — only the flattened text is compared, so a structurally
+  different OMML tree that happens to flatten to the same text string would
+  pass this check silently. <strong>Absent:</strong> no check for <code>position="append"</code>
+  that the paraId/textId of the (pre-existing) anchor paragraph are
+  unchanged — only checked for the two display-mode positions.</li>
+</ul>
+<h3 id="_new_para_id-docs_intelpy10543-_mint_para_id-doc_storepy2022"><code>_new_para_id</code> (<code>docs_intel.py:10543</code>) / <code>_mint_para_id</code> (<code>doc_store.py:2022</code>)<a class="headerlink" href="#_new_para_id-docs_intelpy10543-_mint_para_id-doc_storepy2022" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Identical algorithm, independently implemented</strong> (confirmed by
+  <code>_mint_para_id</code>'s own docstring: "Independently implemented rather than
+  imported… mirrors extensions/meridian-docs/…/docs_intel.py's <code>_new_para_id</code>
+  (same convention) but this module has no dependency on that standalone
+  package, and that package correspondingly has none on this one.")</li>
+<li>Both: <code>uuid.uuid4().hex[:8].upper()</code> in a loop, checked against and
+  immediately added to a caller-supplied <code>taken: set[str]</code> so repeated calls
+  in the same batch don't collide with each other, not just with what's
+  already on disk.</li>
+<li><strong>Deterministic vs. UUID — confirmed UUID everywhere.</strong> There is no
+  deterministic/sequential/counter-based paraId minting scheme anywhere in
+  either module. Every fresh <code>w14:paraId</code>/<code>w14:textId</code> minted by the
+  equation-writer or DocStructureStore write paths is a random UUID4 hex
+  fragment, collision-checked only against in-batch + pre-scanned on-disk
+  ids, never derived from content or position.</li>
+</ul>
+<h3 id="_atomic_write_docx_bytes-docs_intelpy2335-vs-_write_docx_transaction-doc_storepy1643"><code>_atomic_write_docx_bytes</code> (<code>docs_intel.py:2335</code>) vs. <code>_write_docx_transaction</code> (<code>doc_store.py:1643</code>)<a class="headerlink" href="#_atomic_write_docx_bytes-docs_intelpy2335-vs-_write_docx_transaction-doc_storepy1643" title="Permanent link">&para;</a></h3>
+<p>Two independently-implemented but nearly-identical stage/verify/promote
+transactions — same "disposable-worker-artifact" pattern (<code>dccc2311</code>), same
+three steps (STAGE to a <code>tempfile.NamedTemporaryFile</code>/<code>mkstemp</code> sibling in
+<code>dest</code>'s own directory → VERIFY the staged bytes fresh from disk against a
+<code>pre_manifest</code> structural count over <code>protected_keys</code> → PROMOTE via
+<code>os.replace</code> inside <code>_docx_promotion_lock</code>, an in-process-only
+<code>threading.RLock</code> keyed by canonical path). Both compute <code>promoted_sha256</code>
+(full-body SHA-256 of exactly what was promoted, read fresh from disk) used
+downstream by <code>_safe_restore_after_verification_failure</code>'s compare-and-swap
+logic. Both back up a pre-existing <code>dest</code> to <code>dest + ".bak"</code>
+(best-effort, non-fatal).</p>
+<p><strong>One real, load-bearing difference — where provenance binding is gated:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>docs_intel.py::_atomic_write_docx_bytes</code></th>
+<th><code>doc_store.py::_write_docx_transaction</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>artifact_provenance</code> parameter</td>
+<td><strong>Does not exist on this function at all.</strong></td>
+<td>First-class keyword param, default <code>None</code>.</td>
+</tr>
+<tr>
+<td>Where provenance is checked</td>
+<td>Not here — a <em>separate</em> function, <code>_check_artifact_provenance_binding</code> (below), checked <strong>after promotion</strong>, only by callers of <code>_verify_docx_write</code> that explicitly pass <code>artifact_provenance=</code>.</td>
+<td><strong>Before promotion</strong>, inside the same transaction, via <code>_check_artifact_provenance(artifact_provenance)</code> — raises <code>DocxWriteVerificationError</code> and the file is never even swapped in if the binding isn't <code>all_clear</code>.</td>
+</tr>
+<tr>
+<td>Fail-closed timing</td>
+<td>Post-write (promotion already happened; a failure triggers the CAS-safe restore-from-backup path).</td>
+<td>Pre-promotion (the live file is never touched at all on a provenance failure — strictly stronger).</td>
+</tr>
+</tbody>
+</table>
+<p>This is a genuine architectural divergence between the two "equivalent"
+transaction primitives, not a documentation gap — <code>doc_store.py</code>'s version is
+strictly more conservative for provenance binding specifically.</p>
+<p>Also present only in <code>_atomic_write_docx_bytes</code>'s docstring/behavior: when
+<code>changed_parts</code> is supplied, every changed <code>.xml</code>/<code>.rels</code> member is
+independently re-parsed for well-formedness from the staged-and-flushed
+file (a ZIP-valid but XML-corrupt member would otherwise slip past the
+structural-manifest count check alone).</p>
+<h3 id="_check_artifact_provenance_binding-docs_intelpy3015-wired-to-exactly-one-real-call-path-for-the-symbols-in-this-items-scope"><code>_check_artifact_provenance_binding</code> (<code>docs_intel.py:3015</code>) — wired to exactly one real call path for the symbols in this item's scope<a class="headerlink" href="#_check_artifact_provenance_binding-docs_intelpy3015-wired-to-exactly-one-real-call-path-for-the-symbols-in-this-items-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fail-closed gate on a <strong>caller-supplied, pre-computed</strong> provenance-binding
+  verdict dict (<code>{"all_clear": bool, "bindings": [...]}</code>) — the shape
+  <code>meridian_outputs.provenance.bind_artifact_provenance</code> returns. This
+  module deliberately never imports <code>meridian_outputs</code> — duck-typed, by
+  design (mirrors <code>doc_store.py</code>'s <code>_check_artifact_provenance</code>, which the
+  same item, <code>6d02f343</code>, added on the other side of the package boundary).</li>
+<li><code>None</code> (the default everywhere) is a pure no-op — "the caller did not ask
+  for this check."</li>
+<li><strong>Call sites (grepped exhaustively):</strong> <code>_check_artifact_provenance_binding(...)</code> is called from exactly <strong>two</strong> places in <code>docs_intel.py</code>: (1) unconditionally at the tail of <code>_verify_docx_write</code> (line 3183, always invoked, but with whatever <code>artifact_provenance</code> that shared verifier's <em>own</em> caller passed — default <code>None</code>); (2) one explicit <code>artifact_provenance=artifact_provenance</code> keyword forward at line 13729.</li>
+<li><strong>Confirmed absent from every symbol in this item's exact scope.</strong> None of
+  <code>insert_equation_local</code>, <code>edit_equation_local</code>, <code>remove_equation_local</code>,
+  <code>append_text_run_after_math</code>, or <code>copy_section</code> accept an
+  <code>artifact_provenance</code> parameter at all (checked every signature) — so for
+  the equation-writer family specifically, <strong>this gate never fires</strong>, not
+  even the post-write, best-effort way <code>_verify_docx_write</code>'s other callers
+  get it. <code>copy_section</code> in particular calls <code>_verify_docx_write</code> (line
+  13353) but does not pass <code>artifact_provenance=</code>, so its own post-copy
+  verification silently no-ops this check.</li>
+</ul>
+<h3 id="_enforce_render_verification-docs_intelpy2860"><code>_enforce_render_verification</code> (<code>docs_intel.py:2860</code>)<a class="headerlink" href="#_enforce_render_verification-docs_intelpy2860" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Wraps <code>render_gate.check_render_capability(write_dest)</code> and enforces its
+  three-state contract as a <strong>write-time</strong> gate: <code>"rendered"</code> → success,
+  <code>render_verified=True</code>. <code>"failed"</code> → CAS-safe restore-from-backup + error,
+  never reported as rendered. <code>"unavailable-with-reason"</code> (no render backend
+  in this environment) → <strong>also fails closed by default</strong> (restore + error)
+  unless the caller passes <code>allow_degraded_render=True</code> <strong>and</strong> a non-empty
+  <code>degraded_render_reason</code> — an explicit, audited degrade, never silent.</li>
+<li>A broken/exception-raising <code>check_render_capability</code> call is caught and
+  turned into a synthetic <code>"failed"</code> result — "a broken checker must fail
+  closed, never crash the write or masquerade as verified."</li>
+<li><strong>Call sites:</strong> 12 in <code>docs_intel.py</code> (grepped) — includes
+  <code>insert_equation_local</code> (line 8908) but <strong>not</strong> <code>edit_equation_local</code>,
+  <strong>not</strong> <code>remove_equation_local</code>, <strong>not</strong> <code>append_text_run_after_math</code>,
+  <strong>not</strong> <code>copy_section</code>. So for the six named write operations in this
+  item's scope, only <code>insert_equation_local</code> gets a real render-capability
+  check at write time.</li>
+<li><strong>Documented, not-yet-wired gap (in the function's own docstring):</strong> this
+  function's <code>render_result</code> is only ever kept in the caller's in-memory
+  success payload — it does not itself survive process restart or the
+  render backend's temp-dir cleanup. The docstring explicitly names the
+  fix (<code>render_gate.render_with_receipt(write_dest, check_result=render_result,
+  receipts_path=...)</code>) as "a deliberate follow-up, not part of this change."
+  That follow-up (MDE-7, <code>1e6150ef</code>) has since landed <strong>on the worktree
+  branch</strong> as a standalone capability (<code>render_with_receipt</code>,
+  <code>check_release_render_gate</code>) but <strong>is not called from
+  <code>_enforce_render_verification</code> or <code>insert_equation_local</code> anywhere in the
+  worktree either</strong> — confirmed by grep: neither name appears as a call
+  inside <code>docs_intel.py</code> at all, only inside <code>render_gate.py</code>'s own
+  definitions. The write-time equation gate and the durable-receipt ledger
+  are two live, tested, but <strong>still fully disconnected</strong> subsystems.</li>
+</ul>
+<h3 id="copy_section-docs_intelpy12951-thin-dispatch-wrapper-at-serverpy2223"><code>copy_section</code> (<code>docs_intel.py:12951</code>, thin dispatch wrapper at <code>server.py:2223</code>)<a class="headerlink" href="#copy_section-docs_intelpy12951-thin-dispatch-wrapper-at-serverpy2223" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Deep-copy guarantee: confirmed real.</strong> Uses Python's <code>copy.deepcopy(el)</code>
+  per top-level copied element (line 13230) — not a shallow/reference copy.</li>
+<li>Every <code>&lt;w:p&gt;</code> in the copied range gets a <strong>fresh</strong> <code>w14:paraId</code> via
+  <code>_new_para_id</code> (UUID-derived, per above); the old→new id map is recorded.
+  Every bookmark name in the copied range is renamed to a fresh unique name
+  (<code>_rename_bookmark_for_copy</code>) — explicitly to prevent two live bookmarks
+  answering to the same name, which would make Word's/<code>find_references_to</code>'s
+  field resolution nondeterministic. A <code>REF</code>/<code>PAGEREF</code>/<code>NOTEREF</code> field
+  <strong>inside</strong> the copied range that targets a bookmark <strong>also inside</strong> it is
+  repointed at the copy's own renamed bookmark (an internal self-reference
+  stays internally consistent); a field targeting something outside the
+  copied range is left alone.</li>
+<li><strong>Equation handling in copy_section is real but bounded:</strong> before any
+  mutation, it builds <code>_equation_semantic_manifest([body])</code> over the whole
+  source document and <strong>aborts closed</strong> if any existing equation already has
+  <code>issues</code> (malformed/flattened OMML) — "repair the equations before copying
+  a section." After the write, its post-write check
+  (<code>_verify_docx_write(..., expected_equation_manifest=...)</code>, line 13353)
+  compares an <code>expected</code> manifest (baseline − removed + copied entries)
+  against a fresh re-read — this <strong>does</strong> exercise
+  <code>_validate_omml_structure</code> transitively (via <code>_omml_semantic_record</code>,
+  which calls it per equation) as part of manifest construction, so a
+  structurally-broken copy would be caught. It does <strong>not</strong> call
+  <code>_check_artifact_provenance_binding</code> (no <code>artifact_provenance=</code> argument is
+  passed to <code>_verify_docx_write</code> here — see above) and it does <strong>not</strong> call
+  <code>_enforce_render_verification</code> at all (not in the 12-site grep list) — no
+  real Word/COM render check ever runs after a section copy, unlike
+  <code>insert_equation_local</code>.</li>
+<li><strong>Explicitly documented, not-fixed gap in the function's own docstring
+  (<code>679c86f4</code>):</strong> a copied image paragraph's <code>r:embed</code> relationship id is
+  <strong>not</strong> rewritten and the underlying <code>word/media/*</code> part is <strong>not</strong>
+  duplicated — the copy shares the same image relationship as the original.
+  Detected post-write via <code>_verify_image_ownership</code> and rejected
+  (restore-from-backup) <strong>unless</strong> <code>allow_relationship_reuse=True</code> is passed
+  — the caller's explicit acknowledgment, not a fix. "Actually duplicating
+  the media part… is out of scope here."</li>
+<li>Numbering: <code>renumber_sequences</code> runs as the final step (same as
+  <code>move_section</code>), refreshing SEQ-field caption numbers and any REF display
+  text for the copy — but this is figure/table caption numbering, <strong>not</strong>
+  the table-numbered-equation <code>"(1)"/"(2a)"</code> scheme <code>audit_equation_style</code>
+  checks (see the cross-cutting section below); <code>copy_section</code> does not
+  independently verify equation-number contiguity/uniqueness for whatever
+  table-numbered equations it may have just duplicated.</li>
+</ul>
+<h3 id="insert_equation_local-edit_equation_local-remove_equation_local-append_text_run_after_math-side-by-side"><code>insert_equation_local</code> / <code>edit_equation_local</code> / <code>remove_equation_local</code> / <code>append_text_run_after_math</code> — side-by-side<a class="headerlink" href="#insert_equation_local-edit_equation_local-remove_equation_local-append_text_run_after_math-side-by-side" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>insert_equation_local</code></th>
+<th><code>edit_equation_local</code></th>
+<th><code>remove_equation_local</code></th>
+<th><code>append_text_run_after_math</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Line (worktree)</td>
+<td>8703</td>
+<td>8952</td>
+<td>9211</td>
+<td>9082</td>
+</tr>
+<tr>
+<td>OMML validated on input</td>
+<td>Yes — via <code>_resolve_omml</code> (LaTeX-or-raw-OMML resolution, which validates) before touching the file</td>
+<td>Yes — same <code>_resolve_omml</code> path</td>
+<td>N/A (no new OMML)</td>
+<td>N/A (no OMML payload)</td>
+</tr>
+<tr>
+<td>Write path</td>
+<td><code>_save_docx_xml_stdlib</code> → <code>_atomic_write_docx_bytes</code>, held inside <code>_docx_promotion_lock</code> across write+verify+render-check</td>
+<td><code>_save_docx_xml_stdlib</code> directly, <strong>no explicit promotion-lock context held by this function around verify</strong> (relies entirely on <code>_save_docx_xml_stdlib</code>'s own internal reentrant lock during the write itself)</td>
+<td>Same as edit</td>
+<td>Same as edit</td>
+</tr>
+<tr>
+<td>Post-write structural re-verify</td>
+<td><strong>Yes</strong> — <code>_verify_equation_write</code> (flattened-text + paraId/textId identity, fresh re-read from disk)</td>
+<td><strong>No.</strong> No re-read-from-disk check that the new OMML actually landed; no call to <code>_verify_equation_write</code> or <code>_verify_docx_write</code></td>
+<td><strong>No</strong> equivalent verification that the equation is actually gone / the paragraph is intact</td>
+<td><strong>No</strong> verification that the run actually landed</td>
+</tr>
+<tr>
+<td>Render-capability gate</td>
+<td><strong>Yes</strong> — <code>_enforce_render_verification</code>, fail-closed unless explicitly degraded</td>
+<td><strong>No</strong></td>
+<td><strong>No</strong></td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>Provenance binding</td>
+<td>No (param doesn't exist on this function)</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Restore-on-failure (CAS-safe)</td>
+<td><strong>Yes</strong>, via <code>_safe_restore_after_verification_failure</code> on both the structural-verify and render-verify failure paths</td>
+<td><strong>No</strong> — nothing to restore <em>from</em> since nothing is verified after write</td>
+<td><strong>No</strong></td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>ID minting</td>
+<td>Fresh <code>_new_para_id</code>/<code>_new_para_id</code> for paraId+textId (display modes only; append mode reuses the anchor's existing id)</td>
+<td>N/A — edits in place, no new paragraph/ids</td>
+<td>N/A — removes in place</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Multi-equation-per-paragraph handling</td>
+<td>N/A (always inserts a new element/paragraph)</td>
+<td><strong>Required</strong> <code>equation_index</code> when the paragraph holds &gt;1 equation — fails closed rather than guessing (a documented <code>b6a9ec99</code> hardening of a prior silent-data-loss bug)</td>
+<td>Removes <strong>all</strong> <code>&lt;m:oMath&gt;</code> in the paragraph if the paragraph is equation-only, or all <code>&lt;m:oMath&gt;</code> children if mixed — does not support removing just one of several stacked equations</td>
+<td><strong>Required</strong> <code>math_index</code> when &gt;1 equation present; explicitly refuses to guess an insertion point inside a nested container (hyperlink/content-control/textbox) or a multi-equation <code>m:oMathPara</code></td>
+</tr>
+<tr>
+<td>Sidecar invalidation</td>
+<td><code>_invalidate_sidecar_mtime</code></td>
+<td>Same</td>
+<td>Same</td>
+<td>Same</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Net finding:</strong> of the four single-equation write primitives, only
+<code>insert_equation_local</code> gets the full stage→verify→render-gate→CAS-restore
+pipeline. <code>edit_equation_local</code>, <code>remove_equation_local</code>, and
+<code>append_text_run_after_math</code> all route through the same underlying
+<code>_atomic_write_docx_bytes</code>/<code>_docx_promotion_lock</code>/backup-before-promote
+machinery (so a write-time ZIP/well-formedness failure still fails closed
+and leaves <code>dest</code> untouched), but <strong>none of the three re-read the document
+after the write to confirm the edit/removal/append actually took effect as
+intended</strong>, and <strong>none run a render-capability check</strong>. This is a real,
+asymmetric gap across an otherwise-parallel API surface, not a difference in
+risk profile that would obviously justify it (an edit that silently fails to
+apply is exactly the kind of bug <code>_verify_equation_write</code> exists to catch
+for inserts).</p>
+<h3 id="_write_docx_transaction-_verify_paragraph_write-_mint_para_id-core-docstructurestore-insertion-path"><code>_write_docx_transaction</code> / <code>_verify_paragraph_write</code> / <code>_mint_para_id</code> — core <code>DocStructureStore</code> insertion path<a class="headerlink" href="#_write_docx_transaction-_verify_paragraph_write-_mint_para_id-core-docstructurestore-insertion-path" title="Permanent link">&para;</a></h3>
+<p><code>meridian/doc_store.py</code>'s <code>class DocStructureStore</code> (line 2418) is the "core
+DocStructureStore insertion" the acceptance criteria names; its
+paragraph-level writers are <code>update_paragraph</code> (line 4456) and
+<code>merge_paragraph_draft</code> (line 4744) — both async methods routing through
+<code>_save_docx_xml</code> → <code>_write_docx_transaction</code> (described above) plus, per
+<code>_verify_paragraph_write</code>'s own docstring, a <strong>mandatory post-write
+verification specific to <code>update_paragraph</code>/<code>merge_paragraph_draft</code></strong>:
+re-reads the file fresh from disk, re-locates the target paragraph by
+<code>para_id</code> (via the same resolution rule used pre-write), and confirms its
+<strong>plain text</strong> now matches <code>expected_text</code>. An <code>AmbiguousParagraphIdError</code>
+surfacing on re-read (only reachable if a genuine concurrent writer
+introduced a duplicate id) is folded into the same mismatch-string return
+path rather than raised, "keeping the never-raises-itself contract intact."</p>
+<ul>
+<li><strong>Enforced:</strong> structural manifest (media/style/relationship counts)
+  unchanged across the write (<code>_write_docx_transaction</code>); paragraph text
+  content equals expectation post-write (<code>_verify_paragraph_write</code>);
+  optional pre-promotion provenance-binding gate (<code>artifact_provenance</code>,
+  strictly stronger timing than the <code>docs_intel.py</code> equivalent — see above).</li>
+<li><strong>Optional:</strong> <code>artifact_provenance</code> — plumbed as a keyword parameter
+  through <code>_write_docx_transaction</code>/<code>_save_docx_xml</code>, but this investigation
+  did not find a confirmed call site in <code>doc_store.py</code> that supplies a
+  real (non-<code>None</code>) value from <code>update_paragraph</code>/<code>merge_paragraph_draft</code>
+  themselves — the parameter exists and fires correctly <em>if</em> supplied, but
+  whether any current production caller actually supplies it is unverified
+  here (would require tracing every caller of <code>update_paragraph</code> across
+  <code>meridian/server.py</code>/MCP handlers, out of this item's read scope).</li>
+<li><strong>Absent:</strong> no OMML/equation-specific verification in
+  <code>_verify_paragraph_write</code> itself — it only compares flattened <em>plain</em>
+  text, so a paragraph-text edit that happens to touch an equation's
+  surrounding text is checked, but the equation's own OMML structure is not
+  independently re-validated by this path (equation-specific checks live
+  only in the <code>docs_intel.py</code> writers above, a separate module with no
+  shared code path into <code>doc_store.py</code>'s paragraph editor).</li>
+<li><strong>ID minting:</strong> <code>_mint_para_id</code> — UUID4-derived, identical algorithm to
+  <code>docs_intel.py::_new_para_id</code> (see above), used by
+  <code>repair_duplicate_para_ids</code> (a separate, explicit, opt-in repair utility —
+  never invoked as a side effect of reading or addressing a document; read
+  paths detect a duplicate id and either report or fail closed, but never
+  self-heal it).</li>
+</ul>
+<h3 id="render_gate-promotion-checks"><code>render_gate</code> promotion checks<a class="headerlink" href="#render_gate-promotion-checks" title="Permanent link">&para;</a></h3>
+<p>Two genuinely distinct mechanisms exist, and they are not the same maturity
+level:</p>
+<ol>
+<li><strong><code>check_render_capability</code> / <code>check_word_com_render_receipt</code></strong> (both on
+   <code>dev</code> already, <code>render_gate.py:755</code>/<code>681</code> main-checkout line numbers) —
+   a single live call, three-state (<code>rendered</code>/<code>unavailable-with-reason</code>/
+   <code>failed</code>), <strong>not persisted anywhere</strong>. <code>check_word_com_render_receipt</code>'s
+   name is misleading: despite "_receipt", it persists nothing — it's just
+   <code>check_render_capability</code> scoped to the Word-COM backend only. This is
+   what <code>_enforce_render_verification</code> and <code>docx_integrity_gate.py</code> both
+   actually call today.</li>
+<li><strong><code>render_with_receipt</code> / <code>check_release_render_gate</code> /
+   <code>list_render_receipts</code></strong> (worktree-only, MDE-7 <code>1e6150ef</code>, not on <code>dev</code>
+   at all) — a durable, atomic-JSON-ledger-backed receipt system.
+   <code>render_with_receipt</code> builds a <code>RenderReceipt</code> (backend, backend
+   version, process identity, PDF hash/size/page-count, field-refresh
+   status, an explicit <code>visual_qa</code> state defaulting to <code>"not_reviewed"</code> —
+   backend-conversion success is <strong>never</strong> implicitly treated as a human
+   visual QA pass) and persists it via an atomic <code>os.replace</code>-based JSON
+   write. <code>check_release_render_gate</code> is the release-time enforcement
+   point: refuses release (<code>release_ready=False</code>) unless the <strong>newest
+   matching receipt</strong> for that exact <code>docx_path</code> has <code>status="rendered"</code>,
+   its <code>source_docx_sha256</code> matches the file's <strong>current</strong> on-disk content
+   (so a receipt for a since-edited file cannot authorize releasing the new
+   content), and its age is within <code>max_age_seconds</code> (default 24h) —
+   otherwise refuses unless a human passes
+   <code>allow_degraded_override=True</code> + non-empty <code>override_reason</code>, itself
+   recorded as a second, durable, auditable <code>kind="degraded_override"</code>
+   receipt in the same ledger (never a silent bypass).</li>
+<li><strong>Current vs. historical distinction: real, but confined to mechanism 2
+  only, and mechanism 2 is unlanded.</strong> <code>list_render_receipts</code> returns every
+  receipt (renders <em>and</em> overrides) for a document sorted newest-first —
+  this is the only place in the whole audited surface that can answer "what
+  did prior render attempts on this document look like," and it doesn't
+  exist on <code>dev</code>. Mechanism 1 (what's actually wired into every equation
+  writer and into <code>docx_integrity_gate.py</code> today) is stateless — each call
+  is a fresh probe with no memory of any prior attempt, on <code>dev</code> or the
+  worktree alike.</li>
+</ol>
+<h3 id="docx_integrity_gate-composition-meridiandocx_integrity_gatepy"><code>docx_integrity_gate</code> composition (<code>meridian/docx_integrity_gate.py</code>)<a class="headerlink" href="#docx_integrity_gate-composition-meridiandocx_integrity_gatepy" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Composes exactly three sources, per its own docstring, into one verdict:
+  live <code>render_gate.check_render_capability</code> (never <code>render_with_receipt</code>),
+  live <code>docs_intel.audit_equation_style</code> (numbering/punctuation/notation —
+  see below), and a <strong>self-computed, read-time</strong> provenance fingerprint
+  (<code>_compute_provenance_manifest</code>: SHA-256 over <code>{byte_size,
+  paragraph_count, heading_count, sorted xml_part list}</code> from
+  <code>read_document_snapshot</code>) — explicitly <strong>not</strong> a reuse of
+  <code>_atomic_write_docx_bytes</code>'s write-time <code>manifest_hash</code>/<code>promoted_sha256</code>,
+  because (module docstring, verbatim) "that machinery is WRITE-time only
+  and nothing durably persists its output anywhere this gate could read."</li>
+<li>Discovers candidate <code>.docx</code> artifacts from two durable sources (sprint
+  item pointers, proposal-evidence <code>artifact</code> links) — never from a live
+  filesystem scan.</li>
+<li><code>RECIPE_CHECK_REGISTRY</code> (lines 551-571) documents three named checks —
+  <code>structural_check_required</code> → <code>render_gate.verify_promotion_readiness</code>,
+  <code>word_com_render_check_required</code> → <code>render_gate.check_word_com_render_receipt</code>,
+  <code>outputs_provenance_check_required</code> → the <code>meridian-outputs</code> MCP server —
+  and this investigation confirmed <strong>both named <code>render_gate</code> functions do
+  exist</strong> at the paths cited (<code>verify_promotion_readiness</code> and
+  <code>check_word_com_render_receipt</code>, both present on <code>dev</code>'s
+  <code>render_gate.py</code>, not just the worktree). The registry is explicitly
+  <strong>documentation-only, by the module's own comment</strong>: "Deliberately NOT
+  wired into <code>build_docx_integrity_gate</code>'s own execution… out of this
+  item's touches_resources scope to touch." A per-item <code>artifact_recipe</code>
+  can <em>declare</em> which checks it wants (<code>describe_required_checks</code>), but
+  nothing in this file (or, as far as this item's scope covers, anywhere
+  else) actually dispatches to <code>verify_promotion_readiness</code> /
+  <code>check_word_com_render_receipt</code> / an Outputs provenance call based on
+  that declaration — <code>build_docx_integrity_gate</code> always runs the same
+  three fixed checks for every discovered artifact regardless of what any
+  item's recipe says it wants.</li>
+<li><strong>Never touches <code>_check_artifact_provenance_binding</code> /
+  <code>_check_artifact_provenance</code> / <code>meridian_outputs</code> provenance at all</strong> —
+  despite <code>outputs_provenance_check_required</code> existing in the registry as a
+  <em>documented</em> check name, the gate's actual execution has zero source/
+  package-hash comparison against any canonical Outputs-registered
+  provenance record; its only "hash" is the self-computed structural
+  fingerprint above, which has no relationship to <code>meridian_outputs</code>'
+  <code>bind_artifact_provenance</code>/<code>record_provenance</code> machinery at all.</li>
+<li><strong>Current vs. historical render receipts: absent entirely.</strong> No
+  <code>receipts_path</code> parameter, no call to <code>list_render_receipts</code> or
+  <code>check_release_render_gate</code> — every gate evaluation is a fresh live probe
+  with no memory. This is consistent with mechanism 2 not existing on
+  <code>dev</code> (the branch this file lives on), but means that even once MDE-7
+  lands, <code>docx_integrity_gate.py</code> needs its own follow-up change to
+  actually consume it — landing the branch alone does not wire this file
+  up to receipts.</li>
+</ul>
+<hr />
+<h2 id="2-cross-cutting-gap-matrix-by-acceptance-dimension">2. Cross-cutting gap matrix, by acceptance dimension<a class="headerlink" href="#2-cross-cutting-gap-matrix-by-acceptance-dimension" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Finding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Deterministic vs. UUID IDs</strong></td>
+<td>100% UUID4-derived across every writer audited (<code>_new_para_id</code>, <code>_mint_para_id</code>, <code>_build_omath_paragraph</code>'s own fallback). No deterministic/sequential/content-derived id scheme exists anywhere in this surface. Collision avoidance is a <code>taken: set[str]</code> re-roll loop, checked against both on-disk ids and in-batch mints — real, but purely probabilistic, not structural.</td>
+</tr>
+<tr>
+<td><strong>Deep-copy guarantees</strong></td>
+<td>Confirmed real for <code>copy_section</code> — genuine <code>copy.deepcopy</code>, fresh paraIds, fresh bookmark names, self-reference repointing. <strong>Explicitly, documentedly NOT extended to image relationships</strong> (<code>r:embed</code> and the underlying media part are shared, not duplicated, unless <code>allow_relationship_reuse=True</code> is passed to accept the shared-reference state) — a real, acknowledged, opt-out-required gap, not an oversight.</td>
+</tr>
+<tr>
+<td><strong>OMML container checks</strong></td>
+<td>Real but non-uniform. <code>_validate_omml_structure</code> exists in two independently-maintained copies (one per module) and is exercised on every <em>new</em> equation payload (<code>insert_equation_local</code>/<code>edit_equation_local</code>, transitively via <code>_resolve_omml</code>) and transitively on every equation already in a document that <code>copy_section</code> touches (via <code>_equation_semantic_manifest</code>). It is a hand-authored structural-subset check, not a schema validator, and it is never re-run on the <em>post-write</em> on-disk bytes for anything except <code>insert_equation_local</code> (<code>_verify_equation_write</code> checks flattened text identity only, not structure) and <code>copy_section</code> (via its equation-manifest post-write comparison). <code>remove_equation_local</code> and <code>append_text_run_after_math</code> never invoke it at all (nothing to validate for remove; append only adds a plain <code>&lt;w:r&gt;</code>, not OMML).</td>
+</tr>
+<tr>
+<td><strong>Numbering / punctuation / notation checks</strong></td>
+<td>Exist (<code>audit_equation_style</code>, <code>docs_intel.py:8354</code> — misaligned-equation, missing/incorrect trailing punctuation, duplicate/gap table-numbered-equation numbering) but are <strong>entirely read-time and opt-in</strong> — never called by any of <code>insert_equation_local</code>/<code>edit_equation_local</code>/<code>remove_equation_local</code>/<code>append_text_run_after_math</code>/<code>copy_section</code> themselves. The only production wiring found is <code>docx_integrity_gate.py</code>'s <code>equation_auditor</code> slot, itself best-effort and non-blocking unless an item's artifact policy is <code>"strict"</code>. A caller who inserts/edits/copies equations gets <strong>zero</strong> inline feedback on alignment, trailing punctuation, or numbering contiguity — those issues surface only later, if at all, through a separate handoff-time gate.</td>
+</tr>
+<tr>
+<td><strong>Source / package hashes</strong></td>
+<td>Three distinct, non-unified hash concepts coexist: (1) <code>promoted_sha256</code> — write-time, full-body SHA-256 of exactly what a given transaction promoted, used only for the CAS-safe restore-vs-concurrent-writer decision, never persisted beyond the in-memory transaction result; (2) <code>manifest_hash</code> — write-time, SHA-256 over <code>changed_parts</code> only (the intended delta), also transient; (3) <code>docx_integrity_gate</code>'s <code>provenance_manifest.manifest_hash</code> — a wholly separate, read-time structural fingerprint (byte size / paragraph / heading / xml-part-list counts) with no cryptographic or structural relationship to (1) or (2), computed because (per the module's own docstring) "nothing durably persists" (1)/(2) anywhere this gate could read them. None of the three is the <code>meridian_outputs</code>-style source-script/package provenance hash the <code>outputs_provenance_check_required</code> registry entry implies exists — that check is named but not wired in (see above).</td>
+</tr>
+<tr>
+<td><strong>Current vs. historical render receipts</strong></td>
+<td>A real durable-receipt subsystem exists (<code>RenderReceipt</code>/<code>render_with_receipt</code>/<code>list_render_receipts</code>/<code>check_release_render_gate</code>) with a genuine current-vs-historical distinction (<code>list_render_receipts</code> returns full history newest-first; <code>check_release_render_gate</code> requires the <em>newest matching</em> receipt to be fresh + content-hash-matched) — but it is <strong>unlanded</strong> (worktree-only, absent from <code>dev</code>), and even on the worktree it is <strong>called from nowhere</strong> in either the equation-writer family or <code>docx_integrity_gate.py</code>. Every write-time and handoff-time render check actually exercised today is the older, stateless, single-call <code>check_render_capability</code>/<code>check_word_com_render_receipt</code> — no memory of any prior render attempt, on <code>dev</code> or on the worktree.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-side-by-side-operation-matrix">3. Side-by-side operation matrix<a class="headerlink" href="#3-side-by-side-operation-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Symbol</th>
+<th style="text-align: center;">Fresh IDs minted</th>
+<th style="text-align: center;">Post-write structural re-verify</th>
+<th style="text-align: center;">Render-capability gate</th>
+<th style="text-align: center;">Provenance-binding gate</th>
+<th style="text-align: center;">Restore-on-failure (CAS-safe)</th>
+<th style="text-align: center;">Numbering/punctuation audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td><code>insert_equation_local</code></td>
+<td style="text-align: center;">Yes (UUID)</td>
+<td style="text-align: center;">Yes (<code>_verify_equation_write</code>)</td>
+<td style="text-align: center;">Yes (<code>_enforce_render_verification</code>)</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No (opt-in, out-of-band only)</td>
+</tr>
+<tr>
+<td>Edit</td>
+<td><code>edit_equation_local</code></td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td><code>remove_equation_local</code></td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Append text after math</td>
+<td><code>append_text_run_after_math</code></td>
+<td style="text-align: center;">N/A</td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Section clone</td>
+<td><code>copy_section</code></td>
+<td style="text-align: center;">Yes (UUID, every copied <code>&lt;w:p&gt;</code>)</td>
+<td style="text-align: center;">Yes (<code>_verify_docx_write</code> w/ equation manifest — transitively validates OMML structure)</td>
+<td style="text-align: center;"><strong>No</strong></td>
+<td style="text-align: center;"><strong>No</strong> (param not threaded through)</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Core <code>DocStructureStore</code> paragraph write</td>
+<td><code>update_paragraph</code>/<code>merge_paragraph_draft</code> via <code>_write_docx_transaction</code> + <code>_verify_paragraph_write</code></td>
+<td style="text-align: center;">Only via separate opt-in <code>repair_duplicate_para_ids</code></td>
+<td style="text-align: center;">Yes (plain-text identity only, not OMML-aware)</td>
+<td style="text-align: center;">No (not this module's concern)</td>
+<td style="text-align: center;">Optional, pre-promotion (stronger timing than <code>docs_intel.py</code>), unconfirmed live caller</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-summary-ranked-by-how-surprisingrisky-the-gap-is">4. Summary — ranked by how surprising/risky the gap is<a class="headerlink" href="#4-summary-ranked-by-how-surprisingrisky-the-gap-is" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Asymmetric verification across the equation-writer family.</strong> Insert
+   gets a full verify+render+restore pipeline; edit, remove, and
+   append-text-after-math get none of the three, despite sharing the same
+   underlying atomic-write machinery that <em>could</em> support them. This is the
+   most actionable, narrowly-scoped gap in this audit.</li>
+<li><strong><code>_enforce_render_verification</code> and the MDE-7 receipt ledger are two
+   live but disconnected subsystems</strong>, even after MDE-7 lands — the
+   docstring names the intended integration explicitly as a deliberate,
+   still-unstarted follow-up.</li>
+<li><strong><code>docx_integrity_gate.py</code>'s <code>RECIPE_CHECK_REGISTRY</code> names three checks
+   it does not run</strong> (<code>verify_promotion_readiness</code>,
+   <code>check_word_com_render_receipt</code>, an Outputs provenance call) — the
+   functions exist, but nothing dispatches to them based on a declared
+   recipe; every artifact gets the same fixed three checks regardless.</li>
+<li><strong>Provenance binding (<code>_check_artifact_provenance_binding</code> /
+   <code>_check_artifact_provenance</code>) never reaches the equation-writer family</strong>
+   — none of the six audited write operations accept or forward an
+   <code>artifact_provenance</code> argument, so <code>6d02f343</code>'s fail-closed binding gate
+   is architecturally present in the codebase but structurally unreachable
+   from this surface.</li>
+<li><strong>Two independently-maintained <code>_validate_omml_structure</code> copies</strong> and
+   two independently-maintained UUID-paraId-minting functions
+   (<code>_new_para_id</code>/<code>_mint_para_id</code>) — both pairs are deliberate,
+   documented, package-boundary decisions (not accidents), but both are a
+   standing double-maintenance risk for future OMML-contract changes.</li>
+<li><strong>The <code>copy_section</code> image-relationship-sharing gap is real but already
+   fully acknowledged</strong> in-code (<code>679c86f4</code>, opt-out via
+   <code>allow_relationship_reuse</code>) — listed for completeness, not as a new
+   finding.</li>
+</ol>
+<p>No DOCX (real or fixture) was created, opened for writing, or mutated in the
+course of this investigation. No sprint-item code was claimed or edited.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
