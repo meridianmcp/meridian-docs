@@ -1,0 +1,1546 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/tigris-tenant-access-policy/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Tigris tenant/project access policy — PLAN, not activation - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tigris-tenantproject-access-policy-plan-not-activation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tigris tenant/project access policy — PLAN, not activation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-baseline-how-the-existing-postgres-backed-tenantproject-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Baseline: how the existing Postgres-backed tenant/project boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-tenantproject-rights-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tenant/project rights model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-provisioning-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Provisioning flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-quotas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Quotas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-lifecycle-deletion-export-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Lifecycle — deletion &amp; export boundaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-summary-table-postgres-baseline-vs-this-tigris-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Summary table — Postgres baseline vs. this Tigris design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-what-is-not-yet-resolved-needs-a-human-decision-before-activation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What is NOT yet resolved — needs a human decision before activation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals-of-this-document-restated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-goals of this document (restated)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tigris-tenantproject-access-policy-plan-not-activation">Tigris tenant/project access policy — PLAN, not activation<a class="headerlink" href="#tigris-tenantproject-access-policy-plan-not-activation" title="Permanent link">&para;</a></h1>
+<p><strong>Status: Tigris/S3 is INACTIVE (unchanged).</strong> This document is the
+prospecting/planning deliverable for sprint item <code>54fcf116-602d-4e28-9cae-db145f992a88</code>.
+It designs the tenant/project rights model, provisioning flow, quotas, and
+lifecycle boundaries that a <em>future</em> <code>TigrisObjectStoreBackend</code> activation
+would need — it does not implement any of it, does not touch credentials,
+and does not write production data. Nothing in this document changes any
+runtime behavior.</p>
+<p>It builds directly on <code>docs/object-storage-backend.md</code> (the accepted
+design for the Protocol/backends/sync-state that already shipped) rather
+than re-deriving that material. Read that document first; this one adds
+the tenant/project access-control layer it deliberately left as <code>[OPEN]</code>
+or out of scope.</p>
+<h2 id="0-baseline-how-the-existing-postgres-backed-tenantproject-boundary">0. Baseline: how the existing Postgres-backed tenant/project boundary<a class="headerlink" href="#0-baseline-how-the-existing-postgres-backed-tenantproject-boundary" title="Permanent link">&para;</a></h2>
+<p>actually works today</p>
+<p>Any access-control design for Tigris has to either match or explicitly
+diverge from the enforcement this codebase already relies on for its
+Postgres-backed resources (<code>projects</code>, <code>sprint_items</code>, <code>workspace_*</code>, …).
+Traced via <code>meridian/roles.py</code>, <code>meridian/db/workspace.py</code>, <code>meridian/_deps.py</code>,
+and <code>meridian/hosted.py</code>:</p>
+<ol>
+<li><strong>Physical isolation, hosted mode.</strong> Each tenant gets its <em>own</em> Neon
+   Postgres database (<code>tenants.neon_db_url</code>, provisioned in <code>hosted.py</code>,
+   decrypted per-tenant via <code>meridian/tenant_crypto.py</code>'s HKDF-derived Fernet
+   key salted with <code>tenant_id</code>). <code>_db(request)</code> in <code>_deps.py</code> resolves which
+   physical database a request hits. This is the <em>strongest</em> isolation
+   layer in the system today, and it is physical, not row-level: one
+   tenant's project data lives in bytes a different tenant's connection
+   string cannot even address.</li>
+<li><strong>Shared control-plane DB, row-scoped.</strong> <code>workspace_notes</code>,
+   <code>workspace_decisions</code>, <code>workspace_proposals</code>, <code>workspace_members</code> live in
+   one shared auth/control-plane DB, scoped by a <code>tenant_id</code> column via
+   <code>_ws_tenant_clause</code> (<code>db/workspace.py</code>) — <code>tenant_id = ? OR tenant_id IS
+   NULL</code> (the <code>NULL</code> branch exists only for pre-isolation rows on a
+   dedicated per-tenant DB, per that function's docstring).</li>
+<li><strong>Role-based write gating, cross-workspace only.</strong> <code>roles.py</code> defines
+   the only 4 real roles (<code>owner</code>/<code>admin</code>/<code>member</code>/<code>viewer</code>) and their
+   permission sets (<code>ROLE_PERMS</code>). <code>_deps.py::_required_perm_for_request</code>
+   maps a mutating path to the permission a role needs; <code>_enforcement_context</code>
+   resolves <code>(caller_email, active_workspace_tenant_id, role)</code> <strong>only when</strong>
+   an <code>X-Workspace-Tenant-Id</code> header names a workspace different from the
+   caller's own (<code>_enforcement_context</code> docstring: "Role enforcement only
+   matters cross-workspace... every tenant is implicitly owner of their own
+   workspace"). Self-hosted, demo, same-workspace, and solo-owner requests
+   pay no role-check cost and see no gate — they're already the owner.</li>
+<li><strong>Project-level scoping is listing-only, not a hard boundary.</strong>
+   <code>get_scoped_project_ids_for_member</code> / <code>_scoped_project_ids_for_request</code>
+   (<code>db/workspace.py</code>) filter what a <em>project-scoped invited member</em> sees in
+   a <strong>list</strong>. Both functions' docstrings say this explicitly: "This is
+   listing-only scoping. It does NOT block direct-by-ID access to other
+   projects in the same workspace — airtight per-request enforcement is
+   deferred pending the open product decision (pin <code>b11c7cf6</code>)." Writes are
+   still gated by role (<code>393eed0a</code>), but a project-scoped member can address
+   a sibling project by id today and nothing in <code>roles.py</code>/<code>_deps.py</code> stops
+   the read.</li>
+</ol>
+<p><strong>Net effect that matters for Tigris:</strong> cross-<em>tenant</em> isolation for
+project data is primarily <strong>physical</strong> (separate Neon DB per tenant, not a
+shared table anyone could theoretically mis-scope) plus a role check that
+only activates when someone crosses into another tenant's workspace.
+Cross-<em>project</em> isolation within one tenant is <strong>not</strong> physical and is not
+even a hard logical boundary yet — it's an acknowledged, open gap
+(<code>b11c7cf6</code>). A Tigris design that puts every tenant's objects in one
+shared bucket under path prefixes is architecturally closer to case 4
+(logical, prefix-based, not physically separate) than to case 1 (physically
+separate databases) — see §1 and §5.</p>
+<h2 id="1-tenantproject-rights-model">1. Tenant/project rights model<a class="headerlink" href="#1-tenantproject-rights-model" title="Permanent link">&para;</a></h2>
+<p><strong>Decision: reuse <code>roles.py</code> verbatim. No new permission.</strong></p>
+<p>Object read/write/delete map onto the existing <code>PERM_READ</code> / <code>PERM_WRITE</code>
+exactly like every other ordinary project-data mutation already does via
+<code>_required_perm_for_request</code>'s default branch (any path not matching one of
+the special-cased prefixes — team management, settings, whole-project
+delete — falls through to <code>PERM_WRITE</code> for POST/PUT/PATCH/DELETE). A future
+<code>/projects/{project_id}/objects/...</code>-shaped route needs <strong>no new entry</strong> in
+<code>_required_perm_for_request</code> to get write-gated correctly; it would only
+need one if object routes should require something <em>stricter</em> than the
+default (e.g. gating delete at <code>PERM_SETTINGS</code> instead of <code>PERM_WRITE</code> —
+an open question, see §6).</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Read object</th>
+<th>Write/put object</th>
+<th>Delete object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>owner</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>member</td>
+<td>yes (<code>PERM_READ</code>)</td>
+<td>yes (<code>PERM_WRITE</code>)</td>
+<td>yes (<code>PERM_WRITE</code>)</td>
+</tr>
+<tr>
+<td>viewer</td>
+<td>yes (<code>PERM_READ</code>)</td>
+<td><strong>no</strong></td>
+<td><strong>no</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Caveats, both <strong>inherited, not introduced</strong> by this design:</p>
+<ul>
+<li><strong>GET/list routes have no established role-check precedent in this
+  codebase to begin with.</strong> <code>roles.py</code>'s permission model is enforced by
+  <code>_deps.py</code> only for <em>mutating</em> requests (<code>_required_perm_for_request</code>
+  early-returns <code>None</code> for anything but POST/PUT/PATCH/DELETE). Existing GET
+  routes (e.g. <code>routes/files.py::get_project_file</code>) check only "does the
+  project exist," not role. A future object GET/list route would, by
+  precedent, get the same treatment — but this is a policy choice this
+  document surfaces rather than resolves (§6, open item 7).</li>
+<li><strong>Project-scoped members inherit the <code>b11c7cf6</code> gap unchanged.</strong> Nothing
+  about object storage lets this design close that gap; a project-scoped
+  member's request naming a sibling project's <code>project_id</code> in an object key
+  would be served exactly as readily as the existing gap allows for any
+  other project-scoped resource today. Do not describe a Tigris route as
+  "more secure" than the rest of the API — it would inherit the identical
+  listing-only enforcement unless a <em>new</em>, object-storage-specific hard
+  check is deliberately built (out of scope here; flagged as an open
+  decision in §6).</li>
+</ul>
+<p><strong>Tenant boundary — key construction, not row filtering.</strong> Every key is
+built through <code>object_store.build_object_key(project_id, artifact_class,
+content_hash, tenant_id=...)</code>. The tenant boundary is enforced by <em>who is
+allowed to construct which key</em>, not by a queryable column:</p>
+<ul>
+<li><code>tenant_id</code> must always be resolved <strong>server-side</strong> via
+  <code>db.get_tenant_id_for_project(db, project_id)</code> — the same function
+  <code>routes/projects.py</code> already uses for tunnel-slot resolution — never
+  accepted as a client-supplied argument. <strong>This is not yet enforced by the
+  Protocol itself</strong>: <code>build_object_key</code>'s <code>tenant_id</code> parameter is only
+  validated for <em>character safety</em> (<code>_safe_component</code>), not for "does this
+  tenant actually own this project." Nothing in <code>object_store.py</code> today
+  calls <code>build_object_key</code> from a network-facing path (correctly — no
+  caller exists yet), so this is a <strong>requirement for whoever wires the
+  first real caller</strong>, not a bug in what shipped. Flagged as open item 6 in
+  §6.</li>
+<li>Self-hosted (no tenant concept, no <code>workspace_members</code> table populated) —
+  keys have no <code>tenants/</code> prefix, identical to today's <code>LocalObjectStoreBackend</code>
+  behavior. No change needed.</li>
+</ul>
+<h2 id="2-provisioning-flow">2. Provisioning flow<a class="headerlink" href="#2-provisioning-flow" title="Permanent link">&para;</a></h2>
+<p><strong>There is no per-tenant bucket, credential, or ACL to provision under the
+prefix-per-tenant design already recommended (but still <code>[OPEN]</code>) in
+<code>docs/object-storage-backend.md</code>.</strong> This is a deliberate simplification,
+not an oversight, and it is architecturally different from how this same
+codebase provisions Neon:</p>
+<ul>
+<li><strong>Neon (existing, for comparison):</strong> <code>hosted.py</code> provisions a whole new
+  Neon <em>project</em> + database + role + connection string per tenant on
+  signup, and <code>_drop_tenant_neon_database</code> tears down that same real,
+  separately-addressable resource on account deletion. Each tenant's
+  Postgres data is physically unreachable from another tenant's credentials.</li>
+<li><strong>Tigris (prefix-per-tenant, this design):</strong> one bucket, one set of
+  access-key credentials, shared by every tenant. "Provisioning" a new
+  tenant/project is a no-op beyond <code>build_object_key</code> producing a
+  well-formed <code>tenants/{tenant_id}/{project_id}/...</code> prefix the first time
+  that tenant's project ever writes an object — there is no discrete
+  "create tenant" step to run, because a prefix isn't a resource that has
+  to exist before something is written under it.</li>
+</ul>
+<p>This is the direct consequence of choosing prefix- over bucket-per-tenant,
+and it is the reason §1's "reuse <code>roles.py</code>, resolve <code>tenant_id</code>
+server-side" requirement is load-bearing rather than a nice-to-have: with
+no per-tenant credential to lean on, the <em>only</em> thing standing between one
+tenant's objects and another's is application-layer key construction plus
+the standard role/session auth already gating the request. A leaked
+app-level Tigris credential, or a bug that lets a caller influence
+<code>tenant_id</code>/<code>project_id</code> going into <code>build_object_key</code>, exposes <strong>every</strong>
+tenant's objects in one shot — a materially different blast radius than a
+single leaked Neon connection string today. This asymmetry is exactly why
+investigation <code>549e66c6</code> left bucket-vs-prefix an explicit human
+<code>[OPEN]</code> decision rather than defaulting it, and why activation-gate step 1
+in <code>docs/object-storage-backend.md</code> (human sign-off) has to happen before
+step 5 (a real <code>TigrisObjectStoreBackend</code> implementation) — not after.</p>
+<p><strong>If/when this activates</strong>, provisioning is folded into the existing
+10-step activation gate in <code>docs/object-storage-backend.md</code> (§"Activation
+gate") unchanged; this document adds exactly one concrete requirement to
+step 9 ("sync worker + MCP tool"): the sync worker's entry point (and any
+MCP tool that triggers it) must resolve <code>tenant_id</code> via
+<code>get_tenant_id_for_project</code> inside the trusted request/session context,
+never accept it as a caller-supplied field — see §1.</p>
+<h2 id="3-quotas">3. Quotas<a class="headerlink" href="#3-quotas" title="Permanent link">&para;</a></h2>
+<p><strong>No byte-based storage quota exists anywhere in this codebase today</strong> —
+neither for local <code>artifact_store.py</code> content nor (obviously) for a remote
+backend that doesn't exist yet. <code>meridian/limits.py</code> — the only quota-shaped
+module in the repo — is exclusively <strong>count</strong>-based safety guardrails
+(projects/sprint-items/notes/decisions/sessions/tasks/open-HITL <em>per
+tenant or per project</em>, plus a request-body byte cap), explicitly
+documented as "guard-rails, not quotas" against runaway loops, not a
+billing mechanism.</p>
+<p><strong>A real precedent for a byte-based, plan-tiered, billed quota already
+exists — for Neon, not object storage</strong> (<code>meridian/hosted.py</code>):</p>
+<ul>
+<li><code>PLAN_LIMITS: dict[str, dict[str, float]]</code> carries a <code>storage_gb</code> figure
+  per plan (<code>free: 0.1</code>, <code>standard: 1.0</code>, <code>pro: 10.0</code>, <code>admin: inf</code>).</li>
+<li><code>run_storage_overage_check</code> polls each tenant's <em>real</em> Neon usage via
+  <code>get_neon_storage_gb</code>, and <code>report_storage_overage_to_stripe</code> bills
+  metered overage (<code>storage_overage_gb</code>) through Stripe when a tenant
+  exceeds its plan's figure.</li>
+</ul>
+<p><strong>Recommendation for Tigris (design only — no code in this item):</strong></p>
+<ol>
+<li>Mirror <code>PLAN_LIMITS</code> with a new <code>object_storage_gb</code> key per tier.
+   <strong>Values are a business/pricing decision, not something this
+   investigation sets</strong> — see open item 4 in §6.</li>
+<li>A byte counter needs a real source of truth, and <strong>the closest existing
+   table doesn't carry one today</strong>: <code>object_sync_state</code>'s columns (<code>id</code>,
+   <code>project_id</code>, <code>content_hash</code>, <code>backend</code>, <code>artifact_class</code>, <code>state</code>,
+   <code>remote_key</code>, <code>remote_etag</code>, <code>queued_at</code>, <code>synced_at</code>, <code>last_error</code>,
+   <code>retry_count</code>, <code>updated_at</code> — see <code>meridian/db/object_sync_state.py</code>) have
+   <strong>no <code>size</code> column</strong>. Two options, neither implemented here: (a) add a
+   <code>size</code> column to <code>object_sync_state</code> at sync-enqueue time (the size is
+   already known locally via <code>artifact_store.get_artifact_metadata</code>'s
+   <code>size</code> field, so this is a cheap join, not a new I/O path), or (b) poll
+   the bucket's own usage API the way <code>get_neon_storage_gb</code> polls Neon's —
+   unconfirmed whether Tigris exposes one (investigation <code>549e66c6</code>'s
+   doc-site fetches for Tigris-specific behavior 404'd; see
+   <code>docs/object-storage-backend.md</code>).</li>
+<li>Enforcement should reuse <code>limits.py</code>'s existing shape — a
+   <code>check_object_storage_bytes_per_tenant</code>-style guard raising the same
+   <code>LimitExceeded</code> → 429 contract every other guardrail in this codebase
+   already uses — rather than inventing a parallel quota mechanism.</li>
+<li><strong>Not urgent for correctness today.</strong> Per the local-first contract in
+   <code>docs/object-storage-backend.md</code>, local disk is always authoritative and
+   a remote tier is purely additive — nothing can overflow past what local
+   disk already holds. A byte quota only becomes load-bearing once a real
+   remote backend starts actually storing (and billing for) bytes, i.e.
+   after activation-gate step 6 in that document.</li>
+</ol>
+<h2 id="4-lifecycle-deletion-export-boundaries">4. Lifecycle — deletion &amp; export boundaries<a class="headerlink" href="#4-lifecycle-deletion-export-boundaries" title="Permanent link">&para;</a></h2>
+<p><strong>Export — a usable building block already ships.</strong>
+<code>artifact_store.export_artifacts</code> (project-scoped, read-only, receipted:
+<code>{project_id, exported_at, artifact_count, total_size, artifacts,
+export_hash}</code>, base64 content, never deletes) is exactly the shape a
+Tigris-aware export needs to compose with. <code>routes/export.py::export_my_data</code>
+→ <code>db.export_tenant_data</code> already iterates every project row from the
+tenant's project DB (<code>pdb</code>) to build a GDPR export; a future extension that
+includes object-storage content for a tenant with real Tigris backing
+should call an equivalent per-project export over the same project list —
+no new enumeration primitive is needed, only wiring <code>export_artifacts</code>'s
+existing output shape into that same tenant-level loop.</p>
+<p><strong>Deletion — two existing paths, and BOTH have a pre-existing local-artifact
+gap that Tigris activation would make materially worse.</strong></p>
+<ol>
+<li><strong>Account deletion</strong> (<code>routes/export.py::delete_account</code>, gated by
+   <code>PERM_DELETE_TENANT</code> via <code>_require_workspace_perm</code> — owner-only, admins
+   explicitly excluded by <code>ROLE_PERMS</code>):</li>
+<li><code>db.delete_tenant_records</code> deletes only shared <strong>control-plane</strong> rows
+     (<code>user_sessions</code>, <code>api_tokens</code>, <code>workspace_members</code>, <code>tenants</code>).</li>
+<li><code>hosted._drop_tenant_neon_database</code> is a <strong>separate</strong>, fire-and-forget
+     background task that drops the tenant's actual Neon project database.</li>
+<li><strong>Neither path touches local <code>artifact_store.py</code> content</strong> for that
+     tenant's projects. This is a <strong>pre-existing gap, independent of
+     Tigris</strong> — self-hosted local artifacts already outlive account/tenant
+     deletion today. It becomes a real-money problem once a remote backend
+     stores billed bytes rather than merely leftover local disk: a
+     tenant-deletion flow that doesn't clean up its Tigris prefix leaves
+     permanently-billed orphaned bytes in a shared bucket forever.</li>
+<li><strong>Requirement for real activation</strong> (not built here): an explicit
+     "delete every object under <code>tenants/{tenant_id}/</code>" step, run at the
+     same point <code>_drop_tenant_neon_database</code> fires, using
+     <code>ObjectStoreBackend.list()</code>'s existing cursor-paginated <code>ListPage</code> +
+     <code>delete()</code> in a bounded sweep loop — the Protocol already supports
+     this without any new interface.</li>
+<li><strong>Project deletion</strong> (<code>DELETE /projects/{id}</code>, <code>PERM_SETTINGS</code>-gated per
+   <code>_required_perm_for_request</code>, with the explicit <code>3f4ba195</code>
+   authorization-bypass fix already covering the batch-delete route too):</li>
+<li><code>db.delete_project</code> removes DB rows only. Same gap at the project
+     scope: nothing deletes that project's <code>artifact_store.py</code> files or
+     (later) its Tigris objects today.</li>
+<li><strong>Requirement for real activation:</strong> an equivalent prefix-delete keyed
+     on <code>{tenant_id}/{project_id}/</code> (or bare <code>{project_id}/</code> self-hosted),
+     at the same call site as the DB-row delete. <code>purge_artifacts_before</code>
+     already establishes the "bulk, project-scoped, cutoff-based delete"
+     pattern locally; a "delete everything for this project" variant (or a
+     <code>cutoff_iso</code> one second in the future, which already works today with
+     zero new code for the <em>local</em> side only) is the natural local-side
+     analogue — the remote side needs the real backend to exist first.</li>
+<li><strong>Retention/GC parity.</strong> <code>purge_artifacts_before</code> has no remote
+   equivalent yet. Whoever implements the real backend needs a matching
+   remote purge, and every <code>object_sync_state</code> row for a purged
+   <code>content_hash</code> needs to be deleted in lockstep — a dangling
+   <code>object_sync_state</code> row pointing at bytes that no longer exist anywhere
+   is a metadata leak (harmless on its own, since the table holds no
+   content, but confusing for any future audit/reconciliation tooling).</li>
+</ol>
+<h2 id="5-summary-table-postgres-baseline-vs-this-tigris-design">5. Summary table — Postgres baseline vs. this Tigris design<a class="headerlink" href="#5-summary-table-postgres-baseline-vs-this-tigris-design" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Neon Postgres (today)</th>
+<th>Tigris, prefix-per-tenant (this design)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cross-tenant isolation mechanism</td>
+<td>Physical (separate DB per tenant)</td>
+<td>Logical (shared bucket, key-prefix discipline)</td>
+</tr>
+<tr>
+<td>Cross-project isolation within a tenant</td>
+<td>Row-level (<code>project_id</code> columns); listing-only member scoping, <code>b11c7cf6</code> open</td>
+<td>Same: key-prefix discipline only, <code>b11c7cf6</code> gap inherited unchanged</td>
+</tr>
+<tr>
+<td>Blast radius of one leaked credential</td>
+<td>One tenant's DB</td>
+<td><strong>Every tenant's objects</strong> (shared bucket, shared credential)</td>
+</tr>
+<tr>
+<td>Provisioning per tenant</td>
+<td>Real: new Neon project + DB + role</td>
+<td>None: a prefix comes into existence on first write</td>
+</tr>
+<tr>
+<td>Deletion of tenant's data</td>
+<td><code>_drop_tenant_neon_database</code> (exists)</td>
+<td><strong>Not implemented</strong> — no filed sprint item as of this investigation</td>
+</tr>
+<tr>
+<td>Byte quota tied to billing</td>
+<td>Yes (<code>PLAN_LIMITS.storage_gb</code> + Stripe overage)</td>
+<td><strong>Not implemented</strong> — no <code>size</code> column to key it on yet</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-what-is-not-yet-resolved-needs-a-human-decision-before-activation">6. What is NOT yet resolved — needs a human decision before activation<a class="headerlink" href="#6-what-is-not-yet-resolved-needs-a-human-decision-before-activation" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Bucket-per-tenant vs. prefix-per-tenant is still explicitly <code>[OPEN]</code></strong>
+   in <code>docs/object-storage-backend.md</code> §"Bucket-per-tenant vs.
+   prefix-per-tenant" — this document assumes prefix-per-tenant throughout
+   (matching the recommendation on file) but that recommendation still
+   needs the human sign-off that activation-gate step 1 requires. If a
+   human instead chooses bucket-per-tenant, §1's "blast radius" analysis in
+   §5 changes materially (a leaked per-tenant credential would then be
+   scoped to one tenant, much closer to the Neon baseline) — but Tigris's
+   own credential-scoping granularity (bucket-level vs. prefix-level) was
+   never confirmed in the investigation's doc fetches, so bucket-per-tenant
+   isn't guaranteed to buy that isolation even if chosen.</li>
+<li><strong><code>workspace_proposals.project_id</code> is not a hard, fully-migrated
+   scoping boundary yet.</strong> Traced to <code>meridian/db/migrations.py</code>'s
+   <code>_migrate_proposal_project_scope</code> (<code>a8afd8f9</code>): <code>project_id</code> is a
+   nullable column with <strong>no DB-level FK</strong>, added via <code>ALTER TABLE</code>, with
+   <strong>no automatic backfill/reclassification of pre-existing rows</strong>
+   (explicitly deferred to a separate, still-pending item <code>4eedeef8</code>).
+   <code>NULL</code> means "workspace-wide" by convention, not "unscoped/broken," but
+   there is no way today to distinguish "deliberately workspace-wide" from
+   "created before this column existed and never classified." This is not
+   directly load-bearing for object-storage access itself (proposals don't
+   reference object keys), but it is the concrete example the sprint item
+   flagged as "mid-migration" — anything built later that surfaces
+   proposals alongside object-storage content (e.g. "attach an exported
+   bundle to a proposal") must not assume every proposal's project scope is
+   resolved.</li>
+<li><strong>Direct-by-ID cross-project access for project-scoped invited members
+   is unenforced today, and a Tigris route would inherit this unchanged</strong>
+   (pin <code>b11c7cf6</code>, <code>db/workspace.py::get_scoped_project_ids_for_member</code>
+   and <code>_deps.py::_scoped_project_ids_for_request</code>, both explicit about the
+   gap in their own docstrings). Do not represent a future object-storage
+   route as more tightly scoped than the rest of the API unless someone
+   deliberately builds a stricter, object-storage-specific check — nothing
+   proposed here does that.</li>
+<li><strong>No byte quota mechanism exists, and quota <em>values</em> are a pricing
+   decision this investigation does not make.</strong> See §3. Needs: (a) a
+   decision on per-tier GB figures, (b) a <code>size</code> column or equivalent
+   source of truth added to <code>object_sync_state</code> (or a bucket-usage-API
+   poll, if Tigris exposes one — unconfirmed).</li>
+<li><strong>Tigris's conditional-write (412/409) and presigned-URL behavior is
+   unconfirmed against a real bucket</strong> (<code>docs/object-storage-backend.md</code>,
+   inherited from investigation <code>549e66c6</code> §2 — the AWS S3 facts used as a
+   working assumption were not independently verified for Tigris
+   specifically, because the relevant doc-site pages 404'd). Every
+   assumption in this document about atomic, race-free writes for
+   tenant-prefix isolation inherits that same unconfirmed status.</li>
+<li><strong>Nothing structurally prevents a future caller from passing an
+   arbitrary <code>tenant_id</code> into <code>build_object_key</code>.</strong> The parameter is
+   validated for character-safety only (<code>_safe_component</code>), not ownership.
+   §1/§2 state the requirement ("resolve <code>tenant_id</code> server-side via
+   <code>get_tenant_id_for_project</code>, never accept it from a caller") as a rule
+   for whoever writes the first real caller — nothing in <code>object_store.py</code>
+   enforces it today, and nothing needs to, since no caller exists yet.</li>
+<li><strong>No product decision on whether object GET/list routes need a role
+   check at all</strong>, versus following the <code>routes/files.py</code> precedent
+   (project-existence check only, no role gate on GET). The two existing
+   precedents in this codebase disagree with each other; this document
+   does not pick one.</li>
+<li><strong>Account/project deletion has no object-storage cleanup step, and no
+   sprint item for it was found in this investigation.</strong> See §4. This
+   needs to be filed and built before real activation, or deleted
+   tenants/projects will leave permanently-billed orphaned bytes in a
+   shared bucket.</li>
+<li><strong>Documentation gap unrelated to this item's own findings:</strong>
+   <code>docs/infra-storage-cost-resilience-runbook.md</code>, named in this sprint
+   item's <code>touches_resources</code>, does not exist in this repository as of this
+   investigation — only <code>docs/backup-runbook.md</code> and
+   <code>docs/meridian-local-resilience.md</code> are present. This may be a stale
+   resource reference, or a runbook that still needs to be written
+   alongside real activation; this document does not create it, and no
+   conclusions here depend on its contents.</li>
+</ol>
+<h2 id="non-goals-of-this-document-restated">Non-goals of this document (restated)<a class="headerlink" href="#non-goals-of-this-document-restated" title="Permanent link">&para;</a></h2>
+<ul>
+<li>No Tigris activation code. <code>TigrisObjectStoreBackend</code> remains the
+  <code>NotImplementedError</code> stub it is today.</li>
+<li>No credentials touched, no bucket created, no <code>.env</code>/<code>meridian.toml</code>
+  edits.</li>
+<li>No production data written, read, or migrated.</li>
+<li>Does not resolve any of the nine open items in §6 — it names them so a
+  human can decide, per <code>AGENTS.md</code>'s capability-manifest contract: "If no
+  approved fallback exists for a <code>required</code> capability, that is a signal to
+  stop and request human input, not to invent one." The same discipline
+  applies here at the design level.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

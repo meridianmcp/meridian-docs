@@ -1,0 +1,2201 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/configuration/">
+      
+      
+        <link rel="prev" href="../team-self-hosting/">
+      
+      
+        <link rel="next" href="../safety-limits/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Configuration - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        App / General
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-billing-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: billing &amp; email
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-redis-push-augmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: Redis push augmentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional: Redis push augmentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#per-tenant-redis-command-budget-hosted-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-tenant Redis command budget (hosted deployments)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-ai-log-otel-self-hosted-langfuse-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: AI-log OTel / self-hosted-Langfuse export
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context layers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context layers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-claudemd-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STATIC — CLAUDE.md / AGENTS.md
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-additionalcontext-from-session-start-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DYNAMIC — additionalContext from Session Start hook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspace-workspace-notes-and-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WORKSPACE — workspace notes and decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-parallel-sessions-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running parallel sessions safely
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running parallel sessions safely">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-conflict-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File conflict prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claiming-files-with-claim_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claiming files with claim_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-item-touches_files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint item touches_files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-machine-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-machine awareness
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profile-layers-executortool-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile layers (executor/tool configuration)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profile layers (executor/tool configuration)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-a-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing a layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-rails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety rails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-redis-read-through-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: Redis read-through cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        App / General
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-billing-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: billing &amp; email
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-redis-push-augmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: Redis push augmentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional: Redis push augmentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#per-tenant-redis-command-budget-hosted-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-tenant Redis command budget (hosted deployments)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-ai-log-otel-self-hosted-langfuse-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: AI-log OTel / self-hosted-Langfuse export
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context layers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context layers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-claudemd-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STATIC — CLAUDE.md / AGENTS.md
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-additionalcontext-from-session-start-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DYNAMIC — additionalContext from Session Start hook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspace-workspace-notes-and-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WORKSPACE — workspace notes and decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-parallel-sessions-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running parallel sessions safely
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running parallel sessions safely">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-conflict-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File conflict prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claiming-files-with-claim_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claiming files with claim_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-item-touches_files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sprint item touches_files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-machine-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-machine awareness
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profile-layers-executortool-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile layers (executor/tool configuration)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profile layers (executor/tool configuration)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-a-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing a layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-rails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety rails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-redis-read-through-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: Redis read-through cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
+<p>All Meridian configuration is via environment variables. Set them in a <code>.env</code> file
+in the project root, via shell export, or via your deployment platform's secret store.</p>
+<p>For a basic self-hosted install you only need <strong><code>SESSION_SECRET</code></strong> (and <code>APP_URL</code> if
+you're exposing it on a domain). Everything else is optional.</p>
+<hr />
+<h2 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MERIDIAN_DB_URL</code></td>
+<td>Postgres connection string. When set, Meridian uses Postgres instead of SQLite. Example: <code>postgresql://user:pass@host/dbname</code></td>
+<td>—</td>
+<td>No (SQLite if unset)</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_DB</code></td>
+<td>Path to the SQLite database file. Ignored when <code>MERIDIAN_DB_URL</code> is set.</td>
+<td><code>data/meridian.db</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_DATA_DIR</code></td>
+<td>Directory for data files (SQLite DB, handoff files).</td>
+<td><code>data/</code></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>SQLite is the default and is fine for a single instance. Use Postgres if you want
+multiple instances or a managed backend (see <a href="../self-hosting/">Self-Hosting</a>).</p>
+<hr />
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<p>Only needed if you want OAuth sign-in. A purely local single-user install can skip these.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GOOGLE_CLIENT_ID</code></td>
+<td>Google OAuth app client ID. Get from <a href="https://console.cloud.google.com">console.cloud.google.com</a>.</td>
+<td>—</td>
+<td>For Google login</td>
+</tr>
+<tr>
+<td><code>GOOGLE_CLIENT_SECRET</code></td>
+<td>Google OAuth app client secret.</td>
+<td>—</td>
+<td>For Google login</td>
+</tr>
+<tr>
+<td><code>GITHUB_CLIENT_ID</code></td>
+<td>GitHub OAuth app client ID. Get from <a href="https://github.com/settings/developers">github.com/settings/developers</a>.</td>
+<td>—</td>
+<td>For GitHub login</td>
+</tr>
+<tr>
+<td><code>GITHUB_CLIENT_SECRET</code></td>
+<td>GitHub OAuth app client secret.</td>
+<td>—</td>
+<td>For GitHub login</td>
+</tr>
+<tr>
+<td><code>SESSION_SECRET</code></td>
+<td>Secret key for signing session cookies. Use a long random string.</td>
+<td><code>dev-secret-change-me</code></td>
+<td><strong>Yes for production</strong></td>
+</tr>
+<tr>
+<td><code>MERIDIAN_SESSION_SECRET</code></td>
+<td>Alias for <code>SESSION_SECRET</code>. Either name works.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Register your own OAuth apps and point their callback URLs at
+<code>https://your-domain/auth/google/callback</code> and
+<code>https://your-domain/auth/github/callback</code>.</p>
+</div>
+<hr />
+<h2 id="app-general">App / General<a class="headerlink" href="#app-general" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>APP_URL</code></td>
+<td>Public base URL of the deployment. Used in OAuth callbacks, emails, and MCP endpoint URLs. Example: <code>https://meridian.example.com</code></td>
+<td><code>http://localhost:7878</code></td>
+<td><strong>Yes for production</strong></td>
+</tr>
+<tr>
+<td><code>MERIDIAN_BASE_URL</code></td>
+<td>Alias for <code>APP_URL</code>. Either name works.</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_PORT</code></td>
+<td>HTTP port for the dashboard/API server.</td>
+<td><code>7878</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_HOST</code></td>
+<td>Host to bind the server to.</td>
+<td><code>127.0.0.1</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_HUMAN_ID</code></td>
+<td>Default human identifier for task attribution. Falls back to <code>$USER</code> / <code>$USERNAME</code> / hostname.</td>
+<td>—</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AFTER_LOGIN_URL</code></td>
+<td>Where to redirect after successful OAuth login.</td>
+<td><code>/dashboard</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AUTO_SUMMARY_INTERVAL</code></td>
+<td>Seconds between auto-summary cycles (background task).</td>
+<td><code>600</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>SITE_PASSWORD</code></td>
+<td>When set, all routes (except <code>/health</code>) require entering this password in a gate page. Handy for locking down a staging/preview deployment.</td>
+<td>—</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="optional-billing-email">Optional: billing &amp; email<a class="headerlink" href="#optional-billing-email" title="Permanent link">&para;</a></h2>
+<p>These are only relevant if you run Meridian as a <strong>paid, hosted service</strong> for others.
+A normal self-hosted install does not need them.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STRIPE_SECRET_KEY</code></td>
+<td>Stripe secret key (<code>sk_test_...</code> / <code>sk_live_...</code>).</td>
+<td>For billing</td>
+</tr>
+<tr>
+<td><code>STRIPE_WEBHOOK_SECRET</code></td>
+<td>Stripe webhook signing secret (<code>whsec_...</code>).</td>
+<td>For billing</td>
+</tr>
+<tr>
+<td><code>STRIPE_PAYMENT_LINK</code></td>
+<td>URL of your Stripe Payment Link, shown as the upgrade button.</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>RESEND_API_KEY</code></td>
+<td><a href="https://resend.com">Resend</a> API key for transactional email. If unset, email is silently skipped.</td>
+<td>For email</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_FROM_EMAIL</code></td>
+<td>Sender address for outgoing email.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Keep <code>STRIPE_SECRET_KEY=sk_test_...</code> during development. Never switch to a live
+key without thorough testing.</p>
+</div>
+<hr />
+<h2 id="optional-redis-push-augmentation">Optional: Redis push augmentation<a class="headerlink" href="#optional-redis-push-augmentation" title="Permanent link">&para;</a></h2>
+<p><code>send_message</code> / <code>receive_messages</code> work via Postgres (durable, always-on). Setting
+<code>MERIDIAN_REDIS_URL</code> adds real-time push delivery on top — subscribers are woken
+instantly instead of polling.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MERIDIAN_REDIS_URL</code></td>
+<td>Redis connection URL (e.g. <code>redis://...</code> or <code>rediss://...</code>). When unset, push augmentation is skipped silently and all messaging falls back to Postgres polling.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="per-tenant-redis-command-budget-hosted-deployments">Per-tenant Redis command budget (hosted deployments)<a class="headerlink" href="#per-tenant-redis-command-budget-hosted-deployments" title="Permanent link">&para;</a></h3>
+<p>To protect against runaway Upstash costs from a single tenant spamming
+<code>send_message</code>, Meridian enforces a three-tier budget based on each tenant's
+monthly Redis PUBLISH command count. Upstash pricing is approximately
+$0.20 / 100,000 commands ($1.00 = 500,000 commands).</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Threshold</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tier 1 — Warning</strong></td>
+<td>500,000 commands (~$1.00/mo)</td>
+<td>Dashboard notice + email to the tenant. Idempotent: sent at most once per calendar month per tenant.</td>
+</tr>
+<tr>
+<td><strong>Tier 2 — Disable</strong></td>
+<td>1,000,000 commands (~$2.00/mo)</td>
+<td>Real-time push is paused for that tenant; <code>send_message</code> falls back to Postgres polling. A separate "hard limit reached" email is sent. Messages are never lost — only delivery method changes. Resets at start of next month.</td>
+</tr>
+<tr>
+<td><strong>Tier 3 — Admin alert</strong></td>
+<td>2,000,000 commands (~$4.00/mo)</td>
+<td>Should be structurally unreachable if Tier 2 works. Crossing this threshold fires an admin alert via <code>MERIDIAN_ADMIN_NTFY_URL</code> / <code>ADMIN_EMAIL</code> — it signals a gate failure, not just a large tenant.</td>
+</tr>
+</tbody>
+</table>
+<p>The thresholds above apply to paid tenants. Free-tier tenants receive no Redis
+push augmentation by default (they rely on Postgres polling only).</p>
+<h3 id="runtime-diagnostics">Runtime diagnostics<a class="headerlink" href="#runtime-diagnostics" title="Permanent link">&para;</a></h3>
+<p><code>GET /tunnel/diagnostics/{tenant_id}</code> (and the equivalent <code>get_tunnel_diagnostics</code>
+MCP tool) include a <code>redis</code> section reporting: whether Redis is configured
+(<code>MERIDIAN_REDIS_URL</code> presence only — never the value itself), an
+<code>availability</code> state (<code>unconfigured</code> / <code>construction_failed</code> / <code>idle</code> /
+<code>connected_unverified</code> / <code>reachable</code> / <code>unreachable</code> / <code>degraded</code>), a
+<code>connection_generation</code> counter, pub/sub publish attempt/success/failure and
+fallback counts with bounded latency samples, per-tenant budget-tier status,
+and a <code>cache</code> block distinguishing an (as of this writing, not yet
+implemented) Redis-backed read-through cache from the genuinely active
+process-local board-read cache in <code>meridian/db/sprint_items.py</code> — reported
+Neon-avoidance numbers only ever come from a cache that is actually live.
+This snapshot never performs a live Redis round-trip; it reads in-process
+counters only.</p>
+<p>Two error pairs are reported, kept deliberately separate: <code>last_error_class</code>
+/ <code>last_error_age_seconds</code> reflect the most recent publish-<em>attempt</em> failure,
+while <code>last_construction_error_class</code> / <code>last_construction_error_age_seconds</code>
+reflect the most recent client-<em>construction</em> failure (a bad
+<code>MERIDIAN_REDIS_URL</code>, a missing/incompatible <code>redis-py</code>, etc.). Keeping these
+distinct is what makes <code>construction_failed</code> a diagnosable state rather than
+indistinguishable from a genuine network outage.</p>
+<hr />
+<h2 id="optional-ai-log-otel-self-hosted-langfuse-export">Optional: AI-log OTel / self-hosted-Langfuse export<a class="headerlink" href="#optional-ai-log-otel-self-hosted-langfuse-export" title="Permanent link">&para;</a></h2>
+<p>Meridian's own durable AI-log event stream (<code>ai_log_events</code> — every
+<code>start_session</code>/tool-call/handoff-correction event Meridian captures) is
+the <strong>canonical record</strong> of agent activity. This export is a strictly
+OPTIONAL, OFF-BY-DEFAULT adapter on top of it: an on-demand, bounded, batch
+push of that stream to a standard OTLP (OpenTelemetry Protocol) log-ingestion
+endpoint, or a self-hosted Langfuse instance's OTLP-compatible ingestion
+endpoint. Nothing outside Meridian's own database ever becomes authoritative
+— losing every byte this adapter has ever sent changes nothing about what
+Meridian itself knows.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_ENABLED</code></td>
+<td>Master opt-in switch for the whole feature. Unset/false: export is completely inert — no dependency import, no network attempt.</td>
+<td>unset (off)</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_ENDPOINT</code></td>
+<td>OTLP logs endpoint URL, e.g. <code>https://collector.example.com/v1/logs</code> or a self-hosted Langfuse instance's OTLP ingestion URL. Falls back to the standard <code>OTEL_EXPORTER_OTLP_LOGS_ENDPOINT</code>, then <code>OTEL_EXPORTER_OTLP_ENDPOINT</code> + <code>/v1/logs</code>, then a project's own <code>otlp_endpoint</code> override (<code>set_ai_log_export_config</code>).</td>
+<td>—</td>
+<td>For export to actually send</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_HEADERS</code></td>
+<td>Extra HTTP headers for the endpoint (e.g. <code>Authorization=Bearer%20xyz</code>), comma-separated <code>key=value</code> pairs, percent-encoded values — same shape as the standard <code>OTEL_EXPORTER_OTLP_HEADERS</code>, which is honored as a fallback. <strong>This is the only place a bearer token/API key belongs</strong> — it is never accepted by <code>set_ai_log_export_config</code> and never stored in the database.</td>
+<td>—</td>
+<td>For an authenticated endpoint</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_SERVICE_NAME</code></td>
+<td>OTel resource <code>service.name</code> for exported events. Falls back to the standard <code>OTEL_SERVICE_NAME</code>, then <code>"meridian"</code>.</td>
+<td><code>meridian</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_LANGFUSE_COMPAT</code></td>
+<td>Purely informational: adds a <code>meridian.otel_sink_hint</code> resource attribute so a receiving Langfuse instance (or a human) can tell the wire traffic is intentionally Langfuse-bound. Does not change the wire protocol — self-hosted Langfuse ingests standard OTLP.</td>
+<td>false</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_BATCH_SIZE</code></td>
+<td>Max events fetched per export pass (clamped 1–1000).</td>
+<td><code>200</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_CHUNK_SIZE</code></td>
+<td>Events per HTTP POST sub-batch (clamped 1–200, and never above the batch size).</td>
+<td><code>50</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_MAX_RETRIES</code></td>
+<td>Bounded retry attempts per chunk before giving up (clamped 0–10).</td>
+<td><code>3</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_BACKOFF_BASE_S</code></td>
+<td>Exponential backoff base (with jitter) between retries, seconds (clamped 0.05–10).</td>
+<td><code>0.5</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_TIMEOUT_S</code></td>
+<td>Per-HTTP-attempt timeout, seconds (clamped 1–30).</td>
+<td><code>5.0</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>MERIDIAN_AI_LOG_OTEL_TOTAL_DEADLINE_S</code></td>
+<td>Hard wall-clock ceiling for one whole export pass, seconds (clamped 1–60) — the pass returns a <code>"degraded"</code> result rather than running longer.</td>
+<td><code>20.0</code></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>No new hard dependency.</strong> The real OTel client library
+(<code>opentelemetry-sdk</code> + <code>opentelemetry-exporter-otlp-proto-http</code>) is declared
+only under the <code>otel</code> extra: <code>pip install 'meridian-server[otel]'</code>. A normal
+install never pulls it in, and if it's ever missing (or a future release
+changes its API surface) export cleanly reports <code>"unavailable"</code> — every
+core AI-log capability (capture, storage, timeline, <code>export_ai_log</code>,
+<code>purge_ai_log</code>) continues to work identically either way.</p>
+<p><strong>Per-project override</strong> — <code>set_ai_log_export_config</code> (MCP tool) lets one
+project point at a different endpoint/service name, or force itself off
+even while the feature is globally on (<code>enabled: false</code>). A project can
+never turn export ON when the operator has globally disabled it via
+<code>MERIDIAN_AI_LOG_OTEL_ENABLED</code>. <code>get_ai_log_export_status</code> reports the
+resolved, effective configuration plus the last export attempt's outcome
+without making any network call.</p>
+<p><strong>Triggering an export</strong> — there is no background scheduler; call the
+<code>export_ai_log_otel</code> MCP tool (or your own cron hitting the same code path)
+whenever you want a pass. Each pass resumes from a durable watermark, so
+calling it repeatedly (e.g. every few minutes from your own scheduler) only
+ever sends events that haven't gone out yet.</p>
+<hr />
+<h2 id="example-env">Example <code>.env</code><a class="headerlink" href="#example-env" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># --- Minimal self-hosted setup ---</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">SESSION_SECRET</span><span class="o">=</span>replace-with-a-long-random-string
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">APP_URL</span><span class="o">=</span>https://meridian.example.com
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># --- Optional: Postgres instead of SQLite ---</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># MERIDIAN_DB_URL=postgresql://user:pass@host/dbname</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># --- Optional: OAuth sign-in ---</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># GOOGLE_CLIENT_ID=...</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># GOOGLE_CLIENT_SECRET=...</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># GITHUB_CLIENT_ID=...</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># GITHUB_CLIENT_SECRET=...</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># --- Optional: lock down a preview deployment ---</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># SITE_PASSWORD=preview-password</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Never commit <code>.env</code> to git. Meridian's <code>.gitignore</code> already excludes <code>.env</code>
+and <code>secrets.env</code>.</p>
+</div>
+<hr />
+<h2 id="context-layers">Context layers<a class="headerlink" href="#context-layers" title="Permanent link">&para;</a></h2>
+<p>Meridian injects project context into every AI session through three distinct layers,
+each with different lifetime and scope.</p>
+<h3 id="static-claudemd-agentsmd">STATIC — <code>CLAUDE.md</code> / <code>AGENTS.md</code><a class="headerlink" href="#static-claudemd-agentsmd" title="Permanent link">&para;</a></h3>
+<p>Repo conventions and project-level instructions committed to git. This is the
+document the AI reads at session start from the repository root. It never changes
+automatically between sessions — only a human (or <code>update_md_section</code>) edits it.</p>
+<p><strong>Use for:</strong> architecture decisions, coding standards, file conventions, "never do X"
+rules. Anything that should be true for every session forever.</p>
+<h3 id="dynamic-additionalcontext-from-session-start-hook">DYNAMIC — <code>additionalContext</code> from Session Start hook<a class="headerlink" href="#dynamic-additionalcontext-from-session-start-hook" title="Permanent link">&para;</a></h3>
+<p>Live state injected at session start via <code>POST /hooks/session-start</code>. Meridian
+assembles this from <code>get_context_block</code> — includes the current goal, active sprint
+items (with their status), recent tasks, and pinned decisions.</p>
+<p><strong>Use for:</strong> what's in-flight right now. Updates every session automatically. The AI
+sees the latest goal and sprint queue without any manual copy-paste.</p>
+<p><strong>Source:</strong> <code>GET /projects/{id}/context-block</code> (called automatically by the hooks).</p>
+<h3 id="workspace-workspace-notes-and-decisions">WORKSPACE — workspace notes and decisions<a class="headerlink" href="#workspace-workspace-notes-and-decisions" title="Permanent link">&para;</a></h3>
+<p>Tenant-global context injected at the <strong>top</strong> of every project's context block.
+Created via <code>add_workspace_note</code> / <code>set_workspace_decision</code> and visible across all
+projects owned by your account.</p>
+<p><strong>Use for:</strong> team-wide conventions, shared infrastructure notes, org-level decisions
+that apply to every project (e.g. "always use Neon for Postgres", "company style guide").</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌─────────────────────────────────────┐
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│  WORKSPACE (tenant-global)          │  ← shared across all projects
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│  workspace_notes + workspace_decisions
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├─────────────────────────────────────┤
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│  DYNAMIC (per-project, per-session) │  ← goal, sprint, tasks, decisions
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│  get_context_block output           │
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>├─────────────────────────────────────┤
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│  STATIC (per-repo)                  │  ← CLAUDE.md / AGENTS.md
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│  committed to git                   │
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>└─────────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="running-parallel-sessions-safely">Running parallel sessions safely<a class="headerlink" href="#running-parallel-sessions-safely" title="Permanent link">&para;</a></h2>
+<p>Meridian supports multiple AI sessions working on the same project simultaneously — for example, Claude Code and Codex running on separate machines, or two Claude Code windows on different features.</p>
+<h3 id="file-conflict-prevention">File conflict prevention<a class="headerlink" href="#file-conflict-prevention" title="Permanent link">&para;</a></h3>
+<p>When you call <code>start_session</code>, Meridian checks the <code>file_locks</code> table for files claimed by other active sessions. If any overlap is found, the response includes a <code>file_warnings</code> array:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">"session_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">"file_warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="s2">"dashboard.js claimed by session pre-launch-final (last_seen 2026-06-11 22:45:00)"</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>What to do:</strong> Stop and coordinate with the other session before editing that file. Either wait for it to finish (and release the lock), or plan your changes so they don't conflict.</p>
+<h3 id="claiming-files-with-claim_file">Claiming files with <code>claim_file</code><a class="headerlink" href="#claiming-files-with-claim_file" title="Permanent link">&para;</a></h3>
+<p>Before editing any file, call <code>claim_file(file_path, session_id)</code>. This registers a lock that:
+- Expires automatically after a configurable TTL (default: 4 hours)
+- Is visible to all concurrent sessions via <code>start_session</code>
+- Is released automatically when the session ends (via <code>checkpoint</code>)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>claim_file(file_path="meridian/static/dashboard.js", session_id="&lt;your-session-id&gt;")
+</code></pre></div>
+<p>To release early (after you've committed), call <code>release_file(file_path, session_id)</code>.</p>
+<h3 id="sprint-item-touches_files">Sprint item <code>touches_files</code><a class="headerlink" href="#sprint-item-touches_files" title="Permanent link">&para;</a></h3>
+<p>Each sprint item has a <code>touches_files</code> field — a JSON array of file paths the item is expected to modify. Meridian auto-populates this at <code>generate_handoff</code> time by running <code>git diff --name-only HEAD~3</code> and matching filenames against sprint item titles.</p>
+<p>This gives the next session a head-start on knowing which items conflict with which files, even before the files are actively claimed.</p>
+<h3 id="cross-machine-awareness">Cross-machine awareness<a class="headerlink" href="#cross-machine-awareness" title="Permanent link">&para;</a></h3>
+<p>The hosted tier stores file locks in Neon Postgres, so awareness is global — a lock claimed by a Claude Code session on your laptop is visible to a Codex session on a CI runner or another machine. Self-hosted installs achieve the same if all instances share one <code>MERIDIAN_DB_URL</code>.</p>
+<hr />
+<h2 id="profile-layers-executortool-configuration">Profile layers (executor/tool configuration)<a class="headerlink" href="#profile-layers-executortool-configuration" title="Permanent link">&para;</a></h2>
+<p>Meridian resolves executor-facing settings (HITL auto-answer, merge approval,
+tool priority, capability manifests, etc.) through a <strong>layered profile
+contract</strong> — five scopes, least to most specific:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>hosted_default → workspace → user → project → session
+</code></pre></div>
+<p>A more-specific layer overrides a less-specific one field-by-field. This
+generalizes the plain per-project <code>ProjectSettings</code> you may already know
+(<code>max_pinned_decisions</code>, <code>hitl_auto_answer</code>, <code>auto_worktrees</code>,
+<code>require_merge_approval</code>, <code>code_intel_enabled</code>, <code>execution_mode</code>, and the
+<code>executor_config.*</code> sub-fields) — those 7 fields keep working exactly as
+before and simply become the <strong>project</strong> layer's contribution. Three fields
+are genuinely new to the profile system: <code>tool_priority_map</code>,
+<code>capability_manifest_ref</code>, and <code>claim_verification_mode</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>scope_id</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hosted_default</code></td>
+<td><code>"global"</code> (or an admin-chosen id)</td>
+<td>Org-wide baseline. The one layer with a <strong>lifecycle</strong>: <code>draft → active → deprecated → retired</code>. Only <code>active</code>/<code>deprecated</code> are live at resolve time — a <code>draft</code> hosted_default is authored but not yet in effect.</td>
+</tr>
+<tr>
+<td><code>workspace</code></td>
+<td><code>"singleton"</code> (self-hosted default)</td>
+<td>Tenant-wide defaults across every project.</td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td>a human/user id</td>
+<td>Per-person preferences.</td>
+</tr>
+<tr>
+<td><code>project</code></td>
+<td>the project id</td>
+<td>Per-project overrides. The 7 legacy fields above still flow through <code>update_project_settings</code>; only the 3 new fields are stored as a <code>profile_layers</code> row here.</td>
+</tr>
+<tr>
+<td><code>session</code></td>
+<td>the session id</td>
+<td>Per-run overrides — narrowest scope, highest precedence.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="managing-a-layer">Managing a layer<a class="headerlink" href="#managing-a-layer" title="Permanent link">&para;</a></h3>
+<p>Use the <code>list_profile_layers</code> / <code>get_profile_layer</code> / <code>save_profile_layer</code> /
+<code>clone_profile_layer</code> / <code>activate_profile_layer</code> / <code>reset_profile_layer</code> /
+<code>get_profile_layer_revisions</code> MCP tools (also exposed as REST under
+<code>/profile-layers/...</code> — see <a href="../api-reference/"><code>api-reference.md</code></a>), or call
+<code>get_effective_profile</code> to see the fully merged result for a project.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>save_profile_layer(scope_type="workspace", scope_id="singleton",
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>                    fields={"tool_priority_map": {"docs": "meridian-docs"}})
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>clone_profile_layer(source_scope_type="hosted_default", source_scope_id="global",
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>                     target_scope_type="hosted_default", target_scope_id="global-v2")
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>activate_profile_layer(scope_id="global-v2")   # hosted_default only: draft -&gt; active
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>reset_profile_layer(scope_type="session", scope_id="session-uuid")  # delete a layer's row entirely
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>get_profile_layer_revisions(scope_id="global", limit=10)  # hosted_default audit trail (rollback visibility)
+</code></pre></div>
+<p><code>save_profile_layer</code> <strong>wholesale-replaces</strong> a scope's stored fields (it is
+not a merge) and supports optimistic concurrency via <code>expected_revision</code>: a
+stale write is rejected with a structured <code>STALE_REVISION</code> error (or HTTP
+409 over REST) instead of silently clobbering a concurrent change.</p>
+<h3 id="safety-rails">Safety rails<a class="headerlink" href="#safety-rails" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Prohibited values.</strong> No layer may ever store a secret-shaped string
+  (API keys, tokens, passwords, connection strings with credentials) or a
+  machine-local absolute path (outside the one field — <code>executor_config.*</code>
+  at <code>project</code>/<code>session</code> — that's explicitly allowed to carry one). Rejected
+  at write time, never silently dropped.</li>
+<li><strong>Narrow-only safety dials.</strong> A handful of fields (<code>hitl_auto_answer</code>,
+  <code>require_merge_approval</code>, <code>executor_config.test_min</code>,
+  <code>claim_verification_mode</code>) can only be tightened by a more-specific layer,
+  never loosened, without an explicit <code>override_reason</code>. This is what stops
+  a compromised or careless session-scoped override from silently
+  re-enabling unattended HITL auto-answers that a hosted default or
+  workspace policy deliberately turned off.</li>
+<li><strong>Restart/refresh signals.</strong> Every resolved profile reports
+  <code>restart_required</code> and a per-component <code>restart_report</code>
+  (<code>tunnel</code>/<code>connector</code>/<code>capability</code>/<code>general</code>) so a client knows when a
+  changed field needs more than a hot-reload (e.g. changing
+  <code>executor_config.repo_path</code> requires a restart; most fields don't).</li>
+<li><strong>Zero-impact rollout.</strong> A project that has never touched any
+  <code>profile_layers</code> row resolves exactly as it did before this subsystem
+  existed — <code>get_effective_profile</code>, <code>start_session</code>, <code>generate_handoff</code>,
+  the tunnel/connector routes, and the <code>batch_read</code> profile adapter all
+  degrade to sensible legacy defaults (<code>executable: true</code>, <code>degraded:
+  false</code>) rather than erroring.</li>
+</ul>
+<h3 id="optional-redis-read-through-cache">Optional: Redis read-through cache<a class="headerlink" href="#optional-redis-read-through-cache" title="Permanent link">&para;</a></h3>
+<p>When <code>MERIDIAN_REDIS_URL</code> is configured (see
+<a href="#optional-redis-push-augmentation">Optional: Redis push augmentation</a>
+above), profile/effective-profile/capability-manifest/tool-manifest/handoff
+projections can be served through a content-addressed read-through cache
+(<code>meridian/profile_cache.py</code>) instead of re-resolving from Postgres on every
+read. The cache key embeds the resolution's <code>generation_key</code>, so a write is
+automatically a cache-miss-inducing new key — there is no separate
+invalidation ledger to keep in sync. Redis is <strong>never</strong> authoritative for
+anything in the profile system (Postgres/SQLite always is) and a Redis
+outage or per-tenant command-budget exhaustion falls back to a direct
+database read automatically, with no user-visible error.</p>
+<div class="admonition note">
+<p class="admonition-title">What's measured vs. what isn't</p>
+<p>This project's own test suite (<code>tests/test_profile_contract_matrix.py</code>)
+proves the cache's hit/miss/stale/outage behavior and measures exact
+authority-call counts against a real local database, using an in-memory
+fake Redis client — that is genuine, reproducible, local verification.
+It does <strong>not</strong> measure hit-rate or latency against a real production
+Redis or Neon deployment; treat any specific "X% fewer database calls"
+figure as scenario-specific measured evidence, not a general guarantee
+for your deployment's traffic pattern.</p>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
