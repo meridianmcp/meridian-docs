@@ -1,0 +1,1615 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/paper-workflow-template-contract-2026-10-01/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Shared Paper Workflow Template and Format Adapter Contract - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shared-paper-workflow-template-and-format-adapter-contract" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Shared Paper Workflow Template and Format Adapter Contract
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-purpose-and-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Purpose and boundaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-reuse-template-revision-and-override-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Reuse template revision and override semantics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-shared-paper-workflow-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Shared paper workflow model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Shared paper workflow model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-paper-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Paper binding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-shared-section-and-anchor-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Shared section and anchor references
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-references-and-citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 References and citations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-evidence-provenance-and-output-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Evidence, provenance, and output references
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-stages-and-immutable-checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Stages and immutable checkpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-adapter-protocol-consumed-by-the-workstation-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Adapter protocol consumed by the workstation manager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Adapter protocol consumed by the workstation manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-capability-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Capability manifest
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-docx-adapter-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. DOCX adapter projection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. DOCX adapter projection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-structure-and-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Structure and identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-write-transaction-and-render-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Write transaction and render gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-latex-and-overleaf-adapter-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. LaTeX and Overleaf adapter projection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. LaTeX and Overleaf adapter projection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-source-tree-ast-and-macro-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Source tree, AST, and macro identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-overleaf-authentication-and-operational-transform-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Overleaf authentication and operational transform sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-bibtex-biblatex-natbib-and-compiler-receipts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 BibTeX, BibLaTeX, natbib, and compiler receipts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-manager-integration-and-event-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Manager integration and event flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-failure-conflict-and-recovery-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Failure, conflict, and recovery rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-acceptance-criteria-for-implementations-of-this-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Acceptance criteria for implementations of this contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-open-implementation-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Open implementation choices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="shared-paper-workflow-template-and-format-adapter-contract">Shared Paper Workflow Template and Format Adapter Contract<a class="headerlink" href="#shared-paper-workflow-template-and-format-adapter-contract" title="Permanent link">&para;</a></h1>
+<p><strong>Status:</strong> design contract for the local workstation manager; this document does not claim that the paper-specific adapter API or every receipt described here is already implemented.</p>
+<h2 id="1-purpose-and-boundaries">1. Purpose and boundaries<a class="headerlink" href="#1-purpose-and-boundaries" title="Permanent link">&para;</a></h2>
+<p>A paper project needs one shared workflow across its manuscript, references, evidence, review checkpoints, and outputs. The workflow can be projected onto a DOCX manuscript or a LaTeX project, while each format keeps its own source model, editing operations, and user experience.</p>
+<p>The local workstation manager is the integration point. It reads the paper profile and template binding, asks the selected format adapter what it can do on this machine, and records references to native artifacts and receipts. Meridian's hosted dashboard remains the project coordination surface; the workstation manager does not reproduce it.</p>
+<p>The contract has four boundaries:</p>
+<ol>
+<li><strong>Shared workflow data</strong> describes paper-level identity, section intent, citation policy, evidence requirements, review stages, and promotion rules.</li>
+<li><strong>Template data</strong> is versioned through the existing project-family/template revision and child-snapshot semantics. This contract does not create a second inheritance or revision engine.</li>
+<li><strong>Format adapters</strong> project the shared workflow onto native DOCX or LaTeX structures. They do not convert one manuscript format into the other, and the contract does not prescribe a unified editor.</li>
+<li><strong>Machine-local state</strong> holds paths, provider credentials, local Zotero keys, raw provider histories, renderer installation details, and adapter caches. It is not copied into a shared template, child override, or hosted Meridian record.</li>
+</ol>
+<p>The contract is deliberately stricter about <em>what a receipt proves</em> than about any one renderer or editor. Structural validity, a successful render or compile, citation resolution, provenance resolution, visual review, and approval are separate facts. None implies the others.</p>
+<h2 id="2-reuse-template-revision-and-override-semantics">2. Reuse template revision and override semantics<a class="headerlink" href="#2-reuse-template-revision-and-override-semantics" title="Permanent link">&para;</a></h2>
+<p>Bind a paper profile to a project template revision using the established project-family/template model:</p>
+<ul>
+<li><code>template_id</code> identifies the stable template lineage; <code>revision_id</code> identifies one immutable, content-hashed revision.</li>
+<li>A paper's Meridian child project pins an adopted revision in its child snapshot. The snapshot is the audit point for the profile in force when a checkpoint was created.</li>
+<li>Effective shared fields are the selected template revision plus that child project's override. The child override wins for each declared field; an explicit reset retracts an inherited field. Do not silently deep-merge a field's JSON value.</li>
+<li>Preview an incoming revision and its conflicts before adoption. Adoption is explicit and uses the existing optimistic-concurrency and acknowledged-conflict rules. A template update never silently changes a paper's adopted revision.</li>
+<li>Treat a change to the template as a new immutable revision. Treat a change to the paper's override as a new override revision. Do not rewrite an earlier checkpoint's resolved profile or template binding.</li>
+</ul>
+<p>The paper contract adds <strong>namespaced profile fields</strong>, not a new layer stack. Each independently overrideable value is a distinct profile field, so existing whole-field precedence remains unambiguous. The following names are illustrative profile keys, not a promise about model, route, or MCP tool names:</p>
+<table>
+<thead>
+<tr>
+<th>Profile field</th>
+<th>Shared meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>paper.workflow</code></td>
+<td>Ordered stage IDs, required transitions, and checkpoint policy.</td>
+</tr>
+<tr>
+<td><code>paper.section_plan</code></td>
+<td>Required/optional sections and stable shared section IDs.</td>
+</tr>
+<tr>
+<td><code>paper.reference_policy</code></td>
+<td>Citation style intent, acceptable identifiers, and unresolved-reference policy.</td>
+</tr>
+<tr>
+<td><code>paper.evidence_policy</code></td>
+<td>Required evidence links, output provenance rules, and source-freshness policy.</td>
+</tr>
+<tr>
+<td><code>paper.review_policy</code></td>
+<td>Required structural checks, render/compile policy, visual review, and approval requirements.</td>
+</tr>
+<tr>
+<td><code>paper.adapter.docx.*</code></td>
+<td>DOCX-specific style, field, numbering, and render requirements.</td>
+</tr>
+<tr>
+<td><code>paper.adapter.latex.*</code></td>
+<td>LaTeX-specific root-file, citation, macro, engine, and compile requirements.</td>
+</tr>
+</tbody>
+</table>
+<p>An adapter-specific override applies only to that adapter. For example, a DOCX style override cannot alter the LaTeX engine policy. If a format-specific field is absent, the adapter uses its explicit native default and reports that choice in the snapshot; it must not infer a value from the other format.</p>
+<p>The manager may keep a separate <strong>local runtime overlay</strong> for machine-specific values such as a project folder, Overleaf connection handle, Zotero local API availability, and installed renderers. This overlay is not a third shared template-inheritance layer. It is keyed locally, is not uploaded as profile content, and cannot alter shared review or release policy without an explicit shared-profile change.</p>
+<p>Shared profile payloads must follow the existing template validator's rule against secrets and machine-local paths. In particular, no absolute paths, access tokens, Zotero item keys, Overleaf credentials, or provider session history belong in template fields, overrides, provenance notes, or hosted records.</p>
+<p>See <a href="../meridian-project-family-template-revisions-design/">Project Family / Template Revisions</a> and <a href="../meridian-project-family-integration-contract/">Project Family Integration Contract</a> for the underlying revision, snapshot, override, and conflict semantics.</p>
+<h2 id="3-shared-paper-workflow-model">3. Shared paper workflow model<a class="headerlink" href="#3-shared-paper-workflow-model" title="Permanent link">&para;</a></h2>
+<p>The manager works with a logical paper project and one or more native artifacts. The exact API class names are open; the following records define the information that must cross the manager/adapter boundary.</p>
+<h3 id="31-paper-binding">3.1 Paper binding<a class="headerlink" href="#31-paper-binding" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>PaperBinding
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  contract_version
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  paper_ref                 opaque paper identity local to the manager
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  meridian_project_id       optional project-family child binding
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  template_id               optional shared template lineage
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  adopted_revision_id       exact immutable template revision, when bound
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  effective_profile_hash    hash of the resolved shared fields
+</code></pre></div>
+<p><code>paper_ref</code> is independent of a DOCX path, a <code>.tex</code> path, or an Overleaf project. A paper can have a DOCX artifact and a LaTeX artifact during a deliberate migration or parallel submission workflow, but neither adapter manufactures the other artifact. Each artifact has its own source revision and receipts.</p>
+<h3 id="32-shared-section-and-anchor-references">3.2 Shared section and anchor references<a class="headerlink" href="#32-shared-section-and-anchor-references" title="Permanent link">&para;</a></h3>
+<p>The shared profile may assign stable <code>section_id</code> values to logical manuscript sections, such as <code>intro</code>, <code>methods</code>, or <code>limitations</code>. Each adapter returns a mapping from a shared section ID to one or more native anchors for a particular source revision. The mapping is a projection, not a claim that DOCX and LaTeX have identical structure.</p>
+<p>An anchor reference includes its format, native identity, containing artifact revision, and resolution state. A positional or inferred anchor is valid only for the exact source fingerprint from which it was derived. Missing, duplicate, or ambiguous native anchors stay explicit; the manager must not select the first match silently.</p>
+<h3 id="33-references-and-citations">3.3 References and citations<a class="headerlink" href="#33-references-and-citations" title="Permanent link">&para;</a></h3>
+<p>The common layer uses a manager-owned opaque <code>citation_id</code> for a reference within a paper project. It may carry public bibliographic identity fields such as DOI, ISBN, normalized title, authors, and year. If no public identifier is available, resolution uses a metadata fingerprint that can be marked ambiguous; the fingerprint never pretends to be a verified identity.</p>
+<p>Each adapter reports native citation occurrences separately from shared reference identity:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CitationOccurrence
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  citation_id              optional until resolved
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  native_key               local to this artifact and source revision
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  native_command_or_field   e.g. natbib command or DOCX citation field kind
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  anchor_ref
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  resolution               resolved | unresolved | ambiguous | stale
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  resolution_basis         DOI, metadata match, local provider lookup, or none
+</code></pre></div>
+<p>Native citation keys remain native. In particular, BibTeX/BibLaTeX citekeys and Zotero field payloads are not rewritten to make the two formats look alike. Zotero item keys and the mapping from a local <code>citation_id</code> to a Zotero item stay in the local reference adapter. The manager may call the local Zotero API to fill unresolved links; resolving is an explicit, idempotent operation. An unavailable local provider leaves the occurrence unresolved rather than causing an ingest or edit to fail or inventing a match.</p>
+<p>Citation style intent is shared as policy. Rendering and field syntax are format-specific: DOCX uses native citation fields where available, while LaTeX preserves the project's <code>natbib</code> or <code>biblatex</code> commands and bibliography style. Citation and bibliography consistency checks report keys that are missing, duplicated, stale, or unresolved; they do not silently delete or rename native entries.</p>
+<h3 id="34-evidence-provenance-and-output-references">3.4 Evidence, provenance, and output references<a class="headerlink" href="#34-evidence-provenance-and-output-references" title="Permanent link">&para;</a></h3>
+<p>Evidence and generated outputs are referenced by identity and fingerprint, not copied into a shared workflow record. A paper-level evidence link can bind a claim or section anchor to a citation, source artifact, Meridian Outputs artifact, or other named provenance record.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>EvidenceLink
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  evidence_id
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  claim_or_section_ref
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  source_ref                artifact, citation, decision, or output pointer
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  source_fingerprint        typed hash of the exact source revision
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  relation                  supports | derives_from | cites | contradicts
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  resolution                resolved | unresolved | ambiguous | stale
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>OutputPointer
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  output_id                 existing Outputs identity when available
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  local_uri                 machine-local URI; never shared profile content
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  content_sha256
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  generator_ref             script/tool identity and content hash, if known
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  parameters_hash           hash of the generation inputs, when applicable
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  provenance_status         resolved | orphaned | hash_mismatch | unresolved
+</code></pre></div>
+<p>Use the existing Outputs provenance and source-pointer records when they exist. A local path is a locator for the local manager, not a cross-machine artifact identity. A source hash must state what it hashes (source file, source manifest, package, PDF, or generated data); never serialize an unqualified <code>hash</code> field.</p>
+<p>The manager records only the metadata needed to reconnect a checkpoint to its sources and outputs. It does not upload raw Overleaf history, Zotero keys, whole provider responses, or manuscript bytes as an implicit side effect of inspecting or resolving them.</p>
+<h3 id="35-stages-and-immutable-checkpoints">3.5 Stages and immutable checkpoints<a class="headerlink" href="#35-stages-and-immutable-checkpoints" title="Permanent link">&para;</a></h3>
+<p>The shared profile declares an ordered workflow. An illustrative pipeline is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>draft -&gt; structural_check -&gt; citation_and_evidence_check -&gt; render_or_compile
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>      -&gt; visual_review -&gt; approval -&gt; release
+</code></pre></div>
+<p>Profiles may omit or add named stages, but each stage declares its required capabilities, inputs, and completion predicate. The manager owns stage orchestration; adapters own the checks and receipts that only their native format can produce. A stage does not complete merely because its adapter returned without throwing an error.</p>
+<p>Every checkpoint binds all of the following:</p>
+<ul>
+<li>the selected <code>template_id</code>, <code>adopted_revision_id</code>, and <code>effective_profile_hash</code>;</li>
+<li>the adapter ID/version and native artifact revision;</li>
+<li>an exact source-manifest fingerprint (the root source plus relevant included files and bibliography for LaTeX; the package fingerprint and changed-part manifest for DOCX);</li>
+<li>typed gate receipts, output pointers, and unresolved/ambiguous references;</li>
+<li>reviewer/approver identity and explicit decision where the stage requires a person.</li>
+</ul>
+<p>Use this common gate vocabulary:</p>
+<table>
+<thead>
+<tr>
+<th>Gate state</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pass</code></td>
+<td>The named predicate ran against the pinned inputs and passed.</td>
+</tr>
+<tr>
+<td><code>fail</code></td>
+<td>The named predicate ran and found a failure.</td>
+</tr>
+<tr>
+<td><code>unavailable</code></td>
+<td>A required checker or provider could not run; the document itself has not been judged by that check.</td>
+</tr>
+<tr>
+<td><code>unknown</code></td>
+<td>No matching receipt exists, or its scope cannot be established.</td>
+</tr>
+<tr>
+<td><code>stale</code></td>
+<td>A receipt exists but its input fingerprint, profile revision, or freshness window does not match.</td>
+</tr>
+<tr>
+<td><code>ambiguous</code></td>
+<td>The check found multiple plausible identities or anchors and could not choose safely.</td>
+</tr>
+<tr>
+<td><code>degraded</code></td>
+<td>A policy-authorized exception was accepted with a recorded actor and reason; it is not a pass.</td>
+</tr>
+<tr>
+<td><code>blocked</code></td>
+<td>A prerequisite or required gate prevents the next transition.</td>
+</tr>
+</tbody>
+</table>
+<p>The checkpoint stores the gate states individually. It does not collapse them into a generic <code>verified=true</code>. <code>unknown</code>, <code>unavailable</code>, <code>stale</code>, <code>ambiguous</code>, or <code>fail</code> cannot satisfy a required gate. A degraded override can advance only if the adopted profile permits that exact exception and a named actor records a reason; the checkpoint remains visibly degraded. A successful render/compile is not visual QA, and visual QA is not approval.</p>
+<p>Keep the existing DOCX renderer's native receipt states (<code>rendered</code>, <code>failed</code>, and <code>unavailable-with-reason</code>) at the adapter boundary and map them to the common gate vocabulary without changing their meaning. Absence of a fresh, source-matching receipt maps to <code>unknown</code> or <code>stale</code>; it never maps to <code>pass</code>. Keep human visual review separate from backend conversion.</p>
+<p>Promotion writes a new immutable artifact revision and changes the selected output pointer only after every required gate and required human approval has passed. A failed or held candidate leaves the current promoted revision intact. Any future degraded promotion must be explicit, auditable, and permitted by profile policy.</p>
+<h2 id="4-adapter-protocol-consumed-by-the-workstation-manager">4. Adapter protocol consumed by the workstation manager<a class="headerlink" href="#4-adapter-protocol-consumed-by-the-workstation-manager" title="Permanent link">&para;</a></h2>
+<p>An adapter implements the following <strong>contract operations</strong>. These names describe responsibilities only; they do not reserve MCP tool names or current package APIs.</p>
+<ol>
+<li><code>describe_capabilities(context)</code> returns the capability manifest for this adapter and machine.</li>
+<li><code>inspect(binding, source_ref)</code> returns a revision-scoped structural projection, native anchors, citations, inputs, and source fingerprint.</li>
+<li><code>plan_change(binding, expected_revision, operations)</code> validates anchor freshness and native preconditions, then returns a reviewable candidate plan without promoting it.</li>
+<li><code>apply_candidate(plan)</code> applies one declared change set transactionally and returns a new candidate revision plus integrity receipts.</li>
+<li><code>verify(candidate, required_gates)</code> runs applicable structural, reference, evidence, provenance, sync, and render/compile checks and returns typed receipts.</li>
+<li><code>review(candidate, reviewer_decision)</code> records an explicit human review result where policy requires it. An automated adapter cannot manufacture a human decision.</li>
+<li><code>promote(candidate, checkpoint)</code> atomically selects the candidate as the current released artifact only if required gates, expected revisions, and approval all still match.</li>
+<li>For provider-backed sources, <code>sync(candidate, expected_remote_revision)</code> performs a version-aware exchange and returns the provider's acknowledged revision or a typed conflict/failure.</li>
+</ol>
+<p>The manager supplies expected source and profile revisions to every mutating operation. An adapter refuses stale anchors, unexpected source changes, and incompatible profile revisions rather than applying a plan against a different artifact. It returns the candidate diff and native changed-part identities before promotion.</p>
+<h3 id="41-capability-manifest">4.1 Capability manifest<a class="headerlink" href="#41-capability-manifest" title="Permanent link">&para;</a></h3>
+<p>An adapter reports both what its implementation supports and what the current host can actually use. A capability being declared does not mean it is available now; an installed integration does not prove authorization; authorization does not prove a check succeeded.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>AdapterCapabilityManifest
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  contract_version
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  adapter_id
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  adapter_version
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  document_format
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  observed_at
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  declared_capabilities[]
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    capability_id
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    support                 supported | unsupported
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    availability            available | not_configured | unavailable | unknown
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    authorization           authorized | not_authorized | not_required | unknown
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    scope                   exact operations/formats/artifact classes covered
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    reason                  typed reason when not available
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    evidence_ref            optional local probe or setup receipt
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  limitations[]
+</code></pre></div>
+<p>Capability IDs are stable, versioned names, such as <code>docx.ooxml.read</code>, <code>docx.ooxml.transactional_write</code>, <code>docx.render.word_com</code>, <code>latex.source.ast_read</code>, <code>latex.overleaf.auth</code>, <code>latex.overleaf.ot_sync</code>, <code>latex.bibtex.read</code>, <code>latex.biblatex.read</code>, <code>latex.natbib.resolve</code>, and <code>latex.compile</code>. Implementations may add IDs without changing existing meanings. Unknown capability IDs must be preserved as unknown by the manager; a client must not interpret an unrecognized ID as available.</p>
+<p>The manifest reports requirements and observed availability; it contains no credential, Zotero key, local path, raw provider response, or manuscript content. A local adapter may retain those values in its protected store and return a non-secret connection alias and a typed authorization result.</p>
+<h2 id="5-docx-adapter-projection">5. DOCX adapter projection<a class="headerlink" href="#5-docx-adapter-projection" title="Permanent link">&para;</a></h2>
+<p>DOCX remains an OOXML package. The adapter projects the shared workflow onto Word structures and preserves native behavior that cannot be represented by flattened text.</p>
+<h3 id="51-structure-and-identity">5.1 Structure and identity<a class="headerlink" href="#51-structure-and-identity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Read headings, paragraphs, tables, equations, figures, captions, fields, styles, numbering, media, and package relationships from the DOCX structure, using the existing Meridian Docs parser/index surfaces where available.</li>
+<li>Prefer an unambiguous native <code>w14:paraId</code> for paragraph-owned anchors. Reuse the existing <code>p{index}</code> synthesized fallback only when native identity is absent or ambiguous, and mark it positional and snapshot-scoped. Runs have no durable OOXML ID; any run-level position is valid only for the exact document revision.</li>
+<li>Preserve package-part and relationship identity when moving or editing media and structured blocks. A valid ZIP/XML package alone does not prove that styles, numbering, fields, relationships, cross-references, or content are correct.</li>
+<li>Preserve Word field instructions and cached results. A Zotero/CSL citation field is not ordinary text and must not be replaced by a visible string as part of a routine profile or style projection.</li>
+</ul>
+<p>The detailed OOXML identity proposal in <a href="../meridian-build-b67-3-ooxml-omml-document-graph-2026-08-25/">B67-3</a> is planning-only in parts. This adapter contract reuses its identity and render invariants; it does not assert that the proposed <code>ooxml_graph</code> persistence layer has shipped.</p>
+<h3 id="52-write-transaction-and-render-gate">5.2 Write transaction and render gate<a class="headerlink" href="#52-write-transaction-and-render-gate" title="Permanent link">&para;</a></h3>
+<p>A DOCX change set declares its base package fingerprint, selected anchors, ordered operations, expected changed parts, protected structures, relationship changes, and provenance bindings before writing. The adapter stages a candidate beside the destination, reopens the staged bytes from disk, validates package integrity and protected structure, and promotes through the existing serialized/atomic DOCX transaction only after those checks pass. A failure discards the candidate and leaves the prior destination intact.</p>
+<p>The local transaction's structural manifest and atomic replace do not by themselves produce a durable render receipt or human visual review. Render capability and render result are separate checks. If the adopted profile requires a particular renderer or visual QA, unavailable, failed, unknown, or stale evidence holds promotion unless the profile explicitly permits a recorded degraded exception. <code>rendered</code> says that the backend produced output; <code>visual_qa=not_reviewed</code> is not a reviewed pass.</p>
+<p>The adapter reports field/style/relationship preservation and changed package parts in its receipt. It keeps the source artifact, candidate artifact, and promoted artifact distinct until the promotion decision is made. It links images, tables, figures, equations, and citations to their source/evidence references without embedding a duplicate copy of the research/output registry in the DOCX workflow profile.</p>
+<h2 id="6-latex-and-overleaf-adapter-projection">6. LaTeX and Overleaf adapter projection<a class="headerlink" href="#6-latex-and-overleaf-adapter-projection" title="Permanent link">&para;</a></h2>
+<p>LaTeX remains a source tree plus its build configuration and generated artifacts. The adapter projects the shared section plan and citation/evidence policy onto TeX source, bibliography files, labels, macros, and compiler outputs; it does not convert the source tree to DOCX.</p>
+<h3 id="61-source-tree-ast-and-macro-identity">6.1 Source tree, AST, and macro identity<a class="headerlink" href="#61-source-tree-ast-and-macro-identity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Inspect a declared root <code>.tex</code> and its reachable <code>\input</code> / <code>\include</code> files. Return the root and complete resolved-source manifest, and report unresolved includes, external macro files, class files, and generated dependencies.</li>
+<li>Use a LaTeX-aware parse tree for sections, environments, labels, citations, and macro definitions. Preserve the source spelling and macro expansion context; do not reduce editable structure to a rendered outline or plain text.</li>
+<li>Prefer a stable explicit <code>\label{...}</code> for a section, figure, table, or equation when it is unique in the source closure. For unlabeled nodes, return a revision-scoped anchor from file identity, AST path/context, and source-manifest fingerprint. Offsets and line numbers are navigation hints, not durable identities. Duplicate labels or unresolved macro expansion are <code>ambiguous</code>/<code>unknown</code>, not silently matched.</li>
+<li>Keep source macros and their definitions versioned as native source. Macro expansion is an inspection aid; an edit to a macro must declare all affected use sites and cannot silently replace expanded text at each use.</li>
+</ul>
+<p>The shipped <code>latex_intel</code> parser can return an ordered outline, expand resolvable includes and section aliases for that outline, extract citation markers, and parse BibTeX/BibLaTeX entries. These are useful projections, not a promise of a complete edit-safe source AST or stable macro identity. A manifest must advertise only the parser and edit capabilities actually available on the current machine.</p>
+<h3 id="62-overleaf-authentication-and-operational-transform-sync">6.2 Overleaf authentication and operational transform sync<a class="headerlink" href="#62-overleaf-authentication-and-operational-transform-sync" title="Permanent link">&para;</a></h3>
+<p>Overleaf is a provider transport for the native LaTeX source; it is not a second workflow authority. The Overleaf adapter owns login, authorization, project selection, remote version tracking, OT/session coordination, retry, and conflict reporting. It uses a local protected credential store. Credentials, provider project handles, socket payloads, OT histories, and raw provider responses stay local.</p>
+<p>Every sync plan is based on a known remote revision and the local source-manifest fingerprint. The adapter must:</p>
+<ol>
+<li>record the remote base revision and exact local base fingerprint before applying edits;</li>
+<li>submit OT operations against that base and retain the provider's acknowledgment/rebased revision;</li>
+<li>detect remote changes that cannot be safely rebased, duplicate file names, deleted inputs, and provider authorization loss;</li>
+<li>return a typed conflict or unavailable receipt without overwriting either side when it cannot prove the rebase;</li>
+<li>re-read the acknowledged source closure and compare its manifest before claiming that local and remote state are synchronized.</li>
+</ol>
+<p>An HTTP success, live connection, or successful login is not evidence that a particular edit reached Overleaf. A sync receipt names the before/after remote revisions, source manifest hashes, operation set, acknowledgment, and any conflict resolution. Manual conflict resolution is an explicit edit on a new revision.</p>
+<p>The current LaTeX package includes Overleaf login/status/logout helpers. This contract does not assert that its auth helper currently implements OT or the version-aware sync sequence above; those are adapter responsibilities to expose and verify before the manager advertises <code>latex.overleaf.ot_sync</code> as available.</p>
+<h3 id="63-bibtex-biblatex-natbib-and-compiler-receipts">6.3 BibTeX, BibLaTeX, natbib, and compiler receipts<a class="headerlink" href="#63-bibtex-biblatex-natbib-and-compiler-receipts" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Preserve each project's own bibliography engine, <code>.bib</code> source, bibliography style, citation keys, and citation commands. <code>natbib</code> commands and <code>biblatex</code> commands are not normalized by rewriting manuscript text.</li>
+<li>Extract citation occurrences and bibliography entries, then map native keys to the local <code>citation_id</code> registry. Report citekeys with no entry, entries with no occurrence, duplicate keys, unsupported commands, and unresolved <code>\input</code>/bibliography dependencies. An unavailable local Zotero resolver leaves those mappings unresolved.</li>
+<li>A compile receipt binds the exact root <code>.tex</code>, all resolved included files, bibliography files, class/style files when their hashes are available, macro definitions, compiler/engine and version, flags, environment, exit status, and relevant log/output hashes. It records warnings/errors separately from compile status and links the produced PDF/log through local output pointers.</li>
+<li>A successful compile proves only that the selected compiler returned its reported result for the captured input closure. It does not prove citation correctness, visual quality, review, approval, or freshness after any source or dependency changes.</li>
+</ul>
+<h2 id="7-manager-integration-and-event-flow">7. Manager integration and event flow<a class="headerlink" href="#7-manager-integration-and-event-flow" title="Permanent link">&para;</a></h2>
+<p>The local workstation manager is a thin workflow coordinator:</p>
+<ol>
+<li>Resolve the selected paper profile and exact adopted template revision. Show pending template revisions for explicit preview/adoption; never update a paper's binding as a side effect of opening a document.</li>
+<li>Discover DOCX and LaTeX adapter manifests locally. Present supported capabilities, present-machine availability, authorization, and limitations as separate facts.</li>
+<li>Ask the chosen native adapter for a revision-scoped projection. Keep DOCX anchors and LaTeX source anchors in adapter-owned maps to the shared section/citation/evidence identities.</li>
+<li>Create a reviewable candidate change set with expected source/profile revisions. The adapter performs native writes and returns a candidate receipt; the manager keeps the current promoted artifact unchanged until gates finish.</li>
+<li>Resolve citations or provenance through their declared local tools and persist only stable shared identities, typed results, and fingerprints required by the checkpoint.</li>
+<li>Run the stages declared in the shared profile. Store each receipt against its exact input hashes. Obtain explicit review/approval where required.</li>
+<li>Promote the output pointer only after the configured gates pass or a specifically permitted degraded decision is recorded.</li>
+</ol>
+<p>The adapter manager contract may be represented by this logical exchange; these property names are illustrative until an implementation item chooses an API surface:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>manager -&gt; adapter: binding, profile_revision, expected_source_revision,
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>                    requested_operation, required_capabilities
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>adapter -&gt; manager: capability_manifest, source_projection,
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>                    candidate_revision, diff, typed_receipts,
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>                    unresolved_items, local_output_pointers
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>manager -&gt; adapter: explicit review decision and promote request
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>adapter -&gt; manager: promoted_revision or typed held/conflict result
+</code></pre></div>
+<p>The hosted project can retain the shared template/profile revision and concise checkpoint/provenance references when authorized. Local paths, credential aliases, provider handles, Zotero keys, raw provider histories, and unredacted logs remain on the workstation. Access-denied, offline, or partial-hosted states must not be mistaken for an empty project or a successful sync.</p>
+<h2 id="8-failure-conflict-and-recovery-rules">8. Failure, conflict, and recovery rules<a class="headerlink" href="#8-failure-conflict-and-recovery-rules" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Stale template or source revision:</strong> refuse the write or promotion and return the expected/current revision identifiers. Re-preview or re-plan against the current state.</li>
+<li><strong>Ambiguous native anchor or citation identity:</strong> hold the affected change and return the candidates; require explicit mapping. Never use first-match behavior.</li>
+<li><strong>Required capability unavailable:</strong> mark the relevant gate unavailable and hold. Optional capability absence is reported with reason and does not become a positive receipt.</li>
+<li><strong>DOCX package or protected structure failure:</strong> discard the staged package and keep the previous file. Render or provenance failure follows the profile's gate policy; do not report a render as successful because the structural write passed.</li>
+<li><strong>LaTeX parse/include uncertainty:</strong> preserve source; mark affected anchors and checks unknown or ambiguous. Do not apply a source edit through a stale or unresolved macro expansion.</li>
+<li><strong>Overleaf OT conflict or auth loss:</strong> retain the local candidate and the last acknowledged remote base. Do not retry against a new remote revision without rebuilding/reviewing the operation set.</li>
+<li><strong>Citation or source-provider unavailable:</strong> retain unresolved links and receipts. Do not infer a missing reference from an incomplete provider query.</li>
+<li><strong>Checkpoint restore:</strong> restore only from an artifact revision whose content hash and source closure verify. Restoring a file does not roll back the adopted template, reference metadata, or an external provider; those are separately versioned and require their own explicit operation.</li>
+</ul>
+<h2 id="9-acceptance-criteria-for-implementations-of-this-contract">9. Acceptance criteria for implementations of this contract<a class="headerlink" href="#9-acceptance-criteria-for-implementations-of-this-contract" title="Permanent link">&para;</a></h2>
+<p>An implementation conforms when it demonstrates all of the following:</p>
+<ol>
+<li>A DOCX-bound and a LaTeX-bound paper can resolve the same shared profile revision while retaining separate native artifact revisions and editors.</li>
+<li>Template update preview, child override precedence/reset, explicit adoption, and stale-write rejection follow the existing project-family/template semantics. Earlier checkpoints remain pinned to their original effective profile hash.</li>
+<li>A DOCX structural projection preserves stable native anchors when available and marks positional/ambiguous anchors with their revision scope.</li>
+<li>A LaTeX projection reports root/include closure, native labels and citation commands, and unresolved/ambiguous macros or includes without presenting an outline parser as a complete safe editing AST.</li>
+<li>References map to manager-owned citation IDs without persisting Zotero keys to shared state; local resolution is idempotent and exposes unresolved, ambiguous, and stale results.</li>
+<li>DOCX writes are staged, reopened, checked, and promoted transactionally; a failed candidate leaves the prior artifact unchanged.</li>
+<li>Overleaf auth and sync advertise separate capabilities. Sync is versioned, acknowledged, conflict-aware, and cannot claim success from login or transport status alone.</li>
+<li>Compile/render receipts bind exact inputs and backend; a missing or stale receipt is unknown/stale; conversion or compilation never implies visual review or human approval.</li>
+<li>Checkpoints carry the exact template/profile and artifact fingerprints, typed gate results, evidence/output pointers, and required reviewer decision.</li>
+<li>No common-layer write converts formats, embeds secrets or local paths in shared profile data, or creates a second hosted dashboard.</li>
+</ol>
+<h2 id="10-open-implementation-choices">10. Open implementation choices<a class="headerlink" href="#10-open-implementation-choices" title="Permanent link">&para;</a></h2>
+<p>This contract intentionally leaves the following implementation decisions open:</p>
+<ul>
+<li>exact Python/TypeScript types, RPC/tool names, storage tables, and local manager event schema;</li>
+<li>the canonical citation-ID creation and duplicate-resolution policy for references without DOI/ISBN;</li>
+<li>durable checkpoint storage and reconciliation when a workstation is offline;</li>
+<li>the AST library and stable-anchor algorithm for arbitrary LaTeX macros and generated source;</li>
+<li>the Overleaf API/OT client, retry budget, remote revision token, and conflict UI;</li>
+<li>renderer/compiler allowlists, freshness windows, and the set of profile-controlled degraded overrides;</li>
+<li>whether/when the proposed DOCX structural graph and durable render ledger are adopted by the production Docs path.</li>
+</ul>
+<p>An implementation must resolve these choices in a focused design or code change, measure real capability availability on each host, and update this contract when its behavior changes. A proposal or a parser's partial output is not evidence that the corresponding capability has shipped.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../meridian-project-family-template-revisions-design/">Project Family / Template Revisions</a></li>
+<li><a href="../meridian-project-family-integration-contract/">Project Family Integration Contract</a></li>
+<li><a href="../meridian-build-b67-3-ooxml-omml-document-graph-2026-08-25/">B67-3: OOXML/OMML document graph</a></li>
+<li><a href="../meridian-build-b67-5-capability-matrix-and-render-truth-table-2026-08-25/">B67-5: DOCX capability matrix and render truth table</a></li>
+<li><a href="../meridian-build-proposal-docx-integrity-and-research-release-2026-08-24/">DOCX integrity and research release proposal</a></li>
+<li><code>meridian/db/profile_layers.py</code> — canonical scoped profile layer behavior.</li>
+<li><code>meridian/doc_store.py</code> — DOCX structure and transactional write behavior.</li>
+<li><code>extensions/meridian-docs/meridian_docs/docs_intel.py</code> — DOCX native operations and render enforcement.</li>
+<li><code>packages/docparse/docparse/latex_intel.py</code> — current LaTeX outline, citation, and BibTeX/BibLaTeX projections.</li>
+<li><code>extensions/meridian-latex/engine/src/overleaf-login.ts</code> — current Overleaf login/status/logout helpers.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

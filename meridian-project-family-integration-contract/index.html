@@ -1,0 +1,1825 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-project-family-integration-contract/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Project Family Integration Contract (Sprint Item ea49362c) - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#project-family-integration-contract-sprint-item-ea49362c" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Project Family Integration Contract (Sprint Item ea49362c)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vocabulary-carried-over-from-5060eea1-not-redefined-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocabulary carried over from 5060eea1 (not redefined here)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-how-family-state-surfaces-to-a-handoff-receiver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (a) How family state surfaces to a handoff receiver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-default-no-flag-handoff-output-is-byte-identical-to-today" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (b) Default (no flag) handoff output is byte-identical to today
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-proposals-insights-integration-the-authorization-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (c) Proposals / insights integration — the authorization boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-mcp-tool-surfaces-gain-new-optional-params-the-version-precedent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (d) MCP tool surfaces gain new OPTIONAL params — the version= precedent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e-graceful-behavior-for-a-project-with-no-family" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (e) Graceful behavior for a project with no family
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f-api-tool-backward-compatibility-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (f) API / tool backward-compatibility statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g-test-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (g) Test matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h-deferred-explicitly-not-decided-by-this-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (h) Deferred / explicitly NOT decided by this contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regression-proof-this-item-changes-no-existing-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regression proof — this item changes no existing behavior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#item-ea49362cs-acceptance-notes-verbatim-for-traceability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item ea49362c's acceptance notes (verbatim, for traceability)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="project-family-integration-contract-sprint-item-ea49362c">Project Family Integration Contract (Sprint Item ea49362c)<a class="headerlink" href="#project-family-integration-contract-sprint-item-ea49362c" title="Permanent link">&para;</a></h1>
+<p><strong>Status:</strong> Design only. This document defines an <em>integration contract</em> —
+where and how project-family/template-revision state (as designed in sibling
+item 5060eea1) would surface across the rest of the system if and when it is
+implemented. <strong>No behavior described here is wired today.</strong> No route,
+handler, MCP tool, or DB function changes as a result of this item.
+<code>meridian/handoff.py</code>, <code>meridian/mcp/handlers/*.py</code>, <code>meridian/db/workspace.py</code>,
+and <code>meridian/db/__init__.py::get_insights</code> are byte-for-byte unmodified by
+this item — see the "Regression proof" section and
+<code>tests/test_family_integration_contract_ea49362c.py</code> for the enforced,
+not just claimed, guarantee.</p>
+<p><strong>Builds on, does not duplicate:</strong>
+<code>docs/meridian-project-family-template-revisions-design.md</code> (item 5060eea1),
+read in full before writing this contract. That document owns: the
+revision-id scheme, content-hash algorithm, the two-layer effective-config
+resolution, the diff format, versioning/supersession/rollback/conflict
+semantics, the (unimplemented) schema sketch, the 16 Pydantic API shapes,
+and the composition statement against legacy <code>parent_project_id</code>/north_star.
+This document does not re-derive or restate any of that; it only asks and
+answers: <em>if that design were implemented, how would every OTHER surface in
+this codebase learn about it, safely and opt-in?</em></p>
+<p><strong>Parent item:</strong> ddcf6984 ("project-family-templates"). <strong>This item
+(ea49362c)</strong> scopes to the cross-cutting integration mapping only —
+handoffs, proposals, insights, pointers, sprint items, executor refresh
+context, and tenant authorization — per its own acceptance notes (quoted in
+full at the end of this document).</p>
+<p><strong>Grounding:</strong> written in worktree <code>.claude/worktrees/a0c162f5</code> (branch
+<code>worktree/ea49362c</code>) against dev tip <code>b0deb335</code> — the same commit item
+5060eea1's design doc was merged at. A prior read-only discovery pass
+(summarized inline throughout this document, with file/line citations)
+confirmed the exact extension points this contract proposes already exist
+as an established house pattern; nothing here invents a new mechanism.</p>
+<hr />
+<h2 id="vocabulary-carried-over-from-5060eea1-not-redefined-here">Vocabulary carried over from 5060eea1 (not redefined here)<a class="headerlink" href="#vocabulary-carried-over-from-5060eea1-not-redefined-here" title="Permanent link">&para;</a></h2>
+<p><code>ProjectTemplate</code>, <code>TemplateRevisionSnapshot</code>, <code>ChildTemplateOverride</code>,
+<code>ChildTemplateSnapshot</code>, <code>ProjectFamilyView</code>, <code>ConfigDiffEntry</code> — all from
+<code>meridian/models.py</code>, all still unwired. See 5060eea1's design doc for full
+field-level detail. This document refers to them by name and composes with
+them; it does not add competing shapes for the same concepts.</p>
+<p>One naming rule inherited from discovery and enforced throughout this
+document: <strong>the bare name <code>family_id</code> is never reused.</strong>
+<code>meridian/db/proposal_lineage.py</code> (module docstring, ~lines 40-44) already
+defines <code>workspace_proposals.family_id</code> as a pre-existing, tenant-scoped,
+<em>unrelated</em> proposal-lineage grouping tag —
+<em>"<code>family_id</code> in particular remains a plain compatibility grouping field
+[for proposal lineage]; it is never read or written by [the lineage]
+module."</em> Everywhere this contract needs "the identifier of a project
+family," it uses <strong><code>template_id</code></strong> instead — the family <em>is</em> "one template
+plus its children" (5060eea1, <code>ProjectFamilyView</code>), so <code>template_id</code> is
+already the correct, unambiguous identifier and requires inventing nothing
+new.</p>
+<hr />
+<h2 id="a-how-family-state-surfaces-to-a-handoff-receiver">(a) How family state surfaces to a handoff receiver<a class="headerlink" href="#a-how-family-state-surfaces-to-a-handoff-receiver" title="Permanent link">&para;</a></h2>
+<p><strong>Mechanism: reuse the existing <code>emit_manifest</code> opt-in splice point.
+A new opt-in flag, never a default-on change.</strong></p>
+<p><code>meridian/handoff.py</code> already has exactly the pattern this needs, used
+twice today:</p>
+<ol>
+<li><strong><code>build_effective_capability_contract</code></strong> (handoff.py:8442) and
+   <strong><code>build_effective_profile_binding</code></strong> (handoff.py:8541) — both thin,
+   fully-<code>try/except</code>-guarded <code>async (db, project_id, ...) -&gt; dict | None</code>
+   wrappers. Each is called once inside <code>generate_handoff</code>'s dispatch
+   (<code>mcp/handler.py</code>) and once inside <code>start_session</code>'s orientation
+   response (<code>mcp/handlers/project_tools.py::handle_start_session</code>); the
+   <em>caller</em>, not <code>generate_handoff</code> itself, attaches the result as a
+   sibling field next to <code>content</code>. <code>generate_handoff</code>'s own return type
+   (<code>tuple[path, content, amended]</code>, handoff.py:10655) is untouched by
+   either wrapper's existence.</li>
+<li><strong><code>evidence_status</code>/<code>trusted_pointers</code></strong> (MDE-5, handoff.py:9691-9692,
+   9710-9720) — an existing precedent for an <em>optional trailing block</em>
+   inside <code>build_handoff_manifest</code>'s fixed-order dict: <code>None</code>/omitted by
+   default, "byte-for-byte unchanged for every existing caller that
+   doesn't pass them" (verbatim from that docstring).</li>
+<li><strong><code>emit_manifest</code></strong> itself (handoff.py:10651, default <code>False</code>) is
+   already opt-in and, per its own docstring, "currently wired for
+   <code>mode="goal"</code> only... a caller wanting the same guarantee for
+   <code>full</code>/<code>delta</code>/<code>starter</code>/<code>compact</code> should build on the same primitives
+   directly; this first pass intentionally covers one mode end-to-end
+   rather than four modes partially." This item's own eventual
+   implementation should follow that identical incremental path, not try
+   to land family context in every mode simultaneously.</li>
+</ol>
+<p><strong>Proposed future shape (illustrative, not implemented — see <code>models.py</code>
+addition below):</strong> a fourth wrapper,
+<code>build_effective_family_binding(db, project_id, *, session_id=None) -&gt;
+dict | None</code>, added to <code>meridian/handoff.py</code> in the same file, next to the
+other three wrappers, following the identical signature/guard/return
+convention. Internally it would:</p>
+<ul>
+<li>Look up whether <code>project_id</code> has a <code>ChildTemplateSnapshot</code> row (future
+  <code>db.get_child_template_snapshot</code>, not implemented — 5060eea1 section j).</li>
+<li>If none: return <code>None</code> — the "no family" case, handled identically to
+  how <code>build_effective_profile_binding</code> returns <code>None</code> on any failure.</li>
+<li>If present: build and return a dict shaped like <code>HandoffFamilyContext</code>
+  (see the models.py section below) — <code>template_id</code>, <code>adopted_revision_id</code>,
+  <code>latest_revision_id</code>, <code>inherited_vs_local</code> (a <code>list[ConfigDiffEntry]</code>,
+  reused verbatim from 5060eea1, never a new diff shape),
+  <code>executable_capability_status</code>/<code>executable_reasons</code> (reusing the SAME
+  vocabulary <code>build_effective_capability_contract</code> already emits — not a
+  new status enum), and <code>pending_promotion_revision_ids</code>.</li>
+</ul>
+<p><strong>Call-site wiring (future work, NOT this item):</strong></p>
+<ul>
+<li><code>generate_handoff</code> gains one new keyword-only parameter,
+  <strong><code>include_family_context: bool = False</code></strong> — mirroring <code>emit_manifest</code>'s
+  own default-<code>False</code>, opt-in shape exactly. <code>mcp/handler.py</code>'s
+  <code>generate_handoff</code> dispatch calls
+  <code>build_effective_family_binding</code> only when the caller passed
+  <code>include_family_context=True</code>, then attaches the result as a sibling
+  field (<code>family_binding</code>) next to <code>content</code> — exactly how
+  <code>capability_contract</code>/<code>profile_binding</code> are attached today. <code>generate_handoff</code>
+  itself never grows a <code>family_binding</code> entry in its own return tuple.</li>
+<li><code>build_handoff_manifest</code> gains one new optional trailing kwarg,
+  <strong><code>family_binding: dict[str, Any] | None = None</code></strong>, defaulting to <code>None</code>
+  and rendered as <code>dict(family_binding or {})</code> in the returned dict —
+  the identical pattern <code>evidence_status</code>/<code>trusted_pointers</code> already use
+  two lines above where this key would sit. <code>serialize_handoff_manifest_xml</code>
+  gains one new optional trailing XML block, emitted only when the dict key
+  is non-empty (again mirroring the evidence/pointers precedent).</li>
+<li><code>start_session</code>'s orientation response gains the same
+  <code>include_family_context</code> param, calling the same
+  <code>build_effective_family_binding</code> wrapper, for parity between the two
+  trusted channels — exactly how capability-contract and profile-binding
+  are already surfaced identically at both call sites today.</li>
+</ul>
+<hr />
+<h2 id="b-default-no-flag-handoff-output-is-byte-identical-to-today">(b) Default (no flag) handoff output is byte-identical to today<a class="headerlink" href="#b-default-no-flag-handoff-output-is-byte-identical-to-today" title="Permanent link">&para;</a></h2>
+<p><strong>Statement:</strong> with <code>include_family_context</code> omitted (or explicitly
+<code>False</code>), <code>generate_handoff</code>'s returned <code>(path, content, amended)</code>, the
+<code>start_session</code> orientation response, and <code>build_handoff_manifest</code>'s
+returned dict and its XML serialization are <strong>byte-for-byte identical</strong> to
+their pre-this-item behavior — for a project with a family, without one,
+and everywhere in between.</p>
+<p><strong>Justification:</strong></p>
+<ol>
+<li><strong>No existing default changes.</strong> <code>include_family_context</code> (future work)
+   would be a <em>new</em> keyword-only parameter with default <code>False</code>. A
+   parameter that does not exist today cannot be passed by any existing
+   caller; once it exists, every caller that never learns about it keeps
+   passing nothing, which resolves to the default. This is the exact
+   mechanism <code>emit_manifest</code> itself already relies on (default <code>False</code>,
+   "zero behaviour change for every existing caller" — handoff.py:10658).</li>
+<li><strong>The wrapper only runs when asked.</strong> <code>build_effective_family_binding</code>
+   (future work) would only be <em>called</em> when <code>include_family_context=True</code>
+   — unlike <code>capability_contract</code>/<code>profile_binding</code>, which run
+   unconditionally today (they were unconditional from day one, so there
+   was never a "before" to preserve byte-for-byte). Family context is
+   being introduced into an <em>existing, shipped</em> surface, so it must be
+   strictly additive from its first line of code — hence gating the call
+   itself, not just gating what happens with the result.</li>
+<li><strong>The manifest's fixed key order is preserved.</strong> <code>build_handoff_manifest</code>
+   returns a dict with a fixed, enumerable key set (handoff.py:9726-9747).
+   Adding <code>"family_binding": dict(family_binding or {})</code> as the LAST key
+   (after <code>trusted_pointers</code>) means: (i) every existing key stays at its
+   existing position, (ii) the new key's value is <code>{}</code> whenever the caller
+   doesn't pass <code>family_binding</code> (which is every existing caller, by
+   construction), and (iii) <code>serialize_handoff_manifest_xml</code>'s existing
+   <code>esc()</code>-and-fixed-order emission only appends a new XML element when
+   that dict value is non-empty — an empty dict must render nothing, not
+   an empty tag, to stay byte-identical to the pre-family XML for a
+   family-less project. <strong>Concrete regression check (see <code>test_family_integration_contract_ea49362c.py</code>):</strong>
+   this item asserts the <em>current</em> <code>build_handoff_manifest</code>'s returned key
+   set is exactly <code>{schema_version, handoff_mode, project_id, project_name,
+   sprint_version, session_id, origin_identity, generated_at,
+   board_revision, selected_item_ids, closure_item_ids, items,
+   items_truncated, items_total, waves, stop_conditions, deploy_policy,
+   evidence_status, trusted_pointers}</code> — no <code>family_binding</code> key exists yet.
+   A future implementation item that adds the key must update that exact
+   assertion, which makes an accidental default-on change to the manifest
+   shape fail CI immediately rather than silently ship.</li>
+<li><strong>Enforced, not just claimed:</strong> this item makes ZERO edits to
+   <code>meridian/handoff.py</code>. <code>tests/test_family_integration_contract_ea49362c.py</code>
+   includes a <code>git diff &lt;dev-tip&gt; -- meridian/handoff.py</code> check (and the
+   same for <code>meridian/mcp/handlers/</code>, <code>meridian/db/workspace.py</code>, and
+   <code>meridian/db/__init__.py</code>) that fails the moment any of those files
+   differ from the commit this contract was written against. Combined with
+   a real, executed call to <code>generate_handoff</code> against a project with no
+   family (mirroring <code>tests/test_handoff_amend_vs_fresh.py</code>'s existing
+   fixture pattern), this is a <em>behavioral</em> proof, not a documentation-only
+   promise — see "Regression proof" below.</li>
+</ol>
+<hr />
+<h2 id="c-proposals-insights-integration-the-authorization-boundary">(c) Proposals / insights integration — the authorization boundary<a class="headerlink" href="#c-proposals-insights-integration-the-authorization-boundary" title="Permanent link">&para;</a></h2>
+<p><strong>Two structurally different data stores, two different exposure risks:</strong></p>
+<ol>
+<li><strong><code>get_insights(db, project_id, horizon=None)</code></strong> (db/<strong>init</strong>.py:8739)
+   and <code>add_insight</code>/<code>get_insights</code> MCP handlers
+   (<code>mcp/handlers/notes_decisions.py:2083</code>/<code>2103</code>) are already strictly
+   <code>project_id</code>-scoped — one table, no tenant/family join today. This is
+   the <em>safe</em> case: a future <code>include_family_context</code> param on
+   <code>handle_get_insights</code> (mirroring <code>get_sprint_items</code>'s <code>version=</code>
+   precedent, see (d) below) could, at most, ALSO surface a read-only
+   family summary (<code>template_id</code>, <code>adopted_revision_id</code>, sibling count —
+   never sibling insight bodies) alongside the still-<code>project_id</code>-scoped
+   insight rows. <strong>It must never resolve or join against a sibling child's
+   <code>project_id</code></strong> — an insights call for child A stays scoped to child A's
+   own insights, full stop; family membership is metadata attached to the
+   response, never a key used to fetch more rows than the caller asked for.</li>
+<li><strong><code>workspace_proposals</code></strong> (<code>db/workspace.py</code>: <code>add_workspace_proposal</code>
+   L539, <code>get_workspace_proposals</code> L747, <code>promote_workspace_proposal</code>
+   L936) are <strong>tenant-scoped, not project-scoped at all</strong> — no
+   <code>project_id</code> column exists on this table today. This is the <em>dangerous</em>
+   case flagged by discovery: <code>workspace_proposals</code> already has an
+   unrelated <code>family_id</code> column (proposal-lineage grouping, see vocabulary
+   section above). <strong>A naive future implementation that filters
+   <code>workspace_proposals</code> by matching <code>family_id</code> to a project-family
+   <code>template_id</code> would be a real cross-tenant-concept bug</strong>, not a data
+   leak by itself (the column means something else entirely), but it would
+   silently produce nonsense results and must not happen. The correct
+   integration point, if a family-scoped proposal view is ever built, is
+   <code>promote_workspace_proposal</code> — discovery confirms this is already "the
+   one explicit, one-directional bridge from workspace scope into project
+   scope: it creates a concrete <code>sprint_items</code> row under one <code>project_id</code>."
+   A future "promote this proposal into every child of family X" operation
+   would call this existing bridge once per resolved child <code>project_id</code>
+   (each promotion still one-directional, workspace → one project), never
+   introduce a new ambient workspace-to-family join.</li>
+</ol>
+<p><strong>The authorization check itself — reusing this project's real permission
+model, not inventing one:</strong></p>
+<ul>
+<li><code>meridian/roles.py::has_perm(role, perm)</code> (line 86) against
+  <code>PERM_READ</code>/<code>PERM_WRITE</code>/<code>PERM_SETTINGS</code> (lines 41-47) is the single
+  source of truth for what a workspace role may do. This contract
+  introduces no new permission constant. Reading family context
+  (<code>template_id</code>, <code>adopted_revision_id</code>, diff, capability status) is a
+  <strong>read</strong> — gated by <code>PERM_READ</code>, same as any other project-data GET.
+  Any future <em>mutating</em> family action (adopt/reject/override/rollback,
+  from 5060eea1 section k) is a <strong>write</strong> — gated by <code>PERM_WRITE</code> at
+  minimum, following <code>_deps.py::_required_perm_for_request</code>'s existing
+  default ("ordinary project-data writes → member allowed, viewer
+  blocked", line ~872-874) rather than inventing a new tier. A future
+  family <em>administration</em> action that could affect every child of a
+  template at once (e.g., forcing every child onto a new revision) is the
+  one case that plausibly deserves <code>PERM_SETTINGS</code> instead of plain
+  <code>PERM_WRITE</code> — analogous to how <code>_required_perm_for_request</code> already
+  elevates workspace/project <em>configuration</em> changes to <code>PERM_SETTINGS</code>
+  while ordinary data writes stay at <code>PERM_WRITE</code> (line ~863-868). This
+  contract flags that choice as open (see "Deferred" section (h)) rather
+  than deciding it, since no such bulk-template-push operation is even
+  designed yet (5060eea1 has no such API shape).</li>
+<li><strong>Cross-workspace enforcement is <code>_enforcement_context</code>/
+  <code>_require_workspace_perm</code></strong> (<code>meridian/_deps.py:877</code>/<code>802</code>) for HTTP
+  routes, and <strong><code>scoped_project_ids</code></strong> (<code>mcp/handler.py:1163</code>,
+  <code>tools/call</code> dispatch ~lines 1343-1358) for MCP/API-token callers. Both
+  are <strong>single-<code>project_id</code>-per-call</strong> checks today. <strong>This is the genuine
+  gap this contract must flag, not paper over:</strong> any future tool or route
+  that returns data spanning <em>multiple</em> child projects in one call (a
+  <code>ProjectFamilyView</code>-shaped response, or a "family proposals" aggregate)
+  cannot rely on either existing mechanism as-is — <code>scoped_project_ids</code>
+  checks exactly one <code>args["project_id"]</code>, and a family aggregate by
+  definition touches several. <strong>Required fix for any such future tool
+  (not implemented here):</strong> resolve every child <code>project_id</code> the
+  aggregate would touch (via <code>ChildTemplateSnapshot.child_project_id</code>,
+  5060eea1 section j — the only place child membership is recorded), then
+  check EACH one against <code>scoped_project_ids</code> (when not <code>None</code>) before
+  including that child's data in the response — filtering out, not
+  erroring on, any child outside scope, matching how <code>get_sprint_items</code>
+  filters rather than 403s when a status filter excludes rows. A
+  project-scoped API token must see the family's <em>shape</em> (it can learn a
+  family boundary exists) without ever receiving a sibling project's
+  decisions, notes, insights, or proposal bodies it could not fetch
+  directly.</li>
+<li><strong>The second, unenforced path</strong> (<code>_scoped_project_ids_for_request</code>,
+  <code>_deps.py:428</code>, backing the cookie-session dashboard's project-scoped
+  <code>workspace_members.project_id</code> members) is explicitly <strong>listing-only,
+  not airtight</strong> today — its own docstring says so, gated on open product
+  decision <code>pin b11c7cf6</code>. <strong>This contract does not close that gap and
+  does not pretend a family view built on top of it would be safe from
+  direct-by-ID access</strong> — a family aggregate surfaced through the
+  dashboard for a project-scoped cookie-session member inherits the
+  SAME pre-existing weakness as everything else behind that path, not a
+  new one this item introduces. Any future work that wants family
+  aggregates to be safe for project-scoped dashboard members must wait on
+  (or explicitly complete) <code>pin b11c7cf6</code> first — this contract flags
+  that dependency rather than silently assuming the read is safe.</li>
+</ul>
+<p><strong>Net leakage statement:</strong> with the design above, a caller who can only
+reach one child project (by either enforcement mechanism) can learn (a)
+that a family exists, (b) that child's own place in it (<code>template_id</code>,
+<code>adopted_revision_id</code>, its own diff/capability status), and (c) the
+template's <code>latest_revision_id</code>/name (both already <code>ProjectTemplate</code>-level,
+not another project's data). They can never receive another sibling
+child's <code>ChildTemplateSnapshot</code>, override, notes, decisions, or insights
+through any family-shaped surface — only through whatever direct access to
+that sibling's <code>project_id</code> they already had or lacked before this item
+existed.</p>
+<hr />
+<h2 id="d-mcp-tool-surfaces-gain-new-optional-params-the-version-precedent">(d) MCP tool surfaces gain new OPTIONAL params — the <code>version=</code> precedent<a class="headerlink" href="#d-mcp-tool-surfaces-gain-new-optional-params-the-version-precedent" title="Permanent link">&para;</a></h2>
+<p><strong>Exact precedent to model:</strong> <code>get_sprint_items(db, project_id, status=None,
+..., version: str | None = None, ...)</code> (db/sprint_items.py:4338) —
+<code>version=None</code> preserves 100% of current behavior (all versions returned);
+an explicit value narrows scope. This is the established "None = unchanged
+today, explicit = opt-in" shape this contract reuses verbatim for family
+context, on every surface below:</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>New optional param</th>
+<th>Default</th>
+<th>Behavior when omitted/default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>generate_handoff</code> (handoff.py:10619)</td>
+<td><code>include_family_context: bool</code></td>
+<td><code>False</code></td>
+<td>Identical to today (see (a)/(b))</td>
+</tr>
+<tr>
+<td><code>start_session</code> orientation (<code>project_tools.py::handle_start_session</code>)</td>
+<td><code>include_family_context: bool</code></td>
+<td><code>False</code></td>
+<td>No family field attached</td>
+</tr>
+<tr>
+<td><code>handle_get_insights</code> (<code>notes_decisions.py:2103</code>)</td>
+<td><code>include_family_context: bool</code></td>
+<td><code>False</code></td>
+<td>Returns exactly today's insight list, no wrapper field</td>
+</tr>
+<tr>
+<td><code>handle_add_note</code> / <code>handle_get_notes</code> (<code>notes_decisions.py:339</code> / nearby)</td>
+<td><em>(none proposed)</em></td>
+<td>n/a</td>
+<td>Notes are already never family-aware in this design — see (c); no param needed because no behavior changes</td>
+</tr>
+<tr>
+<td><code>handle_get_sprint_items</code> / <code>handle_get_parallelizable_groups</code> (<code>sprint_tools.py:745</code>/<code>784</code>)</td>
+<td><code>include_family_context: bool</code></td>
+<td><code>False</code></td>
+<td>Item list unaffected; when <code>True</code>, each item's response MAY additionally carry <code>blocked_by_family</code> context only for items already flagged as blocked for template/config reasons — not implemented, illustrative only</td>
+</tr>
+<tr>
+<td><code>refresh_context</code> / <code>checkpoint</code></td>
+<td><code>include_family_context: bool</code></td>
+<td><code>False</code></td>
+<td>Refresh payload unaffected by default</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Existing inconsistency noted, not fixed here:</strong> discovery confirms
+<code>handle_get_sprint_items</code> (sprint_tools.py:745) does not even forward the
+already-shipped <code>version=</code> kwarg today (only <code>handle_get_parallelizable_groups</code>,
+line 784, does). This contract explicitly does NOT fix that inconsistency —
+out of scope for a design-only item — but flags it as a concrete reason a
+future family-context implementation must audit each handler's kwarg
+forwarding individually rather than assuming "the pattern is already
+applied uniformly everywhere it should be."</p>
+<hr />
+<h2 id="e-graceful-behavior-for-a-project-with-no-family">(e) Graceful behavior for a project with no family<a class="headerlink" href="#e-graceful-behavior-for-a-project-with-no-family" title="Permanent link">&para;</a></h2>
+<p>For every surface in (a)/(d), when <code>include_family_context=True</code> is passed
+for a project with <strong>no</strong> <code>ChildTemplateSnapshot</code> row:</p>
+<ul>
+<li>The wrapper (<code>build_effective_family_binding</code>, future work) returns
+  <code>None</code> — same convention as <code>build_effective_profile_binding</code> on any
+  failure, and the SAME convention 5060eea1 section (c) rule 5 already
+  establishes for effective-config resolution ("a child with no adopted
+  revision at all... is a precondition failure for resolution, not
+  <code>resolve against nothing</code>" — the <em>wrapper</em> layer converts that
+  precondition failure into a clean <code>None</code>, exactly like every other
+  best-effort wrapper in <code>handoff.py</code> already does for its own failure
+  modes).</li>
+<li>The caller (handoff dispatch / start_session / an MCP handler) omits the
+  field entirely rather than attaching <code>null</code> or <code>{}</code> — matching how
+  <code>capability_contract</code>/<code>profile_binding</code> are already omitted, not
+  nulled, when their own wrapper returns <code>None</code>.</li>
+<li><strong>No different code path is taken for the common case.</strong> The <code>if
+  include_family_context:</code> branch itself is the only new branch; whether
+  the project has a family or not is decided <em>inside</em> the wrapper, which
+  is exactly how <code>build_effective_profile_binding</code> already decides
+  "workspace-only vs. project+workspace+hosted_default" internally without
+  the caller needing to know in advance which case applies.</li>
+<li><code>HandoffFamilyContext</code> (illustrative model, see below) itself is never
+  even constructed for a family-less project — there is no "empty"
+  instance serialized; the field is simply absent from the response,
+  matching (b)'s byte-identical guarantee for the truly-common,
+  overwhelming-majority case of a project that never touches any
+  family/template concept.</li>
+</ul>
+<hr />
+<h2 id="f-api-tool-backward-compatibility-statement">(f) API / tool backward-compatibility statement<a class="headerlink" href="#f-api-tool-backward-compatibility-statement" title="Permanent link">&para;</a></h2>
+<p>Every parameter this contract proposes is <strong>new, keyword-only, and
+defaults to <code>False</code>/<code>None</code></strong>. No existing parameter changes name, type,
+position, or default. No existing return shape drops, renames, or
+reorders a field. Concretely:</p>
+<ul>
+<li>An old MCP client that has never heard of <code>include_family_context</code> sends
+  no such argument; every proposed handler treats a missing keyword
+  identically to an explicit <code>False</code>/<code>None</code> — standard Python keyword-arg
+  semantics, not a new compatibility shim.</li>
+<li>An old REST client parsing <code>generate_handoff</code>'s JSON response, or
+  <code>build_handoff_manifest</code>'s XML, sees no new key/element unless it
+  explicitly opted in — see (b)'s manifest key-set assertion.</li>
+<li><code>get_sprint_items</code>/<code>get_insights</code>/etc.'s <em>existing</em> optional parameters
+  (<code>status</code>, <code>horizon</code>, <code>version</code>, ...) are untouched — position, name,
+  and default all identical before and after this item, and before and
+  after any future implementation that follows this contract.</li>
+<li>This item itself changes zero of the above — see "Regression proof."</li>
+</ul>
+<hr />
+<h2 id="g-test-matrix">(g) Test matrix<a class="headerlink" href="#g-test-matrix" title="Permanent link">&para;</a></h2>
+<p>One row per (surface × scenario). All rows describe tests a future
+<em>implementation</em> item would need; none of them exist as passing tests for
+new behavior today, because no new behavior exists today (rows marked
+<strong>[ENFORCED NOW]</strong> describe assertions that ARE already in
+<code>tests/test_family_integration_contract_ea49362c.py</code>, proving the <em>current</em>
+baseline these future tests would diff against).</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Surface</th>
+<th>Scenario</th>
+<th>Expected outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>generate_handoff</code></td>
+<td>No family, default call (no flag)</td>
+<td><strong>[ENFORCED NOW]</strong> Byte-identical to pre-this-item baseline (git-diff-verified zero change to <code>handoff.py</code>; real call succeeds, returns <code>(path, content, amended)</code> with no family-shaped keys anywhere in <code>content</code>)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>generate_handoff</code></td>
+<td>No family, <code>include_family_context=True</code></td>
+<td><code>family_binding</code> absent/<code>None</code>; no error; no different item-selection code path taken</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>generate_handoff</code></td>
+<td>IS a family child, default call (flag omitted)</td>
+<td>Output identical to scenario 1 — family membership alone must never change default output</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>generate_handoff</code></td>
+<td>IS a family child, <code>include_family_context=True</code></td>
+<td><code>family_binding</code> present: <code>template_id</code>, <code>adopted_revision_id</code>, <code>latest_revision_id</code>, <code>inherited_vs_local</code>, <code>executable_capability_status</code>, <code>pending_promotion_revision_ids</code> all populated and consistent with the child's <code>ChildTemplateSnapshot</code>/<code>ProjectTemplate</code> rows</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>generate_handoff</code>, <code>mode="goal"</code>, <code>emit_manifest=True</code></td>
+<td>No family</td>
+<td><strong>[ENFORCED NOW]</strong> <code>build_handoff_manifest</code>'s returned key set is exactly the current 19 keys — no <code>family_binding</code> key exists; XML serialization unaffected</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>generate_handoff</code>, <code>mode="goal"</code>, <code>emit_manifest=True</code></td>
+<td>Family child, <code>include_family_context=True</code></td>
+<td>Manifest gains exactly one new trailing key/XML element (<code>family_binding</code>); every existing key/element keeps its current position; <code>body_hash</code>/goal-token verification still covers the new block (spliced before token minting, same as <code>evidence_status</code>/<code>trusted_pointers</code>)</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>start_session</code> orientation</td>
+<td>No family</td>
+<td>No family field present, response identical to pre-item baseline</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>start_session</code> orientation</td>
+<td>Family child, <code>include_family_context=True</code></td>
+<td>Family field present, SAME shape <code>generate_handoff</code> emits (parity between the two trusted channels)</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>load_handoff</code> / stored <code>pending_goal</code></td>
+<td>Family child, generated WITHOUT <code>include_family_context</code></td>
+<td>Retrieved handoff bytes contain no family data — opting in is a generation-time choice, not inferred at read time</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>get_insights</code></td>
+<td>No family, default call</td>
+<td><strong>[ENFORCED NOW]</strong> Unaffected — <code>db.get_insights</code> signature/behavior byte-identical (git-diff-verified)</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>get_insights</code></td>
+<td>Family child, caller has <code>PERM_READ</code> (any role)</td>
+<td>Family summary metadata (<code>template_id</code>, <code>adopted_revision_id</code>) MAY be attached; the insight rows themselves are still exactly this project's own, never a sibling's</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>get_insights</code> via a family-aggregate path (hypothetical future tool)</td>
+<td>Caller's <code>scoped_project_ids = ["A"]</code>; family also contains sibling child <code>"B"</code></td>
+<td>Child <code>B</code>'s insights are excluded from any aggregate response — never returned via a family join the caller could not reach directly</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>workspace_proposals.family_id</code> (pre-existing, proposal-lineage)</td>
+<td>Any family-context code path is introduced</td>
+<td>Column's existing read/write behavior in <code>db/workspace.py</code>/<code>proposal_lineage.py</code> is untouched — <strong>[ENFORCED NOW]</strong> git-diff-verified zero change to <code>db/workspace.py</code>; a future implementation must never filter/join this column against a project-family <code>template_id</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>promote_workspace_proposal</code></td>
+<td>A proposal promoted to every child of a family (future op, not implemented)</td>
+<td>Bridge is called once per resolved child <code>project_id</code>; each call remains the existing one-directional workspace→project promotion; no new ambient workspace-to-family join is introduced</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>handle_add_note</code> / <code>handle_get_notes</code></td>
+<td><code>include_family_context</code> never added to this surface (per (d))</td>
+<td>Behavior and signature identical before/after this item and any future family work — <strong>[ENFORCED NOW]</strong> no new param exists on these handlers today</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>get_sprint_item_pointers</code> / <code>resolve_sprint_item_pointers</code></td>
+<td>No family</td>
+<td>Unaffected</td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>get_sprint_item_pointers</code></td>
+<td>Family child, hypothetical future <code>include_family_context=True</code></td>
+<td>Pointer resolution stays scoped to THIS child's <code>project_id</code> only — never resolves a pointer belonging to a sibling child sharing the same <code>template_id</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>get_sprint_items(project_id, version=None)</code></td>
+<td>Combined with a hypothetical future <code>family_scope=None</code></td>
+<td>Returns identical set to <code>version=None</code> alone — a new family-scoped kwarg must follow the identical "<code>None</code> = unchanged" contract <code>version=</code> already established</td>
+</tr>
+<tr>
+<td>19</td>
+<td><code>handle_get_sprint_items</code></td>
+<td>Before any future family-context change</td>
+<td><strong>[ENFORCED NOW]</strong> documented existing gap: this handler does not forward <code>version=</code> today (unlike <code>handle_get_parallelizable_groups</code>) — a future patch adding <code>include_family_context</code> must not silently "fix" <code>version</code>-forwarding as an undocumented side effect</td>
+</tr>
+<tr>
+<td>20</td>
+<td><code>claim_sprint_item</code> / <code>complete_sprint_item</code></td>
+<td>Family-scoped project, <code>code_intel_prospecting</code> capability opted in</td>
+<td>Capability-manifest/prospecting-receipt logic is completely orthogonal to family context; item behaves identically whether or not the project has a family</td>
+</tr>
+<tr>
+<td>21</td>
+<td><code>refresh_context</code> / <code>checkpoint</code></td>
+<td>No family</td>
+<td>Unaffected</td>
+</tr>
+<tr>
+<td>22</td>
+<td><code>refresh_context</code></td>
+<td>Family child whose <code>latest_revision_id</code> has advanced past <code>adopted_revision_id</code></td>
+<td>MAY surface a non-blocking informational note ("template X has a newer revision available"); never auto-adopts, never blocks or fails the refresh</td>
+</tr>
+<tr>
+<td>23</td>
+<td>MCP <code>tools/call</code> dispatch</td>
+<td><code>scoped_project_ids=["A"]</code>, tool call targets <code>project_id="A"</code> (a family child)</td>
+<td>Passes today's existing single-project check unchanged — no new gate needed for a single-project read</td>
+</tr>
+<tr>
+<td>24</td>
+<td>MCP <code>tools/call</code> dispatch</td>
+<td><code>scoped_project_ids=["A"]</code>, hypothetical future family-aggregate tool call spanning <code>["A","B"]</code></td>
+<td>Must filter out <code>B</code>'s data (the flagged gap in (c)) — a test asserting this is the one case existing enforcement does NOT already cover, so any future aggregate tool must add the per-child scope check explicitly before shipping</td>
+</tr>
+<tr>
+<td>25</td>
+<td>HTTP route, cross-workspace header, <code>role="viewer"</code></td>
+<td>Requests read-only family context on a handoff/insights endpoint</td>
+<td>Allowed — <code>PERM_READ</code> suffices, matching <code>_required_perm_for_request</code>'s existing read/write split</td>
+</tr>
+<tr>
+<td>26</td>
+<td>HTTP route, cross-workspace header, <code>role="viewer"</code></td>
+<td>Requests a hypothetical future mutating family action (adopt/reject/override)</td>
+<td>Denied — mutating family actions require <code>PERM_WRITE</code> at minimum, same as any other project-data write today</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Cookie-session dashboard, project-scoped <code>workspace_members.project_id</code> member</td>
+<td>Requests a family aggregate view</td>
+<td>Contract explicitly does NOT claim this is airtight — inherits the SAME pre-existing <code>pin b11c7cf6</code> listing-only gap as every other project-scoped dashboard read; a test documents this as an open dependency, not a false "safe" claim</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rows marked [ENFORCED NOW]</strong> (1, 5, 10, 13, 15, 19) are executable today
+because they assert facts about the <em>current, unmodified</em> codebase — they
+are exactly the tests this item ships in
+<code>tests/test_family_integration_contract_ea49362c.py</code>. Every other row
+describes a test a future <em>implementation</em> item must add once the
+corresponding behavior actually exists; none of them can be written
+meaningfully before that behavior is wired, since there is nothing yet to
+call.</p>
+<hr />
+<h2 id="h-deferred-explicitly-not-decided-by-this-contract">(h) Deferred / explicitly NOT decided by this contract<a class="headerlink" href="#h-deferred-explicitly-not-decided-by-this-contract" title="Permanent link">&para;</a></h2>
+<p>This contract intentionally leaves the following open for whichever future
+item implements against it:</p>
+<ol>
+<li><strong>Exact new MCP tool names</strong> for <code>create</code>/<code>fork</code>/<code>override</code>/<code>preview</code>/
+   <code>adopt</code>/<code>reject</code>/<code>rollback</code> (5060eea1 section k already names the
+   request/response <em>models</em>, not the tool names that would dispatch them).</li>
+<li><strong>Exact parameter name/type for the opt-in flag</strong> — this document uses
+   <code>include_family_context: bool = False</code> throughout as the working name,
+   but a future item could reasonably choose an enum
+   (<code>"none"|"summary"|"full"</code>) instead of a bool if a partial-detail mode
+   turns out to be useful. Not decided here.</li>
+<li><strong>Whether <code>HandoffFamilyContext</code> (below) is the actual shape shipped</strong>,
+   or purely illustrative. In particular <code>executable_capability_status</code>'s
+   three-value vocabulary (<code>executable</code>/<code>non_executable</code>/<code>unknown</code>) is a
+   sketch, not verified against whatever the real
+   <code>build_effective_capability_contract</code> availability states turn out to
+   need once capability checking is extended to cover template-level
+   requirements (if it ever is — not designed here either).</li>
+<li><strong>Rollout order</strong> — whether <code>include_family_context</code> lands for
+   <code>generate_handoff</code> first (mirroring <code>emit_manifest</code>'s own
+   <code>mode="goal"</code>-only first pass) or for <code>get_insights</code> first, or
+   simultaneously. Not decided; house precedent (emit_manifest) favors one
+   surface at a time.</li>
+<li><strong>The exact mechanic for the multi-child authorization filter</strong> in (c)/
+   row 24 — whether <code>scoped_project_ids</code> is checked per-child inline
+   during aggregation, or family membership is resolved once and
+   intersected with <code>scoped_project_ids</code> up front. Both are correct;
+   which is more efficient depends on typical family size, which is
+   unknown (no families exist yet).</li>
+<li><strong>Whether a bulk "push every child onto a new revision" operation ever
+   gets <code>PERM_SETTINGS</code> instead of <code>PERM_WRITE</code></strong> (see (c)) — flagged as
+   open because no such operation is designed in 5060eea1 at all.</li>
+<li><strong>Payload size caps, migration specifics, and everything else 5060eea1
+   section (j)/(i) already marks as future work</strong> — this document does
+   not re-decide any of that; it only adds the cross-cutting surfaces
+   5060eea1 explicitly deferred to a sibling item.</li>
+<li><strong>Whether <code>refresh_context</code>/<code>checkpoint</code> ever actually gain family
+   awareness at all</strong> — row 21/22 in the test matrix describe a plausible
+   future behavior, not a committed one.</li>
+</ol>
+<hr />
+<h2 id="regression-proof-this-item-changes-no-existing-behavior">Regression proof — this item changes no existing behavior<a class="headerlink" href="#regression-proof-this-item-changes-no-existing-behavior" title="Permanent link">&para;</a></h2>
+<p>Enforced by <code>tests/test_family_integration_contract_ea49362c.py</code>:</p>
+<ol>
+<li><strong>File-level zero-diff assertions</strong> (<code>git diff b0deb335 -- &lt;path&gt;</code>)
+   against <code>meridian/handoff.py</code>, every file under <code>meridian/mcp/handlers/</code>,
+   and <code>meridian/db/workspace.py</code> — all must show zero changes relative to
+   the dev tip this contract and 5060eea1 were both written against.</li>
+<li><strong><code>meridian/db/__init__.py::get_insights</code></strong> — the function's source text
+   is extracted and compared verbatim against the same function at
+   <code>b0deb335</code>, isolating the specific carve-out this item's own scope
+   names (rather than requiring the entire, large <code>db/__init__.py</code> file to
+   be untouched by every other concurrent item).</li>
+<li><strong>A real, executed <code>generate_handoff</code> call</strong> (mirroring
+   <code>tests/test_handoff_amend_vs_fresh.py</code>'s fixture pattern: real <code>db</code>
+   fixture, <code>db_module.create_project</code>, <code>db_module.set_goal</code>,
+   <code>handoff_module.generate_handoff(..., skip_ai_summary=True)</code>) against a
+   project with no family, in THIS worktree's code, asserting the call
+   succeeds and returns the expected <code>(path, content, amended)</code> shape with
+   no family-shaped substrings anywhere in the rendered content.</li>
+<li><strong>A direct call to <code>build_handoff_manifest</code></strong> with minimal required
+   arguments, asserting its returned dict's key set is exactly the 19 keys
+   enumerated in (b) above — no more, no fewer.</li>
+<li><strong>Existing handoff test files</strong> (<code>tests/test_handoff_amend_vs_fresh.py</code>,
+   <code>tests/test_682005f4_goal_only_handoff.py</code>, <code>tests/test_capability_contract.py</code>)
+   were re-run, unmodified, alongside this item's own new test file — see
+   the session's own test-run report for pass counts.</li>
+</ol>
+<hr />
+<h2 id="item-ea49362cs-acceptance-notes-verbatim-for-traceability">Item ea49362c's acceptance notes (verbatim, for traceability)<a class="headerlink" href="#item-ea49362cs-acceptance-notes-verbatim-for-traceability" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Map integration into proposals, insights, pointers, sprint items,
+handoffs, executor refresh context, and tenant authorization. The
+default handoff must remain project-scoped; family context is opt-in and
+bounded, with no workspace-wide decision/note leakage. Define how a
+receiver sees family_id, child_id, template_revision, inherited-vs-local
+provenance, executable capability status, and pending promotion
+decisions. Include API/tool compatibility and graceful behavior for
+projects with no family. Do not change handoff behavior in this planning
+item; produce an integration contract and test matrix.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
