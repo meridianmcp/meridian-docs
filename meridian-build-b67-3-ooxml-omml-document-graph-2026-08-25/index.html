@@ -1,0 +1,1988 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-build-b67-3-ooxml-omml-document-graph-2026-08-25/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>B67-3: OOXML/OMML document graph — schema and invariants (planning only) - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#b67-3-ooxmlomml-document-graph-schema-and-invariants-planning-only" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              B67-3: OOXML/OMML document graph — schema and invariants (planning only)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-where-this-reads-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Where this reads from
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-placement-decision-acceptance-criterias-first-question-answered-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Placement decision (acceptance criteria's first question, answered first)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-identity-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Identity model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Identity model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-document-local-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Document-local identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-graph-global-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Graph-global identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-revision-the-axis-identity-is-stable-against" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Revision — the axis identity is stable against
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-stable-w14paraid-anchoring-the-anchor-node-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Stable w14:paraId anchoring — the anchor node type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-semantic-fingerprints-a-fourth-explicitly-labeled-hash-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Semantic fingerprints — a fourth, explicitly-labeled hash concept
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-source-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Source drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-promotion-review-state-revisionpromotion_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Promotion / review state — revision.promotion_state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-node-types-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Node types (15)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-edge-types-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Edge types (13)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-render-verification-degradedunknown-state-first-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Render verification — degraded/unknown state, first-class
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Render verification — degraded/unknown state, first-class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-two-tiers-modeled-explicitly-not-collapsed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Two tiers, modeled explicitly (not collapsed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-render_receiptstatus-four-states-unknown-is-structural-not-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 render_receipt.status — four states, unknown is structural not optional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-visual_qa-is-never-implied-by-statusrendered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 visual_qa is never implied by status="rendered"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-conflicts_with-detection-is-an-explicit-function-not-implicit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 conflicts_with detection is an explicit function, not implicit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-invariants-auditable-never-inferring-manuscript-truth-from-xml-validity-alone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Invariants — auditable, never inferring manuscript truth from XML validity alone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-worked-examples-tied-to-b67-2s-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Worked examples, tied to B67-2's findings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-non-goals-explicitly-out-of-scope-for-this-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Non-goals / explicitly out of scope for this item
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="b67-3-ooxmlomml-document-graph-schema-and-invariants-planning-only">B67-3: OOXML/OMML document graph — schema and invariants (planning only)<a class="headerlink" href="#b67-3-ooxmlomml-document-graph-schema-and-invariants-planning-only" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2026-08-25
+<strong>Author:</strong> session <code>4dfd2a59-bfd5-43e4-9e05-3ba60a78e140</code>
+<strong>Scope:</strong> planning/specification only. No sprint-item code claim beyond this
+document, no implementation, no graph is created, no DOCX (real or fixture)
+is opened, read for content, or mutated. This is a schema + invariants
+proposal for a future implementation item, grounded in the real code read
+for this item and in B67-2's independently-verified findings.</p>
+<hr />
+<h2 id="0-where-this-reads-from">0. Where this reads from<a class="headerlink" href="#0-where-this-reads-from" title="Permanent link">&para;</a></h2>
+<p>Read in full for this item, per its instructions:</p>
+<ul>
+<li><code>meridian/research_graph.py</code> (231 lines) — the cross-artifact research
+  graph's closed vocabularies, edge directionality table, and identity-key
+  builders.</li>
+<li><code>meridian/db/research_graph.py</code> (823 lines) — that graph's persistence
+  layer: two tables (<code>research_nodes</code>, <code>research_edges</code>), append-only +
+  explicit-supersede write semantics, unresolved-edge resolution.</li>
+<li><code>extensions/meridian-outputs/meridian_outputs/provenance.py</code> (622 lines) —
+  <code>resolve_figure_output</code> / <code>find_outputs_by_source</code> / <code>bind_artifact_provenance</code>,
+  the join between a structural DOCX artifact and meridian-outputs'
+  provenance index.</li>
+</ul>
+<p>Additionally read, because the acceptance criteria requires placing this
+graph relative to the <em>existing</em> intra-document store, not just the two
+named modules, and because B67-2's findings (equation writers, render gate,
+<code>docx_integrity_gate.py</code>) are the concrete evidence this spec must model
+correctly:</p>
+<ul>
+<li><code>meridian/doc_store.py</code> (schema block + <code>_check_artifact_provenance</code> /
+  <code>_write_docx_transaction</code> region) — the existing intra-document structural
+  store: <code>doc_documents</code>, <code>doc_elements</code>, <code>doc_edges</code>, <code>doc_equations</code>,
+  <code>doc_figures</code>, <code>doc_tables</code>, <code>doc_flag_links</code>.</li>
+<li><code>meridian/docx_integrity_gate.py</code> (601 lines, full) — how the three DOCX
+  integrity signals (render status, equation-style audit, a read-time
+  structural fingerprint) are composed today, and its <code>RECIPE_CHECK_REGISTRY</code>
+  gap.</li>
+<li><code>docs/meridian-build-b67-2-equation-writer-gap-matrix-2026-08-25.md</code> — the
+  independently-verified findings this item was told to use directly.</li>
+</ul>
+<p>No code on the <code>mde-rework-44fc1ffe-536-2</code> branch was re-read directly for
+this item; B67-2's findings about it (MDE-7's durable render-receipt ledger,
+the equation-writer asymmetry, the three non-unified hash concepts) are used
+as given, per this item's instructions.</p>
+<hr />
+<h2 id="1-placement-decision-acceptance-criterias-first-question-answered-first">1. Placement decision (acceptance criteria's first question, answered first)<a class="headerlink" href="#1-placement-decision-acceptance-criterias-first-question-answered-first" title="Permanent link">&para;</a></h2>
+<p><strong>This is a new, dedicated module pair — <code>meridian/ooxml_graph.py</code> +
+<code>meridian/db/ooxml_graph.py</code> — mirroring <code>research_graph.py</code> /
+<code>db/research_graph.py</code>'s own split exactly (closed vocabularies + identity
+builders in the leaf module; persistence, append-only writes, and
+unresolved-edge resolution in the db module). It is not an extension of
+<code>research_graph</code>'s enum, and it is not a rewrite of <code>doc_store.py</code>.</strong></p>
+<p>Three existing things already partially cover this space, and each has a
+real reason it cannot simply be widened to do the whole job:</p>
+<table>
+<thead>
+<tr>
+<th>Existing module</th>
+<th>What it already does</th>
+<th>Why it isn't "just extend this"</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>research_graph.py</code> / <code>db/research_graph.py</code></td>
+<td>A small, closed, cross-artifact vocabulary (<code>claim</code>, <code>citation</code>, <code>code</code>, <code>run</code>, <code>output</code>, <code>document</code>, <code>decision</code>) with append-only + explicit-supersede revisions and lazily-resolved cross-identity edges. Its own docstring names <code>doc_store</code>'s <code>doc_edges</code> as one of the "NARROW, single-domain graphs" it deliberately does <strong>not</strong> replace.</td>
+<td>Its <code>document</code> node type is coarse by design — <code>document_identity_key(source, element_id)</code> addresses at most one structural element per node, not a full paragraph/run/table/equation tree with containment order, anchoring, and render state. Adding 15 new node kinds and 13 new edge kinds to <code>NODE_TYPES</code>/<code>EDGE_TYPES</code> would turn a small, curated, project-wide vocabulary meant for <code>get_claim_evidence</code>/<code>get_lineage_subgraph</code>-style cross-artifact queries into an OOXML parser's internal type system — every existing consumer of that enum would have to learn to ignore paragraph/run-level noise it was never built to reason about.</td>
+</tr>
+<tr>
+<td><code>doc_store.py</code></td>
+<td>Already parses and persists exactly the structural facts this item needs: <code>doc_elements</code> (ordered tree: <code>parent_id</code>, <code>ordinal</code>, <code>level</code>, <code>kind</code>, <code>text</code>, <code>ref</code> — <code>ref</code> is the <code>w14:paraId</code>, with a documented synthesized-<code>p{index}</code> fallback for missing/duplicate ids), <code>doc_equations</code> (OMML + normalized-LaTeX dedup key), <code>doc_figures</code>/<code>doc_tables</code> (semantic dedup index + <code>caption_element_id</code> linkage), <code>doc_edges</code> (intra-document <code>cites</code>-style edges), <code>doc_flag_links</code> (provenance anchored to a <code>doc_elements</code> id).</td>
+<td>It has no revision/identity model at all in the sense this item needs: <code>reindex_document</code> <strong>overwrites</strong> a document's rows in place (no append-only history, no <code>seq</code>, no supersede/conflict tracking), its <code>doc_edges.edge_kind</code> is a free string (not a closed, directionality-documented vocabulary), and it has no node type at all for <code>DocumentSnapshot</code>, <code>source binding</code>, <code>revision</code>, or <code>render receipt</code> — those concepts don't exist anywhere in this module. Rewriting <code>doc_store.py</code> to add all of that would mean touching seven already-shipped, already-tested tables and every one of their ~15 write paths (<code>update_paragraph</code>, <code>merge_paragraph_draft</code>, <code>put_equations</code>, <code>link_figure_caption</code>, …) for a planning item whose acceptance criteria is a schema, not a migration.</td>
+</tr>
+<tr>
+<td><code>provenance.py</code> (meridian-outputs)</td>
+<td><code>bind_artifact_provenance</code> already computes exactly the right four-state verdict (<code>resolved</code> / <code>orphaned</code> / <code>hash_mismatch</code> / <code>unresolved</code>) for a structural artifact against the outputs index.</td>
+<td>It is a <strong>pure, stateless function call</strong> — its result is never persisted anywhere. There is no history of "what did this artifact's binding verdict look like last time," which is precisely the "source drift" concept this item asks for.</td>
+</tr>
+</tbody>
+</table>
+<p>The layering this spec proposes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Layer 0 (fact sources — UNCHANGED by this item):
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  doc_store.py        — parses/stores OOXML structure (doc_elements, doc_equations, …)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  provenance.py        — resolves a structural artifact's binding to the outputs index
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  render_gate.py        — stateless render probe today; MDE-7's durable ledger, unlanded
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Layer 1 (THIS ITEM — new):
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  ooxml_graph.py / db/ooxml_graph.py
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    — typed nodes+edges, closed vocab, append-only + explicit-supersede revisions,
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>      degraded/unknown states as first-class values, never re-parses OOXML itself —
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>      it PROJECTS Layer 0's already-computed facts into an auditable graph.
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Layer 2 (research_graph.py — UNCHANGED, single attachment point):
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  one ooxml_graph DocumentSnapshot's identity_key == one research_graph
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  `document` node's identity_key (same document_identity_key(source, element_id)
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  builder, reused verbatim) — the coarse cross-artifact graph anchors here;
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  it never needs to know what's inside.
+</code></pre></div>
+<p><code>ooxml_graph.py</code> reads from <code>doc_store.py</code>'s rows, from <code>provenance.py</code>'s
+return dict shape, and from <code>render_gate.py</code>'s three-state (and, once
+landed, MDE-7's receipt) contracts — duck-typed, exactly like
+<code>docx_integrity_gate.py</code>'s own "compose, never re-derive" discipline (see
+that module's docstring: it explicitly refuses to recompute
+<code>_write_docx_transaction</code>'s write-time manifest and instead builds its own
+read-time fingerprint because "nothing durably persists" the write-time one
+— this item is the first module positioned to actually close that gap, by
+being the durable, append-only store the write-time facts were always
+missing). It never imports OOXML-parsing code and never duplicates
+<code>_validate_omml_structure</code>, <code>_mint_para_id</code>, or any hashing logic that
+already exists.</p>
+<hr />
+<h2 id="2-identity-model">2. Identity model<a class="headerlink" href="#2-identity-model" title="Permanent link">&para;</a></h2>
+<h3 id="21-document-local-identity">2.1 Document-local identity<a class="headerlink" href="#21-document-local-identity" title="Permanent link">&para;</a></h3>
+<p>Within one <code>DocumentSnapshot</code>, a structural node's <strong>document-local anchor</strong>
+is:</p>
+<ol>
+<li>Its native OOXML persistent id when one exists and is unambiguous — for
+   a paragraph/table-row-owning paragraph, that is <code>w14:paraId</code>; for a
+   package part, its ZIP member name (<code>word/document.xml</code>,
+   <code>word/media/image3.png</code>); for an equation, the <code>element_id</code> <code>doc_equations</code>
+   already records (the containing paragraph's <code>w14:paraId</code>, or <code>None</code> when
+   there is no anchoring paragraph, per that table's own schema).</li>
+<li><code>doc_store</code>'s existing synthesized fallback (<code>p{index}</code>, i.e. positional)
+   when no native id exists or the native id is ambiguous (duplicated across
+   more than one paragraph — <code>doc_store.py</code> already detects and names this
+   case, <code>AmbiguousParagraphIdError</code>). This spec reuses that exact fallback
+   convention rather than inventing a second one — one synthesized-id scheme
+   for the whole codebase, not two.</li>
+<li>For nodes with genuinely no persistent id of any kind (a <code>run</code> — OOXML
+   gives runs no stable identity at all) — a <strong>positional key</strong>:
+   <code>{containing_paragraph_anchor}::run[{index}]</code>. This is deliberately
+   fragile (an edit that inserts a run before it changes every later run's
+   index) and callers must treat a <code>run</code> node's document-local anchor as
+   valid only within the <code>DocumentSnapshot</code> revision it was computed against
+   — see §2.3.</li>
+</ol>
+<h3 id="22-graph-global-identity">2.2 Graph-global identity<a class="headerlink" href="#22-graph-global-identity" title="Permanent link">&para;</a></h3>
+<p>A graph-global <code>identity_key</code> is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{document_identity_key}::{node_kind}::{document_local_anchor}
+</code></pre></div>
+<p>where <code>document_identity_key</code> is <code>research_graph.document_identity_key</code>'s
+own output for this DOCX's <code>source</code> (path/uri) — reused verbatim, not
+recomputed. This is the concrete mechanism that makes Layer 1 and Layer 2
+(§1) interoperate without duplication: the SAME string a <code>research_graph</code>
+<code>document</code> node uses as its identity is the SAME string this graph's
+<code>DocumentSnapshot</code> node uses as <em>its</em> identity (with <code>node_kind="snapshot"</code>
+and no document-local anchor — the whole-document case). A <code>paragraph</code> node
+inside that same DOCX is
+<code>{document_identity_key}::paragraph::{w14:paraId}</code> — same document, same
+prefix, disjoint from every other node kind's key space by construction
+(the <code>::{node_kind}::</code> segment), so two different kinds can never collide
+even if their document-local anchors happen to be textually identical (a
+<code>table</code> and a <code>paragraph</code> sharing a coincidental synthesized <code>p3</code>, for
+example).</p>
+<p><code>node_kind</code> is one of the 15 values in §4 (<code>snapshot</code>, <code>package_part</code>,
+<code>section</code>, <code>paragraph</code>, <code>table</code>, <code>table_row</code>, <code>table_cell</code>, <code>run</code>,
+<code>equation</code>, <code>caption</code>, <code>anchor</code>, <code>reference</code>, <code>source_binding</code>, <code>revision</code>,
+<code>render_receipt</code>).</p>
+<h3 id="23-revision-the-axis-identity-is-stable-against">2.3 Revision — the axis identity is stable against<a class="headerlink" href="#23-revision-the-axis-identity-is-stable-against" title="Permanent link">&para;</a></h3>
+<p>Mirrors <code>research_graph</code>'s <code>identity_key</code> (stable) / <code>revision</code> (changes)
+split exactly, because that split, plus its two write primitives, is
+already the right shape for this problem and this item should not invent a
+second one:</p>
+<ul>
+<li><strong><code>create_node</code>-equivalent (pure append)</strong>: recording "this identity, at
+  this revision, exists" without asserting anything about what came before.
+  Used for the common case — re-indexing a document after an edit produces
+  a new revision of every touched node; untouched nodes are <strong>not</strong>
+  re-written (their existing row is still the current one for their
+  identity — no need to touch nodes a given write didn't affect).</li>
+<li><strong><code>replace_node_revision</code>-equivalent (explicit atomic supersede)</strong>: an
+  EXACT prior node id is retired in the same write as the new one is
+  created. This is what a verified, successful write (e.g.
+  <code>insert_equation_local</code>'s full verify→render→(no supersede needed, it's a
+  fresh paragraph) or <code>edit_equation_local</code>'s in-place OMML change, WERE it
+  to adopt this graph) should use for the paragraph/equation node it
+  changed — not a bare append, because an append alone would leave two
+  "active" revisions of the same paragraph identity sitting side by side
+  with no recorded relationship, which is exactly the silent-conflict gap
+  §5.4 below closes.</li>
+</ul>
+<p><strong>Revision identity for a <code>run</code> node is position-scoped, not content-scoped</strong>
+(§2.1 point 3): a <code>run</code>'s graph-global identity already bakes in its index
+within its paragraph at a specific snapshot, so "the same run, edited" and
+"a different run that happens to now sit at the same index" are
+indistinguishable from the identity alone. This is a deliberate, named
+limitation (§7) rather than a false precision claim — run-level history
+should be read through the <em>paragraph</em>'s revision chain (which anchor
+resolves to which paragraph content, §2.4), not by tracking individual runs
+across edits.</p>
+<h3 id="24-stable-w14paraid-anchoring-the-anchor-node-type">2.4 Stable <code>w14:paraId</code> anchoring — the <code>anchor</code> node type<a class="headerlink" href="#24-stable-w14paraid-anchoring-the-anchor-node-type" title="Permanent link">&para;</a></h3>
+<p>The acceptance criteria calls out <code>w14:paraId</code> anchoring as a first-class
+concept, not just a field on <code>paragraph</code>. This spec makes it a first-class
+<strong>node type</strong> (<code>anchor</code>) plus an <strong><code>anchors</code> edge</strong>, for one structural
+reason: a native id and the structural node it currently labels are two
+different things that can drift independently, and collapsing them into one
+field (as <code>doc_elements.ref</code> does today) makes that drift invisible.</p>
+<ul>
+<li>An <code>anchor</code> node's identity_key is the bare native-id value
+  (<code>{document_identity_key}::anchor::{paraId}</code>) — stable across every
+  <code>DocumentSnapshot</code> revision, by definition (it IS the thing that's
+  supposed to stay stable).</li>
+<li>An <code>anchors</code> edge points <code>anchor node -&gt; paragraph/table/run node</code> for
+  the CURRENT snapshot, meaning "this anchor identity currently resolves to
+  this structural node." When a new <code>DocumentSnapshot</code> revision is created,
+  the <code>anchors</code> edge for an unchanged paragraph is left untouched (the
+  target's <code>identity_key</code> didn't change, even though its <code>revision</code> did —
+  <code>anchors</code> edges resolve against identity, exactly like <code>research_graph</code>
+  edges resolve against <code>(node_type, identity_key)</code> rather than a specific
+  row id, so this "just works" via the same lazy-resolution pattern
+  <code>db/research_graph.py</code> already implements).</li>
+<li><strong>Ambiguous anchor state, first-class</strong>: when <code>doc_store</code>'s own duplicate-
+  paraId detection fires, the corresponding <code>anchor</code> node's
+  <code>resolution</code> field is <code>"ambiguous"</code> (not silently pointed at whichever
+  candidate a query happened to find first) and it fans out <code>anchors</code> edges
+  to <strong>every</strong> candidate paragraph node, each carrying <code>candidate_rank</code>
+  metadata — mirrors <code>provenance.py</code>'s own <code>candidate_count</code>-on-ambiguous-
+  match pattern (§2.5) rather than inventing a different ambiguity
+  representation for anchors specifically.</li>
+<li><strong>Anchor identity is never reused across a <code>clones</code> edge</strong> (§5, <code>clones</code>):
+  every <code>w14:paraId</code>/<code>w14:textId</code> minted anywhere in the audited write
+  surface is UUID4-derived (B67-2, confirmed with no exceptions) — a
+  <code>copy_section</code> clone always gets a fresh anchor node with a fresh
+  identity, connected to its origin only via the explicit <code>clones</code> edge,
+  never by sharing an <code>anchors</code> target. This is an invariant this graph can
+  state confidently precisely because B67-2 already confirmed there is no
+  deterministic/content-derived id scheme anywhere that could accidentally
+  produce a collision that looked like reuse.</li>
+</ul>
+<h3 id="25-semantic-fingerprints-a-fourth-explicitly-labeled-hash-concept">2.5 Semantic fingerprints — a fourth, explicitly-labeled hash concept<a class="headerlink" href="#25-semantic-fingerprints-a-fourth-explicitly-labeled-hash-concept" title="Permanent link">&para;</a></h3>
+<p>B67-2 found <strong>three</strong> non-unified hash concepts already in production:
+<code>promoted_sha256</code> (write-time, full-body, CAS-restore-decision only,
+never persisted beyond one transaction), <code>manifest_hash</code> (write-time, over
+<code>changed_parts</code> only, also transient), and <code>docx_integrity_gate</code>'s own
+read-time structural fingerprint (<code>{byte_size, paragraph_count,
+heading_count, xml_part_count}</code> → SHA-256, because "nothing durably persists"
+the first two anywhere that gate could read them).</p>
+<p>This graph needs a <strong>fourth</strong> concept — a per-node <strong>semantic fingerprint</strong>,
+distinct from all three above and from the <code>w14:paraId</code> anchor identity
+(§2.4) — because "same anchor, different content" (an edit) and "different
+anchor, same content" (a clone, or a relocated figure) are genuinely
+different facts a caller needs to tell apart, and none of the three
+existing hashes are computed at node granularity or track content
+independent of position:</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Scope</th>
+<th>Computed by (reused, not reinvented)</th>
+<th>What changing it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>promoted_sha256</code></td>
+<td>whole staged payload</td>
+<td><code>doc_store._write_docx_transaction</code> (existing, write-time, transient)</td>
+<td>the bytes actually promoted differ from a prior promotion</td>
+</tr>
+<tr>
+<td><code>manifest_hash</code> (write-time)</td>
+<td><code>changed_parts</code> only</td>
+<td><code>doc_store._write_docx_transaction</code> (existing, write-time, transient)</td>
+<td>the intended delta of one write</td>
+</tr>
+<tr>
+<td><code>docx_integrity_gate</code>'s structural fingerprint</td>
+<td>whole document, read-time</td>
+<td><code>docx_integrity_gate._compute_provenance_manifest</code> (existing)</td>
+<td>coarse document-level drift (paragraph/heading/part counts)</td>
+</tr>
+<tr>
+<td><strong><code>semantic_fingerprint</code></strong> (new, this item)</td>
+<td><strong>one node</strong></td>
+<td>Reuses each kind's existing normalization where one exists — <code>doc_equations.latex_normalized</code> for <code>equation</code>, <code>doc_figures</code>/<code>doc_tables.normalized_caption</code> for <code>caption</code>/labeled nodes; a new, explicitly-scoped flattened-text hash (same flattening <code>_validate_omml_structure</code>/<code>_verify_equation_write</code> already do, reused not reinvented, for anything without an existing normalized key — <code>paragraph</code>, <code>run</code>)</td>
+<td>this specific node's <em>content</em> changed, independent of whether its anchor/position did</td>
+</tr>
+</tbody>
+</table>
+<p>Every node/edge that carries a hash in this graph names <strong>which</strong> of these
+four concepts it is (a <code>hash_kind</code> field, one of
+<code>{promoted_sha256, manifest_hash, structural_manifest, semantic_fingerprint}</code>)
+— never a bare <code>hash</code> field with no scope attached. This is a direct,
+concrete response to B67-2's own recommendation that a future unification
+effort needs "one place to look"; this table <em>is</em> that place, extended by
+one row rather than left for a fifth ad-hoc hash to appear the next time
+someone needs node-level content identity.</p>
+<h3 id="26-source-drift">2.6 Source drift<a class="headerlink" href="#26-source-drift" title="Permanent link">&para;</a></h3>
+<p>A <code>source_binding</code> node's status is <code>provenance.ARTIFACT_STATUSES</code>, reused
+<strong>verbatim</strong> (<code>resolved</code> / <code>orphaned</code> / <code>hash_mismatch</code> / <code>unresolved</code>) —
+this graph never recomputes or approximates that classification; it only
+persists what <code>bind_artifact_provenance</code> already decided, exactly like
+<code>docx_integrity_gate.py</code>'s own "compose, never re-derive" rule for render
+status and equation-style findings.</p>
+<p><strong>Drift</strong> is the append-only history this adds that <code>bind_artifact_provenance</code>
+itself cannot provide (it's a pure function — every call is independent,
+with no memory of a prior call): a <code>source_binding</code> node's identity_key is
+stable per structural artifact (<code>{document_identity_key}::source_binding::{artifact_id}</code>);
+each time it's re-evaluated, a new revision is created via the
+<code>replace_node_revision</code>-equivalent path (§2.3), with a <code>revises</code> edge to
+the prior revision. Drift is then a pure, auditable graph query — "list this
+identity's revision history, newest first, and find the last revision whose
+status was <code>resolved</code>" — never a live re-probe required just to answer "did
+this drift, and when." A binding that starts <code>resolved</code> and re-evaluates to
+<code>hash_mismatch</code> is exactly the failure mode <code>bind_artifact_provenance</code>'s own
+docstring calls out (§<code>_bind_one_artifact</code>'s hash-mismatch branch) — this
+graph is what turns that from "the current answer, if you happen to ask
+again" into "a recorded fact with a timestamp and a predecessor."</p>
+<hr />
+<h2 id="3-promotion-review-state-revisionpromotion_state">3. Promotion / review state — <code>revision.promotion_state</code><a class="headerlink" href="#3-promotion-review-state-revisionpromotion_state" title="Permanent link">&para;</a></h2>
+<p><code>doc_store._write_docx_transaction</code> today is binary: a write is either
+<em>staged</em> (in a temp file, not yet promoted) or <em>promoted</em> (swapped in via
+<code>os.replace</code>, inside <code>_docx_promotion_lock</code>) — there is no persisted
+intermediate state. This graph's <code>revision</code> node makes that transaction
+lifecycle, plus one genuinely new intermediate state, explicit and durable:</p>
+<table>
+<thead>
+<tr>
+<th><code>promotion_state</code></th>
+<th>Meaning</th>
+<th>Existing analog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>staged</code></td>
+<td>Payload staged to a temp file; not yet promoted. A <code>revision</code> node that stays at <code>staged</code> forever (no later <code>promoted_from</code> edge ever created <em>from</em> a <code>promoted</code> revision <em>to</em> it) is the graph's durable record of an abandoned/failed transaction — auditable without needing to have observed the crash or the restore-on-failure path live.</td>
+<td><code>_write_docx_transaction</code>'s stage step (transient, in-process only today)</td>
+</tr>
+<tr>
+<td><code>provisional</code></td>
+<td>Promoted to disk, but not yet accepted as final — e.g. written under a temporary-review workflow, or promoted with <code>allow_degraded_render=True</code> (an explicit, audited degrade, per <code>_enforce_render_verification</code>'s own contract) rather than a clean pass. Mirrors <code>meridian_outputs.classify_temp_output_ownership</code>'s existing "archival/temporary, not yet canonical" concept, reused as a state name rather than invented fresh.</td>
+<td>No direct existing analog — new state this item adds, because today "promoted" and "final" are conflated.</td>
+</tr>
+<tr>
+<td><code>promoted</code></td>
+<td>Accepted as the current, final revision for its identity. Only a <code>promoted</code> revision may be the target of a <code>supersedes</code> edge from a later revision (§5) — a <code>staged</code> or <code>provisional</code> revision cannot be superseded because it was never current.</td>
+<td><code>_write_docx_transaction</code>'s promote step</td>
+</tr>
+</tbody>
+</table>
+<p>A <code>promoted_from</code> edge (§5) always points <code>revision(promoted) -&gt; revision(staged)</code>
+— the concrete stage→promote transition, one edge per real transaction,
+never inferred from timestamps alone.</p>
+<hr />
+<h2 id="4-node-types-15">4. Node types (15)<a class="headerlink" href="#4-node-types-15" title="Permanent link">&para;</a></h2>
+<p>Every node shares the same base shape as <code>research_graph</code>'s <code>research_nodes</code>
+row (<code>id</code>, <code>project_id</code>, <code>node_type</code>, <code>identity_key</code>, <code>revision</code>,
+<code>status ∈ {active, superseded}</code>, <code>seq</code>, <code>supersedes_id</code>, <code>superseded_by</code>,
+<code>created_by</code>, <code>created_at</code>, <code>updated_at</code>) plus one JSON <code>payload</code> column for
+kind-specific fields — the same generic-table-plus-JSON-payload shape
+<code>research_nodes.external_ref</code> already uses, deliberately, rather than 15
+dedicated side tables (<code>doc_store.py</code> already has 7 tables and growing;
+mirroring that per-kind-table sprawl at 15 kinds would be a much larger
+migration surface for no query-shape benefit <code>research_graph</code>'s own pattern
+doesn't already provide). <code>payload</code> never duplicates raw content
+<code>doc_store</code>/<code>doc_equations</code> already stores (no second copy of OMML/paragraph
+text) — it carries identity/fingerprint/state plus a <strong>back-reference</strong> to
+the <code>doc_store</code> row this node was projected from (<code>doc_store_ref</code>:
+<code>{table, id}</code>), so a consumer needing the actual XML/text always goes back
+to <code>doc_store</code> for it, never to this graph.</p>
+<table>
+<thead>
+<tr>
+<th><code>node_type</code></th>
+<th>Document-local anchor (§2.1)</th>
+<th>Key <code>payload</code> fields (in addition to <code>doc_store_ref</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>snapshot</code></td>
+<td><em>(none — whole-document)</em></td>
+<td><code>docx_path</code>, <code>structural_fingerprint</code> (§2.5, <code>structural_manifest</code> kind, reused from <code>docx_integrity_gate._compute_provenance_manifest</code>), <code>element_count</code>, <code>content_hash</code> (from <code>doc_documents.content_hash</code>, reused not recomputed)</td>
+</tr>
+<tr>
+<td><code>package_part</code></td>
+<td>ZIP member name</td>
+<td><code>part_name</code>, <code>content_type</code>, <code>relationship_ids</code> (the <code>.rels</code> edges touching this part — informational; <code>r:embed</code> sharing per the <code>copy_section</code> image-relationship gap, §5's <code>clones</code>, is tracked here)</td>
+</tr>
+<tr>
+<td><code>section</code></td>
+<td>heading element's anchor, or synthesized</td>
+<td><code>heading_level</code>, <code>title_text_fingerprint</code> (semantic fingerprint, §2.5)</td>
+</tr>
+<tr>
+<td><code>paragraph</code></td>
+<td><code>w14:paraId</code> / synthesized <code>p{index}</code></td>
+<td><code>text_fingerprint</code> (semantic fingerprint), <code>style_name</code></td>
+</tr>
+<tr>
+<td><code>table</code></td>
+<td>table's own anchor (first row's paraId, or synthesized)</td>
+<td><code>table_index</code> (from <code>doc_tables.table_index</code>), <code>row_count</code>, <code>column_count</code></td>
+</tr>
+<tr>
+<td><code>table_row</code></td>
+<td><code>{table anchor}::row[{index}]</code></td>
+<td><code>row_index</code></td>
+</tr>
+<tr>
+<td><code>table_cell</code></td>
+<td><code>{table anchor}::row[{index}]::cell[{index}]</code></td>
+<td><code>cell_index</code>, <code>text_fingerprint</code></td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td><code>{paragraph anchor}::run[{index}]</code> (§2.3 — position-scoped)</td>
+<td><code>text_fingerprint</code>, <code>formatting_summary</code></td>
+</tr>
+<tr>
+<td><code>equation</code></td>
+<td>containing paragraph's anchor (matches <code>doc_equations.element_id</code>, <code>None</code> when unanchored)</td>
+<td><code>latex_normalized</code> (semantic fingerprint, reused from <code>doc_equations</code>), <code>omml_structurally_well_formed</code> (bool — see §6.2's naming rule; <strong>never</strong> a field named <code>verified</code> or <code>correct</code>)</td>
+</tr>
+<tr>
+<td><code>caption</code></td>
+<td>its own element anchor (<code>doc_figures</code>/<code>doc_tables.caption_element_id</code>)</td>
+<td><code>normalized_caption</code> (semantic fingerprint, reused)</td>
+</tr>
+<tr>
+<td><code>anchor</code></td>
+<td><em>(is itself the identity, §2.4)</em></td>
+<td><code>native_id_kind</code> (<code>paraId</code>|<code>textId</code>|<code>bookmark</code>), <code>resolution</code> (<code>resolved</code>|<code>ambiguous</code>|<code>missing</code>)</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>the field's own containing-run anchor</td>
+<td><code>reference_kind</code> (<code>REF</code>|<code>PAGEREF</code>|<code>NOTEREF</code>|<code>citation</code>), <code>target_identity_key</code> (may be unresolved, §5's <code>references</code>)</td>
+</tr>
+<tr>
+<td><code>source_binding</code></td>
+<td>the bound structural artifact's <code>artifact_id</code> (matches <code>provenance.bind_artifact_provenance</code>'s input shape)</td>
+<td><code>status</code> (<code>provenance.ARTIFACT_STATUSES</code>, verbatim, §2.6), <code>evidence</code>, <code>resolved_sha256</code>, <code>canonical_path</code></td>
+</tr>
+<tr>
+<td><code>revision</code></td>
+<td><em>(scoped to the node/snapshot it revises — carries that node's identity_key as a payload field, not its own)</em></td>
+<td><code>promotion_state</code> (§3), <code>hash_kind</code> + <code>hash_value</code> (§2.5's labeled-hash rule), <code>transaction_id</code></td>
+</tr>
+<tr>
+<td><code>render_receipt</code></td>
+<td><em>(scoped to the snapshot it verifies)</em></td>
+<td><code>tier</code> (<code>stateless_probe</code>|<code>durable_ledger</code>, §6.1), <code>status</code> (§6.2), <code>visual_qa</code> (passed through from a <code>durable_ledger</code>-tier receipt only; <code>None</code> for <code>stateless_probe</code> — that tier has no such concept), <code>source_docx_sha256</code>, <code>max_age_seconds</code>, <code>backend</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-edge-types-13">5. Edge types (13)<a class="headerlink" href="#5-edge-types-13" title="Permanent link">&para;</a></h2>
+<p>Directionality documented the same way <code>research_graph.EDGE_DIRECTIONALITY</code>
+does — a table, never enforced structurally, so a future dashboard or query
+helper has one place to read meaning from without re-deriving it.</p>
+<table>
+<thead>
+<tr>
+<th><code>edge_kind</code></th>
+<th>Direction</th>
+<th>Meaning</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contains</code></td>
+<td>parent structural node → child structural node</td>
+<td>The containment backbone: <code>snapshot → package_part → section → paragraph/table → run</code>, <code>table → table_row → table_cell</code>.</td>
+<td>Mirrors <code>doc_elements.parent_id</code>, expressed as an edge instead of a foreign key so the same lazy cross-identity resolution <code>db/research_graph.py</code> already implements (§2.4) applies here too.</td>
+</tr>
+<tr>
+<td><code>precedes</code></td>
+<td>node → next sibling node, same containment level</td>
+<td>Explicit document order, independent of a stored <code>ordinal</code> integer.</td>
+<td>Lets an insertion between two existing siblings be expressed as "rewire two <code>precedes</code> edges" — a real graph mutation with its own history — rather than an in-place ordinal renumber that erases the fact a document order change happened at all.</td>
+</tr>
+<tr>
+<td><code>anchors</code></td>
+<td><code>anchor</code> node → structural node</td>
+<td>"This stable native id currently resolves to this node." (§2.4)</td>
+<td>Resolved lazily against identity, same as <code>research_graph</code>'s unresolved-edge pattern; fans out to multiple targets only in the <code>ambiguous</code> case.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td><code>caption</code> node → figure/table/equation node</td>
+<td>"This caption labels that artifact."</td>
+<td>Mirrors <code>doc_figures</code>/<code>doc_tables.caption_element_id</code>.</td>
+</tr>
+<tr>
+<td><code>references</code></td>
+<td><code>reference</code> node → its target (anchor / caption / section)</td>
+<td>Internal cross-reference (<code>REF</code>/<code>PAGEREF</code>/<code>NOTEREF</code>) or citation.</td>
+<td>Generalizes <code>doc_edges</code>' existing <code>cites</code> <code>edge_kind</code> to a closed, directionality-documented vocabulary; may be unresolved (target not yet a node) exactly like a <code>research_graph</code> edge with a <code>NULL</code> endpoint.</td>
+</tr>
+<tr>
+<td><code>binds_to_source</code></td>
+<td><code>source_binding</code> node → external artifact identity</td>
+<td>The persisted analog of one <code>bind_artifact_provenance</code> call.</td>
+<td><strong>Cross-graph edge</strong>: the target identity is a <code>research_graph</code> <code>output</code> or <code>code</code> node's <code>identity_key</code> (via <code>research_graph.output_identity_key</code>/<code>code_identity_key</code>, reused verbatim) — this is the one edge kind in this graph whose target routinely lives in Layer 2, not Layer 1. Unresolved when the target has no <code>research_graph</code> node yet, resolved lazily the same way.</td>
+</tr>
+<tr>
+<td><code>generated_by</code></td>
+<td>structural node → the process/run that produced it</td>
+<td>Which executor run / tool produced this equation, figure, or table.</td>
+<td><strong>Also cross-graph</strong>: target is a <code>research_graph</code> <code>run</code> node's identity_key. Carries the <code>hash_kind</code>-labeled hash (§2.5) that ties the generated content to <code>promoted_sha256</code>/<code>manifest_hash</code> when the write transaction that created it is known.</td>
+</tr>
+<tr>
+<td><code>clones</code></td>
+<td>new node → origin node</td>
+<td>Records a <code>copy_section</code>-style deep copy.</td>
+<td>Carries <code>shares_media_relationship: bool</code> — the direct, explicit encoding of B67-2's confirmed <code>copy_section</code> gap (an image <code>r:embed</code> relationship is shared, not duplicated, unless <code>allow_relationship_reuse=True</code> was passed) — never silently omitted.</td>
+</tr>
+<tr>
+<td><code>revises</code></td>
+<td>new revision → prior revision (same identity)</td>
+<td>Passive, append-only chronological history.</td>
+<td>Always created alongside a fresh revision; does <strong>not</strong> retire the prior revision's <code>active</code> status by itself (§5.10 distinguishes this from <code>supersedes</code>).</td>
+</tr>
+<tr>
+<td><code>supersedes</code></td>
+<td>new revision → prior revision (same identity)</td>
+<td>Explicit, atomic retirement — the prior revision's <code>status</code> flips to <code>superseded</code> in the same write.</td>
+<td>Mirrors <code>replace_node_revision</code>'s <code>supersedes_id</code>/<code>superseded_by</code> pair exactly. A revision reachable only via <code>revises</code> (never <code>supersedes</code>) and still <code>active</code> is a legitimate, informative state (§2.3's "unmanaged append-only history," inherited on purpose) — it is <code>conflicts_with</code> (below), not <code>supersedes</code>, that flags when that same situation should instead be treated as an anomaly.</td>
+</tr>
+<tr>
+<td><code>conflicts_with</code></td>
+<td>revision ↔ revision (symmetric)</td>
+<td>Two <code>active</code> revisions of the <em>same identity</em>, neither superseding the other, detected by an invariant check (§6.4) — e.g. two sibling sessions both wrote a new revision of the same paragraph without coordinating.</td>
+<td>New capability; <code>research_graph.create_node</code> has no equivalent — it allows this situation to exist "unmanaged." This edge is what turns it into an explicit, queryable fact instead of a silent last-<code>seq</code>-wins resolution.</td>
+</tr>
+<tr>
+<td><code>verified_by_render</code></td>
+<td><code>snapshot</code>/<code>revision</code> node → <code>render_receipt</code> node</td>
+<td>"A render attempt exists and reported this status for this content."</td>
+<td><strong>Absence of this edge is <code>unknown</code> render state, always</strong> — see §6.2; never inferred as pass or fail.</td>
+</tr>
+<tr>
+<td><code>promoted_from</code></td>
+<td><code>revision(promoted)</code> node → <code>revision(staged)</code> node</td>
+<td>The concrete stage→promote transition of one write transaction (§3).</td>
+<td>One edge per real <code>_write_docx_transaction</code>-equivalent promotion; a <code>staged</code> revision with no incoming <code>promoted_from</code> edge ever created is an abandoned-transaction record.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-render-verification-degradedunknown-state-first-class">6. Render verification — degraded/unknown state, first-class<a class="headerlink" href="#6-render-verification-degradedunknown-state-first-class" title="Permanent link">&para;</a></h2>
+<p>This is the part of the acceptance criteria this item was told to get
+right using B67-2's real findings, not a generic "add a status field."</p>
+<h3 id="61-two-tiers-modeled-explicitly-not-collapsed">6.1 Two tiers, modeled explicitly (not collapsed)<a class="headerlink" href="#61-two-tiers-modeled-explicitly-not-collapsed" title="Permanent link">&para;</a></h3>
+<p><code>render_receipt.tier</code> is <code>stateless_probe</code> or <code>durable_ledger</code>, directly
+encoding B67-2's finding that these are two live-but-disconnected
+subsystems:</p>
+<ul>
+<li><code>stateless_probe</code> — <code>render_gate.check_render_capability</code> /
+  <code>check_word_com_render_receipt</code>. The only tier actually wired into
+  production today (<code>_enforce_render_verification</code>, <code>docx_integrity_gate.py</code>).
+  A fresh probe with no memory of any prior attempt; a <code>render_receipt</code> node
+  of this tier is this graph's own memory of it, not a reflection of any
+  persistence the probe itself has (it has none).</li>
+<li><code>durable_ledger</code> — MDE-7's <code>RenderReceipt</code>/<code>render_with_receipt</code> (worktree
+  <code>mde-rework-44fc1ffe-536-2</code>, unlanded, called from nowhere in production
+  per B67-2). A <code>render_receipt</code> node of this tier, once that ledger lands
+  and is wired to write here, would carry <code>source_docx_sha256</code> +
+  <code>max_age_seconds</code> (mirroring <code>check_release_render_gate</code>'s own staleness
+  contract exactly) and the <code>visual_qa</code> field — which defaults to
+  <code>not_reviewed</code> and must <strong>never</strong> be conflated with a passing render
+  result (§6.3).</li>
+</ul>
+<p>A caller asking "has this content ever been verified by the durable ledger
+specifically" gets a real, distinguishable answer (<code>tier="durable_ledger"</code>
+edges only) rather than a mixed pool of both tiers indistinguishable from
+each other.</p>
+<h3 id="62-render_receiptstatus-four-states-unknown-is-structural-not-optional">6.2 <code>render_receipt.status</code> — four states, <code>unknown</code> is structural not optional<a class="headerlink" href="#62-render_receiptstatus-four-states-unknown-is-structural-not-optional" title="Permanent link">&para;</a></h3>
+<p><code>{rendered, failed, unavailable_with_reason, unknown}</code>. The first three are
+<code>render_gate</code>'s existing three-state contract, reused verbatim (never
+reinvented). <code>unknown</code> is new and is <strong>not</strong> a value this graph ever writes
+onto a <code>render_receipt</code> node — it is the answer a query gives when <strong>no</strong>
+<code>verified_by_render</code> edge exists at all for a given <code>snapshot</code>/<code>revision</code>
+identity. This must be enforced as a query-layer invariant, not left to
+convention: any function this graph exposes that answers "is this verified"
+must return <code>unknown</code> for "no receipt", and must never let a caller's <code>if
+status == "failed"</code> branch silently absorb the "never checked" case by
+defaulting a missing lookup to <code>False</code>/falsy. This directly matches the
+existing discipline: <code>render_gate</code>'s own <code>unavailable-with-reason</code> state
+already refuses to let "couldn't check" collapse into "passed" — <code>unknown</code>
+is that same discipline applied to "never even asked," at the graph layer.</p>
+<p>Separately, <code>equation.omml_structurally_well_formed</code> (§4) is <strong>deliberately
+never named <code>verified</code></strong> — see §7.2.</p>
+<h3 id="63-visual_qa-is-never-implied-by-statusrendered">6.3 <code>visual_qa</code> is never implied by <code>status="rendered"</code><a class="headerlink" href="#63-visual_qa-is-never-implied-by-statusrendered" title="Permanent link">&para;</a></h3>
+<p>A <code>durable_ledger</code>-tier receipt's <code>visual_qa</code> field (from MDE-7, <code>not_reviewed</code>
+by default) is carried through unchanged. Any derived "is this document
+release-ready" query this graph might expose must treat
+<code>status="rendered" AND visual_qa="not_reviewed"</code> as <strong>not</strong> equivalent to a
+human-reviewed pass — a backend successfully converting a file proves it
+opens, not that a person looked at the result. This mirrors
+<code>check_release_render_gate</code>'s own design intent (a receipt records
+conversion success and <em>separately</em> records whether a human reviewed it)
+and must not be flattened away by this graph's own summarization.</p>
+<h3 id="64-conflicts_with-detection-is-an-explicit-function-not-implicit">6.4 <code>conflicts_with</code> detection is an explicit function, not implicit<a class="headerlink" href="#64-conflicts_with-detection-is-an-explicit-function-not-implicit" title="Permanent link">&para;</a></h3>
+<p>Detecting the <code>active</code>+<code>active</code>+no-<code>supersedes</code>-between-them state (§5) is a
+named, callable invariant check over this graph's own data — not something
+inferred silently every time a node is read. This mirrors
+<code>get_unresolved_edges</code> in <code>db/research_graph.py</code>: a dedicated, explicit
+"list every anomaly of this kind" query, not a side effect baked into every
+read path.</p>
+<hr />
+<h2 id="7-invariants-auditable-never-inferring-manuscript-truth-from-xml-validity-alone">7. Invariants — auditable, never inferring manuscript truth from XML validity alone<a class="headerlink" href="#7-invariants-auditable-never-inferring-manuscript-truth-from-xml-validity-alone" title="Permanent link">&para;</a></h2>
+<p>These are the properties a future implementation's tests should assert
+directly; several are worded as explicit <em>negative</em> constraints because the
+acceptance criteria's core requirement is what this graph must <strong>not</strong>
+claim.</p>
+<ol>
+<li><strong>Structural well-formedness is necessary, never sufficient, for
+   <code>promotion_state="promoted"</code>.</strong> A <code>revision</code> may only be <code>promoted</code> when
+   its underlying write passed the existing structural-manifest check
+   (<code>_write_docx_transaction</code>'s <code>protected_keys</code> count comparison) — but
+   passing that check alone never implies the <em>content</em> is correct, only
+   that the package didn't lose parts it shouldn't have.</li>
+<li><strong>No field in this graph is named <code>verified</code>, <code>correct</code>, or <code>valid</code>
+   standing alone.</strong> Every boolean or status field is scoped to exactly what
+   was checked: <code>omml_structurally_well_formed</code> (§4 — <code>_validate_omml_structure</code>
+   passing; says nothing about whether the equation is the <em>right</em> equation),
+   <code>render_receipt.status</code> (§6.2 — a backend could open/convert it; says
+   nothing about whether a human reviewed it, §6.3), <code>source_binding.status</code>
+   (§2.6 — the outputs index has a matching record; says nothing about
+   whether that record is itself correct). A query that wants to answer "is
+   this document trustworthy" must compose several of these named,
+   narrowly-scoped fields explicitly — this graph never manufactures one
+   collapsed verdict field for a human to over-trust.</li>
+<li><strong><code>equation.omml_structurally_well_formed=True</code> does not imply
+   <code>verified_by_render</code> exists, and vice versa.</strong> They are different
+   invariants over different evidence (hand-written structural-subset
+   checker vs. an actual render backend) and B67-2 confirmed the codepaths
+   that populate them are already independent (<code>insert_equation_local</code> gets
+   both; <code>edit_equation_local</code>/<code>remove_equation_local</code>/
+   <code>append_text_run_after_math</code> get neither, despite being just as capable
+   of producing structurally-broken output) — this graph must preserve that
+   independence, not paper over it with a combined field.</li>
+<li><strong>Absence is not evidence of absence for <code>source_binding</code> (§2.6, "index
+   not converged").</strong> <code>provenance.bind_artifact_provenance</code>'s own
+   <code>_bind_one_artifact</code> already refuses to call an artifact <code>orphaned</code> when
+   the outputs index has not finished converging (<code>evidence: "index_not_converged"</code>,
+   folded into <code>UNRESOLVED</code>, never <code>ORPHANED</code>) — this graph's <code>source_binding</code>
+   node must persist that same distinction (<code>unresolved</code> due to
+   non-convergence vs. <code>orphaned</code> due to confirmed absence are different
+   revisions with different <code>status</code>, never merged into one "not found"
+   bucket).</li>
+<li><strong>A <code>conflicts_with</code> pair is a fact to surface, never a fact to
+   auto-resolve.</strong> This graph records the conflict; it does not pick a
+   winner. Resolution (an explicit <code>supersedes</code> edge created by a human or
+   an executor decision) is a separate, later write.</li>
+<li><strong><code>clones.shares_media_relationship</code> must be recorded on every <code>clones</code>
+   edge, defaulting to the conservative (<code>True</code>, i.e. "assume shared until
+   proven duplicated") value when unknown</strong> — never silently omitted, per
+   B67-2's confirmed <code>copy_section</code> gap.</li>
+<li><strong>Every hash-bearing field names its <code>hash_kind</code> (§2.5).</strong> A bare
+   <code>hash</code>/<code>sha256</code> field with no scope label is a schema violation under
+   this spec — the whole point of the four-row table in §2.5 is that a
+   reader never has to guess which of the (now four) concepts a given hash
+   is.</li>
+<li><strong><code>unknown</code> render state can only be produced by absence, never
+   written.</strong> No code path in a future implementation should ever <code>INSERT</code>
+   a <code>render_receipt</code> row with <code>status="unknown"</code> — that value only ever
+   comes from a query finding zero <code>verified_by_render</code> edges (§6.2).</li>
+</ol>
+<hr />
+<h2 id="8-worked-examples-tied-to-b67-2s-findings">8. Worked examples, tied to B67-2's findings<a class="headerlink" href="#8-worked-examples-tied-to-b67-2s-findings" title="Permanent link">&para;</a></h2>
+<p>Illustrative only — no code is being claimed by this item.</p>
+<ul>
+<li><strong><code>insert_equation_local</code> (the one operation B67-2 found gets the full
+  pipeline).</strong> Produces: a new <code>paragraph</code> revision (<code>promoted_from</code> its
+  <code>staged</code> predecessor, §3), a new <code>equation</code> node
+  (<code>omml_structurally_well_formed=True</code>, checked pre-write via
+  <code>_resolve_omml</code> and post-write via <code>_verify_equation_write</code>'s flattened-
+  text identity check — §7.3 notes these are <em>not</em> the same check), a fresh
+  <code>anchor</code> node (<code>anchors → paragraph</code>, UUID-derived per §2.4), and — because
+  <code>_enforce_render_verification</code> runs — a <code>verified_by_render</code> edge to a
+  new <code>render_receipt(tier="stateless_probe")</code> node.</li>
+<li><strong><code>edit_equation_local</code> (B67-2's confirmed gap: no post-write re-verify,
+  no render gate).</strong> Produces: a new <code>equation</code> revision via <code>revises</code>
+  (§5) — but, honestly, <strong>no</strong> <code>verified_by_render</code> edge and <strong>no</strong>
+  re-checked <code>omml_structurally_well_formed</code> for the new content, because
+  neither check runs today. A query against this graph after such an edit
+  correctly reports render state <code>unknown</code> (§6.2) and
+  <code>omml_structurally_well_formed</code> as <em>whatever was last actually checked</em>
+  (stale, from before the edit, not silently re-stamped <code>True</code>) — which is
+  precisely the asymmetry B67-2 flagged, now visible as a graph fact instead
+  of something only discoverable by reading source.</li>
+<li><strong><code>copy_section</code>.</strong> Produces: a <code>clones</code> edge per copied top-level
+  element (fresh <code>anchor</code>/<code>paragraph</code>/<code>table</code> node on the new side,
+  <code>shares_media_relationship=True</code> for any copied image per the confirmed
+  gap), transitively re-validated <code>equation</code> nodes (via the pre-copy
+  manifest abort-if-<code>issues</code> check and the post-write manifest comparison —
+  both real, per B67-2), but <strong>no</strong> <code>verified_by_render</code> edge (not in
+  B67-2's 12-site grep list) and <strong>no</strong> <code>binds_to_source</code> edge for the
+  cloned artifacts (the <code>artifact_provenance</code> parameter isn't threaded
+  through <code>copy_section</code> today).</li>
+<li><strong>A source-drift case.</strong> A figure's <code>source_binding</code> resolves <code>resolved</code>
+  on first bind. The script that generated it is later re-run and produces
+  a byte-different file at the same canonical path. The <em>next</em>
+  <code>bind_artifact_provenance</code> call returns <code>hash_mismatch</code>; this graph
+  records that as a new <code>source_binding</code> revision, <code>revises</code>-linked to the
+  prior <code>resolved</code> one — <code>list this identity's history</code> now shows exactly
+  when the drift happened, without anyone having had to notice it live.</li>
+</ul>
+<hr />
+<h2 id="9-non-goals-explicitly-out-of-scope-for-this-item">9. Non-goals / explicitly out of scope for this item<a class="headerlink" href="#9-non-goals-explicitly-out-of-scope-for-this-item" title="Permanent link">&para;</a></h2>
+<ul>
+<li>No implementation, no migration, no new table, no code claim — this is a
+  schema and invariants proposal for a follow-up sprint item.</li>
+<li>No opinion on which specific executor/tool call sites should be modified
+  to <em>populate</em> this graph (e.g. whether <code>insert_equation_local</code> itself
+  should write <code>ooxml_graph</code> nodes, or whether a separate indexer should
+  project <code>doc_store</code> state into it after the fact, analogous to
+  <code>DocStructureStore.reindex_document</code>). Both are compatible with this
+  schema; picking between them is an implementation-item decision, not a
+  schema decision.</li>
+<li>No opinion on whether/how <code>docx_integrity_gate.py</code>'s
+  <code>RECIPE_CHECK_REGISTRY</code> should eventually dispatch through this graph
+  instead of (or in addition to) its current three fixed checks — flagged
+  as a natural follow-up, not decided here.</li>
+<li>Does not attempt to unify the four hash concepts in §2.5 into one — it
+  names and labels all four so a <em>future</em> unification item has a complete,
+  accurate map to start from, per B67-2's own recommendation.</li>
+</ul>
+<p>No DOCX (real or fixture) was created, opened for writing, or mutated in
+the course of this investigation. No graph was implemented. No sprint-item
+code beyond this document was claimed.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

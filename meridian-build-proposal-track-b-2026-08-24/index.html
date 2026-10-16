@@ -1,0 +1,1651 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-build-proposal-track-b-2026-08-24/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Meridian Track B build proposal: research-grade document release system - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#meridian-track-b-build-proposal-research-grade-document-release-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Meridian Track B build proposal: research-grade document release system
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verified-current-capability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified current capability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product gaps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Product gaps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#b-1-equation-integrity-is-not-equivalent-to-omml-presence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-1 — equation integrity is not equivalent to OMML presence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-2-no-universal-research-artifact-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-2 — no universal research artifact block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-3-no-mandatory-release-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-3 — no mandatory release manifest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-4-provenance-and-completion-gates-can-be-bypassed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-4 — provenance and completion gates can be bypassed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-5-visual-validation-needs-an-explicit-backend-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-5 — visual validation needs an explicit backend contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-6-searchindex-convergence-must-be-consumed-by-release-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-6 — search/index convergence must be consumed by release logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-7-artifact-registry-and-evidence-graph-are-not-fully-unified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-7 — artifact registry and evidence graph are not fully unified
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-8-documentation-and-metadata-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-8 — documentation and metadata drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-9-run-isolation-and-cleanup-are-not-a-first-class-product-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-9 — run isolation and cleanup are not a first-class product contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-build-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed build items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed build items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mde-b1-equation-integrity-auditor-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-B1 — equation integrity auditor (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-b2-reference-aware-equation-diff-and-staged-repair-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-B2 — reference-aware equation diff and staged repair (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-b3-typed-artifact-block-model-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-B3 — typed artifact-block model (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-b4-documentchangeset-releasemanifest-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-B4 — DocumentChangeSet / ReleaseManifest (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-b5-mandatory-release-gates-and-receipts-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-B5 — mandatory release gates and receipts (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-b6-batch-transforms-and-render-barrier-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-B6 — batch transforms and render barrier (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-b7-research-output-binding-and-evidence-graph-p0p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-B7 — research-output binding and evidence graph (P0/P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-b8-capabilitydocumentation-synchronization-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-B8 — capability/documentation synchronization (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-b9-run-lifecycle-and-cleanup-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-B9 — run lifecycle and cleanup (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implemented-incident-response-word-safe-ooxml-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implemented incident response: Word-safe OOXML integrity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Acceptance tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equation-fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equation fixtures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release fixtures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-to-end-release-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-to-end release test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="meridian-track-b-build-proposal-research-grade-document-release-system">Meridian Track B build proposal: research-grade document release system<a class="headerlink" href="#meridian-track-b-build-proposal-research-grade-document-release-system" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2026-08-24<br />
+<strong>Scope:</strong> Meridian Docs, Meridian Outputs, core handoff/capability contracts, and reusable research-document automation<br />
+<strong>Out of scope:</strong> repairing, approving, or editing any particular dissertation or JCSHM manuscript</p>
+<h2 id="executive-decision">Executive decision<a class="headerlink" href="#executive-decision" title="Permanent link">&para;</a></h2>
+<p>Meridian already has useful DOCX primitives, provenance helpers, research-graph
+identity, and handoff/capability work. The product gap is composition: callers
+still have to manually combine document mutation, artifact ownership, provenance,
+rendering, and promotion checks.</p>
+<p>Meridian needs one mandatory, typed release transaction:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>source data + generator code + parameters + document anchors + DOCX package
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  -&gt; structural gates -&gt; provenance gates -&gt; render receipt -&gt; approval -&gt; promotion
+</code></pre></div>
+<p>The product must remain useful for general-purpose Word work and research-grade
+document production. A particular manuscript may provide regression fixtures,
+but it must not become the product contract.</p>
+<h2 id="verified-current-capability">Verified current capability<a class="headerlink" href="#verified-current-capability" title="Permanent link">&para;</a></h2>
+<p>The live Meridian Docs MCP surface successfully provided read-only results for:</p>
+<ul>
+<li>saved-byte snapshots and SHA-256 source fingerprints;</li>
+<li>document outlines and section paths;</li>
+<li>stable anchor resolution with freshness metadata;</li>
+<li>OMML equation extraction;</li>
+<li>equation style/numbering audits;</li>
+<li>figure/table/caption ownership audits;</li>
+<li>grouped document review findings.</li>
+</ul>
+<p>Existing product primitives also cover captions, figures, equations, citations,
+bibliography, section movement, tables, staged drafts, render gates, Outputs
+fingerprints, generating-script hashes, typed evidence envelopes, and core
+handoff/capability contracts.</p>
+<p>These primitives are valuable but intentionally separate. The product should
+make the safe composition the normal path instead of requiring every caller or
+agent to remember the correct sequence.</p>
+<h2 id="product-gaps">Product gaps<a class="headerlink" href="#product-gaps" title="Permanent link">&para;</a></h2>
+<h3 id="b-1-equation-integrity-is-not-equivalent-to-omml-presence">B-1 — equation integrity is not equivalent to OMML presence<a class="headerlink" href="#b-1-equation-integrity-is-not-equivalent-to-omml-presence" title="Permanent link">&para;</a></h3>
+<p>Current extraction sees OMML and flattens it for indexing. Current style auditing
+checks alignment, punctuation, and explicit numbering. It does not reliably detect:</p>
+<ul>
+<li>mathematical content duplicated in ordinary <code>w:t</code> runs;</li>
+<li>equation-like plaintext replacing missing OMML;</li>
+<li>multiple expected inline equations merged into one <code>m:oMath</code>;</li>
+<li>structural differences hidden by similar flattened text;</li>
+<li>inconsistent equation-numbering scope.</li>
+</ul>
+<p>This needs a raw-OOXML integrity layer plus optional reference-aware comparison.</p>
+<h3 id="b-2-no-universal-research-artifact-block">B-2 — no universal research artifact block<a class="headerlink" href="#b-2-no-universal-research-artifact-block" title="Permanent link">&para;</a></h3>
+<p>Figure, caption, table, equation, cross-reference, source output, generating
+script, parameters, and render evidence are currently separate concepts. A
+publication-safe artifact needs one identity and lifecycle across all of them.</p>
+<p>Table relocation is deliberately narrow and does not necessarily move an
+adjacent caption. That remains a useful low-level operation, but the product
+needs a caption-aware artifact-block operation for normal research workflows.</p>
+<h3 id="b-3-no-mandatory-release-manifest">B-3 — no mandatory release manifest<a class="headerlink" href="#b-3-no-mandatory-release-manifest" title="Permanent link">&para;</a></h3>
+<p>Individual writers and <code>merge_docx_draft</code> do not, by themselves, prove that all
+changed artifacts, source hashes, provenance, and render evidence belong to the
+same candidate release. A typed <code>DocumentChangeSet</code> / <code>ReleaseManifest</code> is the
+missing composition layer.</p>
+<h3 id="b-4-provenance-and-completion-gates-can-be-bypassed">B-4 — provenance and completion gates can be bypassed<a class="headerlink" href="#b-4-provenance-and-completion-gates-can-be-bypassed" title="Permanent link">&para;</a></h3>
+<p>Fallback and Outputs components contain much of the desired logic, but the
+high-level promotion path must make required provenance, source, package, and
+render checks enforcing rather than advisory.</p>
+<h3 id="b-5-visual-validation-needs-an-explicit-backend-contract">B-5 — visual validation needs an explicit backend contract<a class="headerlink" href="#b-5-visual-validation-needs-an-explicit-backend-contract" title="Permanent link">&para;</a></h3>
+<p>Generic conversion, strict Word visual QA, and validation of a historical render
+receipt are different states. A COM timeout or unavailable backend must be
+reported as <code>degraded</code> or <code>failed</code>, never as fresh visual success.</p>
+<p>The contract should distinguish:</p>
+<ul>
+<li><code>word_strict</code>;</li>
+<li><code>libreoffice_conversion</code>;</li>
+<li><code>historical_receipt_only</code>.</li>
+</ul>
+<h3 id="b-6-searchindex-convergence-must-be-consumed-by-release-logic">B-6 — search/index convergence must be consumed by release logic<a class="headerlink" href="#b-6-searchindex-convergence-must-be-consumed-by-release-logic" title="Permanent link">&para;</a></h3>
+<p>Cold-start, pending, lock-contention, and partial-index states must not be
+interpreted as a definitive zero-hit result. Exact paths need immediate
+registration for a release run.</p>
+<h3 id="b-7-artifact-registry-and-evidence-graph-are-not-fully-unified">B-7 — artifact registry and evidence graph are not fully unified<a class="headerlink" href="#b-7-artifact-registry-and-evidence-graph-are-not-fully-unified" title="Permanent link">&para;</a></h3>
+<p>Typed provenance envelopes are useful, but document artifacts still need one
+canonical registry with deterministic IDs, immutable revisions, reciprocal
+document-to-output resolution, and explicit resolver states.</p>
+<h3 id="b-8-documentation-and-metadata-drift">B-8 — documentation and metadata drift<a class="headerlink" href="#b-8-documentation-and-metadata-drift" title="Permanent link">&para;</a></h3>
+<p>The standalone Docs README describes an older skeleton surface while the live
+server exposes substantially more functionality. Tool documentation, capability
+manifest entries, and package version declarations need a tested synchronization
+source.</p>
+<h3 id="b-9-run-isolation-and-cleanup-are-not-a-first-class-product-contract">B-9 — run isolation and cleanup are not a first-class product contract<a class="headerlink" href="#b-9-run-isolation-and-cleanup-are-not-a-first-class-product-contract" title="Permanent link">&para;</a></h3>
+<p>Document runs need explicit roots, owners, process groups, budgets, cleanup
+receipts, retention states, and portable references. Canonical destinations must
+be protected from ordinary staging and garbage collection.</p>
+<h2 id="proposed-build-items">Proposed build items<a class="headerlink" href="#proposed-build-items" title="Permanent link">&para;</a></h2>
+<h3 id="mde-b1-equation-integrity-auditor-p0">MDE-B1 — equation integrity auditor (P0)<a class="headerlink" href="#mde-b1-equation-integrity-auditor-p0" title="Permanent link">&para;</a></h3>
+<p>Add a read-only <code>audit_equation_integrity</code> operation over raw DOCX OOXML. Return
+stable paragraph/equation records containing section path, anchor, OMML count,
+token sequence, structure hash, plain-text overlap, numbering scope, and typed
+findings such as:</p>
+<ul>
+<li><code>plaintext_math_duplicate</code>;</li>
+<li><code>missing_omml</code>;</li>
+<li><code>merged_omml_suspected</code>;</li>
+<li><code>equation_number_gap</code>;</li>
+<li><code>equation_number_scope_ambiguous</code>;</li>
+<li><code>reference_structure_mismatch</code>.</li>
+</ul>
+<p>Do not call an equation healthy solely because an <code>m:oMath</code> element exists.</p>
+<h3 id="mde-b2-reference-aware-equation-diff-and-staged-repair-p0">MDE-B2 — reference-aware equation diff and staged repair (P0)<a class="headerlink" href="#mde-b2-reference-aware-equation-diff-and-staged-repair-p0" title="Permanent link">&para;</a></h3>
+<p>Add <code>compare_equation_structures</code> and a draft-only <code>repair_equation_batch</code>.
+Every repair must first emit a patch manifest, classify the operation, and write
+only to an explicit isolated draft.</p>
+<p>Supported operation classes:</p>
+<ul>
+<li><code>remove_duplicate_plaintext</code>;</li>
+<li><code>split_merged_omml</code>;</li>
+<li><code>restore_missing_omml</code>;</li>
+<li><code>renumber_equation</code>;</li>
+<li><code>manual_review_required</code>.</li>
+</ul>
+<p>No operation may modify a canonical source implicitly.</p>
+<h3 id="mde-b3-typed-artifact-block-model-p0">MDE-B3 — typed artifact-block model (P0)<a class="headerlink" href="#mde-b3-typed-artifact-block-model-p0" title="Permanent link">&para;</a></h3>
+<p>Define one identity model for figure, table, equation, caption, and
+cross-reference blocks. Each block should include:</p>
+<ul>
+<li>document identity and immutable revision;</li>
+<li>section/anchor identity;</li>
+<li>package relationships;</li>
+<li>caption/number identity;</li>
+<li>source output and content hash;</li>
+<li>generator script and script hash;</li>
+<li>parameter/schema hash;</li>
+<li>citations/claim links;</li>
+<li>render status;</li>
+<li>candidate/held/superseded/promoted lifecycle state.</li>
+</ul>
+<p>Retain narrow low-level operations, but make block-aware operations the default
+for research-document workflows.</p>
+<h3 id="mde-b4-documentchangeset-releasemanifest-p0">MDE-B4 — DocumentChangeSet / ReleaseManifest (P0)<a class="headerlink" href="#mde-b4-documentchangeset-releasemanifest-p0" title="Permanent link">&para;</a></h3>
+<p>Create a release object that declares all changes and preconditions before
+staging:</p>
+<ul>
+<li>base document fingerprint;</li>
+<li>source/reference fingerprints;</li>
+<li>selected scope and anchors;</li>
+<li>ordered operations and expected identities;</li>
+<li>conflict claims and stale checks;</li>
+<li>expected package changes;</li>
+<li>artifact/provenance bindings;</li>
+<li>numbering/style policies;</li>
+<li>render backend policy;</li>
+<li>human approval state;</li>
+<li>rollback/recovery data;</li>
+<li>final source/render hashes.</li>
+</ul>
+<h3 id="mde-b5-mandatory-release-gates-and-receipts-p0">MDE-B5 — mandatory release gates and receipts (P0)<a class="headerlink" href="#mde-b5-mandatory-release-gates-and-receipts-p0" title="Permanent link">&para;</a></h3>
+<p>Compose the current primitives into one prepare/verify/promote/resume flow:</p>
+<ol>
+<li>source and stale-anchor verification;</li>
+<li>package/XML/relationship/ID integrity;</li>
+<li>structure, TOC, style, and numbering policy;</li>
+<li>equation integrity;</li>
+<li>figure/table/caption ownership;</li>
+<li>citation and bibliography consistency;</li>
+<li>provenance and generator freshness;</li>
+<li>Outputs convergence or exact-path registration;</li>
+<li>strict rendering when required;</li>
+<li>explicit human approval.</li>
+</ol>
+<p>Every gate must return <code>verified</code>, <code>held</code>, <code>stale</code>, <code>ambiguous</code>, <code>degraded</code>, or
+<code>unavailable</code>. Unknown is not a releasable state.</p>
+<p>Promotion must be compare-and-swap protected. A failed gate must leave the named
+destination byte-identical.</p>
+<h3 id="mde-b6-batch-transforms-and-render-barrier-p1">MDE-B6 — batch transforms and render barrier (P1)<a class="headerlink" href="#mde-b6-batch-transforms-and-render-barrier-p1" title="Permanent link">&para;</a></h3>
+<p>Support declarative mechanical XML batches that perform all writes in one
+staged package, then perform one render barrier. COM/Word should be an isolated,
+bounded renderer, not the document database. Timeouts need cleanup and typed
+receipts.</p>
+<h3 id="mde-b7-research-output-binding-and-evidence-graph-p0p1">MDE-B7 — research-output binding and evidence graph (P0/P1)<a class="headerlink" href="#mde-b7-research-output-binding-and-evidence-graph-p0p1" title="Permanent link">&para;</a></h3>
+<p>Bind claims, citations, runs, source data, scripts, Outputs files, document
+artifacts, anchors, render receipts, and release decisions with deterministic
+identity keys and immutable revisions.</p>
+<p>Changed source schemas, generator hashes, or parameters must create a new
+revision or block promotion; they must not overwrite prior evidence.</p>
+<h3 id="mde-b8-capabilitydocumentation-synchronization-p1">MDE-B8 — capability/documentation synchronization (P1)<a class="headerlink" href="#mde-b8-capabilitydocumentation-synchronization-p1" title="Permanent link">&para;</a></h3>
+<p>Generate the Docs README and MCP tool catalog from the live capability manifest,
+or add a synchronization test. The manifest must state read/write behavior,
+render dependency, strictness, fallback, and release safety for every tool.
+Align package-version metadata before claiming a release.</p>
+<h3 id="mde-b9-run-lifecycle-and-cleanup-p1">MDE-B9 — run lifecycle and cleanup (P1)<a class="headerlink" href="#mde-b9-run-lifecycle-and-cleanup-p1" title="Permanent link">&para;</a></h3>
+<p>Give every run a root, owner, ID, budget, timestamps, process-group record,
+cleanup receipt, retention state, and safe garbage-collection path. Keep
+canonical files outside ordinary staging roots and use portable relative paths
+in shared manifests.</p>
+<h2 id="implemented-incident-response-word-safe-ooxml-integrity">Implemented incident response: Word-safe OOXML integrity<a class="headerlink" href="#implemented-incident-response-word-safe-ooxml-integrity" title="Permanent link">&para;</a></h2>
+<p>The Word “unreadable content” incident exposed a concrete gap that should be
+promoted into Track B rather than handled as a one-off manuscript repair.
+Meridian could produce packages that passed ZIP/XML and LibreOffice-oriented
+checks but were rejected by Word. Two independent defects were involved:</p>
+<ul>
+<li>full-document <code>xml.etree.ElementTree</code> reserialization changed the namespace
+  map of otherwise valid OOXML, including legitimate high-numbered prefixes;</li>
+<li>generated comment parts and comment markers used unqualified attributes
+  (<code>id</code>, <code>author</code>, <code>initials</code>, <code>date</code>) instead of the required WordprocessingML
+  namespace-qualified attributes.</li>
+</ul>
+<p>The reusable implementation now lives in
+<code>extensions/meridian-docs/meridian_docs/ooxml_integrity.py</code> and is integrated
+into the normal DOCX write path. It provides:</p>
+<ul>
+<li>fail-closed package validation for ZIP integrity, required parts, XML,
+  relationships, content types, duplicate relationship IDs, duplicate
+  paragraph IDs, and comment-namespace defects;</li>
+<li>namespace-preserving document XML serialization through <code>lxml</code>, with a
+  guard that rejects namespace-map drift;</li>
+<li>normalization of legacy/unqualified Word comment attributes before an
+  artifact is staged;</li>
+<li>heading-case auditing for the declared document convention, currently
+  warning on non-title-case Heading 3 text while preserving the journal-specific
+  all-caps Heading 1/2 policy and detecting hidden bold heading-like remnants;</li>
+<li>an explicitly optional media-pruning utility, kept separate from default
+  writes because “unreferenced” media requires provenance-aware policy.</li>
+</ul>
+<p>The candidate manuscript and supplementary-information outputs were rebuilt
+with these safeguards and opened in Microsoft Word through the no-repair path.
+The canonical dissertation remained byte-identical. The permanent Track B
+follow-up is to add a real Word no-repair regression gate where Word is
+available, retain the package validator as the portable gate, and require the
+release receipt to record which integrity checks actually ran. A successful
+ZIP/XML or LibreOffice check alone must not be presented as Word-submission
+readiness.</p>
+<h2 id="acceptance-tests">Acceptance tests<a class="headerlink" href="#acceptance-tests" title="Permanent link">&para;</a></h2>
+<h3 id="equation-fixtures">Equation fixtures<a class="headerlink" href="#equation-fixtures" title="Permanent link">&para;</a></h3>
+<p>The product test suite needs golden fixtures for:</p>
+<ul>
+<li>intact inline OMML with no duplicate plaintext;</li>
+<li>duplicate <code>w:t</code> plus OMML;</li>
+<li>merged OMML objects;</li>
+<li>missing OMML plaintext equations;</li>
+<li>legitimate prose variable mentions;</li>
+<li>valid explicit numbering scopes;</li>
+<li>genuine duplicate/gap numbering;</li>
+<li>equivalent OMML with different XML prefixes/whitespace;</li>
+<li>changed subscripts, fractions, limits, or operators.</li>
+</ul>
+<p>The auditor must catch structural defects without flagging legitimate prose.
+Staged repairs must leave the source byte-identical and produce a deterministic
+patch manifest.</p>
+<h3 id="release-fixtures">Release fixtures<a class="headerlink" href="#release-fixtures" title="Permanent link">&para;</a></h3>
+<p>Add tests for:</p>
+<ul>
+<li>figure plus caption plus cross-reference movement;</li>
+<li>table plus caption movement;</li>
+<li>orphan media and duplicate IDs;</li>
+<li>plaintext-caption conversion;</li>
+<li>bibliography/citation synchronization;</li>
+<li>stale anchors and source changes;</li>
+<li>provenance drift and changed generator scripts;</li>
+<li>cold Outputs indexing and exact-path registration;</li>
+<li>strict render timeout and process cleanup;</li>
+<li>failed promotion preserving destination bytes.</li>
+</ul>
+<h3 id="end-to-end-release-test">End-to-end release test<a class="headerlink" href="#end-to-end-release-test" title="Permanent link">&para;</a></h3>
+<p>The end-to-end test should ingest a fixture, create a change set, stage a draft,
+run all gates, bind provenance, render under the declared policy, require an
+approval token, promote with compare-and-swap, and verify that the final package
+hash matches the persisted receipt.</p>
+<h2 id="implementation-order">Implementation order<a class="headerlink" href="#implementation-order" title="Permanent link">&para;</a></h2>
+<ol>
+<li>MDE-B1 equation integrity auditor and fixtures;</li>
+<li>MDE-B2 reference-aware equation diff/staged repair;</li>
+<li>MDE-B3 artifact-block schema and MDE-B4 release-manifest schema;</li>
+<li>MDE-B5 mandatory release gates;</li>
+<li>MDE-B7 research-output/evidence binding;</li>
+<li>MDE-B6 batch transforms and strict render receipt;</li>
+<li>MDE-B8 documentation and capability synchronization;</li>
+<li>MDE-B9 run lifecycle and cleanup.</li>
+</ol>
+<p>MDE-B4 is the schema serialization point. After it is stable, all product
+components should consume the same release object rather than creating parallel
+promotion contracts.</p>
+<h2 id="non-goals">Non-goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
+<ul>
+<li>automatic editing of a user's canonical Word document;</li>
+<li>treating a single dissertation as the product's semantic truth;</li>
+<li>replacing Word as the final visual authority for Word submissions;</li>
+<li>claiming that a successful XML mutation is equivalent to publication approval;</li>
+<li>silently converting degraded or historical evidence into verified evidence.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

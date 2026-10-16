@@ -1,0 +1,1374 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-ai-log-contract-matrix-consolidation-2026-08-30/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>AI-Log / Resource-Pressure Contract Matrix — Consolidation for Sprint Item 0f18eb77 - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ai-log-resource-pressure-contract-matrix-consolidation-for-sprint-item-0f18eb77" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AI-Log / Resource-Pressure Contract Matrix — Consolidation for Sprint Item 0f18eb77
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-this-deliverable-is-a-document-not-four-new-test-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why this deliverable is a document, not four new test files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-verified-disposition-of-each-originally-declared-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Verified disposition of each originally-declared file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-one-genuine-gap-run-owned-resource-correlation-specification-for-future-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The one genuine gap: run-owned resource correlation — specification for future implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. The one genuine gap: run-owned resource correlation — specification for future implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-what-a-run-needs-to-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 What "a run" needs to mean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-minimum-data-model-gaps-naming-only-not-a-schema-to-implement-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Minimum data-model gaps (naming only — not a schema to implement here)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-failurecontract-axes-a-real-test_run_owned_resource_correlationpy-should-cover-once-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Failure/contract axes a real test_run_owned_resource_correlation.py should cover once built
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-board-hygiene-note-separate-finding-not-part-of-the-technical-scoping-above" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Board-hygiene note (separate finding, not part of the technical scoping above)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-what-this-pass-did-and-did-not-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What this pass did and did not do
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="ai-log-resource-pressure-contract-matrix-consolidation-for-sprint-item-0f18eb77">AI-Log / Resource-Pressure Contract Matrix — Consolidation for Sprint Item 0f18eb77<a class="headerlink" href="#ai-log-resource-pressure-contract-matrix-consolidation-for-sprint-item-0f18eb77" title="Permanent link">&para;</a></h1>
+<p><strong>Type:</strong> Planning/consolidation only. No production code was edited, no test file
+was added or modified, and this item was not promoted beyond
+planning/verification-only scope. The only file this pass writes is this document.</p>
+<p><strong>Repo state at time of this pass:</strong> worktree <code>.claude/worktrees/a0c162f5</code>, branch
+<code>worktree/0f18eb77</code>, based on <code>dev</code> tip <code>985485da</code>. Working tree clean before and
+after, aside from this new file.</p>
+<p><strong>Item:</strong> <code>0f18eb77</code> — "ROUND1-TESTS: build the contract and failure matrix for AI
+logs, exporters, timeouts" (child of proposal <code>e143949d</code>).</p>
+<p><strong>Declared <code>touches_resources</code> for this item:</strong> <code>tests/test_ai_log_contract.py</code>,
+<code>tests/test_ai_log_capture_boundaries.py</code>, <code>tests/test_ai_log_export.py</code>,
+<code>tests/test_sprint_item_completion_resource_pressure.py</code>,
+<code>tests/test_run_owned_resource_correlation.py</code>.</p>
+<hr />
+<h2 id="1-why-this-deliverable-is-a-document-not-four-new-test-files">1. Why this deliverable is a document, not four new test files<a class="headerlink" href="#1-why-this-deliverable-is-a-document-not-four-new-test-files" title="Permanent link">&para;</a></h2>
+<p>The item's own instructions require picking one of two paths: (a) write real tests
+against real existing behavior for the four missing declared files, or (b) if the
+underlying proposal describes unbuilt features, write a specification document
+instead. Direct verification in this pass (Section 2) found the actual situation is
+neither cleanly (a) nor (b) — it is a third case the task anticipated and told me to
+resolve on the evidence:</p>
+<ul>
+<li><strong>Three of the four missing files</strong> (<code>test_ai_log_capture_boundaries.py</code>,
+  <code>test_ai_log_export.py</code>, <code>test_sprint_item_completion_resource_pressure.py</code>) target
+  areas that already have real, current, passing test coverage — written under
+  different filenames by the Round 2 implementation tranche that this Round-1 item's
+  own design work fanned into. Writing new files under the originally-declared names
+  now would duplicate that coverage, not close a gap.</li>
+<li><strong>A fifth file that already exists</strong>, <code>tests/test_ai_log_contract_matrix.py</code>
+  (shipped by item <code>e0b88967</code>, tranche "R2-H"), already <strong>is</strong> the consolidated
+  cross-cutting contract/failure matrix this item's own notes describe as the
+  end goal ("after Wave 1 reports, consolidate the contract/failure matrix and
+  acceptance tests").</li>
+<li><strong>Only the fourth missing file</strong>, <code>tests/test_run_owned_resource_correlation.py</code>,
+  targets a genuine gap — and it is a gap in the underlying <em>feature</em>, not just in
+  test coverage: the correlation primitives (run-owned session/agent/subprocess/
+  tunnel/worktree/claim/lease linkage) do not exist in production code yet. Writing
+  a test for it would mean testing vaporware, which the item's own hard constraints
+  forbid.</li>
+</ul>
+<p>Given that mix, the evidence-grounded action — consistent with "planning/
+verification-only until explicit implementation promotion" — is this document:
+a real pointer/cross-reference consolidation for the shipped areas, plus a real
+specification (not tests, not code) for the one area that is genuinely still
+unbuilt. No new test authorship, zero new production or test code, exactly as the
+item requires.</p>
+<hr />
+<h2 id="2-verified-disposition-of-each-originally-declared-file">2. Verified disposition of each originally-declared file<a class="headerlink" href="#2-verified-disposition-of-each-originally-declared-file" title="Permanent link">&para;</a></h2>
+<p>All four claims below were checked directly against the code in this worktree in
+this pass (file listing, <code>grep</code>, and a serial pytest run — Section 5), not merely
+carried over from the discovery note that scoped this item.</p>
+<table>
+<thead>
+<tr>
+<th>Declared file (does not exist)</th>
+<th>Verified real coverage today</th>
+<th>Shipped by</th>
+<th>Verified in this pass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tests/test_ai_log_capture_boundaries.py</code></td>
+<td><code>tests/test_ai_log_capture.py</code> — capture-layer boundary helpers (<code>capture_session_started/_ended</code>, <code>capture_tool_invoked/_completed</code>, <code>capture_process_registered/_released</code>), never-raising degrade contract, real <code>/mcp</code> dispatch wiring</td>
+<td><code>c5c3fc5f</code> (R2-A)</td>
+<td>File exists; its own docstring states this exact scope; included in the 203-test run below</td>
+</tr>
+<tr>
+<td><code>tests/test_ai_log_export.py</code></td>
+<td><code>tests/test_ai_log_artifacts.py</code> (export/purge MCP surface: <code>export_ai_log</code>, <code>export_ai_log_artifacts</code>, <code>purge_ai_log</code>, <code>artifact_store.export_artifacts</code>) + <code>tests/test_ai_log_retention.py</code> (<code>db.ai_log.export_events</code>, retention purge, redaction-on-write)</td>
+<td><code>c0168425</code> (R2-C) design predecessor <code>ea972129</code></td>
+<td>Both files exist; docstrings cross-reference each other to avoid duplication; included in the 203-test run below</td>
+</tr>
+<tr>
+<td><code>tests/test_sprint_item_completion_resource_pressure.py</code></td>
+<td><code>tests/test_process_budget.py</code> (host memory/CPU budget monitor, quiesce/kill escalation, backoff) + <code>tests/test_complete_sprint_item.py</code> (resource-aware retry-after diagnostics via <code>process_budget.sample_server_process</code>, preserved verifier evidence across an interrupted completion)</td>
+<td><code>9c8336c4</code> (budget monitor) / <code>394bcbdf</code> (R2-E)</td>
+<td>Both files exist; included in the 203-test run below</td>
+</tr>
+<tr>
+<td><code>tests/test_run_owned_resource_correlation.py</code></td>
+<td><strong>No equivalent exists under any name.</strong> Confirmed directly: <code>meridian/process_registry.py</code>'s <code>WorkerLease</code> (line 171) has fields <code>run_id, client, pid, executable, cwd, cmdline, create_time, group_id, job_id, shared_runtime</code> and a logical-owner-identity field added under <code>39c8cf2c</code> — no <code>owner_session_id</code> or <code>owner_worktree_id</code>. <code>task_log.parent_session_id</code> exists in the schema (<code>meridian/pg_adapter.py:692</code>, SQLite migration <code>_migrate_parent_session_id</code> in <code>meridian/db/migrations.py:592</code>) and is <strong>written</strong> by <code>log_task</code>/<code>enqueue.py</code> but never appears in a <code>SELECT</code>, filter, or read-side helper anywhere in <code>meridian/</code> — grepped the whole package, zero read-side hits. No <code>build_run_inventory</code> or <code>list_child_sessions</code> function exists anywhere in the codebase.</td>
+<td>Not shipped. Twin implementation item <code>2fa2fcad</code> ("R2-D") is still <code>pending</code>; its design predecessor <code>c978dc31</code> is <code>done</code> as a <strong>design-only</strong> item ("no code written") per its own notes.</td>
+<td>Confirmed absent by direct grep/read in this pass, not inferred</td>
+</tr>
+</tbody>
+</table>
+<p>Additionally, the consolidated cross-cutting gate this item was tasked to eventually
+produce ("consolidate the contract/failure matrix and acceptance tests") already
+exists and already covers the eight axes proposal <code>e143949d</code>'s track 9 called out
+(local-only, Redis available/unavailable, OTel/Langfuse available/unavailable,
+redaction, timeout/recovery, resume/corrective handoff, project isolation, exact
+deployment readiness):</p>
+<ul>
+<li><strong><code>tests/test_ai_log_contract_matrix.py</code></strong> (item <code>e0b88967</code>, tranche "R2-H"),
+  read directly in this pass. Its own docstring states it is the integration gate
+  across <code>9e83be4a</code> / <code>ea972129</code> / <code>c5c3fc5f</code> / <code>79491e26</code> / <code>c0168425</code>, explicitly
+  does not duplicate any of those items' own unit coverage, and documents a real
+  gap it found and fixed in the same item (a corrective-handoff trace missing from
+  the MCP dispatch path vs. the REST path) — i.e. it already functions as exactly
+  the "contract and failure matrix" deliverable this item's title describes.</li>
+</ul>
+<p><code>tests/test_ai_log_contract.py</code> itself (the one declared file that does exist) was
+left untouched, per the hard constraint to confirm zero regression against it. Its
+own docstring still names this item (<code>0f18eb77</code>) as the owner of capture-boundary
+and export coverage — that pointer is now stale (superseded by the files in the
+table above) but updating another item's test file is out of scope for a
+verification-only item on <code>0f18eb77</code>; it is noted here rather than edited.</p>
+<hr />
+<h2 id="3-the-one-genuine-gap-run-owned-resource-correlation-specification-for-future-implementation">3. The one genuine gap: run-owned resource correlation — specification for future implementation<a class="headerlink" href="#3-the-one-genuine-gap-run-owned-resource-correlation-specification-for-future-implementation" title="Permanent link">&para;</a></h2>
+<p>This section is a <strong>specification</strong>, not a test file and not code, per the item's
+hard constraint that unbuilt features must not be tested as if they exist. It lays
+out what a future implementation of <code>2fa2fcad</code> ("R2-D: correlate run-owned
+sessions, agents, subprocesses, tunnels, worktrees, claims, and leases") would need
+to satisfy, so that whoever eventually implements it — and whoever writes
+<code>tests/test_run_owned_resource_correlation.py</code> against the real implementation —
+has a concrete contract to build and test against instead of starting from
+proposal prose alone.</p>
+<h3 id="31-what-a-run-needs-to-mean">3.1 What "a run" needs to mean<a class="headerlink" href="#31-what-a-run-needs-to-mean" title="Permanent link">&para;</a></h3>
+<p>Today, the closest thing to a "run" identifier is <code>process_registry.WorkerLease.run_id</code>
+— but a lease is scoped to one external process, not to the full set of resources one
+logical unit of work touches. A run-owned correlation layer needs a single identifier
+that can be resolved to every one of:</p>
+<ul>
+<li>the Meridian <strong>session</strong> that initiated the work (<code>sessions.id</code>)</li>
+<li>any <strong>child/subprocess sessions</strong> it spawned (<code>task_log.parent_session_id</code> — written
+  today, never read back; see Section 2)</li>
+<li>any <strong>worker leases</strong> it holds or held (<code>process_registry.WorkerLease</code>, keyed by
+  <code>run_id</code>, <code>pid</code>, <code>create_time</code>)</li>
+<li>the <strong>tunnel</strong> connection(s) it used, if any (tunnel slot/connector identity —
+  not currently linked to <code>run_id</code> or <code>session_id</code> anywhere in <code>meridian/</code>)</li>
+<li>the <strong>worktree</strong> it executed in (branch/path — currently only inferable from a
+  session's <code>name</code> string by convention, e.g. <code>ctrlwave-&lt;item&gt;-&lt;item&gt;</code>, per the
+  board-reconciliation report's Section 4.2 findings; not a structured field)</li>
+<li>any <strong>file/symbol claims</strong> it took out (<code>claim_file</code>/<code>release_file</code> rows) and any
+  <strong>sprint-item claims</strong> it holds</li>
+</ul>
+<h3 id="32-minimum-data-model-gaps-naming-only-not-a-schema-to-implement-here">3.2 Minimum data-model gaps (naming only — not a schema to implement here)<a class="headerlink" href="#32-minimum-data-model-gaps-naming-only-not-a-schema-to-implement-here" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>process_registry.WorkerLease</code> would need an owning-session reference
+  (<code>owner_session_id</code>) and, if worktree-level attribution matters,
+  <code>owner_worktree_id</code> — neither exists today.</li>
+<li><code>task_log.parent_session_id</code> would need at least one read-side accessor
+  (e.g. a <code>list_child_task_log_by_parent_session</code> style function) before any
+  correlation query can use it — today the column is insert-only.</li>
+<li>A run inventory / lookup surface (the proposal's own language: something like
+  <code>build_run_inventory</code> or <code>list_child_sessions</code>) would need to exist to fan a
+  single <code>run_id</code> or <code>session_id</code> out to the resource types in 3.1. No such
+  function exists anywhere in the codebase today (confirmed by direct search,
+  Section 2).</li>
+<li>Tunnel-connector identity and worktree identity are not currently modeled as
+  foreign keys against sessions/runs anywhere; either would need to be added, or
+  correlation would need to stay convention-based (session-name parsing), which
+  is fragile and already flagged as a manual-inference weak point elsewhere in
+  this repo's own board reconciliation work.</li>
+</ul>
+<h3 id="33-failurecontract-axes-a-real-test_run_owned_resource_correlationpy-should-cover-once-built">3.3 Failure/contract axes a real <code>test_run_owned_resource_correlation.py</code> should cover once built<a class="headerlink" href="#33-failurecontract-axes-a-real-test_run_owned_resource_correlationpy-should-cover-once-built" title="Permanent link">&para;</a></h3>
+<p>These mirror the axes proposal <code>e143949d</code> track 9 calls out generically, applied
+specifically to run-owned resource correlation:</p>
+<ol>
+<li><strong>Basic fan-out correctness</strong> — given a <code>run_id</code>/<code>session_id</code>, the inventory
+   returns exactly the sessions, leases, claims, and task_log rows that actually
+   belong to that run, and none that belong to a sibling run in the same project.</li>
+<li><strong>Cross-project isolation</strong> — a run inventory query scoped to project A must
+   never surface a resource owned by project B, even if IDs collide in shape.</li>
+<li><strong>Orphaned lease survives its owning session</strong> — a <code>WorkerLease</code> whose owning
+   session has ended/archived must still resolve to that session's identity for
+   historical correlation (not silently become unattributed), while a <em>live</em>
+   query for "current owner" correctly reports the session as gone.</li>
+<li><strong>Duplicate <code>run_id</code> across worktrees</strong> — two worktrees that happen to reuse a
+   <code>run_id</code> (e.g. via the shared-object-store cherry-pick pattern documented
+   elsewhere in this repo's parallel-worktree tooling) must not be merged into one
+   inventory; worktree identity must disambiguate them.</li>
+<li><strong>Mid-correlation crash / partial write</strong> — if the correlation write path spans
+   more than one table (e.g. tagging a lease with <code>owner_session_id</code> and recording
+   a task_log row), a crash between the two must leave the system in a state the
+   read side can still reason about (either both-or-neither visible, not a
+   half-linked resource silently misattributed).</li>
+<li><strong>Tunnel restart re-parenting</strong> — if a tunnel connection drops and reconnects
+   mid-run, the correlation layer must decide (and this must be tested) whether
+   the reconnected tunnel counts as the same run or a new one, and must not
+   silently attribute post-restart activity to a run that already ended.</li>
+<li><strong>Claim/lease TTL expiry racing a correlation read</strong> — a claim or lease that
+   auto-expires (2h TTL, per this repo's file-claim contract) while a correlation
+   query is in flight must not produce an inconsistent read (e.g. reporting a
+   claim as both held and expired in the same response).</li>
+<li><strong>Session-name-convention fallback is a documented weak point, not a supported
+   contract</strong> — if any interim implementation leans on parsing session names
+   (as today's ad-hoc worktree attribution does), that must be explicitly called
+   out as a fallback with a real fully-qualified field as the intended replacement,
+   not left as the permanent mechanism.</li>
+</ol>
+<p>This specification intentionally stops at contract/failure-axis level. It does not
+propose a schema migration, function signature, or any other production change —
+that implementation work belongs to <code>2fa2fcad</code>, not to this verification-only item.</p>
+<hr />
+<h2 id="4-board-hygiene-note-separate-finding-not-part-of-the-technical-scoping-above">4. Board-hygiene note (separate finding, not part of the technical scoping above)<a class="headerlink" href="#4-board-hygiene-note-separate-finding-not-part-of-the-technical-scoping-above" title="Permanent link">&para;</a></h2>
+<p>Independently of the technical analysis above, <code>docs/meridian-build-board-reconciliation-v0.md</code>
+§5.1 (already merged to <code>dev</code> at commit <code>1b257dee</code>) flags this item's own current
+claim as one of six synthetic stale claims: actor
+<code>rescue-sweep-recovery-frontier-0f18eb77</code>, claimed 2026-08-08 23:39:19, with no
+matching row in <code>list_sessions</code> and zero commits anywhere under this item's id in
+<code>git log --all</code>. That report's recommendation is to release the claim back to
+unclaimed <code>pending</code>. This is a board-hygiene signal, independent of and consistent
+with (not contradicted by) the scoping conclusion in Sections 1–3 above, and is
+relayed here for whoever owns board hygiene to action — it is not something this
+verification-only pass acted on itself.</p>
+<hr />
+<h2 id="5-what-this-pass-did-and-did-not-do">5. What this pass did and did not do<a class="headerlink" href="#5-what-this-pass-did-and-did-not-do" title="Permanent link">&para;</a></h2>
+<p><strong>Did:</strong></p>
+<ul>
+<li>Read, in full or in relevant part, all six existing test files in this area
+  (<code>tests/test_ai_log_contract.py</code>, <code>tests/test_ai_log_capture.py</code>,
+  <code>tests/test_ai_log_artifacts.py</code>, <code>tests/test_ai_log_retention.py</code>,
+  <code>tests/test_process_budget.py</code>, <code>tests/test_complete_sprint_item.py</code>,
+  <code>tests/test_ai_log_contract_matrix.py</code>, <code>tests/test_ai_log_timeline.py</code>) and
+  confirmed their stated scope against their own docstrings.</li>
+<li>Directly verified (grep + read, not assumption) that
+  <code>tests/test_ai_log_capture_boundaries.py</code>, <code>tests/test_ai_log_export.py</code>,
+  <code>tests/test_sprint_item_completion_resource_pressure.py</code>, and
+  <code>tests/test_run_owned_resource_correlation.py</code> do not exist anywhere in this
+  worktree.</li>
+<li>Directly verified <code>process_registry.WorkerLease</code>'s real field list and confirmed
+  no <code>owner_session_id</code>/<code>owner_worktree_id</code> fields exist.</li>
+<li>Directly verified <code>task_log.parent_session_id</code> is written (migration + insert
+  call sites) but never read anywhere in <code>meridian/</code> (whole-package grep, zero
+  read-side hits).</li>
+<li>Directly verified no <code>build_run_inventory</code> or <code>list_child_sessions</code> function
+  exists anywhere in the codebase.</li>
+<li>Ran the full existing test surface for this area serially, not in parallel:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pixi run python -m pytest tests/test_ai_log_contract.py tests/test_ai_log_capture.py \
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  tests/test_ai_log_artifacts.py tests/test_ai_log_retention.py \
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  tests/test_process_budget.py tests/test_complete_sprint_item.py \
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  tests/test_ai_log_contract_matrix.py tests/test_ai_log_timeline.py \
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  -p no:xdist -q --timeout=60
+</code></pre></div>
+  Result: <strong>203 passed in 12.70s</strong>, zero failures, zero regressions — including the
+  pre-existing <code>tests/test_ai_log_contract.py</code>.</li>
+<li>Wrote exactly one new file: this document.</li>
+</ul>
+<p><strong>Did not:</strong></p>
+<ul>
+<li>Write, modify, or delete any production code file.</li>
+<li>Write, modify, or delete any test file (new or existing).</li>
+<li>Promote this item's scope to implementation.</li>
+<li>Claim, complete, or otherwise modify any sprint item, including <code>0f18eb77</code>
+  itself.</li>
+<li>Run the full/parallel test suite (<code>pixi run test -n 3</code>) — only the scoped,
+  serial, focused run above, as instructed.</li>
+<li>Touch <code>.env</code> or <code>meridian.toml</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
