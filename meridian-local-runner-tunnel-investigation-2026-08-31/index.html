@@ -1,0 +1,1601 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-local-runner-tunnel-investigation-2026-08-31/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Meridian local runner and tunnel architecture investigation - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#meridian-local-runner-and-tunnel-architecture-investigation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Meridian local runner and tunnel architecture investigation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-from-the-current-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence from the current repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serena-recovery-and-generic-structured-file-gap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serena recovery and generic structured-file gap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-operating-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed operating model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed operating model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-architecture-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product architecture decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Product architecture decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-make-the-fast-path-scriptable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Make the fast path scriptable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-separate-control-plane-from-transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Separate control plane from transport
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-stop-hiding-preparation-inside-first-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Stop hiding preparation inside first use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-make-resource-ownership-visible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Make resource ownership visible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-package-a-real-app-only-after-the-runtime-contract-is-stable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Package a real app only after the runtime contract is stable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-execution-waves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed execution waves
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed execution waves">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wave-0-local-runner-contract-and-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave 0 — local runner contract and diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wave-1-isolate-and-simplify-the-existing-tunnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave 1 — isolate and simplify the existing tunnel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wave-2-localhosted-capability-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave 2 — local/hosted capability routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wave-3-desktop-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave 3 — desktop packaging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#not-part-of-the-first-runner-sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not part of the first runner sprint
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-criteria-for-starting-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit criteria for starting implementation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="meridian-local-runner-and-tunnel-architecture-investigation">Meridian local runner and tunnel architecture investigation<a class="headerlink" href="#meridian-local-runner-and-tunnel-architecture-investigation" title="Permanent link">&para;</a></h1>
+<p>Date: 2026-08-31</p>
+<p>Status: planning record for <code>meridian-build</code>; no product version change.</p>
+<h2 id="executive-conclusion">Executive conclusion<a class="headerlink" href="#executive-conclusion" title="Permanent link">&para;</a></h2>
+<p>Meridian should be local-first for development and local desktop use. The
+tunnel should remain an optional authenticated transport adapter for browser
+clients, hosted collaboration, and remote access. It should not be the only
+way to reach local code, documents, outputs, or scripts.</p>
+<p>The current complaint is architectural rather than a single broken socket:
+the tunnel process is simultaneously a relay client, plugin registry, child
+process supervisor, cold package installer, readiness probe, reconnect loop,
+port owner, idle reaper, and resource watchdog. That makes failures opaque,
+expensive to diagnose, and capable of taking down too much of the local tool
+surface at once.</p>
+<h2 id="evidence-from-the-current-repository">Evidence from the current repository<a class="headerlink" href="#evidence-from-the-current-repository" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>meridian/__main__.py</code> exposes separate <code>--mcp</code> and <code>--tunnel</code> modes, but
+  <code>--tunnel</code> immediately performs stale-port cleanup and then enters the large
+  <code>tunnel_client.run_tunnel()</code> orchestration path.</li>
+<li><code>meridian/tunnel_client.py</code> currently contains the multi-slot supervisor.
+  The indexed source reports <code>run_tunnel()</code> at roughly 775 lines, with many
+  loops and subprocess/reconnect branches. <code>SlotProxy</code> lazily starts one
+  child per slot and has useful state, port, process-group, idle-kill, and
+  restart logic, but those mechanisms still share one parent runtime.</li>
+<li><code>meridian/tunnel_plugins.py</code> resolves a broad set of filesystem, code,
+  extractor, Office, Desktop Commander, Docs, Outputs, debugger, and custom
+  slots. Several defaults invoke <code>uvx</code> or <code>npx</code>; local-path packages can
+  trigger cold environment construction, and stale overrides are possible.</li>
+<li><code>meridian/tunnel_lifecycle.py</code> already provides a bounded lifecycle state
+  machine and a small transition ring buffer. This is valuable groundwork,
+  but the module itself documents that live diagnostics wiring is follow-up
+  work.</li>
+<li><code>meridian/tunnel_preflight.py</code> provides bounded child preflight and an
+  advisory quarantine tracker. Its own contract says it is not yet wired into
+  the live slot-advertisement path.</li>
+<li>The audit found a Windows event-loop mismatch risk: the slim tunnel
+  entrypoint can force a selector loop while tunnel command handling uses
+  asyncio subprocess APIs that require a Proactor-compatible loop on Windows.</li>
+<li>The normal <code>run_tunnel()</code> slot construction does not consistently opt every
+  child into the existing owned-process lifecycle and budget watchdog. The
+  budget machinery exists, but existence is not enforcement; this is why a
+  single runaway indexer can dominate the host.</li>
+<li>The CLI startup path performs a broad stale-port sweep before the more
+  careful claim-file/identity checks. That can terminate an unrelated process
+  or a concurrent tunnel instance and is unsafe as an application startup
+  primitive.</li>
+<li>Several timeout/error paths still need review for bounded cleanup: plugin
+  installation can return after a timeout without killing/reaping the child,
+  and diagnostic probes can collect large stdout/stderr streams before
+  truncating them.</li>
+<li>The WebSocket client has a path using <code>max_size=None</code>, so the transport lacks
+  a hard frame-size guard. This is both a memory risk and a missing failure
+  contract.</li>
+<li>The custom-plugin watchdog primarily observes launcher liveness. A wrapper
+  can remain alive while the inner MCP service is unusable unless readiness is
+  probed through the same contract as built-in slots.</li>
+<li>The current process shape on Windows shows multiple independent
+  <code>codebase-memory-mcp</code>, Docs, Outputs, <code>uvx</code>, Node, and Meridian processes.
+  That is evidence of a real process-ownership problem: the user sees a
+  collection of launchers rather than one application with one authoritative
+  status surface.</li>
+<li>Existing local stdio launchers are viable and materially faster for direct
+  iteration. Hosted tunnel slot availability is a separate runtime fact and
+  must not be presented as equivalent to local launcher availability.</li>
+</ul>
+<h2 id="serena-recovery-and-generic-structured-file-gap">Serena recovery and generic structured-file gap<a class="headerlink" href="#serena-recovery-and-generic-structured-file-gap" title="Permanent link">&para;</a></h2>
+<p>The local tunnel was started for this audit with a repository-scoped
+<code>--no-kill</code> launch, so it did not run the legacy broad port sweep. A direct
+MCP probe of the generated code-extractor endpoint returned a successful
+<code>initialize</code>, and <code>tools/list</code> returned Serena 1.27.0 with 20 tools, including
+<code>find_symbol</code>. A bounded <code>find_symbol</code> call resolved <code>run_tunnel</code> to
+<code>meridian/tunnel_client.py</code> at lines 6850–7633. This proves the Serena
+endpoint and launcher can work; it does not prove that every already-open
+client has refreshed its connector/tool registry. The current planning
+connector still reported no active Serena slot through its normal fallback
+path, so tunnel-level health and client-level discovery remain distinct
+states that the runner must expose explicitly.</p>
+<p>The same probe confirmed a separate missing capability: there is no generic,
+tunnel-independent MCP operation for inspecting one arbitrary local XML or
+JSON file. <code>meridian-docs</code> is DOCX/LaTeX-oriented, <code>meridian-outputs</code> is
+output-tree/index/provenance-oriented, and Desktop Commander is raw file
+access. Existing DOCX parsing also loads complete XML members into an
+in-memory tree without universal byte, expansion-ratio, depth, or item
+budgets. This is why the planner staged the separate
+<code>local-file-inspection__inspect_file</code> capability instead of expanding either
+specialist package.</p>
+<p>The local-only inspection contract is recorded in Meridian insight
+<code>e277e4cf-577f-4b93-824d-ea202957b80f</code> and sprint item
+<code>2ffd763d-9d1d-4928-82f7-ff4fb67a5113</code>. It must remain independent of Serena:
+Serena inactivity may degrade symbol intelligence, but must not block safe
+single-file XML/JSON inspection.</p>
+<p>The live Windows process audit found multiple Serena/proxy chains for the
+same repository and an existing process already owning the standard 8810
+listener. The new scoped tunnel process was deliberately started with
+<code>--no-kill</code>, so no unrelated process was terminated. This is the concrete
+reason the permanent runner must reconcile instance leases and process
+identity before binding a port; “Serena is running” and “this runner owns the
+Serena slot” are different facts. A direct local probe still passed
+<code>initialize</code> and <code>find_symbol</code>, so the immediate capability is available while
+the ownership/readiness cleanup remains a Wave 0/1 implementation item.</p>
+<p>The temporary tunnel process used for this probe was then stopped by its
+explicit process IDs; the pre-existing Serena proxy tree was left untouched.
+A second local <code>find_symbol</code> probe still returned HTTP 200 and the expected
+<code>run_tunnel</code> location. This is the desired recovery behavior: remove only an
+identified duplicate owner and preserve the working capability, rather than
+killing processes by executable name.</p>
+<h2 id="failure-matrix">Failure matrix<a class="headerlink" href="#failure-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Why it hurts</th>
+<th>Correct boundary</th>
+<th>Permanent direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cold <code>uvx</code>/<code>npx</code> install</td>
+<td>First use looks hung and consumes time/memory in the tunnel process</td>
+<td>Installation/preparation</td>
+<td>Preflight and cache dependencies before serving; never install on a request path</td>
+</tr>
+<tr>
+<td>One child crashes</td>
+<td>A shared supervisor/relay can make the whole surface appear unavailable</td>
+<td>Per-slot process group</td>
+<td>Isolate children, expose slot-level state, restart only the failed slot</td>
+</tr>
+<tr>
+<td>Detached Windows launcher</td>
+<td>Parent PID can exit while the real server remains alive</td>
+<td>Process ownership</td>
+<td>Record process-group/child identity and use a single-instance lease, not only a port probe</td>
+</tr>
+<tr>
+<td>Duplicate tunnels</td>
+<td>Duplicate slots contend for ports, caches, and index databases</td>
+<td>Machine-local instance</td>
+<td>One runner instance per scope; explicit attach/reuse or fail with a diagnostic</td>
+</tr>
+<tr>
+<td>Tunnel socket opens then dies</td>
+<td>“Connected” is shown before the connection is usable</td>
+<td>Readiness</td>
+<td>Require authenticated, usable readiness and surface <code>never_ready</code>/backoff state</td>
+</tr>
+<tr>
+<td>Memory pressure</td>
+<td>Multiple Python/Node/indexer processes compound; tests and indexing can exhaust RAM</td>
+<td>Host-local budget</td>
+<td>Sample RSS/CPU per child, quiesce, then terminate only the offender; keep bounded history</td>
+</tr>
+<tr>
+<td>Windows loop mismatch</td>
+<td>Selector-based tunnel entrypoint cannot spawn subprocesses reliably</td>
+<td>Runner process model</td>
+<td>Keep tunnel subprocess work on a Proactor-compatible loop or isolate it in a managed child</td>
+</tr>
+<tr>
+<td>Broad port sweep</td>
+<td>Startup can kill an unrelated or competing process</td>
+<td>Ownership</td>
+<td>Replace port-only cleanup with a scoped lease plus identity-checked process tree</td>
+</tr>
+<tr>
+<td>Unbounded frame/output</td>
+<td>A peer or child can inflate runner RSS before truncation</td>
+<td>Resource boundary</td>
+<td>Set WebSocket/message limits and tail-bounded stdout/stderr readers</td>
+</tr>
+<tr>
+<td>Wrapper alive, service dead</td>
+<td>Watchdog sees a PID but not a working MCP service</td>
+<td>Readiness</td>
+<td>Probe the service, not merely its launcher</td>
+</tr>
+<tr>
+<td>Stale plugin override</td>
+<td>A saved command can point at an old local path or package entry point</td>
+<td>Config resolution</td>
+<td>Show resolved command, freshness, and repair action before launch</td>
+</tr>
+<tr>
+<td>Tunnel unavailable</td>
+<td>Browser/hosted clients lose access even though local tools work</td>
+<td>Transport adapter</td>
+<td>Capability-based local fallback; make degraded mode explicit</td>
+</tr>
+<tr>
+<td>Debugging requires a tunnel</td>
+<td>A small code/config bug becomes a multi-hour remote round trip</td>
+<td>Developer escape hatch</td>
+<td><code>doctor</code> plus a direct script runner that talks to the same contracts locally</td>
+</tr>
+</tbody>
+</table>
+<h2 id="proposed-operating-model">Proposed operating model<a class="headerlink" href="#proposed-operating-model" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Desktop app / CLI
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        |
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        v
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Local Runner Supervisor  &lt;---- direct scripts / doctor / JSON status
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        |
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        +-- Meridian core stdio (`--mcp`)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        +-- optional local specialist children (Docs, Outputs, CodeIndex, Serena, DC)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        +-- optional hosted tunnel adapter
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                                  |
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                  +-- browser clients
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                                  +-- hosted/team control plane
+</code></pre></div>
+<p>The supervisor owns process lifecycle and diagnostics. It does not own the
+authority of Meridian project data; Postgres remains the hosted authority and
+the existing local-resilience layer remains the local degraded-mode authority.
+The tunnel is an adapter that exposes selected local capabilities to a remote
+client, not the source of truth for local work.</p>
+<h3 id="local-modes">Local modes<a class="headerlink" href="#local-modes" title="Permanent link">&para;</a></h3>
+<ol>
+<li><code>meridian --mcp</code>: direct stdio server, no tunnel and no network dependency
+   unless a specific tool explicitly requests hosted state.</li>
+<li><code>meridian local</code> (proposed): a bounded local supervisor with a machine-
+   readable status endpoint/JSON file, one-instance protection, per-slot
+   controls, logs, and <code>doctor</code> commands.</li>
+<li><code>meridian --tunnel</code>: an explicit bridge mode launched by the local
+   supervisor, with a clear “local child healthy / remote socket healthy” split.</li>
+</ol>
+<p>The exact CLI spelling is a design detail; the invariant is that direct local
+execution must not be routed through the tunnel merely because the tunnel
+exists.</p>
+<h2 id="product-architecture-decisions">Product architecture decisions<a class="headerlink" href="#product-architecture-decisions" title="Permanent link">&para;</a></h2>
+<h3 id="1-make-the-fast-path-scriptable">1. Make the fast path scriptable<a class="headerlink" href="#1-make-the-fast-path-scriptable" title="Permanent link">&para;</a></h3>
+<p>Every important local action should be callable through a stable, documented
+JSON contract: start/stop/restart a slot, inspect status, run a preflight,
+tail bounded logs, and execute a trusted diagnostic script. A script should
+be able to reproduce a bug against the real module in minutes without needing
+the UI, a tunnel, or a remote deployment.</p>
+<p>Scripts must be explicitly scoped to a repo/project, use an allowlisted
+command or declared executable, write receipts, and never receive secrets
+through a shared Meridian record. The script registry and artifact receipt
+work already identified in the board should become part of this contract.</p>
+<h3 id="2-separate-control-plane-from-transport">2. Separate control plane from transport<a class="headerlink" href="#2-separate-control-plane-from-transport" title="Permanent link">&para;</a></h3>
+<p>The local supervisor should expose one status model with independent states
+for child process, local MCP readiness, and remote tunnel readiness. A green
+local slot must remain green when the hosted socket is down; a green socket
+must not mask a dead child.</p>
+<h3 id="3-stop-hiding-preparation-inside-first-use">3. Stop hiding preparation inside first use<a class="headerlink" href="#3-stop-hiding-preparation-inside-first-use" title="Permanent link">&para;</a></h3>
+<p><code>uvx</code>/<code>npx</code> resolution and package installation should be an explicit
+preflight step with a bounded timeout, cache location, version/fingerprint,
+and a repair action. The first actual tool call should not trigger an
+unbounded dependency fetch.</p>
+<h3 id="4-make-resource-ownership-visible">4. Make resource ownership visible<a class="headerlink" href="#4-make-resource-ownership-visible" title="Permanent link">&para;</a></h3>
+<p>The runner should persist a small machine-local manifest containing runner
+instance ID, parent PID, child PID/process-group IDs, repo scope, slot,
+resolved command fingerprint, start time, health state, and last bounded log
+tail. It should be recoverable after a crash and safe to delete/rebuild.</p>
+<h3 id="5-package-a-real-app-only-after-the-runtime-contract-is-stable">5. Package a real app only after the runtime contract is stable<a class="headerlink" href="#5-package-a-real-app-only-after-the-runtime-contract-is-stable" title="Permanent link">&para;</a></h3>
+<p>The first implementation should be a CLI/service-quality local runner and
+diagnostic contract. A thin desktop shell can then provide tray status,
+start/stop/restart, logs, plugin toggles, and “open diagnostics”. Tauri is a
+credible long-term shell because its official documentation supports bundling
+external binaries as sidecars, system-tray UI, and autostart across Windows,
+macOS, and Linux. See the <a href="https://v2.tauri.app/develop/sidecar/">Tauri sidecar guide</a>,
+<a href="https://v2.tauri.app/learn/system-tray/">Tauri system-tray guide</a>, and
+<a href="https://v2.tauri.app/plugin/autostart/">Tauri autostart guide</a>.</p>
+<p>Electron is technically viable and has a first-class utility-process model
+for child services, but it brings a Chromium/Node desktop runtime to a project
+whose core is Python. Its utility process and sandbox APIs are useful
+references, not a reason to introduce Electron before the runner contract is
+proven. See <a href="https://www.electronjs.org/docs/latest/api/utility-process">Electron utilityProcess</a>
+and <a href="https://www.electronjs.org/docs/latest/tutorial/sandbox">Electron sandboxing</a>.</p>
+<p>For Windows distribution, Microsoft documents MSIX as the modern packaging
+path with clean install/update/uninstall behavior, while also documenting
+limitations and elevation requirements when packaging services. The first
+developer build should therefore prove the runner with a direct signed
+installer/portable build; MSIX should follow once background execution and
+package-identity requirements are understood. See Microsoft's
+<a href="https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/packaging/">Windows packaging overview</a>
+and <a href="https://learn.microsoft.com/en-us/windows/msix/packaging-tool/convert-an-installer-with-services">MSIX service limitations</a>.</p>
+<h2 id="proposed-execution-waves">Proposed execution waves<a class="headerlink" href="#proposed-execution-waves" title="Permanent link">&para;</a></h2>
+<h3 id="wave-0-local-runner-contract-and-diagnostics">Wave 0 — local runner contract and diagnostics<a class="headerlink" href="#wave-0-local-runner-contract-and-diagnostics" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Define a version-neutral local runner status schema.</li>
+<li>Add a single-instance lease and scope-aware process manifest.</li>
+<li>Expose <code>doctor</code>, <code>status</code>, <code>preflight</code>, <code>restart</code>, and bounded log-tail
+  operations without a tunnel.</li>
+<li>Make every runner-owned child use the existing process-group/Job Object
+  lifecycle and resource budget path; add a test that a budget breach kills
+  only the owning slot's tree.</li>
+<li>Remove broad port-only cleanup from the normal startup path and replace it
+  with identity-aware stale-instance recovery.</li>
+<li>Add bounded frame, response, stdout, stderr, and log retention limits.</li>
+<li>Make local <code>--mcp</code> reachability and hosted tunnel reachability distinct
+  capability checks.</li>
+<li>Add focused tests for duplicate launch, child crash, stale PID, cold-start
+  timeout, malformed command, and bounded output.</li>
+</ul>
+<h3 id="wave-1-isolate-and-simplify-the-existing-tunnel">Wave 1 — isolate and simplify the existing tunnel<a class="headerlink" href="#wave-1-isolate-and-simplify-the-existing-tunnel" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Refactor slot supervision behind the runner contract without changing the
+  existing plugin commands.</li>
+<li>Wire preflight/quarantine into advertisement and startup so unhealthy slots
+  are not reported as usable.</li>
+<li>Resolve the Windows event-loop contract for tunnel subprocesses and keep
+  stdio MCP protocol traffic isolated from supervisor logs.</li>
+<li>Ensure one child failure cannot restart unrelated slots.</li>
+<li>Make memory/CPU budgets configurable, observable, and enforced per child.</li>
+<li>Add a bounded local script escape hatch using the same diagnostics and
+  provenance contract.</li>
+</ul>
+<h3 id="wave-2-localhosted-capability-routing">Wave 2 — local/hosted capability routing<a class="headerlink" href="#wave-2-localhosted-capability-routing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Route direct desktop calls locally by default.</li>
+<li>Use the tunnel only when a remote client explicitly needs a local resource
+  or when the user chooses hosted execution.</li>
+<li>Publish a handshake that reports local readiness, remote readiness,
+  available fallbacks, and the authority for each data type.</li>
+<li>Keep Meridian Docs, Outputs, CodeIndex, Serena, and Desktop Commander
+  independently restartable and independently visible.</li>
+</ul>
+<h3 id="wave-3-desktop-packaging">Wave 3 — desktop packaging<a class="headerlink" href="#wave-3-desktop-packaging" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Build a thin Tauri shell around the stable runner contract.</li>
+<li>Windows first: tray app, no-terminal onboarding, signed portable/installer
+  artifact, repair/diagnostics action, and optional autostart.</li>
+<li>macOS: <code>.app</code> plus LaunchAgent-backed autostart and signed distribution.</li>
+<li>Linux: AppImage/deb plus user-session autostart; retain the CLI for servers.</li>
+<li>Only then evaluate MSIX/Store packaging and enterprise service installation.</li>
+</ul>
+<h2 id="not-part-of-the-first-runner-sprint">Not part of the first runner sprint<a class="headerlink" href="#not-part-of-the-first-runner-sprint" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Tigris/S3 is not required to make the local runner useful. It may later hold
+  large logs, caches, or portable diagnostic bundles, but control state and
+  authoritative provenance must not depend on object storage being available.</li>
+<li>A tunnel rewrite is not the first step. The local contract, diagnostics, and
+  process ownership model must land first so tunnel behavior can be tested as
+  one adapter instead of the entire user experience.</li>
+<li>Do not bundle every specialist into one always-on process. Idle and on-demand
+  slots are appropriate, but they need independent state and clear ownership.</li>
+</ul>
+<h2 id="exit-criteria-for-starting-implementation">Exit criteria for starting implementation<a class="headerlink" href="#exit-criteria-for-starting-implementation" title="Permanent link">&para;</a></h2>
+<p>The implementation sprint is ready when each item names its exact write scope,
+local fallback, focused test file, and expected status receipt. The first
+executor wave should not require a production deploy or a live tunnel. It must
+be able to prove the local path on Windows with small, serial tests and a
+bounded synthetic child process. Production tunnel verification is a later
+integration gate, not a prerequisite for improving local iteration.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

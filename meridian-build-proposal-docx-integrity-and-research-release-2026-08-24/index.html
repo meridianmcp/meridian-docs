@@ -1,0 +1,2045 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/meridian-build-proposal-docx-integrity-and-research-release-2026-08-24/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Meridian build proposal: research-grade DOCX integrity and release workflow - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#meridian-build-proposal-research-grade-docx-integrity-and-release-workflow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Meridian build proposal: research-grade DOCX integrity and release workflow
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-independent-workstreams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two independent workstreams
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two independent workstreams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#track-a-dissertationjcshm-candidate-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track A — dissertation/JCSHM candidate work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#track-b-meridian-productbuild-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track B — Meridian product/build work
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-and-reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence and reproducibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence and reproducibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equation-incident-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equation incident details
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Equation incident details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#222-duplicate-plain-text-alongside-intact-omml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2 — duplicate plain text alongside intact OMML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-merged-omml-plus-duplicate-plaintext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 — merged OMML plus duplicate plaintext
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-confirmed-third-duplicate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.3 — confirmed third duplicate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broader-candidate-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broader candidate review
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#track-b-meridian-product-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track B: Meridian product status
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Track B: Meridian product status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-works-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What works now
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-incomplete-misleading-or-not-yet-safe-for-a-meridian-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is incomplete, misleading, or not yet safe for a Meridian release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-no-mandatory-document-release-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. No mandatory document release transaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-equation-auditing-is-too-shallow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Equation auditing is too shallow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-artifact-ownership-is-not-yet-a-research-artifact-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Artifact ownership is not yet a research artifact block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-visual-validation-is-not-a-single-authoritative-capability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Visual validation is not a single authoritative capability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-provenance-and-completion-gates-can-remain-advisory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Provenance and completion gates can remain advisory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-artifact-registry-is-not-yet-the-universal-source-of-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Artifact registry is not yet the universal source of truth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-cold-startsearch-state-must-be-explicit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Cold-start/search state must be explicit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-documentation-and-release-metadata-are-out-of-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Documentation and release metadata are out of sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#track-b-proposed-meridian-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track B: proposed Meridian build
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Track B: proposed Meridian build">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mde-doc-1-equation-integrity-auditor-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-DOC-1 — equation integrity auditor (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-doc-2-reference-aware-equation-diff-and-staged-repair-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-DOC-2 — reference-aware equation diff and staged repair (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-doc-3-artifact-block-model-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-DOC-3 — artifact-block model (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-doc-4-document-change-set-and-release-manifest-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-DOC-4 — document change set and release manifest (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-doc-5-release-gates-and-receipts-p0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-DOC-5 — release gates and receipts (P0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-doc-6-fast-batch-transforms-and-word-safe-render-barrier-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-DOC-6 — fast batch transforms and Word-safe render barrier (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-doc-7-research-output-binding-and-evidence-graph-p0p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-DOC-7 — research-output binding and evidence graph (P0/P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-doc-8-capability-and-documentation-synchronization-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-DOC-8 — capability and documentation synchronization (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mde-doc-9-run-isolation-and-cleanup-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MDE-DOC-9 — run isolation and cleanup (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-test-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance test plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Acceptance test plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equation-fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equation fixtures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publication-document-fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publication-document fixtures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-to-end-release-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-to-end release test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-implementation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended implementation order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#track-a-immediate-dissertationjcshm-work-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track A: immediate dissertation/JCSHM work plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Track A: immediate dissertation/JCSHM work plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diss-1-isolated-equation-repair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DISS-1 — isolated equation repair
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diss-2-complete-candidate-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DISS-2 — complete candidate audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diss-3-advisor-review-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DISS-3 — advisor-review package
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicit-non-conflation-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit non-conflation rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="meridian-build-proposal-research-grade-docx-integrity-and-release-workflow">Meridian build proposal: research-grade DOCX integrity and release workflow<a class="headerlink" href="#meridian-build-proposal-research-grade-docx-integrity-and-release-workflow" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2026-08-24<br />
+<strong>Scope:</strong> Meridian Docs, Meridian Outputs, core handoff/capability contracts, and the staged JCSHM manuscript workflow<br />
+<strong>Safety boundary:</strong> investigation only. The canonical dissertation was read as a reference and was not edited.</p>
+<h2 id="executive-decision">Executive decision<a class="headerlink" href="#executive-decision" title="Permanent link">&para;</a></h2>
+<p>Meridian has enough working DOCX primitives to support this workflow, but it does
+not yet have a safe, single-command research-document release transaction. The
+missing layer must bind the source material, generator scripts, parameters,
+document anchors, embedded artifacts, equation structures, provenance, and visual
+render receipt before a draft can be promoted.</p>
+<p>The immediate incident demonstrates why this is needed. The current staged
+JCSHM manuscript contains equation corruption that ordinary paragraph extraction
+cannot reliably distinguish from legitimate inline math:</p>
+<ol>
+<li>In JCSHM section <strong>2.2.2</strong>, four equations remain as OMML, but their formula
+   strings have also been written into ordinary Word text runs. Word therefore
+   has both the visible prose/text copy and the math copy in the same paragraph.</li>
+<li>In JCSHM section <strong>3.2.2</strong>, the intended five separate inline math objects
+   have been collapsed into one OMML object whose flattened content is
+   <code>ffbffbrminαscalermin</code>; the same flattened tail also appears in ordinary
+   text runs.</li>
+<li>In JCSHM section <strong>3.3.3</strong>, <code>R(p)</code> is duplicated in ordinary text and in
+   OMML after the colon introducing the traversal-cost equation.</li>
+</ol>
+<p>These are not merely style warnings. They are loss-of-structure defects. A
+future repair must be generated in a staged candidate, compared structurally
+against the reference, rendered, and only then offered for approval.</p>
+<h2 id="two-independent-workstreams">Two independent workstreams<a class="headerlink" href="#two-independent-workstreams" title="Permanent link">&para;</a></h2>
+<p>This document deliberately separates the immediate manuscript work from the
+Meridian product work.</p>
+<h3 id="track-a-dissertationjcshm-candidate-work">Track A — dissertation/JCSHM candidate work<a class="headerlink" href="#track-a-dissertationjcshm-candidate-work" title="Permanent link">&para;</a></h3>
+<p>This track concerns only the staged manuscript and supplementary-information
+documents. It can be completed with one-off scripts or existing Meridian
+primitives; it does not wait for the full Meridian build proposed below.</p>
+<p>Track A includes:</p>
+<ul>
+<li>repair and visually verify the three confirmed equation incidents;</li>
+<li>scan all remaining equations for duplicate plaintext, missing OMML, merged
+  structures, and numbering-policy violations;</li>
+<li>decide and fix the manuscript equation-number sequence;</li>
+<li>reconcile the 45 orphan-image and 3 duplicate-paragraph-ID findings;</li>
+<li>convert or deliberately retain the ten plaintext table captions according to
+  the JCSHM/Springer submission policy;</li>
+<li>verify every figure, caption, table, cross-reference, bibliography entry,
+  heading, TOC entry, and supplementary-information link;</li>
+<li>perform strict Word visual QA on the actual candidate and supplementary file;</li>
+<li>produce an advisor-review draft plus a disposition log for every unresolved
+  warning.</li>
+</ul>
+<p>Track A must not edit the canonical dissertation reference. Its safe working
+outputs are isolated candidate files, repair manifests, rendered previews, and
+review reports.</p>
+<h3 id="track-b-meridian-productbuild-work">Track B — Meridian product/build work<a class="headerlink" href="#track-b-meridian-productbuild-work" title="Permanent link">&para;</a></h3>
+<p>This track concerns reusable product capabilities: equation-integrity auditing,
+artifact provenance, staged document changes, release gates, render receipts,
+and documentation synchronization. It should be tested with the manuscript as
+one fixture, but it is not the manuscript’s repair plan and does not authorize
+editing either Word document.</p>
+<p>The standalone product-only version is maintained at
+<code>docs/meridian-build-proposal-track-b-2026-08-24.md</code>. The present document keeps
+the evidence boundary and the Track A/Track B separation; the standalone file is
+the canonical place for Meridian build planning.</p>
+<p>The rest of this proposal labels product requirements as <code>MDE-*</code> and manuscript
+actions as <code>DISS-*</code> so the two backlogs cannot be conflated.</p>
+<h2 id="evidence-and-reproducibility">Evidence and reproducibility<a class="headerlink" href="#evidence-and-reproducibility" title="Permanent link">&para;</a></h2>
+<p>The live <code>meridian-docs</code> MCP surface was callable and returned results for the
+following read-only operations:</p>
+<ul>
+<li><code>read_document_snapshot</code></li>
+<li><code>document_outline</code></li>
+<li><code>locate_anchors</code> / stable section and paragraph resolution</li>
+<li><code>extract_equations</code></li>
+<li><code>audit_equation_style</code></li>
+<li><code>audit_document</code></li>
+<li><code>get_document_review</code></li>
+</ul>
+<p>The saved-byte fingerprints from that run were:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>SHA-256</th>
+<th style="text-align: right;">OMML equation records</th>
+<th>Relevant result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Canonical dissertation reference</td>
+<td><code>4cfda7e4faa20755d63cb6186e4071b70ebe081db92b2eec7e4d3f1c6b19d4e0</code></td>
+<td style="text-align: right;">408</td>
+<td>Reference structure retained</td>
+</tr>
+<tr>
+<td>Staged JCSHM manuscript v12</td>
+<td><code>4074c54ddf139c31330ed9b667bd8fdf920d978860db67d3d20f8947c8730746</code></td>
+<td style="text-align: right;">151</td>
+<td>Candidate has the corruption findings below</td>
+</tr>
+</tbody>
+</table>
+<p>The canonical dissertation remains at its private location outside this repo
+(identified by SHA-256 above, not by path).</p>
+<p>The candidate examined was a staged manuscript revision in the external
+research workspace's staging area (identified by SHA-256 above, not by path).</p>
+<h3 id="equation-incident-details">Equation incident details<a class="headerlink" href="#equation-incident-details" title="Permanent link">&para;</a></h3>
+<h4 id="222-duplicate-plain-text-alongside-intact-omml">2.2.2 — duplicate plain text alongside intact OMML<a class="headerlink" href="#222-duplicate-plain-text-alongside-intact-omml" title="Permanent link">&para;</a></h4>
+<p>Meridian resolved the candidate paragraph to section <code>2.2.2</code>, stable paragraph
+ID <code>56387FCD</code>, document order 68. It contains four <code>m:oMath</code> objects:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>RS=s∈SBs,rs
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>P(li,f(li)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>wi=1-A(RS\Pli,fliARS
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>On2
+</code></pre></div>
+<p>The candidate also contains those formula strings in <code>w:t</code> runs. The canonical
+counterpart, paragraph <code>6BA76536</code> in the dissertation, has the same four OMML
+objects but does not contain those formula strings in ordinary <code>w:t</code> text. The
+correct repair classification is therefore <strong>remove the duplicate plaintext
+runs while preserving the reference OMML objects</strong>, subject to visual QA.</p>
+<p>The <code>extract_equations</code> flat text is not by itself evidence that an equation is
+plaintext: it deliberately flattens OMML for indexing. The additional raw-XML
+check is what exposed the duplicate <code>w:t</code> runs.</p>
+<h4 id="322-merged-omml-plus-duplicate-plaintext">3.2.2 — merged OMML plus duplicate plaintext<a class="headerlink" href="#322-merged-omml-plus-duplicate-plaintext" title="Permanent link">&para;</a></h4>
+<p>Meridian resolved the candidate to section <code>3.2.2</code>, stable paragraph ID
+<code>3165EFB8</code>, document order 164. The final sentence ends with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>... bound below by rmin and above by h:ffbffbrminαscalermin
+</code></pre></div>
+<p>Raw OOXML shows one <code>m:oMath</code> object containing all five flattened tokens:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ffbffbrminαscalermin
+</code></pre></div>
+<p>The candidate's ordinary <code>w:t</code> content contains the same tail. The canonical
+counterpart, paragraph <code>42CFEFC0</code> in dissertation section <code>8.2.2.2</code>, ends at
+the colon and contains five separate OMML objects: <code>ffb</code>, <code>ffb</code>, <code>rmin</code>,
+<code>αscale</code>, and <code>rmin</code>. This is a <strong>structure-reconstruction repair</strong>, not a
+plain-text deletion alone.</p>
+<h4 id="333-confirmed-third-duplicate">3.3.3 — confirmed third duplicate<a class="headerlink" href="#333-confirmed-third-duplicate" title="Permanent link">&para;</a></h4>
+<p>Meridian resolved the candidate traversal-cost paragraph to section <code>3.3.3</code>,
+stable paragraph ID <code>43367118</code>, document order 255. Its XML has:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>w:t:  ... corresponding traversal cost is:R(p)
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>m:t:  R(p)
+</code></pre></div>
+<p>The canonical counterpart, dissertation paragraph <code>7A236C42</code> in section
+<code>8.3.3</code>, has the ordinary text ending after the colon and the equation in
+OMML. This is another <strong>duplicate plaintext alongside OMML</strong> defect.</p>
+<h3 id="broader-candidate-review">Broader candidate review<a class="headerlink" href="#broader-candidate-review" title="Permanent link">&para;</a></h3>
+<p>The current candidate review returned:</p>
+<ul>
+<li><code>get_document_review</code>: 43 findings total;</li>
+<li>33 equation-number-gap errors;</li>
+<li>10 legacy plaintext table-caption warnings.</li>
+<li><code>audit_equation_style</code>: 151 equation records and 33 numbering-gap findings.</li>
+<li><code>audit_document</code>: status <code>ok</code>, but 48 ownership findings;</li>
+<li>45 <code>orphan_image</code> findings;</li>
+<li>3 <code>duplicate_para_id</code> findings.</li>
+</ul>
+<p>The numbering-gap findings are not necessarily all equation mutilation. The
+candidate contains only <code>(34)</code> and <code>(35)</code> as explicit table-numbered equation
+numbers, so the current audit correctly reports missing leading integers under
+its global sequence policy. The release workflow must make the numbering scope
+explicit: either renumber the manuscript equations from 1, or declare and test
+a valid inherited numbering policy. It must not silently accept a dissertation
+sequence in a journal manuscript.</p>
+<p>The ten caption warnings are known legacy plaintext <code>Table 1</code>–<code>Table 10</code>
+captions without sequence fields. They are separate from the equation incident,
+but must be included in the publication release gate. The orphan-image findings
+also require a deliberate figure/caption reconciliation; they should not be
+silenced by changing audit severity.</p>
+<h2 id="track-b-meridian-product-status">Track B: Meridian product status<a class="headerlink" href="#track-b-meridian-product-status" title="Permanent link">&para;</a></h2>
+<h3 id="what-works-now">What works now<a class="headerlink" href="#what-works-now" title="Permanent link">&para;</a></h3>
+<p>Meridian Docs already has a useful primitive layer:</p>
+<ul>
+<li>saved-byte snapshots and source fingerprints;</li>
+<li>stable paragraph/heading anchor resolution;</li>
+<li>stale-anchor rejection;</li>
+<li>document outline and section-scoped reads;</li>
+<li>OMML extraction and targeted OMML editing primitives;</li>
+<li>equation alignment/punctuation/numbering checks;</li>
+<li>figure, caption, citation, bibliography, section, table, and media helpers;</li>
+<li>read-only figure/table/caption ownership auditing;</li>
+<li>staged section movement/copy and draft promotion;</li>
+<li>atomic ZIP/XML writes and rollback-oriented render gates.</li>
+</ul>
+<p>Meridian Outputs also has meaningful components for file fingerprints,
+generating-script hashes, provenance status, output search, typed evidence
+envelopes, and JSON/XML round trips. Core Meridian now has research-graph
+identity and handoff/capability-contract work that can provide the coordination
+layer.</p>
+<p>The current strengths are valuable precisely because the incident can be
+diagnosed without opening or mutating the canonical dissertation. The issue is
+that callers must currently know which individual tools to compose and which
+checks are absent from each tool.</p>
+<h3 id="what-is-incomplete-misleading-or-not-yet-safe-for-a-meridian-release">What is incomplete, misleading, or not yet safe for a Meridian release<a class="headerlink" href="#what-is-incomplete-misleading-or-not-yet-safe-for-a-meridian-release" title="Permanent link">&para;</a></h3>
+<h3 id="1-no-mandatory-document-release-transaction">1. No mandatory document release transaction<a class="headerlink" href="#1-no-mandatory-document-release-transaction" title="Permanent link">&para;</a></h3>
+<p><code>write_section</code>, equation writers, figure writers, table movers, provenance
+helpers, and <code>merge_docx_draft</code> are separate contracts. A caller can perform a
+successful file merge without having proved that every changed figure, table,
+equation, caption, source file, and render receipt belongs to the same release.</p>
+<p>Required outcome:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>prepare -&gt; resolve anchors -&gt; stage candidate -&gt; run structural gates
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>        -&gt; bind provenance -&gt; render exact candidate -&gt; human review
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        -&gt; promote with compare-and-swap -&gt; persist receipt
+</code></pre></div>
+<h3 id="2-equation-auditing-is-too-shallow">2. Equation auditing is too shallow<a class="headerlink" href="#2-equation-auditing-is-too-shallow" title="Permanent link">&para;</a></h3>
+<p><code>extract_equations</code> correctly sees OMML but intentionally flattens it. The
+current <code>audit_equation_style</code> checks alignment, punctuation, and explicit
+numbering, but it does not detect:</p>
+<ul>
+<li>mathematical content duplicated in ordinary <code>w:t</code> runs;</li>
+<li>a missing OMML object replaced by equation-like plaintext;</li>
+<li>several expected inline equations merged into one <code>m:oMath</code>;</li>
+<li>a candidate equation whose structure differs from a reference equation while
+  its flattened text looks similar;</li>
+<li>a formula tail appended after a colon in both <code>w:t</code> and OMML.</li>
+</ul>
+<p>This is the direct cause of the current incident escaping a normal style audit.</p>
+<h3 id="3-artifact-ownership-is-not-yet-a-research-artifact-block">3. Artifact ownership is not yet a research artifact block<a class="headerlink" href="#3-artifact-ownership-is-not-yet-a-research-artifact-block" title="Permanent link">&para;</a></h3>
+<p>A figure is not only an image relationship. For publication work it is an
+artifact block containing image, caption, numbering, cross-references, source
+output, generating script, parameters, and render evidence. The same applies to
+tables and equations. <code>relocate_table</code> intentionally moves a bare table and
+does not move an adjacent caption, which is safe as a narrow primitive but
+unsafe as a default publication operation.</p>
+<h3 id="4-visual-validation-is-not-a-single-authoritative-capability">4. Visual validation is not a single authoritative capability<a class="headerlink" href="#4-visual-validation-is-not-a-single-authoritative-capability" title="Permanent link">&para;</a></h3>
+<p>Generic rendering may use LibreOffice while strict Word visual QA may rely on
+Word COM or an external receipt. Historical receipts can match exact bytes
+without proving that a fresh render succeeded. A slow or timed-out COM probe
+must be reported as <code>degraded</code>/<code>failed</code>, never as <code>rendered</code>.</p>
+<p>The release contract needs an explicit backend policy:</p>
+<ul>
+<li><code>word_strict</code> for a Word-submission release;</li>
+<li><code>libreoffice_conversion</code> for a non-Word conversion check;</li>
+<li><code>historical_receipt_only</code> for evidence, never as fresh visual approval.</li>
+</ul>
+<h3 id="5-provenance-and-completion-gates-can-remain-advisory">5. Provenance and completion gates can remain advisory<a class="headerlink" href="#5-provenance-and-completion-gates-can-remain-advisory" title="Permanent link">&para;</a></h3>
+<p>The fallback package and Outputs components contain much of the desired logic,
+but the existing architecture documents that callers can omit the gates unless
+the high-level promotion path wires them in. A release command must fail closed
+when required provenance, source hashes, or render evidence are unavailable.</p>
+<h3 id="6-artifact-registry-is-not-yet-the-universal-source-of-truth">6. Artifact registry is not yet the universal source of truth<a class="headerlink" href="#6-artifact-registry-is-not-yet-the-universal-source-of-truth" title="Permanent link">&para;</a></h3>
+<p>The typed evidence envelope is useful and round-trips across JSON/XML, but the
+cross-envelope artifact registry/resolver is a separate capability that is not
+fully built. Figure/table/equation IDs therefore need one canonical registry
+with reciprocal document-to-output and output-to-document resolution.</p>
+<h3 id="7-cold-startsearch-state-must-be-explicit">7. Cold-start/search state must be explicit<a class="headerlink" href="#7-cold-startsearch-state-must-be-explicit" title="Permanent link">&para;</a></h3>
+<p>Outputs search has convergence, pending, lock, and degraded states, but the
+document release path must consume those states rather than interpreting a
+cold zero-hit search as proof of absence. Exact output paths should be
+registerable immediately for a release run.</p>
+<h3 id="8-documentation-and-release-metadata-are-out-of-sync">8. Documentation and release metadata are out of sync<a class="headerlink" href="#8-documentation-and-release-metadata-are-out-of-sync" title="Permanent link">&para;</a></h3>
+<p>The standalone <code>extensions/meridian-docs/README.md</code> still describes the package
+as a skeleton with only the original parser tools even though the live server
+has a much larger surface. Repository/package version declarations also need a
+single source of truth. Stale documentation is a functional risk when an agent
+chooses tools from the README instead of the live manifest.</p>
+<h2 id="track-b-proposed-meridian-build">Track B: proposed Meridian build<a class="headerlink" href="#track-b-proposed-meridian-build" title="Permanent link">&para;</a></h2>
+<h3 id="mde-doc-1-equation-integrity-auditor-p0">MDE-DOC-1 — equation integrity auditor (P0)<a class="headerlink" href="#mde-doc-1-equation-integrity-auditor-p0" title="Permanent link">&para;</a></h3>
+<p>Add a read-only <code>audit_equation_integrity</code> operation, implemented over raw DOCX
+OOXML rather than flattened paragraph text. It should return stable records for
+each paragraph/equation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">"document_fingerprint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">"section_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.2.2"</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">"para_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3165EFB8"</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">"equation_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">"w_text_math_overlap"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">"omml_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">"omml_structure_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">"flat_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ffbffbrminαscalermin"</span><span class="p">,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nt">"findings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"plaintext_math_duplicate"</span><span class="p">,</span><span class="w"> </span><span class="s2">"reference_structure_mismatch"</span><span class="p">]</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>Detection rules should include:</p>
+<ul>
+<li>math-bearing <code>w:t</code> runs overlapping <code>m:t</code> content in the same paragraph;</li>
+<li>equation-like plaintext in a paragraph with no OMML;</li>
+<li>math appended after a colon in both plain text and OMML;</li>
+<li>suspicious merged adjacent structures, using a reference/golden fixture when
+  available rather than guessing from symbols alone;</li>
+<li>equations in tables, display equations, and inline equations as separate
+  patterns;</li>
+<li>section-scoped numbering policy and explicit inherited-numbering state.</li>
+</ul>
+<p>The auditor must never call an equation “healthy” solely because OMML exists.</p>
+<h3 id="mde-doc-2-reference-aware-equation-diff-and-staged-repair-p0">MDE-DOC-2 — reference-aware equation diff and staged repair (P0)<a class="headerlink" href="#mde-doc-2-reference-aware-equation-diff-and-staged-repair-p0" title="Permanent link">&para;</a></h3>
+<p>Add a <code>compare_equation_structures</code> operation that accepts a candidate and a
+read-only reference document or a stored equation fixture. Compare:</p>
+<ul>
+<li>section/paragraph anchor;</li>
+<li>equation ordinal within the paragraph;</li>
+<li>OMML tree shape and token sequence;</li>
+<li>plain-text overlap;</li>
+<li>punctuation and display/inline placement;</li>
+<li>equation-number policy;</li>
+<li>source fingerprint.</li>
+</ul>
+<p>Add a staged <code>repair_equation_batch</code> operation that writes only to an explicit
+draft output. It must produce a patch manifest before writing, with each change
+classified as one of:</p>
+<ul>
+<li><code>remove_duplicate_plaintext</code>;</li>
+<li><code>split_merged_omml</code>;</li>
+<li><code>restore_missing_omml</code>;</li>
+<li><code>renumber_equation</code>;</li>
+<li><code>manual_review_required</code>.</li>
+</ul>
+<p>For the current candidate, the initial proposed patch would be:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate location</th>
+<th>Proposed operation</th>
+<th>Authority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.2.2 / <code>56387FCD</code></td>
+<td>Remove duplicate ordinary-text math runs; preserve four OMML objects</td>
+<td>Dissertation counterpart <code>6BA76536</code> plus visual check</td>
+</tr>
+<tr>
+<td>3.2.2 / <code>3165EFB8</code></td>
+<td>Remove plain tail and split/rebuild the merged OMML into the canonical five-object sequence</td>
+<td>Dissertation counterpart <code>42CFEFC0</code></td>
+</tr>
+<tr>
+<td>3.3.3 / <code>43367118</code></td>
+<td>Remove duplicate ordinary-text <code>R(p)</code> after the colon; preserve OMML</td>
+<td>Dissertation counterpart <code>7A236C42</code></td>
+</tr>
+</tbody>
+</table>
+<p>No repair should be applied automatically to the canonical dissertation or to
+the current manuscript without an explicit draft path and a user approval
+boundary.</p>
+<h3 id="mde-doc-3-artifact-block-model-p0">MDE-DOC-3 — artifact-block model (P0)<a class="headerlink" href="#mde-doc-3-artifact-block-model-p0" title="Permanent link">&para;</a></h3>
+<p>Define one typed model for figure, table, equation, caption, and cross-reference
+blocks. Every block needs:</p>
+<ul>
+<li>stable document identity and revision;</li>
+<li>section/anchor identity;</li>
+<li>package relationship IDs where applicable;</li>
+<li>caption/number identity;</li>
+<li>source output path and content hash;</li>
+<li>generating script and script hash;</li>
+<li>parameters/schema hash;</li>
+<li>citations or claim links;</li>
+<li>render/visual-QA status;</li>
+<li>candidate/held/superseded/promoted lifecycle state.</li>
+</ul>
+<p>Figure relocation should move image plus caption plus cross-reference metadata.
+Table relocation should offer a caption-aware block mode while retaining the
+existing bare-table primitive for expert callers.</p>
+<h3 id="mde-doc-4-document-change-set-and-release-manifest-p0">MDE-DOC-4 — document change set and release manifest (P0)<a class="headerlink" href="#mde-doc-4-document-change-set-and-release-manifest-p0" title="Permanent link">&para;</a></h3>
+<p>Create a first-class <code>DocumentChangeSet</code> / <code>ReleaseManifest</code> that declares all
+requested operations before staging. It should include:</p>
+<ul>
+<li>base document fingerprint;</li>
+<li>source/reference fingerprints;</li>
+<li>selected section/anchor scope;</li>
+<li>ordered operations and expected affected identities;</li>
+<li>preconditions and conflict claims;</li>
+<li>expected package relationship changes;</li>
+<li>artifact/provenance bindings;</li>
+<li>numbering and style policies;</li>
+<li>render backend policy;</li>
+<li>human approval state;</li>
+<li>rollback/recovery data;</li>
+<li>final source and render hashes.</li>
+</ul>
+<p>The promotion path should be the only path allowed to update a named release
+destination. A failed gate must leave the destination byte-identical.</p>
+<h3 id="mde-doc-5-release-gates-and-receipts-p0">MDE-DOC-5 — release gates and receipts (P0)<a class="headerlink" href="#mde-doc-5-release-gates-and-receipts-p0" title="Permanent link">&para;</a></h3>
+<p>Compose the existing Docs, Outputs, fallback, and core contracts into one
+release verifier. Required gates:</p>
+<ol>
+<li>source fingerprint and stale-anchor check;</li>
+<li>DOCX package/XML/relationship/ID integrity;</li>
+<li>heading/section and TOC policy;</li>
+<li>equation integrity and numbering policy;</li>
+<li>caption/figure/table ownership;</li>
+<li>citation and bibliography consistency;</li>
+<li>artifact provenance and generator-script freshness;</li>
+<li>output-index convergence or exact-path registration;</li>
+<li>strict render receipt if visual validation is required;</li>
+<li>explicit human approval before promotion.</li>
+</ol>
+<p>The receipt must state <code>verified</code>, <code>held</code>, <code>stale</code>, <code>ambiguous</code>, <code>degraded</code>, or
+<code>unavailable</code> for each gate. Unknown is not an acceptable release state.</p>
+<h3 id="mde-doc-6-fast-batch-transforms-and-word-safe-render-barrier-p1">MDE-DOC-6 — fast batch transforms and Word-safe render barrier (P1)<a class="headerlink" href="#mde-doc-6-fast-batch-transforms-and-word-safe-render-barrier-p1" title="Permanent link">&para;</a></h3>
+<p>For mechanical DOCX changes, use one staged ZIP/XML batch rather than repeated
+Word/COM round trips. The intended sequence is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>read saved bytes -&gt; plan all XML changes -&gt; write one draft -&gt; structural audit
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>-&gt; one strict render attempt -&gt; page/image inspection -&gt; approval
+</code></pre></div>
+<p>COM should be bounded, isolated, cleaned up, and treated as a renderer rather
+than as the document database. A timeout must leave a typed receipt and no
+orphaned Word process. Word is still the authoritative visual check for a Word
+submission when available; fast XML checks do not replace that check.</p>
+<h3 id="mde-doc-7-research-output-binding-and-evidence-graph-p0p1">MDE-DOC-7 — research-output binding and evidence graph (P0/P1)<a class="headerlink" href="#mde-doc-7-research-output-binding-and-evidence-graph-p0p1" title="Permanent link">&para;</a></h3>
+<p>Connect each document artifact to Meridian Outputs and the research graph:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>claim/citation/run -&gt; source data -&gt; generator script -&gt; output file
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>                  -&gt; document artifact -&gt; paragraph/section anchor
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>                  -&gt; render receipt -&gt; release decision
+</code></pre></div>
+<p>Use deterministic identity keys and immutable revisions. A changed source
+schema, generator hash, or parameter set must create a new revision or block
+promotion; it must not overwrite the old evidence record.</p>
+<h3 id="mde-doc-8-capability-and-documentation-synchronization-p1">MDE-DOC-8 — capability and documentation synchronization (P1)<a class="headerlink" href="#mde-doc-8-capability-and-documentation-synchronization-p1" title="Permanent link">&para;</a></h3>
+<p>Generate the standalone Docs README and MCP-tool catalog from the live
+capability manifest, or add a tested synchronization check. The manifest should
+declare each tool's read/write behavior, render dependency, strictness,
+fallbacks, and whether it is safe for a release transaction. Align package
+version metadata across the repository before describing a release as complete.</p>
+<h3 id="mde-doc-9-run-isolation-and-cleanup-p1">MDE-DOC-9 — run isolation and cleanup (P1)<a class="headerlink" href="#mde-doc-9-run-isolation-and-cleanup-p1" title="Permanent link">&para;</a></h3>
+<p>Every document run should have a run ID, explicit staging root, source list,
+owner, time bounds, process-group record, cleanup receipt, and retention state.
+Shared manifests should use portable relative pointers instead of machine-local
+absolute paths. Canonical documents should be outside ordinary staging roots
+and protected by the final compare-and-swap gate.</p>
+<h2 id="acceptance-test-plan">Acceptance test plan<a class="headerlink" href="#acceptance-test-plan" title="Permanent link">&para;</a></h2>
+<h3 id="equation-fixtures">Equation fixtures<a class="headerlink" href="#equation-fixtures" title="Permanent link">&para;</a></h3>
+<p>Create golden fixtures for:</p>
+<ol>
+<li>four intact inline OMML equations with no duplicate <code>w:t</code>;</li>
+<li>the 2.2.2 duplicate-plaintext defect;</li>
+<li>the 3.2.2 merged-OMML defect;</li>
+<li>the 3.3.3 <code>R(p)</code> duplicate defect;</li>
+<li>a legitimate prose mention of an equation variable that must not be
+   flagged;</li>
+<li>a missing-OMML plaintext equation;</li>
+<li>a table-numbered equation sequence with a valid explicit starting number;</li>
+<li>a sequence with a real duplicate/gap;</li>
+<li>two equivalent OMML structures with different XML whitespace/prefixes;</li>
+<li>a deliberately changed subscript/fraction/limit that must fail reference
+    comparison.</li>
+</ol>
+<p>Required assertions:</p>
+<ul>
+<li>the auditor catches all three confirmed current defects;</li>
+<li>it does not flag legitimate variable mentions as corruption;</li>
+<li>repaired drafts have no duplicate math in <code>w:t</code>;</li>
+<li>3.2.2 has the expected five OMML objects, not one flattened object;</li>
+<li>the canonical dissertation's SHA-256 is unchanged before and after every
+  test run;</li>
+<li>a stale candidate fingerprint blocks repair/promotion;</li>
+<li>no failed repair changes the destination bytes.</li>
+</ul>
+<h3 id="publication-document-fixtures">Publication-document fixtures<a class="headerlink" href="#publication-document-fixtures" title="Permanent link">&para;</a></h3>
+<p>Add fixtures for:</p>
+<ul>
+<li>image plus caption plus cross-reference relocation;</li>
+<li>table plus caption relocation;</li>
+<li>orphan image and duplicate paragraph ID detection;</li>
+<li>plaintext caption retrofit;</li>
+<li>bibliography synchronization with missing/stale data;</li>
+<li>section move with references and bookmarks;</li>
+<li>a candidate containing comments/notes and a staged draft;</li>
+<li>Word lock-file presence and unsaved-on-disk caveat;</li>
+<li>strict render timeout and cleanup.</li>
+</ul>
+<h3 id="end-to-end-release-test">End-to-end release test<a class="headerlink" href="#end-to-end-release-test" title="Permanent link">&para;</a></h3>
+<p>The end-to-end test should:</p>
+<ol>
+<li>ingest the saved candidate and record its fingerprint;</li>
+<li>resolve the three equation incidents;</li>
+<li>generate a patch manifest without mutating the canonical file;</li>
+<li>write an isolated draft;</li>
+<li>run equation, caption, ownership, provenance, and numbering audits;</li>
+<li>bind exact output paths and script hashes;</li>
+<li>render under the declared backend policy;</li>
+<li>require an explicit approval token;</li>
+<li>promote with compare-and-swap;</li>
+<li>verify that the promoted package hash matches the release receipt.</li>
+</ol>
+<p>The failure path must prove byte-identical preservation of the destination and
+must leave a recoverable staged run rather than guessing at rollback.</p>
+<h2 id="recommended-implementation-order">Recommended implementation order<a class="headerlink" href="#recommended-implementation-order" title="Permanent link">&para;</a></h2>
+<p>The fastest safe order is:</p>
+<ol>
+<li>MDE-DOC-1 equation integrity auditor and fixtures;</li>
+<li>MDE-DOC-2 reference-aware equation diff/staged repair;</li>
+<li>MDE-DOC-3 artifact blocks and MDE-DOC-4 release manifest in parallel only
+   until their shared schema is fixed;</li>
+<li>MDE-DOC-5 mandatory release gates;</li>
+<li>MDE-DOC-7 provenance/research-graph binding;</li>
+<li>MDE-DOC-6 fast batch transforms and strict render receipt;</li>
+<li>MDE-DOC-8 documentation/capability synchronization;</li>
+<li>MDE-DOC-9 run isolation and cleanup hardening.</li>
+</ol>
+<p>MDE-DOC-4 is the serialization point. Once its manifest schema is stable,
+artifact binding, evidence envelopes, rendering, and promotion can be tested
+against the same release object instead of growing parallel contracts.</p>
+<h2 id="track-a-immediate-dissertationjcshm-work-plan">Track A: immediate dissertation/JCSHM work plan<a class="headerlink" href="#track-a-immediate-dissertationjcshm-work-plan" title="Permanent link">&para;</a></h2>
+<h3 id="diss-1-isolated-equation-repair">DISS-1 — isolated equation repair<a class="headerlink" href="#diss-1-isolated-equation-repair" title="Permanent link">&para;</a></h3>
+<p>Do not repair the manuscript by manually retyping equations in Word. First
+create an isolated repair candidate from the current staged manuscript, use the
+canonical dissertation only as a read-only structural reference, and produce a
+three-change patch manifest for sections 2.2.2, 3.2.2, and 3.3.3. After that,
+run the broader equation-integrity scan and the ownership/caption review before
+deciding whether to repair numbering, captions, figures, or bibliography in
+the same draft.</p>
+<h3 id="diss-2-complete-candidate-audit">DISS-2 — complete candidate audit<a class="headerlink" href="#diss-2-complete-candidate-audit" title="Permanent link">&para;</a></h3>
+<p>The present evidence is sufficient to begin the staged repair, but it is not a
+publication-ready clearance. The candidate still has 33 numbering-gap errors,
+10 legacy table-caption warnings, and 45 orphan-image findings. Those findings
+must be resolved or explicitly dispositioned in a dissertation/JCSHM review
+log. This is a manuscript deliverable, not a requirement to finish the
+Meridian product build.</p>
+<h3 id="diss-3-advisor-review-package">DISS-3 — advisor-review package<a class="headerlink" href="#diss-3-advisor-review-package" title="Permanent link">&para;</a></h3>
+<p>Produce a separate advisor-review package containing the repaired manuscript,
+repaired supplementary information, a before/after change manifest, rendered
+page previews for every changed page, and a short list of decisions requiring
+human approval. Only after that review should a final JCSHM submission package
+be assembled.</p>
+<h2 id="explicit-non-conflation-rule">Explicit non-conflation rule<a class="headerlink" href="#explicit-non-conflation-rule" title="Permanent link">&para;</a></h2>
+<p>The dissertation can be repaired now using a disposable candidate and a
+targeted script. Meridian’s reusable fixes can be built later and tested
+against reduced fixtures derived from this incident. Conversely, building a
+new Meridian auditor does not itself repair, approve, or clear the manuscript.
+No <code>MDE-*</code> item should be marked complete merely because the dissertation was
+manually fixed, and no <code>DISS-*</code> item should be deferred solely because a
+Meridian product capability is not yet implemented.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
