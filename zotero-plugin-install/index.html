@@ -1,0 +1,1272 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shared memory for your AI sessions — MCP server for Claude, Cursor, Windsurf">
+      
+      
+      
+        <link rel="canonical" href="https://docs.usemeridian.us/zotero-plugin-install/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Zotero bridge plugin: install guide - Meridian</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-PLACEHOLDER"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-PLACEHOLDER",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#zotero-bridge-plugin-install-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://usemeridian.us" title="Meridian" class="md-header__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meridian
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Zotero bridge plugin: install guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../browser-connector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Browser Connector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../mcp-tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MCP Tools
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../meridian-handoff-contract/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Handoff Contract
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parallel-safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parallel Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hosted/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Hosted (usemeridian.us)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../team-self-hosting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Team Self-Hosting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../safety-limits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety Limits
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../desktop-research-search/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Desktop Research Search
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://usemeridian.us" title="Meridian" class="md-nav__button md-logo" aria-label="Meridian" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meridian
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/meridianmcp/Meridian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    meridianmcp/Meridian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-connector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Connector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meridian-handoff-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Handoff Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel-safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parallel Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hosted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted (usemeridian.us)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team-self-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Self-Hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../desktop-research-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desktop Research Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-it-is-and-why-it-never-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What it is, and why it never prompts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-automatic-install-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Automatic install (Windows)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-manual-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Manual install
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4a-signing-the-plugin-mozilla-unlisted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4a. Signing the plugin (Mozilla, unlisted)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Verify
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-uninstall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Uninstall
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="zotero-bridge-plugin-install-guide">Zotero bridge plugin: install guide<a class="headerlink" href="#zotero-bridge-plugin-install-guide" title="Permanent link">&para;</a></h1>
+<p>The Meridian Zotero Bridge adds two commands to Zotero's right-click menus: import a BibTeX file into a collection, and attach PDFs from a folder by BibTeX key. It also adds a preferences pane.</p>
+<p><strong>Status: partly verified.</strong> The write API has passed its live checks in a throwaway profile (see the bridge README). The menus, the preferences pane, the file pickers and the automatic install have not been run in a live Zotero install. Before you use it on a library you care about, run the disposable-profile checklist in <code>extensions/zotero-bridge/README.md</code>.</p>
+<h2 id="1-what-it-is-and-why-it-never-prompts">1. What it is, and why it never prompts<a class="headerlink" href="#1-what-it-is-and-why-it-never-prompts" title="Permanent link">&para;</a></h2>
+<p>The bridge runs inside Zotero. It makes no outbound network calls. Zotero itself checks the <code>update_url</code> in <code>manifest.json</code> for add-on updates. The file at that URL does not exist yet, so automatic updates do not work until the first signed release publishes it. Writes come from two places. One is a menu command you choose. The other is a local write API on <code>127.0.0.1:23125</code>, which listens only on the loopback interface and accepts a request only with the bearer token in Meridian's token file. The API is described in <code>extensions/zotero-bridge/README.md</code>. It is separate from Zotero's own read-only local API on <code>127.0.0.1:23119</code>, which Zotero's Always Allow option controls. The bridge never asks for permission at runtime. Meridian asks you once whether to install it (section 3); that is the only prompt.</p>
+<h2 id="2-requirements">2. Requirements<a class="headerlink" href="#2-requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Zotero 8 or later (the manifest's minimum). <code>manifest.json</code> sets <code>strict_min_version</code> to <code>8.0</code>.</li>
+<li>Windows, for the automatic install through the Meridian tray app. This guide covers Windows only.</li>
+<li>For the manual install: a source checkout of this repository. Meridian builds the <code>.xpi</code> from <code>extensions/zotero-bridge</code>.</li>
+</ul>
+<h2 id="3-automatic-install-windows">3. Automatic install (Windows)<a class="headerlink" href="#3-automatic-install-windows" title="Permanent link">&para;</a></h2>
+<p>The Meridian tray app asks once, on first launch:</p>
+<blockquote>
+<p>Install the Zotero bridge plugin now? Meridian will close Zotero if it is open, install the plugin into Zotero's extensions folder, and restart Zotero if Meridian closed it. Zotero's own add-on list can remove it later.</p>
+</blockquote>
+<ul>
+<li>The prompt defaults to <strong>Install (recommended)</strong>. Enter also chooses it.</li>
+<li><strong>Not now</strong> opts out. Closing the window also counts as Not now.</li>
+<li>If the tray cannot show the prompt, no answer is saved and the prompt returns on the next launch.</li>
+</ul>
+<p>Nothing is installed until you have answered the prompt. Answering <strong>Install</strong> installs the plugin at once, unless <code>MERIDIAN_ZOTERO_PLUGIN_AUTOINSTALL</code> turns automatic installs off (see below). The packaged app does this itself. Closing Zotero is part of that install by default: if Zotero is open, Meridian asks it to close, installs the plugin, and restarts Zotero, but only when Meridian closed it. An install that finds the plugin already current does not close Zotero. Meridian never force-closes Zotero. If Zotero does not close within about 60 seconds, for example because it shows a dialog or is busy, nothing is installed and nothing is written. Close Zotero yourself, then choose <strong>Install Zotero plugin now</strong> in the tray menu. If Meridian cannot check whether Zotero is running, nothing is written either, and the dialog says so. The choice is saved either way.</p>
+<p>When Meridian starts Zotero from a source checkout, it places the plugin first, while Zotero is closed. This route never closes Zotero: if Zotero is open, nothing is written. Starting Zotero by hand does not install it. The packaged app does not start Zotero, so this route does not apply there. Section 4 is the manual route.</p>
+<p>The install also enables the plugin in Zotero's default profile, and it may start Zotero and close it again so that Zotero registers the add-on. Section 4 lists what the install writes to the profile.</p>
+<p><strong>Close Zotero to install the plugin</strong> is the tray menu item that controls the close step. A tick means on, which is the default. Turning it off means an install with Zotero open is refused, and you close Zotero yourself. The choice is saved as <code>close_zotero_for_install</code> in the same settings file. It does not change whether auto-install is on, and it does not change your answer to the first-run prompt. Closing happens only during an install you start: answering <strong>Install</strong> to the first-run prompt, choosing <strong>Install Zotero plugin now</strong>, or running the manual command in section 4. <code>MERIDIAN_ZOTERO_CLOSE_ON_INSTALL</code> can only turn closing off. <code>0</code>, <code>false</code>, <code>no</code> and <code>off</code> turn it off even when the saved choice is on. <code>1</code>, <code>true</code>, <code>yes</code> and <code>on</code> change nothing, so a saved off stays off. Any other value is ignored. While the variable holds an off value, the menu item says that the variable overrides it. Its checkbox still shows your saved choice. Meridian never force-closes Zotero, whatever this setting says. It sends the same close request as Zotero's own close button, and the taskkill argument list has no force flag. A close request can still time out, for example when Zotero shows a dialog or is busy. Then nothing is installed and nothing is written.</p>
+<p>To change the choice later, use the tray menu item <strong>Auto-install Zotero bridge plugin</strong>. A tick means on. Turning it off stops future automatic installs. It does not remove a plugin that is already installed; see section 6. <strong>Install Zotero plugin now</strong> (Windows) runs one install on demand and reports the result in a dialog. It ignores the saved choice and <code>MERIDIAN_ZOTERO_PLUGIN_AUTOINSTALL</code>, because you asked for it. It follows the close choice above.</p>
+<p>The saved choice is in <code>%USERPROFILE%\.meridian\local_runner\zotero_plugin.json</code>, or in the folder named by <code>MERIDIAN_LOCAL_RUNNER_STATE_DIR</code> when that is set.</p>
+<p><code>MERIDIAN_ZOTERO_PLUGIN_AUTOINSTALL</code> controls automatic installs only: the install that runs before Meridian starts Zotero from a source checkout, and the install that follows the first-run <strong>Install</strong> answer. It does not change <strong>Install Zotero plugin now</strong> or the manual command in section 4, which run because you asked for them. The value is trimmed of spaces and matched without regard to case. These values force automatic installs <strong>off</strong>: <code>0</code>, <code>false</code>, <code>no</code>, <code>off</code>. These values force them <strong>on</strong>, but only after you have answered the prompt: <code>1</code>, <code>true</code>, <code>yes</code>, <code>on</code>. Any other value, or an empty one, is ignored and the tray setting applies. When the variable forces automatic installs off, answering <strong>Install</strong> still saves your choice, but nothing is installed until you choose <strong>Install Zotero plugin now</strong>. While the variable holds a recognised value, the tray menu item says that the variable overrides it. Its checkbox still shows your saved choice.</p>
+<p>The packaged Windows tray app includes the bridge source, so the Install answer and <strong>Install Zotero plugin now</strong> work from the installed app. The manual install in section 4 still needs a source checkout.</p>
+<h2 id="4-manual-install">4. Manual install<a class="headerlink" href="#4-manual-install" title="Permanent link">&para;</a></h2>
+<p>Use this if you declined, or if the automatic install did not appear.</p>
+<ol>
+<li>Close Zotero, or let the command close it. The command below closes a running Zotero by itself, unless the saved <strong>Close Zotero to install the plugin</strong> choice in section 3 is off, the <code>MERIDIAN_ZOTERO_CLOSE_ON_INSTALL</code> override is set to an off value, or you add <code>--keep-zotero-open</code>. With closing off, the command refuses while Zotero runs, so close Zotero first. A close request can still time out, and then nothing is installed.</li>
+<li>From a source checkout, run this in the repository root:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pixi run python -m meridian zotero install-plugin
+</code></pre></div>
+<p>It builds the unsigned bundle <code>meridian-zotero@usemeridian.us.xpi</code> into <code>%USERPROFILE%\.meridian\local_runner\zotero_plugin\</code>. The unsigned build writes nothing to the Zotero profile. The command copies a file into the profile only when a Mozilla-signed file for this plugin version is stored (section 4a). With signing credentials set and no signed file stored, it first fetches the approved file for this version from addons.mozilla.org. That fetch only reads and submits nothing. Without a signed file after that, it prints the signing command and the path of the unsigned file, and you can install that file by hand in steps 3 and 4. This command installs even if you declined, because the saved setting only affects automatic installs. It copies the file only into a folder that holds <code>prefs.js</code> or <code>zotero.sqlite</code>, so a wrong <code>--profile</code> path writes nothing. It follows the close choice in section 3. Add <code>--keep-zotero-open</code> to refuse the install while Zotero is open, for this run only.
+3. In Zotero, open <strong>Tools &gt; Plugins</strong>, click the gear icon, and choose <strong>Install Plugin From File</strong>.
+4. Select <code>meridian-zotero@usemeridian.us.xpi</code> from the folder in step 2.
+5. Restart Zotero if asked.</p>
+<p>Beyond the file copy and the two API prefs, the install also writes the scan line to <code>user.js</code>: <code>user_pref("extensions.startupScanScopes", 1);</code>. Zotero needs that line to scan the <code>extensions</code> folder. The install adds it only when <code>user.js</code> has no such line. A <code>user.js</code> that sets that preference to any other value is refused before anything closes, and nothing is written. The install also enables the add-on in <code>extensions.json</code>. When the add-on is not yet registered, the install starts Zotero, waits up to two minutes for Zotero to register the add-on, and closes Zotero again. Zotero is restarted afterwards only when it was running before the install and Meridian closed it. Meridian enables the plugin only in Zotero's default profile. For another profile, the install copies the file and writes the scan line and the prefs, then says to start Zotero with that profile once and enable the plugin in Tools &gt; Plugins.</p>
+<p>A rerun on an install that is already current repairs the scan line, the token and the two API prefs, and writes nothing else. If Zotero is closed and the add-on is registered but disabled, the rerun also enables it.</p>
+<h2 id="4a-signing-the-plugin-mozilla-unlisted">4a. Signing the plugin (Mozilla, unlisted)<a class="headerlink" href="#4a-signing-the-plugin-mozilla-unlisted" title="Permanent link">&para;</a></h2>
+<p>Firefox and Zotero load add-ons that Mozilla has signed. Meridian signs the bridge once per plugin version, as a separate step. Installing never signs and never submits anything. It does not wait on Mozilla to copy a file: with signing credentials set and no signed file stored, the install first fetches the approved file for this version from addons.mozilla.org, which only reads. The file is copied only when a matching signed file is stored.</p>
+<ol>
+<li>Create a Mozilla developer account on addons.mozilla.org (the developer hub).</li>
+<li>In the developer hub, open the <strong>API Keys</strong> page and create a key pair. Mozilla shows the key (the JWT issuer) and the secret (the JWT secret). Copy both now.</li>
+<li>Set both as <strong>user</strong> environment variables, never in a file or in chat: <code>WEB_EXT_API_KEY</code> for the key and <code>WEB_EXT_API_SECRET</code> for the secret. On Windows, open <strong>Edit environment variables for your account</strong>, add both under <strong>User variables</strong>, then open a new terminal.</li>
+<li>From a source checkout, with Node.js and <code>npx</code> on your PATH, run this in the repository root:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pixi run python -m meridian zotero sign-plugin
+</code></pre></div>
+<p><code>--dry-run</code> prints the plugin version, whether the two variables are set (yes or no, never the values), and whether a signed file is already stored. It signs nothing, uploads nothing, and writes nothing. <code>--timeout-minutes N</code> changes the default wait of 60 minutes. N must be more than 0 and at most 1440. Any other value is refused before anything is staged or uploaded. A negative value may be written with an equals sign, as <code>--timeout-minutes=-5</code>.
+5. Wait for Mozilla. The command returns once Mozilla has signed the file, or stops at the timeout. A timeout or a failure stores no signed file. It may still have submitted this version to Mozilla, so the version number is used up. The message says: Bump the version in manifest.json to sign a new build.
+6. Run <code>pixi run python -m meridian zotero install-plugin</code> (section 4). It copies the signed file into Zotero's profile.</p>
+<p><strong>Fetching an approved version.</strong> After Mozilla approves the version, run <code>pixi run python -m meridian zotero sign-plugin --fetch</code>. It downloads the file Mozilla has already approved and signed, checks it against this source, and stores it as signed. It never uploads anything, and it never writes a <code>submitted</code> record. Use it when a timed-out run left the version submitted but no signed file was stored.</p>
+<p>What signing does, and what it does not:</p>
+<ul>
+<li><strong>Signing does not close Zotero.</strong> Its network use is this. web-ext is pinned to 8.10.0, but the first run fetches that package, and its npm dependencies, from the npm registry, and those dependencies are not pinned. The signing call then uploads the bundle to Mozilla's addons.mozilla.org API. Signing writes to two places: Meridian's state folder, <code>%USERPROFILE%\.meridian\local_runner\zotero_plugin\</code> (the signed file in <code>signed\</code> and the record in <code>signed.json</code>), and the system temporary folder, which holds the staged copy and web-ext's output while it runs. npm and npx write their own files to the npm cache.</li>
+<li><strong>Installing does close Zotero</strong>, under the rules in section 3, and when the add-on is not yet registered it may start Zotero and close it again so that Zotero registers the add-on (section 4). It copies only the signed file, and only when that file was signed for this plugin version and this exact source. The copy reads the file once, checks its sha256 against the record, and writes those same bytes. With no matching signed file, the install writes nothing, closes nothing, and prints the signing command. A stored file that no longer matches its record gets its own message. When the check catches it before Zotero is closed, the install stops there. A version that was submitted without a verified signed file gets the bump message instead, and nothing is closed. Each copy writes only bytes that match the record.</li>
+<li><strong>One submission per version number.</strong> Before it uploads anything, <code>sign-plugin</code> writes a <code>submitted</code> record for the version, with the source it was given. A run for a version that already has a signed file for this same source reports it as already signed, exits 0, and uploads nothing. Any other later run for that version is refused with: This version has already been submitted to Mozilla. Bump the version in manifest.json to sign a new build. That refusal applies when the source has changed since the signed file was made, and after a failure or a timeout whatever the source, because Mozilla may already hold the version. So the version number is used up. A new build needs a new version number in <code>manifest.json</code>.</li>
+<li><strong>Deleting <code>signed.json</code> removes the guarantee.</strong> Deleting <code>signed.json</code> removes the guarantee against resubmitting a version that was submitted without a signed file. Meridian cannot detect a fully deleted record, so it cannot refuse a second submission of that version. A stored signed file with no record is refused too, so a signed version stays refused while its file is kept. Install is also blocked after the record is deleted, while the signed file is kept: the install reports the version as used and says to bump it. To sign again, bump the version in <code>manifest.json</code>.</li>
+<li><strong>The one-submission guarantee lives in the state folder.</strong> The record and the signed file are in the state folder, <code>%USERPROFILE%\.meridian\local_runner\zotero_plugin\</code>, or in the folder named by <code>MERIDIAN_LOCAL_RUNNER_STATE_DIR</code> when that is set. A different machine, a different Windows user, or a <code>MERIDIAN_LOCAL_RUNNER_STATE_DIR</code> override starts with no record, so the same version can be submitted to Mozilla again there.</li>
+<li><strong>Version numbers are matched exactly.</strong> A version number is matched exactly as written, so <code>0.1</code> and <code>0.1.0</code> are different versions. Mozilla's behaviour for a near-duplicate version is not verified, so do not sign a new build under a number that differs only by trailing zeros.</li>
+<li><strong>Earlier builds are not protected.</strong> A version that was submitted to Mozilla before this record existed, in an earlier build, is not protected, because Meridian has no record of that submission. Bump that version before you sign again.</li>
+<li><strong>Two runs at the same time are not guarded.</strong> <code>sign-plugin</code> checks the records, and then writes the <code>submitted</code> record, as two steps. Two <code>sign-plugin</code> runs for the same version at the same time can both pass the check before either writes its record, so both can submit. This build does not lock against it. Run one signing at a time.</li>
+<li><strong>The key and the secret are never written to a file, printed, or put on a command line.</strong> The signing call receives them in its environment only. Other <code>WEB_EXT_*</code> variables are not passed to that call, so none of them can redirect the credentials to another server.</li>
+<li><strong>One forced kill, for the signing child only.</strong> If Mozilla does not finish within the wait, <code>sign-plugin</code> ends the signing child's own process tree, with <code>taskkill /PID &lt;child&gt; /T /F</code> on Windows, so that a hung web-ext cannot block the command. This is the only forced kill in the signing path. It touches only the signing child's process tree, and never Zotero or any other process. Zotero's own close step is a plain close request and never forces anything.</li>
+<li><strong>Fallback: install the unsigned file yourself.</strong> The install prints the path of the unsigned file. In Zotero, open <strong>Tools &gt; Plugins</strong>, click the gear icon, choose <strong>Install Plugin From File</strong>, and select that file. Zotero may refuse an unsigned add-on in a normal build. The menu names used in this guide and that refusal are unverified on Zotero 10.0.6.</li>
+</ul>
+<p><strong>Status of 0.1.4:</strong> not yet signed, released or installed. The signing step has to run against Mozilla before the release step publishes the signed file, and only then can the install copy it into a profile.</p>
+<h2 id="5-verify">5. Verify<a class="headerlink" href="#5-verify" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Tools &gt; Plugins</strong> lists <strong>Meridian Zotero Bridge</strong>, and it is enabled.</li>
+<li>Right-click a collection in the left pane. The menu has <strong>Import BibTeX here...</strong>.</li>
+<li>Select a regular item and right-click it. The menu has <strong>Attach PDFs from folder...</strong>.</li>
+<li>Zotero's settings include a pane named <strong>Meridian Zotero Bridge</strong>.</li>
+<li>The write API answers. Read the token into a shell variable without printing it, then ask for the status. The answer names the plugin version (0.1.4 or later) and Zotero's version:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.meridian/local_runner/zotero_bridge/api_token"</span><span class="k">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>curl<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Host: 127.0.0.1:23125"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span>http://127.0.0.1:23125/v1/status
+</code></pre></div>
+<p>On Windows the token file is <code>%USERPROFILE%\.meridian\local_runner\zotero_bridge\api_token</code>. The install creates it once and keeps it, so a reinstall does not change it. The token is a credential: do not paste it into chats or commit it.</p>
+<h2 id="6-uninstall">6. Uninstall<a class="headerlink" href="#6-uninstall" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Turn off auto-install first.</strong> In the tray menu, clear <strong>Auto-install Zotero bridge plugin</strong>. If <code>MERIDIAN_ZOTERO_PLUGIN_AUTOINSTALL</code> is set, unset it too, because it overrides the menu. Otherwise Meridian puts the file back the next time it starts Zotero while Zotero is closed. Do not choose <strong>Install Zotero plugin now</strong> either, since it puts the file back too.</li>
+<li>In Zotero, open <strong>Tools &gt; Plugins</strong>, select <strong>Meridian Zotero Bridge</strong>, and remove it. Restart Zotero.</li>
+<li>Close Zotero. Delete <code>meridian-zotero@usemeridian.us.xpi</code> from the <code>extensions</code> folder of your Zotero profile. Meridian finds that profile through <code>profiles.ini</code> in <code>%APPDATA%\Zotero\Zotero</code>.</li>
+<li>Removing the plugin does not remove the three managed <code>user_pref</code> lines the install wrote to the profile's <code>user.js</code>: <code>apiPort</code>, <code>apiTokenPath</code>, and the scan line <code>extensions.startupScanScopes</code>. The install writes the scan line only when <code>user.js</code> had none, so keep it if your profile already had one before the install. Delete the others by hand if you want the profile clean. The token file in <code>%USERPROFILE%\.meridian\local_runner\zotero_bridge\</code> stays until you delete it.</li>
+</ol>
+<h2 id="7-troubleshooting">7. Troubleshooting<a class="headerlink" href="#7-troubleshooting" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Refused while Zotero is running.</strong> Nothing is written while Zotero is open. The command says "Zotero is running. Close Zotero, then run this command again." This happens when closing is turned off (the tray item, the saved setting, the environment variable, or <code>--keep-zotero-open</code>), and on macOS or Linux, where Meridian does not close Zotero. Close Zotero and retry. Close Zotero, then choose <strong>Install Zotero plugin now</strong> in the tray menu. An install skipped at Zotero's start from a source checkout is tried again the next time Meridian starts Zotero while it is closed.</li>
+<li><strong>Zotero did not close.</strong> Meridian asked Zotero to close and waited about 60 seconds, but Zotero is still open. Nothing was installed and nothing was written. Close Zotero yourself, saving or dismissing any dialog it shows, then choose <strong>Install Zotero plugin now</strong> in the tray menu. Meridian does not force-close Zotero.</li>
+<li><strong>Zotero closed but did not restart.</strong> The plugin was installed, and Zotero was closed for it. Start Zotero yourself.</li>
+<li><strong>Could not check whether Zotero is running.</strong> Meridian reads Zotero's process list before it writes. If that read fails, nothing is written, and the dialog or command says it could not check. This is not the same as Zotero running. Make sure Zotero is closed, then try again with <strong>Install Zotero plugin now</strong> in the tray menu.</li>
+<li><strong>Your choice could not be saved.</strong> Meridian shows the error, and nothing is installed. The prompt asks again on the next launch. Once the settings folder is writable, you can choose <strong>Install Zotero plugin now</strong> in the tray menu.</li>
+<li><strong>No profile found.</strong> Meridian reads <code>profiles.ini</code> from the Zotero data folder, which defaults to <code>%APPDATA%\Zotero\Zotero</code>. If your Zotero data is somewhere else, set <code>MERIDIAN_ZOTERO_DATA_DIR</code> to that folder (the one that contains <code>profiles.ini</code>) and retry. You can also point the command at a profile folder with <code>--profile "&lt;profile folder&gt;"</code>.</li>
+<li><strong>Not a Zotero profile.</strong> The command refuses a folder that holds neither <code>prefs.js</code> nor <code>zotero.sqlite</code>, and writes nothing. Point <code>--profile</code> at the profile folder itself.</li>
+<li><strong>user.js sets the scan preference.</strong> If <code>user.js</code> sets <code>extensions.startupScanScopes</code> to any value other than 1, the install refuses before it closes Zotero, and nothing is written. Remove that line, then run the install again.</li>
+<li><strong>Zotero did not register the plugin.</strong> The install waits up to two minutes for Zotero to register the add-on. If it does not, the plugin is not enabled yet. Start Zotero once, then run the install again.</li>
+<li><strong>Nothing happens on macOS or Linux.</strong> The tray prompt, the immediate install, the tray menu items and the close step are Windows only in this build. Use the manual install in section 4.</li>
+<li><strong>The write API does not answer on port 23125.</strong> It starts only when the profile's <code>user.js</code> names a token file that holds a usable token. If the token file is missing, the menus still work and the API stays off. Zotero logs the reason to its error console. Run the install again to create the token file and the lines. If another program already uses port 23125, the API also stays off, and Zotero logs that too.</li>
+<li><strong>A linked attachment is refused with "No folder is allowed for linked files yet" or "not inside a folder you allowed".</strong> Linking works only from folders you list. In Zotero, open <strong>Settings &gt; Meridian Zotero Bridge</strong> and add the folder under <strong>Folders allowed for linked files</strong>, separated by vertical bars (<code>|</code>). A drive root cannot be listed, and nor can a folder that resolves to one. A folder reached through a link or junction cannot be listed either, so list its real path. The write API cannot change this list. A file in a credential, profile or app-data folder is refused whatever the list says. Zotero's local API tells local programs the path of linked files while it is on, so list only folders whose paths you are willing to have seen (the bridge README explains this under Limits and rules).</li>
+<li><strong>A write is refused with <code>grant_required</code>.</strong> That is the protection working. Writes need a grant that a person approves in a Zotero prompt (Meridian Zotero Bridge: write access). Deny is the default. Approve only a request you started yourself, because the app name in the prompt is what the requester says it is. A grant lasts an hour, or until Zotero restarts.</li>
+<li><strong>The token file is readable by your account only.</strong> On Windows the install restricts <code>api_token</code> to your account with <code>icacls</code>, which removes the inherited read access for other accounts. Run the install again to repair it if you changed its permissions. If <code>icacls</code> fails, the install stops and says why.</li>
+<li><strong>Not listed after restart.</strong> The automatic route has not been verified on a real Zotero install. If Meridian Zotero Bridge is not in <strong>Tools &gt; Plugins</strong> after a restart, use the manual install in section 4, and tell us what <strong>Tools &gt; Plugins</strong> showed.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/meridianmcp/Meridian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:hello@usemeridian.us" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
